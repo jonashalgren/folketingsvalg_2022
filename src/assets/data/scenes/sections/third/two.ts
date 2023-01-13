@@ -25,7 +25,7 @@ export const two: S = {
     exitTarget: [0, 20, -3],
   },
   elements: {
-    line: {
+    lineChart: {
       width: 100,
       topValue: 30,
       bottomValue: 0,

@@ -19,7 +19,7 @@ const partyInputRange = [0, 0.48, 0.63, 0.76, 0.9, 1];
 export const mandates: S = {
   hasLogoIntro: true,
   isPartyFloating: true,
-  bBox: { x: 100, y: 180 },
+  bbox: { x: 100, y: 180 },
   additionalScroll: [
     [0, 0.5, 0.5],
     [1, 0, 0.5],

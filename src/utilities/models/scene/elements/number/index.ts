@@ -1,4 +1,4 @@
-import type { Motion } from "@models";
+import type { Motion, Mesh_Text } from "@models";
 export type S_E_Number = {
   font: string;
   unit: string;
@@ -12,4 +12,8 @@ export type S_E_Number = {
   decimals: number;
   textAlign: "center" | "left" | "right";
   rotation: [number, number, number];
+};
+
+export type S_Number_Properties = {
+  text: Mesh_Text;
 };

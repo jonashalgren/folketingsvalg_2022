@@ -2,7 +2,6 @@ import { Scene, WebGLRenderer } from "three";
 import * as THREE from "three";
 import type { CanvasProperties } from "@models";
 import { threeProperties } from "@assets";
-import { setSceneLight, setNGetSceneCamera, setNGetSceneControls } from "@helpers";
 
 type Props = {
   canvasProperties: CanvasProperties;
@@ -21,20 +20,20 @@ export function getSceneBackground({ canvasElement, canvasProperties }: Props) {
 
   scene.add(plane);
 
-  setSceneLight({ scene });
-  //CAMERA
-  const camera = setNGetSceneCamera({ mapWidth: width, vh: height });
-  camera.position.set(0, 0, 200);
+  // setSceneLight({ scene });
+  // //CAMERA
+  // const camera = setNGetSceneCamera({ mapWidth: width, vh: height });
+  // camera.position.set(0, 0, 200);
 
-  //CONTROLS
-  const controls = setNGetSceneControls({ camera, element: canvasElement });
+  // //CONTROLS
+  // const controls = setNGetSceneControls({ camera, element: canvasElement });
 
   return {
     render: function ({ renderer }: { renderer: WebGLRenderer }) {
       //UPDATE CONTROLS
-      controls.update();
-      //RENDER UPDATE
-      renderer.render(scene, camera);
+      // controls.update();
+      // //RENDER UPDATE
+      // renderer.render(scene, camera);
     },
   };
 }

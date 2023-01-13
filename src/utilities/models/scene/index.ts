@@ -10,7 +10,7 @@ export * from "./elements/part";
 
 export type S = {
   index?: number;
-  bBox?: { x: number; y: number };
+  bbox?: { x: number; y: number };
   additionalScroll?: AdditionalScroll[];
   camera: S_Camera;
   isPartyFloating?: Boolean;

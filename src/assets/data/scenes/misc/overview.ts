@@ -19,11 +19,12 @@ export const overview: S = {
       ],
     },
     entryPosition: [0, -250, 350],
+    entryTarget: [0, 0, 0],
     exitPosition: [7, 4, -5],
     exitTarget: [7, 4, -10],
   },
   elements: {
-    overview: {
+    barChart: {
       animConfigs: [
         { variant: "blank", inputRange: [0, 0.01] },
         { variant: "normal", year: "2022", inputRange: [0.2, 1] },

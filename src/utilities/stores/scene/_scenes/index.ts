@@ -1,59 +1,15 @@
 import { derived } from "svelte/store";
 import { Scene } from "@classes";
-
-import {
-  _sceneData,
-  _sceneMapProperties,
-  _sceneOverviewProperties,
-  _sceneNumberProperties,
-  _canvasProperties,
-  _canvasElement,
-  _sceneProgress,
-  _partyLogoMesh,
-  _partyLeaderMesh,
-  _scenePartProperties,
-  _preloadFont,
-} from "@stores";
+import { _sceneData, _sceneOriginalBlocks, _canvasElement, _canvasProperties, _sceneProgress } from "@stores";
 
 export const _scenes = derived(
-  [
-    _sceneData,
-    _canvasProperties,
-    _canvasElement,
-    _sceneMapProperties,
-    _sceneOverviewProperties,
-    _sceneProgress,
-    _sceneNumberProperties,
-    _partyLogoMesh,
-    _partyLeaderMesh,
-    _scenePartProperties,
-    _preloadFont,
-  ],
-  ([
-    $_sceneData,
-    $_canvasProperties,
-    $_canvasElement,
-    $_sceneMapProperties,
-    $_sceneOverviewProperties,
-    $_sceneProgress,
-    $_sceneNumberProperties,
-    $_partyLogoMesh,
-    $_partyLeaderMesh,
-    $_scenePartProperties,
-    $_preloadFont,
-  ]) => {
-    if (
-      $_sceneData.length > 0 &&
-      $_sceneProgress.length > 0 &&
-      $_sceneMapProperties &&
-      $_sceneOverviewProperties &&
-      $_canvasElement &&
-      $_partyLogoMesh.length > 0 &&
-      $_partyLeaderMesh.length > 0 &&
-      $_scenePartProperties &&
-      $_preloadFont
-    ) {
-      return $_sceneData.map((data) => new Scene(data));
+  [_sceneData, _canvasElement, _sceneOriginalBlocks, _canvasProperties, _sceneProgress],
+  ([$_sceneData, $_canvasElement, $_sceneOriginalBlocks, $_canvasProperties, $_sceneProgress]) => {
+    if ($_sceneData.length > 0 && $_canvasElement && $_sceneOriginalBlocks && $_sceneProgress.length > 0) {
+      return $_sceneData.map(
+        (data, index) =>
+          new Scene(data, $_sceneOriginalBlocks, $_canvasElement, $_canvasProperties, $_sceneProgress[index])
+      );
     }
     return [];
   }
