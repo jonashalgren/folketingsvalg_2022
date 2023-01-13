@@ -1,0 +1,69 @@
+@font-face {
+  font-family: Publik;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://www.dr.dk/nyheder/htm/grafik/DRPublik/DRPublik-Regular.woff2) format("woff2"),
+    url(https://www.dr.dk/nyheder/htm/grafik/DRPublik/DRPublik-Regular.woff) format("woff");
+}
+@font-face {
+  font-family: Publik;
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://www.dr.dk/nyheder/htm/grafik/DRPublik/DRPublik-Italic.woff2) format("woff2"),
+    url(https://www.dr.dk/nyheder/htm/grafik/DRPublik/DRPublik-Italic.woff) format("woff");
+}
+@font-face {
+  font-family: Publik;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://www.dr.dk/nyheder/htm/grafik/DRPublik/DRPublik-Bold.woff2) format("woff2"),
+    url(https://www.dr.dk/nyheder/htm/grafik/DRPublik/DRPublik-Bold.woff) format("woff");
+}
+@font-face {
+  font-family: Publik;
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://www.dr.dk/nyheder/htm/grafik/DRPublik/DRPublik-BoldItalic.woff2) format("woff2"),
+    url(https://www.dr.dk/nyheder/htm/grafik/DRPublik/DRPublik-BoldItalic.woff) format("woff");
+}
+@font-face {
+  font-family: Publik;
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://www.dr.dk/nyheder/htm/grafik/DRPublik/DRPublik-Light.woff2) format("woff2"),
+    url(https://www.dr.dk/nyheder/htm/grafik/DRPublik/DRPublik-Light.woff) format("woff");
+}
+@font-face {
+  font-family: Publik;
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://www.dr.dk/nyheder/htm/grafik/DRPublik/DRPublik-LightItalic.woff2) format("woff2"),
+    url(https://www.dr.dk/nyheder/htm/grafik/DRPublik/DRPublik-LightItalic.woff) format("woff");
+}
+@font-face {
+  font-family: Publik;
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://www.dr.dk/nyheder/htm/grafik/DRPublik/DRPublik-SemiBold.woff2) format("woff2"),
+    url(https://www.dr.dk/nyheder/htm/grafik/DRPublik/DRPublik-SemiBold.woff) format("woff");
+}
+@font-face {
+  font-family: Publik;
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://www.dr.dk/nyheder/htm/grafik/DRPublik/DRPublik-SemiBoldItalic.woff2) format("woff2"),
+    url(https://www.dr.dk/nyheder/htm/grafik/DRPublik/DRPublik-SemiBoldItalic.woff) format("woff");
+}
+
+@font-face {
+  font-family: Ane_Hand;
+  src: url(@assets/fonts/Ane_Hand.ttf) format("truetype");
+}

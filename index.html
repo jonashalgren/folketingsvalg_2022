@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--#DRN-HTML-HEAD-SOCIAL-->
+  </head>
+  <body>
+    <div id="app"></div>
+    <div id="preloader">
+      <svg class="ring_spinner svg-icon" viewBox="0 0 32 32">
+        <defs>
+          <linearGradient id="ring_spinner_1" gradientUnits="objectBoundingBox" x1="1" y1="0" x2="0" y2="0">
+            <stop offset="0%" stop-color="#000000" stop-opacity="0"></stop>
+            <stop offset="100%" stop-color="#000000" stop-opacity="0.5"></stop>
+          </linearGradient>
+          <linearGradient id="ring_spinner_2" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#000000" stop-opacity="0.5"></stop>
+            <stop offset="100%" stop-color="#000000" stop-opacity="1"></stop>
+          </linearGradient>
+        </defs>
+        <g fill="none" stroke-width="3">
+          <path d="m16,16m-14,0a14,14 0 1,0 28,0" stroke="url(#ring_spinner_1)"></path>
+          <path d="m30,16a14,14 0 1,0 -28,0" stroke="url(#ring_spinner_2)"></path>
+        </g>
+      </svg>
+    </div>
+
+    <style>
+      #preloader {
+        position: fixed;
+        width: 100%;
+        height: calc(100vh + 100px);
+        background: #e6e6e1;
+        max-width: 100%;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        z-index: 9999;
+        transition: opacity 0.5s ease-in-out;
+      }
+
+      .ring_spinner {
+        display: inline-block;
+        position: absolute;
+        top: calc(50% - 160px);
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000001;
+        width: 80px;
+        height: 80px;
+        animation: ring_spinner_animation 1s linear infinite;
+      }
+
+      @keyframes ring_spinner_animation {
+        0% {
+          transform: translateX(-50%) rotate(0deg);
+        }
+        100% {
+          transform: translateX(-50%) rotate(1turn);
+        }
+      }
+    </style>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "extends": "@tsconfig/svelte/tsconfig.json",
+  "compilerOptions": {
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "allowJs": true,
+    "checkJs": true,
+    "paths": {
+      "@helpers": ["src/utilities/helpers"],
+      "@stores": ["src/utilities/stores"],
+      "@styles": ["src/utilities/styles"],
+      "@models": ["src/utilities/models"],
+      "@classes": ["src/utilities/classes"],
+      "@assets": ["src/assets"]
+    }
+  },
+  "include": [
+    "index.d.ts",
+    "src/**/*.ts",
+    "src/**/*.js",
+    "src/**/*.svelte",
+    "src/utilities/actions/scene/mapDK/getAnimsMapper/setMapper/animateAreaPoint"
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
