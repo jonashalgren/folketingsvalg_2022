@@ -8,7 +8,7 @@ export const two: S = {
     [1, 0, 0.5],
   ],
   camera: {
-    target: {
+    targetMain: {
       inputRange: [0, 0.33, 0.47, 0.69, 0.81, 1],
       outputRange: [
         [0, -5, 10],
@@ -19,7 +19,7 @@ export const two: S = {
         [-35, 25, 2],
       ],
     },
-    position: {
+    positionMain: {
       inputRange: [0, 0.33, 0.47, 0.69, 0.81, 1],
       outputRange: [
         [0, -40, 100],
@@ -30,10 +30,10 @@ export const two: S = {
         [-35, 0, 60],
       ],
     },
-    entryPosition: [-30, -350, 150],
-    entryTarget: [0, 0, 10],
-    exitTarget: [-38, 45, -5],
-    exitPosition: [-38, 45, -3],
+    positionEntry: [-30, -350, 150],
+    targetEntry: [0, 0, 10],
+    targetExit: [-38, 45, -5],
+    positionExit: [-38, 45, -3],
   },
   elements: {
     map: {
@@ -55,7 +55,7 @@ export const two: S = {
         },
       ],
     },
-    logo: [
+    logos: [
       {
         partyLetter: "A",
         size: mapLogoSize,
@@ -64,7 +64,7 @@ export const two: S = {
         scaleRange: [mapLogoNotScaled, getMapLogoIsScaled("A", 2022), getMapLogoIsScaled("A", 2022)],
       },
     ],
-    number: [
+    numbers: [
       {
         font: threeProperties.font_ane,
         positionRange: {

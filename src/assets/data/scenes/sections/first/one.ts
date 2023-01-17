@@ -3,28 +3,28 @@ import type { S } from "@models";
 export const one: S = {
   hasLogoIntro: true,
   camera: {
-    target: {
+    targetMain: {
       inputRange: [0, 1],
       outputRange: [
         [0, -5, 10],
         [0, -5, 10],
       ],
     },
-    position: {
+    positionMain: {
       inputRange: [0, 1],
       outputRange: [
         [0, -30, 100],
         [0, -30, 100],
       ],
     },
-    entryPosition: [-80, -100, 260],
-    entryTarget: [0, 0, 0],
-    exitTarget: [0, 27, -10],
-    exitPosition: [0, 27, -5],
+    positionEntry: [-80, -100, 260],
+    targetEntry: [0, 0, 0],
+    targetExit: [0, 27, -10],
+    positionExit: [0, 27, -5],
   },
 
   elements: {
-    image: [
+    images: [
       {
         partyLetter: "M",
         inputRange: [0, 1],
@@ -36,7 +36,7 @@ export const one: S = {
         size: 50,
       },
     ],
-    logo: [
+    logos: [
       {
         inputRange: [0, 1],
         partyLetter: "M",

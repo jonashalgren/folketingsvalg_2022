@@ -1,14 +1,8 @@
 import { Scene_Element } from "@classes";
-import type { P_Leader_Mesh } from "@models";
+import type { S_E_Block_Map, S_E_Map } from "@models";
 
 export class Scene_Element_Map extends Scene_Element {
-  constructor(
-    private original_images: P_Leader_Mesh[],
-    private positionRange: [number, number, number][],
-    private scaleRange?: [number, number, number][],
-    private rotation?: [number, number, number],
-    private size?: number
-  ) {
+  constructor(public mapData: S_E_Map, public blockMap: S_E_Block_Map) {
     super();
   }
 }

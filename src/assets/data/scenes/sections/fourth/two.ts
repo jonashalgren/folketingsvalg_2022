@@ -35,27 +35,27 @@ function getNumberRotation() {
 export const two: S = {
   additionalScroll: [[0, 0.5, 0]],
   camera: {
-    target: {
+    targetMain: {
       inputRange: [0, 1],
       outputRange: [
         [0, -5, 15],
         [0, -5, 15],
       ],
     },
-    position: {
+    positionMain: {
       inputRange: [0, 1],
       outputRange: [
         [0, -10, 110],
         [0, -10, 110],
       ],
     },
-    entryPosition: [-20, -150, 350],
-    entryTarget: [0, -5, 15],
-    exitPosition: [0, 50, -3],
-    exitTarget: [0, 50, -5],
+    positionEntry: [-20, -150, 350],
+    targetEntry: [0, -5, 15],
+    positionExit: [0, 50, -3],
+    targetExit: [0, 50, -5],
   },
   elements: {
-    logo: [
+    logos: [
       {
         partyLetter: "O",
         inputRange: getInputRange(),
@@ -102,7 +102,7 @@ export const two: S = {
         isLetterHidden: true,
       },
     ],
-    number: [
+    numbers: [
       {
         font: threeProperties.font_ane,
         unit: "%",
@@ -204,7 +204,7 @@ export const two: S = {
         },
       },
     ],
-    text: [
+    texts: [
       {
         font: threeProperties.font_ane,
         text: "2007",

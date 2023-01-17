@@ -8,7 +8,7 @@ export const three: S = {
     [1, 0, 0.5],
   ],
   camera: {
-    target: {
+    targetMain: {
       inputRange: [0, 0.33, 0.47, 0.69, 0.81, 1],
       outputRange: [
         [0, -5, 10],
@@ -19,7 +19,7 @@ export const three: S = {
         [36, -15, 2],
       ],
     },
-    position: {
+    positionMain: {
       inputRange: [0, 0.33, 0.47, 0.69, 0.81, 1],
       outputRange: [
         [0, -40, 100],
@@ -30,10 +30,10 @@ export const three: S = {
         [20, -40, 20],
       ],
     },
-    entryPosition: [-30, -350, 150],
-    entryTarget: [0, 0, 10],
-    exitTarget: [45, -7, -3],
-    exitPosition: [45, -7, -2],
+    positionEntry: [-30, -350, 150],
+    targetEntry: [0, 0, 10],
+    targetExit: [45, -7, -3],
+    positionExit: [45, -7, -2],
   },
   elements: {
     map: {
@@ -56,7 +56,7 @@ export const three: S = {
         },
       ],
     },
-    logo: [
+    logos: [
       {
         partyLetter: "Æ",
         size: mapLogoSize,
@@ -65,7 +65,7 @@ export const three: S = {
         scaleRange: [mapLogoNotScaled, getMapLogoIsScaled("Æ", 2022), getMapLogoIsScaled("Æ", 2022)],
       },
     ],
-    number: [
+    numbers: [
       {
         font: threeProperties.font_ane,
         positionRange: {

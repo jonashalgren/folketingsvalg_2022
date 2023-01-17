@@ -4,24 +4,24 @@ export const overview: S = {
   hasLogoIntro: true,
   additionalScroll: [[0, 0.5, 0]],
   camera: {
-    target: {
+    targetMain: {
       inputRange: [0, 1],
       outputRange: [
         [7, -4, 10],
         [7, -4, 10],
       ],
     },
-    position: {
+    positionMain: {
       inputRange: [0, 1],
       outputRange: [
         [7, -10, 120],
         [7, -10, 120],
       ],
     },
-    entryPosition: [0, -250, 350],
-    entryTarget: [0, 0, 0],
-    exitPosition: [7, 4, -5],
-    exitTarget: [7, 4, -10],
+    positionEntry: [0, -250, 350],
+    targetEntry: [0, 0, 0],
+    positionExit: [7, 4, -5],
+    targetExit: [7, 4, -10],
   },
   elements: {
     barChart: {

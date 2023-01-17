@@ -3,27 +3,27 @@ import { partyCollection } from "@assets";
 
 export const two: S = {
   camera: {
-    target: {
+    targetMain: {
       inputRange: [0, 1],
       outputRange: [
         [0, -5, 10],
         [0, -5, 10],
       ],
     },
-    position: {
+    positionMain: {
       inputRange: [0, 1],
       outputRange: [
         [0, -30, 100],
         [0, -30, 100],
       ],
     },
-    entryPosition: [0, -200, 350],
-    entryTarget: [0, 0, 0],
-    exitTarget: [0, 0, -20],
-    exitPosition: [0, 0, -10],
+    positionEntry: [0, -200, 350],
+    targetEntry: [0, 0, 0],
+    targetExit: [0, 0, -20],
+    positionExit: [0, 0, -10],
   },
   elements: {
-    logo: [
+    logos: [
       {
         inputRange: [0, 1],
         partyLetter: "B",
@@ -39,7 +39,7 @@ export const two: S = {
         size: 8,
       },
     ],
-    part: [
+    parts: [
       {
         inputRange: [0, 1],
         amount: 16,

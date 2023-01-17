@@ -4,14 +4,14 @@ import { partyCollection } from "@assets";
 export const two: S = {
   additionalScroll: [[0, 0.5, 0]],
   camera: {
-    target: {
+    targetMain: {
       inputRange: [0, 1],
       outputRange: [
         [-5, 0, 10],
         [-5, 0, 10],
       ],
     },
-    position: {
+    positionMain: {
       inputRange: [0, 1],
       outputRange: [
         [-5, -10, 120],
@@ -19,10 +19,10 @@ export const two: S = {
       ],
     },
 
-    entryPosition: [-5, -150, 300],
-    entryTarget: [0, 0, 10],
-    exitPosition: [0, 20, -2],
-    exitTarget: [0, 20, -3],
+    positionEntry: [-5, -150, 300],
+    targetEntry: [0, 0, 10],
+    targetExit: [0, 20, -2],
+    positionExit: [0, 20, -3],
   },
   elements: {
     lineChart: {
@@ -62,7 +62,7 @@ export const two: S = {
         },
       ],
     },
-    logo: [
+    logos: [
       {
         partyLetter: "V",
         size: 14,

@@ -18,13 +18,13 @@ import type {
   S_E_Text,
 } from "@models";
 
-export type S_Elements = {
+export type S_E_Data = {
   map?: S_E_Map;
-  number?: S_E_Number[];
-  text?: S_E_Text[];
-  logo?: S_E_Logo[];
-  image?: S_E_Image[];
-  part?: S_E_Part[];
+  numbers?: S_E_Number[];
+  texts?: S_E_Text[];
+  logos?: S_E_Logo[];
+  images?: S_E_Image[];
+  parts?: S_E_Part[];
   barChart?: S_E_BarChart;
   lineChart?: S_E_LineChart;
 };

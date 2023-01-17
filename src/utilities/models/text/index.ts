@@ -1,11 +1,15 @@
 export type TextSectionOffset = {
-  sectionDeactivate: number;
-  nextTextIntro: number;
-  nextTextOutro: number;
-  textIntro: number;
-  textOutro: number;
-  entryStart: number;
-  exitEnd: number;
+  progressMainStart: number;
+  progressMainEnd: number;
+  progressEntryStart: number;
+  progressExitEnd: number;
   top: number;
   bottom: number;
+};
+
+export type TextPosition = {
+  top: number;
+  bottom: number;
+  nextTop: number;
+  lastEnd: number;
 };

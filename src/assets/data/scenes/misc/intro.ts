@@ -14,24 +14,24 @@ export const intro: S = (function () {
     autoDuration: 14000,
     additionalScroll: [[0, 0, 0]],
     camera: {
-      target: {
+      targetMain: {
         inputRange: [0, 1],
         outputRange: [
           [0, 15, 20],
           [0, 5, 5],
         ],
       },
-      position: {
+      positionMain: {
         inputRange: [0, 1],
         outputRange: [
           [0, -110, 110],
           [0, -20, 110],
         ],
       },
-      entryPosition: [-40, -100, 180],
-      entryTarget: [0, -20, 50],
-      exitTarget: [0, -5, -20],
-      exitPosition: [0, -5, -15],
+      positionEntry: [-40, -100, 180],
+      targetEntry: [0, -20, 50],
+      targetExit: [0, -5, -20],
+      positionExit: [0, -5, -15],
     },
     elements: {
       map: {

@@ -14,24 +14,24 @@ export const outro: S = (function () {
     hasLogoIntro: true,
     autoDuration: 14000,
     camera: {
-      target: {
+      targetMain: {
         inputRange: [0, 1],
         outputRange: [
           [0, 60, 15],
           [0, 60, 15],
         ],
       },
-      position: {
+      positionMain: {
         inputRange: [0, 1],
         outputRange: [
           [0, -130, 75],
           [0, -130, 75],
         ],
       },
-      entryPosition: [-40, -100, 350],
-      entryTarget: [0, -20, 50],
-      exitTarget: [0, 60, 15],
-      exitPosition: [0, -130, 75],
+      positionEntry: [-40, -100, 350],
+      targetEntry: [0, -20, 50],
+      targetExit: [0, 60, 15],
+      positionExit: [0, -130, 75],
     },
     elements: {
       map: {

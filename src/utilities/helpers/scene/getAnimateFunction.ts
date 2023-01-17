@@ -5,11 +5,10 @@ import { _isAnimating, _scrollY } from "@stores";
 
 type Props = {
   sceneBackground: any;
-  nextScene: Scene;
-  currentScene: Scene;
+  scenes: Scene[];
   renderer: WebGLRenderer;
 };
-export function getAnimateFunction({ currentScene, nextScene, renderer, sceneBackground }: Props) {
+export function getAnimateFunction({ scenes, renderer, sceneBackground }: Props) {
   let lastScroll = undefined;
   return function () {
     const scrollY = get(_scrollY);
@@ -18,9 +17,7 @@ export function getAnimateFunction({ currentScene, nextScene, renderer, sceneBac
       sceneBackground.render({ renderer });
       renderer.autoClear = false;
       renderer.clearDepth();
-
-      nextScene.render({ renderer, scrollY });
-      currentScene.render({ renderer, scrollY });
+      scenes.forEach((scene) => scene.render({ renderer, scrollY }));
       renderer.autoClear = true;
     }
   };

@@ -1,11 +1,12 @@
-import type { S, S_Original_Blocks, CanvasProperties, S_Three_Render, S_Progress } from "@models";
-import { AmbientLight, SpotLight, WebGLRenderer, GridHelper, Group, Vector3 } from "three";
+import type { S, CanvasProperties, S_E_Blocks, S_Camera_Mapper, TextPosition, S_Progress_Mapper } from "@models";
+import { AmbientLight, SpotLight, WebGLRenderer, GridHelper } from "three";
 import { PerspectiveCamera, Scene as ThreeScene } from "three";
-import { Scene_Element_Image } from "@classes";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { getAnimate } from "./getAnimate";
-import { getOutputOffsetZ } from "./getOutputOffsetZ";
 import { getProcessedData } from "./getProcessedData";
+import { getElements } from "./getElements";
+import { getMapperCamera } from "./getMapperCamera";
+import { getMapperProgress } from "./getMapperProgress";
+import type { Scene_Element } from "../scene_element";
 
 export class Scene {
   scene: ThreeScene;
@@ -13,53 +14,37 @@ export class Scene {
   spotLight: SpotLight;
   ambientLight: AmbientLight;
   controls: OrbitControls;
-  elementGroup: Group;
-  image_elements: Scene_Element_Image[];
-  outputOffsetZ: number;
-  bbox: { x: number; y: number };
-  animate: ({ scrollY }: S_Three_Render) => void;
+  elements: Scene_Element[];
+
+  mapperProgress: S_Progress_Mapper;
+  mapperCamera: S_Camera_Mapper;
 
   constructor(
     public data: S,
-    public original_blocks: S_Original_Blocks,
+    public elementBlocks: S_E_Blocks,
     public canvas: HTMLCanvasElement,
     public canvasProperties: CanvasProperties,
-    public sceneProgress: S_Progress
+    public textPosition: TextPosition
   ) {
-    const { image } = data.elements;
-
-    this.camera = new PerspectiveCamera();
     this.scene = new ThreeScene();
-    this.spotLight = new SpotLight(0xffffff, 0.4);
-    this.ambientLight = new AmbientLight(0xffffff, 0.6);
-    this.controls = new OrbitControls(this.camera, this.canvas);
-    this.elementGroup = new Group();
+    this.camera = new PerspectiveCamera(50, canvasProperties.width / canvasProperties.height, 0.1, 1000);
 
-    this.bbox = data.bbox ?? { x: 100, y: 100 };
-    this.outputOffsetZ = getOutputOffsetZ({ camera: this.camera, bbox: this.bbox });
+    this.data = getProcessedData({ data, camera: this.camera });
+    this.elements = getElements({ elementData: this.data.elements, elementBlocks: this.elementBlocks });
 
-    this.data = getProcessedData({ data, outputOffsetZ: this.outputOffsetZ });
+    this.mapperCamera = getMapperCamera({ data: this.data });
+    this.mapperProgress = getMapperProgress({ textPosition }).mapper;
 
     this.setLight();
     this.setGrid();
     this.setControls();
-    this.setElementGroup();
-
-    this.animate = getAnimate({
-      data: this.data,
-      group: this.elementGroup,
-      scene: this.scene,
-      camera: this.camera,
-      controls: this.controls,
-      sceneProgress: this.sceneProgress,
-      canvasProperties: this.canvasProperties,
-      original_blocks: this.original_blocks,
-    }).animate;
-
-    this.image_elements = image?.map((data) => new Scene_Element_Image(data, original_blocks.image)) ?? [];
+    this.setCamera();
+    this.addElementBlocksToScene();
   }
 
   setLight() {
+    this.spotLight = new SpotLight(0xffffff, 0.4);
+    this.ambientLight = new AmbientLight(0xffffff, 0.6);
     this.spotLight.position.set(0, 0, 200);
     this.ambientLight.position.set(0, 0, 200);
     this.scene.add(this.spotLight, this.ambientLight);
@@ -75,19 +60,27 @@ export class Scene {
   }
 
   setControls() {
+    this.controls = new OrbitControls(this.camera, this.canvas);
     this.controls.enableZoom = false;
     this.controls.enablePan = false;
   }
 
-  setElementGroup() {
-    this.scene.add(this.elementGroup);
+  setCamera() {
+    this.camera.up.set(0, 0, 1);
+  }
+
+  addElementBlocksToScene() {
+    this.elements.forEach((element) => {
+      this.scene.add(element.blocksGroup);
+    });
   }
 
   render({ scrollY, renderer }: { scrollY: number; renderer: WebGLRenderer }) {
-    this.animate({ scrollY });
-    this.controls.update();
-    renderer.render(this.scene, this.camera);
+    const { progressEntry, progressExit, progressMain, progressState } = this.mapperProgress({ scrollY });
+    if (progressState === "active" || progressState === "next") {
+      this.controls.update();
+      this.mapperCamera({ progressMain, progressEntry, progressExit, camera: this.camera, controls: this.controls });
+      renderer.render(this.scene, this.camera);
+    }
   }
-
-  static function;
 }

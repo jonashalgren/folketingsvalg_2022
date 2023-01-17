@@ -1,9 +1,9 @@
 import { derived } from "svelte/store";
 import { getSceneBackground } from "./getSceneBackground";
-import { _canvasProperties, _canvasElement, _textSectionsOffsets, _sceneData, _sceneProgress } from "@stores";
+import { _canvasProperties, _canvasElement, _sceneData } from "@stores";
 
 export const _sceneBackground = derived(
-  [_canvasProperties, _canvasElement, _sceneData, _sceneProgress],
+  [_canvasProperties, _canvasElement, _sceneData],
   ([$_canvasProperties, $_canvasElement]) => {
     return $_canvasElement
       ? getSceneBackground({

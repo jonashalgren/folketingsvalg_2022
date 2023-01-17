@@ -1,6 +1,14 @@
+import { Group } from "three";
+
 export class Scene_Element {
-  mapper: (progress: number) => void;
+  animate: (progress: number) => void;
+  blocksGroup: Group;
   constructor() {
-    this.mapper = function () {};
+    this.animate = function () {};
+    this.blocksGroup = new Group();
+  }
+
+  setBlocksGroup(group: Group) {
+    return this.blocksGroup.copy(group);
   }
 }

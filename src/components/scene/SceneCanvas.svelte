@@ -1,20 +1,9 @@
 <script lang="ts">
   import { setNGetRenderer, getAnimateFunction, removePreloader } from "@helpers";
-  import {
-    _canvasElement,
-    _canvasProperties,
-    _viewport,
-    _sceneBackground,
-    _isAnimating,
-    _rAF,
-    _scenes,
-    _sceneActive,
-  } from "@stores";
+  import { _canvasElement, _canvasProperties, _viewport, _sceneBackground, _isAnimating, _rAF, _scenes } from "@stores";
 
   const preloaderElement = <HTMLDivElement>document.getElementById("preloader");
   let unsubscribe = function () {};
-  $: currentScene = $_scenes[$_sceneActive];
-  $: nextScene = $_scenes[$_sceneActive + 1];
 
   // create 3d scene renderer
   $: renderer = setNGetRenderer({
@@ -32,20 +21,19 @@
 
   // creating the animate function
   $: animate = getAnimateFunction({
-    currentScene,
-    nextScene,
+    scenes: $_scenes,
     renderer,
     sceneBackground: $_sceneBackground,
   });
 
   //subscribe/resubscribe animate to rAF
-  $: if (renderer && ($_isAnimating || !$_isAnimating) && currentScene && nextScene) {
+  $: if (renderer && ($_isAnimating || !$_isAnimating) && $_scenes.length > 0) {
     unsubscribe();
     unsubscribe = _rAF.add(animate);
   }
 
   // remove preloader
-  $: if (renderer && preloaderElement && currentScene && nextScene) {
+  $: if (renderer && preloaderElement && $_scenes.length > 0) {
     removePreloader({ preloaderElement });
   }
 </script>

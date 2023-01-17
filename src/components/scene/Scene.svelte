@@ -1,6 +1,6 @@
 <script lang="ts">
   import SceneCanvas from "./SceneCanvas.svelte";
-  import { _viewport, _sceneActive, _sceneThree } from "@stores";
+  import { _viewport, _sceneActive } from "@stores";
 </script>
 
 <div id="scenes">

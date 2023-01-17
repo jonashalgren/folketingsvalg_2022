@@ -1,8 +1,8 @@
-import type { TextSectionOffset } from "@models";
+import type { TextPosition, TextSectionOffset } from "@models";
 import { scene } from "@assets";
 
 type Props = {
-  offsets: TextSectionOffset[];
+  offsets: TextPosition[];
 };
 
 export function getActiveSceneMapper({ offsets }: Props) {
@@ -18,6 +18,6 @@ function getActiveSceneInterpolate(inputRange: number[]) {
   };
 }
 
-function getActiveSceneInputRange(offsets: TextSectionOffset[]) {
-  return offsets.map(({ sectionDeactivate }) => sectionDeactivate);
+function getActiveSceneInputRange(offsets: TextPosition[]) {
+  return offsets.map(({ bottom }) => bottom);
 }

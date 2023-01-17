@@ -25,7 +25,7 @@ export const _rAF = (function () {
   requestAnimationFrame(handleCallbacks);
 
   return {
-    add: (callback: () => void, throttleMS = 0) => {
+    add: (callback: () => void, throttleMS = 15) => {
       const requestId = getUniqId();
       update(function (callbacks) {
         return [...callbacks, { callback, throttleMS, invokeTimer: timeStamp, id: requestId }];

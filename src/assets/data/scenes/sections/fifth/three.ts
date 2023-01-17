@@ -5,7 +5,7 @@ import { getMapLogoIsScaled, mapLogoNotScaled, mapLogoPosition, mapNumberSize, m
 export const three: S = {
   additionalScroll: [[0, 0.5, 0.5]],
   camera: {
-    target: {
+    targetMain: {
       inputRange: [0, 0.51, 0.71, 1],
       outputRange: [
         [0, -5, 10],
@@ -14,7 +14,7 @@ export const three: S = {
         [38, -15, 5],
       ],
     },
-    position: {
+    positionMain: {
       inputRange: [0, 0.51, 0.71, 1],
       outputRange: [
         [0, -40, 100],
@@ -23,10 +23,10 @@ export const three: S = {
         [25, -35, 25],
       ],
     },
-    entryPosition: [180, -80, 350],
-    entryTarget: [0, 0, 10],
-    exitTarget: [35, -20, -4],
-    exitPosition: [35, -20, -3],
+    positionEntry: [180, -80, 350],
+    targetEntry: [0, 0, 10],
+    targetExit: [35, -20, -4],
+    positionExit: [35, -20, -3],
   },
   elements: {
     map: {
@@ -45,7 +45,7 @@ export const three: S = {
         },
       ],
     },
-    logo: [
+    logos: [
       {
         partyLetter: "B",
         size: mapLogoSize,
@@ -54,7 +54,7 @@ export const three: S = {
         scaleRange: [mapLogoNotScaled, getMapLogoIsScaled("B", 2022), getMapLogoIsScaled("B", 2022)],
       },
     ],
-    number: [
+    numbers: [
       {
         font: threeProperties.font_ane,
         positionRange: {

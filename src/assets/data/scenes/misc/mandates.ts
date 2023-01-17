@@ -27,7 +27,7 @@ export const mandates: S = {
     [3, 0, 0],
   ],
   camera: {
-    target: {
+    targetMain: {
       inputRange: [0, 0.2, 0.35, 0.49, 0.63, 1],
       outputRange: [
         [0, -2, 10],
@@ -38,7 +38,7 @@ export const mandates: S = {
         [0, -2, 10],
       ],
     },
-    position: {
+    positionMain: {
       inputRange: [0, 0.2, 0.35, 0.49, 0.63, 1],
       outputRange: [
         [-10, -80, 100],
@@ -49,14 +49,14 @@ export const mandates: S = {
         [-10, -80, 100],
       ],
     },
-    entryPosition: [0, -300, 160],
-    entryTarget: [0, 0, 0],
-    exitPosition: [-10, 20, -5],
-    exitTarget: [-10, 20, -10],
+    positionEntry: [0, -300, 160],
+    targetEntry: [0, 0, 0],
+    positionExit: [-10, 20, -5],
+    targetExit: [-10, 20, -10],
   },
 
   elements: {
-    number: [
+    numbers: [
       {
         font: threeProperties.font_ane,
         decimals: 0,
@@ -133,7 +133,7 @@ export const mandates: S = {
         },
       },
     ],
-    logo: [
+    logos: [
       {
         partyLetter: "A",
         inputRange: partyInputRange,

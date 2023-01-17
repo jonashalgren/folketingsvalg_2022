@@ -4,27 +4,27 @@ import { partyCollection, threeProperties } from "@assets";
 export const two: S = {
   additionalScroll: [[0, 0.5, 0]],
   camera: {
-    target: {
+    targetMain: {
       inputRange: [0, 1],
       outputRange: [
         [0, -5, 10],
         [0, -5, 10],
       ],
     },
-    position: {
+    positionMain: {
       inputRange: [0, 1],
       outputRange: [
         [0, -30, 100],
         [0, -30, 100],
       ],
     },
-    entryPosition: [-170, -250, 350],
-    entryTarget: [0, 0, 0],
-    exitTarget: [-25, -8, -10],
-    exitPosition: [-25, -8, -5],
+    positionEntry: [-170, -250, 350],
+    targetEntry: [0, 0, 0],
+    targetExit: [-25, -8, -10],
+    positionExit: [-25, -8, -5],
   },
   elements: {
-    logo: [
+    logos: [
       {
         inputRange: [0, 1],
         partyLetter: "Æ",
@@ -40,7 +40,7 @@ export const two: S = {
         size: 8,
       },
     ],
-    number: [
+    numbers: [
       {
         decimals: 1,
         font: threeProperties.font_ane,

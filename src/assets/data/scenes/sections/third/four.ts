@@ -21,27 +21,27 @@ function getNumberRotation() {
 export const four: S = {
   additionalScroll: [[0, 0.5, 0]],
   camera: {
-    target: {
+    targetMain: {
       inputRange: [0, 1],
       outputRange: [
         [0, -5, 15],
         [0, -5, 15],
       ],
     },
-    position: {
+    positionMain: {
       inputRange: [0, 1],
       outputRange: [
         [0, -10, 110],
         [0, -10, 110],
       ],
     },
-    entryPosition: [50, -400, 50],
-    entryTarget: [0, -5, 15],
-    exitPosition: [0, -38, -5],
-    exitTarget: [0, -38, -10],
+    positionEntry: [50, -400, 50],
+    targetEntry: [0, -5, 15],
+    targetExit: [0, -38, -5],
+    positionExit: [0, -38, -10],
   },
   elements: {
-    logo: [
+    logos: [
       {
         partyLetter: "M",
         inputRange: getInputRange(),
@@ -121,7 +121,7 @@ export const four: S = {
         size,
       },
     ],
-    number: [
+    numbers: [
       {
         font: threeProperties.font_ane,
         unit: "%",
