@@ -41,15 +41,22 @@ function setMapperProgress(item: Props): Props {
     ["inactive", "inactive", "next", "next", "active", "active", "inactive", "inactive"]
   );
 
+  let main = mapperProgressMain(window.scrollY);
+  let entry = mapperProgressEntry(window.scrollY);
+  let exit = mapperProgressExit(window.scrollY);
+
   return {
     ...item,
     mapper: function ({ scrollY }: { scrollY: number }) {
-      return {
-        progressMain: mapperProgressMain(scrollY),
-        progressEntry: mapperProgressEntry(scrollY),
-        progressExit: mapperProgressExit(scrollY),
-        progressState: mapperProgressState(scrollY),
-      };
+      const state = mapperProgressState(scrollY);
+
+      if (state === "active" || state === "next") {
+        main = mapperProgressMain(scrollY);
+        entry = mapperProgressEntry(scrollY);
+        exit = mapperProgressExit(scrollY);
+      }
+
+      return { main, entry, exit, state };
     },
   };
 }

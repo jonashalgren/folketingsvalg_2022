@@ -10,8 +10,8 @@ export function getMapperCamera({ data }: Props) {
   const mapperPositionCamera = getMapperPositionCamera({ data });
   const mapperTargetCamera = getMapperTargetCamera({ data });
 
-  return function ({ progressMain, progressEntry, progressExit, controls, camera }: S_Camera_Mapper_Params) {
-    mapperPositionCamera({ progressMain, progressEntry, progressExit, camera });
-    mapperTargetCamera({ progressMain, progressEntry, progressExit, controls });
+  return function ({ progress, controls, camera }: S_Camera_Mapper_Params) {
+    mapperPositionCamera({ progress, camera });
+    mapperTargetCamera({ progress, controls });
   };
 }

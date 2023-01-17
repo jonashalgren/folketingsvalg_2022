@@ -1,4 +1,4 @@
-import type { S } from "@models";
+import type { S, S_Progress, S_Progress_Mapper } from "@models";
 import { interpolate } from "popmotion";
 import type { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
@@ -18,30 +18,20 @@ export function getMapperTargetCamera({ data }: Props) {
   const mapperExit = interpolate([0, 1], [outputRange[outputRange.length - 1], targetExit]);
   const mapperEntry = interpolate([0, 1], [targetEntry, outputRange[0]]);
 
-  return function ({
-    progressMain,
-    progressEntry,
-    progressExit,
-    controls,
-  }: {
-    progressMain: number;
-    progressEntry: number;
-    progressExit: number;
-    controls: OrbitControls;
-  }) {
-    if (localProgress !== progressMain) {
-      localProgress = progressMain;
-      controls.target.set(...mapperMain(progressMain));
+  return function ({ progress, controls }: { progress: S_Progress; controls: OrbitControls }) {
+    if (localProgress !== progress.main) {
+      localProgress = progress.main;
+      controls.target.set(...mapperMain(progress.main));
     }
 
-    if (localExit !== progressExit) {
-      localExit = progressExit;
-      controls.target.set(...mapperExit(progressExit));
+    if (localExit !== progress.exit) {
+      localExit = progress.exit;
+      controls.target.set(...mapperExit(progress.exit));
     }
 
-    if (localEntry !== progressEntry) {
-      localEntry = progressEntry;
-      controls.target.set(...mapperEntry(progressEntry));
+    if (localEntry !== progress.entry) {
+      localEntry = progress.entry;
+      controls.target.set(...mapperEntry(progress.entry));
     }
   };
 }

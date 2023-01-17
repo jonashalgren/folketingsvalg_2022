@@ -9,33 +9,34 @@ export const _textData = readable<string[][]>([], function start(set) {
     })
     .then((json) => {
       set(getTextData({ data: json.data, scenes: scene, textData: [] }).textData);
+    })
+    .catch((error) => {
+      set([
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+        ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
+      ]);
     });
-
-  // set([
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  //   ["lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes", "lorem ip ip lorem, lol jes"],
-  // ]);
 });

@@ -76,10 +76,10 @@ export class Scene {
   }
 
   render({ scrollY, renderer }: { scrollY: number; renderer: WebGLRenderer }) {
-    const { progressEntry, progressExit, progressMain, progressState } = this.mapperProgress({ scrollY });
-    if (progressState === "active" || progressState === "next") {
+    const progress = this.mapperProgress({ scrollY });
+    if (progress.state === "active" || progress.state === "next") {
       this.controls.update();
-      this.mapperCamera({ progressMain, progressEntry, progressExit, camera: this.camera, controls: this.controls });
+      this.mapperCamera({ progress, camera: this.camera, controls: this.controls });
       renderer.render(this.scene, this.camera);
     }
   }

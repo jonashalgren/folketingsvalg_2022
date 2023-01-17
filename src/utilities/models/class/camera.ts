@@ -1,4 +1,4 @@
-import type { Motion } from "@models";
+import type { Motion, S_Progress } from "@models";
 import type { PerspectiveCamera } from "three";
 import type { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
@@ -14,9 +14,7 @@ export type S_Camera = {
 export type S_Camera_Mapper = (params: S_Camera_Mapper_Params) => void;
 
 export type S_Camera_Mapper_Params = {
-  progressMain: number;
-  progressEntry: number;
-  progressExit: number;
+  progress: S_Progress;
   controls: OrbitControls;
   camera: PerspectiveCamera;
 };

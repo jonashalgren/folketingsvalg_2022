@@ -1,5 +1,5 @@
 import { interpolate } from "popmotion";
-import type { S } from "@models";
+import type { S, S_Progress } from "@models";
 import type { PerspectiveCamera } from "three";
 
 type Props = {
@@ -18,30 +18,20 @@ export function getMapperPositionCamera({ data }: Props) {
   const mapperExit = interpolate([0, 1], [outputRange[outputRange.length - 1], positionExit]);
   const mapperEntry = interpolate([0, 1], [positionEntry, outputRange[0]]);
 
-  return function ({
-    progressMain,
-    progressEntry,
-    progressExit,
-    camera,
-  }: {
-    progressMain: number;
-    progressEntry: number;
-    progressExit: number;
-    camera: PerspectiveCamera;
-  }) {
-    if (localProgress !== progressMain) {
-      localProgress = progressMain;
-      camera.position.set(...mapperMain(progressMain));
+  return function ({ progress, camera }: { progress: S_Progress; camera: PerspectiveCamera }) {
+    if (localProgress !== progress.main) {
+      localProgress = progress.main;
+      camera.position.set(...mapperMain(progress.main));
     }
 
-    if (localExit !== progressExit) {
-      localExit = progressExit;
-      camera.position.set(...mapperExit(progressExit));
+    if (localExit !== progress.exit) {
+      localExit = progress.exit;
+      camera.position.set(...mapperExit(progress.exit));
     }
 
-    if (localEntry !== progressEntry) {
-      localEntry = progressEntry;
-      camera.position.set(...mapperEntry(progressEntry));
+    if (localEntry !== progress.entry) {
+      localEntry = progress.entry;
+      camera.position.set(...mapperEntry(progress.entry));
     }
   };
 }
