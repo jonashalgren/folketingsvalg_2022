@@ -1,6 +1,6 @@
 import { readable } from "svelte/store";
 import { SVGLoader, type SVGResultPaths } from "three/examples/jsm/loaders/SVGLoader";
-import type { P_Logo_Mesh, P_Letter, S_E_Block_Logo } from "@models";
+import type { P_Letter, S_E_Block_Logo } from "@models";
 import { partyCollection } from "@assets";
 import { getLogos } from "./getLogos";
 

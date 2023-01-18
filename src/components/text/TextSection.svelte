@@ -1,13 +1,13 @@
 <script lang="ts">
   import TextSectionItem from "./TextSectionItem.svelte";
-  import { _viewport, _sceneData } from "@stores";
+  import { _viewport, _scenes } from "@stores";
   import { getAdditionalScroll } from "@helpers";
+  import { sceneData } from "@assets";
   export let textSection: string[];
   export let isLast: boolean;
   export let isFirst: boolean;
   export let index: number;
-  $: currentScene = $_sceneData[index];
-  $: nextScene = $_sceneData[index + 1] ?? $_sceneData[index];
+  $: nextScene = sceneData[index + 1] ?? sceneData[index];
 </script>
 
 <div style="margin-bottom: {isLast ? 0 : nextScene.hasLogoIntro ? $_viewport.h * 0.5 : $_viewport.h * 0.1}px;">
@@ -18,7 +18,7 @@
       isFirstItem={i === 0}
       isLastItem={i === textSection.length - 1}
       additionalScroll={getAdditionalScroll({
-        sceneData: currentScene,
+        sceneData: sceneData[index],
         index: i,
       })}
     />

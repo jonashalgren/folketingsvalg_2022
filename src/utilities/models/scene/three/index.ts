@@ -1,4 +1,4 @@
-import type { PerspectiveCamera, Scene, WebGLRenderer } from "three";
+import type { PerspectiveCamera, Scene } from "three";
 
 export type S_Three_Render = {
   scrollY: number;

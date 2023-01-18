@@ -1,4 +1,4 @@
-import type { S, S_Progress, S_Progress_Mapper } from "@models";
+import type { S, S_Progress } from "@models";
 import { interpolate } from "popmotion";
 import type { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 

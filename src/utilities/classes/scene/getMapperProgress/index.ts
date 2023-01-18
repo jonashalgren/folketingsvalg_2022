@@ -1,5 +1,4 @@
 import { _scrollY } from "@stores";
-import { _sceneActive } from "@stores";
 import { interpolate } from "popmotion";
 import { pipe } from "@helpers";
 import type { TextPosition, S_Progress_Mapper, S_Progress_State } from "@models";

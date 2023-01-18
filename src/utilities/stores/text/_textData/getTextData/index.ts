@@ -5,7 +5,7 @@ import { cleanupData } from "./cleanupData";
 import type { S } from "@models";
 
 export type Props = {
-  scenes: S[];
+  sceneData: S[];
   textData: string[][];
   data: any[];
 };

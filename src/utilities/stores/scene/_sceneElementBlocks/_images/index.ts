@@ -1,6 +1,6 @@
 import { readable } from "svelte/store";
 import { Texture, TextureLoader } from "three";
-import type { P_Letter, P_Leader_Mesh, S_E_Block_Image } from "@models";
+import type { P_Letter, S_E_Block_Image } from "@models";
 import { partyCollection } from "@assets";
 import { getImages } from "./getImages";
 

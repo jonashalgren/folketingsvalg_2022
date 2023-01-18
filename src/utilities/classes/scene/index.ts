@@ -1,4 +1,12 @@
-import type { S, CanvasProperties, S_E_Blocks, S_Camera_Mapper, TextPosition, S_Progress_Mapper } from "@models";
+import type {
+  S,
+  CanvasProperties,
+  S_E_Blocks,
+  S_Camera_Mapper,
+  TextPosition,
+  S_Progress_Mapper,
+  S_Progress,
+} from "@models";
 import { AmbientLight, SpotLight, WebGLRenderer, GridHelper } from "three";
 import { PerspectiveCamera, Scene as ThreeScene } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
@@ -19,6 +27,8 @@ export class Scene {
   mapperProgress: S_Progress_Mapper;
   mapperCamera: S_Camera_Mapper;
 
+  progress: S_Progress;
+
   constructor(
     public data: S,
     public elementBlocks: S_E_Blocks,
@@ -34,6 +44,8 @@ export class Scene {
 
     this.mapperCamera = getMapperCamera({ data: this.data });
     this.mapperProgress = getMapperProgress({ textPosition }).mapper;
+
+    this.progress = this.mapperProgress({ scrollY: window.scrollY });
 
     this.setLight();
     this.setGrid();
@@ -76,10 +88,11 @@ export class Scene {
   }
 
   render({ scrollY, renderer }: { scrollY: number; renderer: WebGLRenderer }) {
-    const progress = this.mapperProgress({ scrollY });
-    if (progress.state === "active" || progress.state === "next") {
+    this.progress = this.mapperProgress({ scrollY });
+
+    if (this.progress.state === "active" || this.progress.state === "next") {
       this.controls.update();
-      this.mapperCamera({ progress, camera: this.camera, controls: this.controls });
+      this.mapperCamera({ progress: this.progress, camera: this.camera, controls: this.controls });
       renderer.render(this.scene, this.camera);
     }
   }

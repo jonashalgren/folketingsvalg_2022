@@ -1,6 +1,7 @@
 <script lang="ts">
   import { setNGetRenderer, getAnimateFunction, removePreloader } from "@helpers";
-  import { _canvasElement, _canvasProperties, _viewport, _sceneBackground, _isAnimating, _rAF, _scenes } from "@stores";
+  import { _canvasElement, _canvasProperties, _viewport, _rAF, _scenes } from "@stores";
+  import type { Scene } from "@classes";
 
   const preloaderElement = <HTMLDivElement>document.getElementById("preloader");
   let unsubscribe = function () {};
@@ -14,20 +15,16 @@
 
   // precompile all scenes for smoothness when scrolling the first time
   $: if (renderer && $_scenes.length > 0) {
-    $_scenes.forEach((item) => {
+    $_scenes.forEach((item: Scene) => {
       renderer.compile(item.scene, item.camera);
     });
   }
 
   // creating the animate function
-  $: animate = getAnimateFunction({
-    scenes: $_scenes,
-    renderer,
-    sceneBackground: $_sceneBackground,
-  });
+  $: animate = getAnimateFunction({ scenes: $_scenes, renderer });
 
   //subscribe/resubscribe animate to rAF
-  $: if (renderer && ($_isAnimating || !$_isAnimating) && $_scenes.length > 0) {
+  $: if (renderer && $_scenes.length > 0) {
     unsubscribe();
     unsubscribe = _rAF.add(animate);
   }
