@@ -47,13 +47,12 @@ export class Scene {
     this.mapperCamera = getMapperCamera({ data: this.data });
     this.mapperProgress = getMapperProgress({ textPosition }).mapper;
 
-    this.progress = this.mapperProgress({ scrollY: window.scrollY });
-
     this.setLight();
     this.setGrid();
     this.setControls();
     this.setCamera();
-    this.addElementBlocksToScene();
+    this.setProgress();
+    this.addElementMeshesToScene();
   }
 
   setLight() {
@@ -83,18 +82,22 @@ export class Scene {
     this.camera.up.set(0, 0, 1);
   }
 
-  addElementBlocksToScene() {
+  setProgress() {
+    this.progress = this.mapperProgress({ scrollY });
+  }
+
+  addElementMeshesToScene() {
     this.elements.forEach((element) => {
       this.scene.add(...element.meshes);
     });
   }
 
-  render({ scrollY, renderer }: { scrollY: number; renderer: WebGLRenderer }) {
-    this.progress = this.mapperProgress({ scrollY });
+  render({ renderer }: { renderer: WebGLRenderer }) {
+    this.setProgress();
 
     if (this.progress.state === "active" || this.progress.state === "next") {
-      this.controls.update();
       this.mapperCamera({ progress: this.progress, camera: this.camera, controls: this.controls });
+      this.controls.update();
       renderer.render(this.scene, this.camera);
     }
   }

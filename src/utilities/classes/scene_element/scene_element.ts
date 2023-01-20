@@ -1,23 +1,25 @@
 import type { S_E_Mesh, S_E_Meshes, S_E_Data } from "@models";
 
-export class Scene_Element<Data extends S_E_Data, Meshes extends S_E_Meshes> {
+export class Scene_Element<D extends S_E_Data, M extends S_E_Meshes> {
   animate: (progress: number) => void;
-
-  constructor(public data: Data, public meshes: Meshes) {
+  copiedMeshes: M;
+  meshes: M;
+  constructor(public data: D, public originalMeshes: M) {
     this.animate = function () {};
-    this.meshes = meshes.map((item: S_E_Mesh) => {
-      const clone = item.clone();
+    this.data = data;
+    this.meshes = <M>[];
+    this.copiedMeshes = originalMeshes.map(<T extends S_E_Mesh>(item: T) => {
+      const clone = <T>item.clone();
       clone.userData = item.userData;
+      clone.geometry = clone.geometry.clone() as any;
 
-      if (Array.isArray(item.material)) {
-        clone.material = item.material.map((item) => item.clone());
+      if (Array.isArray(clone.material)) {
+        clone.material = clone.material.map((item) => item.clone());
       } else {
-        clone.material = item.material.clone();
+        clone.material = clone.material.clone();
       }
 
-      clone.geometry.copy(item.geometry);
       return clone;
-    }) as Meshes;
-    this.data = data;
+    }) as M;
   }
 }
