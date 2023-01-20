@@ -5,7 +5,7 @@ export type P = {
   color: string;
   secondaryColor: string;
   shortName: string;
-  letter: P_Letter;
+  partyLetter: P_Letter;
   name: string;
   logo: string;
   leader: string;

@@ -42,7 +42,7 @@ export const three: S = {
         { areas: ["Nørrebro"], inputRange: [0.83, 1] },
       ],
 
-      animConfigs: [
+      configs: [
         {
           mapVariant: "blank",
           inputRange: [0, 0.001],

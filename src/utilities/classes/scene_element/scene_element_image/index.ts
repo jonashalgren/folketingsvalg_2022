@@ -1,13 +1,8 @@
 import { Scene_Element } from "@classes";
-import type { S_E_Block_Image, S_E_Image } from "@models";
+import type { S_E_Image_Meshes, S_E_Image_Data } from "@models";
 
-export class Scene_Element_Image extends Scene_Element {
-  constructor(public imageData: S_E_Image, public blockImages: S_E_Block_Image[]) {
-    super();
-    this.setBlocksGroup(this.blockImage.group);
-  }
-
-  get blockImage() {
-    return this.blockImages.find((item) => item.partyLetter === this.imageData.partyLetter);
+export class Scene_Element_Image extends Scene_Element<S_E_Image_Data, S_E_Image_Meshes> {
+  constructor(public data: S_E_Image_Data, public meshes: S_E_Image_Meshes) {
+    super(data, meshes);
   }
 }

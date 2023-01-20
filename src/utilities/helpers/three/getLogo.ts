@@ -1,5 +1,4 @@
 import { getMeshGeometry } from "@helpers";
-import { _partyLogoMesh } from "@stores";
 import { Color, Mesh, MeshLambertMaterial, CustomBlending, MinEquation, SrcAlphaFactor, Shape } from "three";
 import { interpolate } from "popmotion";
 

@@ -1,2 +1,2 @@
-export * from "./_sceneElementBlocks";
+export * from "./_sceneElementMeshesCollection";
 export * from "./_scenes";

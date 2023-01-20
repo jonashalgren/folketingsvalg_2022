@@ -42,7 +42,7 @@ export const partyCollection: P_Collection = (function () {
     A: {
       color: "#A82721",
       secondaryColor: "#EB9994",
-      letter: "A",
+      partyLetter: "A",
       name: "Socialdemokratiet",
       shortName: "Soc.dem.",
       logo: A_Logo,
@@ -52,7 +52,7 @@ export const partyCollection: P_Collection = (function () {
     B: {
       color: "#733280",
       secondaryColor: "#C29BC9",
-      letter: "B",
+      partyLetter: "B",
       name: "Radikale Venstre",
       shortName: "Radikale",
       logo: B_Logo,
@@ -62,7 +62,7 @@ export const partyCollection: P_Collection = (function () {
     C: {
       color: "#96B226",
       secondaryColor: "#D4E495",
-      letter: "C",
+      partyLetter: "C",
       name: "Konservative",
       shortName: "Kons",
       logo: C_Logo,
@@ -72,7 +72,7 @@ export const partyCollection: P_Collection = (function () {
     D: {
       color: "#127B7F",
       secondaryColor: "#88C5C8",
-      letter: "D",
+      partyLetter: "D",
       name: "Nye Borgerlige",
       shortName: "Nye B.",
       logo: D_Logo,
@@ -82,7 +82,7 @@ export const partyCollection: P_Collection = (function () {
     F: {
       color: "#E07EA8",
       secondaryColor: "#FCC2DC",
-      letter: "F",
+      partyLetter: "F",
       name: "Socialistisk Folkeparti",
       shortName: "SF",
       logo: F_Logo,
@@ -92,7 +92,7 @@ export const partyCollection: P_Collection = (function () {
     I: {
       color: "#3FB2BE",
       secondaryColor: "#9FE4EA",
-      letter: "I",
+      partyLetter: "I",
       name: "Liberal Alliance",
       shortName: "Lib.Al",
       logo: I_Logo,
@@ -102,7 +102,7 @@ export const partyCollection: P_Collection = (function () {
     K: {
       color: "#8B8474",
       secondaryColor: "#CDC9BE",
-      letter: "K",
+      partyLetter: "K",
       name: "Kristendemokraterne",
       shortName: "KD",
       logo: K_Logo,
@@ -112,7 +112,7 @@ export const partyCollection: P_Collection = (function () {
     M: {
       color: "#B48CD2",
       secondaryColor: "#D2BEDC",
-      letter: "M",
+      partyLetter: "M",
       name: "Moderaterne",
       shortName: "Moderat.",
       logo: M_Logo,
@@ -122,7 +122,7 @@ export const partyCollection: P_Collection = (function () {
     O: {
       color: "#EAC73E",
       secondaryColor: "#FFEBA0",
-      letter: "O",
+      partyLetter: "O",
       name: "Dansk Folkeparti",
       shortName: "DF",
       logo: O_Logo,
@@ -132,7 +132,7 @@ export const partyCollection: P_Collection = (function () {
     Q: {
       color: "#5ABE82",
       secondaryColor: "#93DBB2",
-      letter: "Q",
+      partyLetter: "Q",
       name: "Frie Grønne",
       shortName: "Frie G.",
       logo: Q_Logo,
@@ -142,7 +142,7 @@ export const partyCollection: P_Collection = (function () {
     V: {
       color: "#254264",
       secondaryColor: "#95A8BA",
-      letter: "V",
+      partyLetter: "V",
       name: "Venstre",
       shortName: "Venstre",
 
@@ -153,7 +153,7 @@ export const partyCollection: P_Collection = (function () {
     Æ: {
       color: "#7896D2",
       secondaryColor: "#B3C4E6",
-      letter: "Æ",
+      partyLetter: "Æ",
       name: "Danmarksdemokraterne",
       shortName: "Dan.dem.",
       logo: AE_Logo,
@@ -163,7 +163,7 @@ export const partyCollection: P_Collection = (function () {
     Ø: {
       color: "#E6801A",
       secondaryColor: "#FFC58E",
-      letter: "Ø",
+      partyLetter: "Ø",
       name: "Enhedslisten",
       shortName: "Enhl.",
       logo: OE_Logo,
@@ -173,7 +173,7 @@ export const partyCollection: P_Collection = (function () {
     Å: {
       color: "#2B8738",
       secondaryColor: "#9BD1A2",
-      letter: "Å",
+      partyLetter: "Å",
       name: "Alternativet",
       shortName: "Alt.",
       logo: AA_Logo,

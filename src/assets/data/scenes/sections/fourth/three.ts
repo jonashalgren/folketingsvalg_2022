@@ -31,7 +31,7 @@ export const three: S = {
   elements: {
     map: {
       focus: [{ areas: ["Hedensted", "Vejle_Nord"], inputRange: [0.7, 1] }],
-      animConfigs: [
+      configs: [
         {
           mapVariant: "blank",
           inputRange: [0, 0.001],

@@ -35,7 +35,7 @@ export const three: S = {
   elements: {
     map: {
       focus: [{ areas: ["Skive"], inputRange: [0.67, 1] }],
-      animConfigs: [
+      configs: [
         {
           mapVariant: "blank",
           inputRange: [0, 0.001],

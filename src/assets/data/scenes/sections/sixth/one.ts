@@ -50,6 +50,16 @@ export const one: S = {
         rotation: [0, 0, 0],
         size: 50,
       },
+      {
+        partyLetter: "A",
+        inputRange: [0, 1],
+        positionRange: [
+          [0, -4, 0],
+          [0, -4, 0],
+        ],
+        rotation: [0, 0, 0],
+        size: 50,
+      },
     ],
   },
 };

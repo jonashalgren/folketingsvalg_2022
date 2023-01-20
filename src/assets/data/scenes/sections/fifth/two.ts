@@ -39,7 +39,7 @@ export const two: S = {
         size: 8,
       },
     ],
-    parts: [
+    figures: [
       {
         inputRange: [0, 1],
         amount: 16,

@@ -42,7 +42,7 @@ export const two: S = {
         { areas: ["Gentofte"], inputRange: [0.45, 0.66] },
         { areas: ["Skive", "Struer"], inputRange: [0.83, 1] },
       ],
-      animConfigs: [
+      configs: [
         {
           mapVariant: "blank",
           color: partyCollection.M.secondaryColor,

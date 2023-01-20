@@ -1,11 +1,6 @@
-import type { AdditionalScroll, S_E_Data, S_Camera } from "@models";
+import type { AdditionalScroll, S_Camera, S_E_Data_Collection } from "@models";
 
-export * from "./elements";
-export * from "./three";
-export * from "./mappers";
-export * from "./elements/text";
-export * from "./elements/number";
-export * from "./elements/part";
+export * from "./element";
 
 export type S = {
   index?: number;
@@ -17,5 +12,5 @@ export type S = {
   mode?: "auto" | "scroll";
   autoDuration?: number;
   hasLogoIntro?: boolean;
-  elements: S_E_Data;
+  elements: S_E_Data_Collection;
 };

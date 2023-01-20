@@ -41,7 +41,7 @@ export const two: S = {
         { areas: ["Lolland"], inputRange: [0.4, 0.66] },
         { areas: ["Thisted"], inputRange: [0.78, 1] },
       ],
-      animConfigs: [
+      configs: [
         {
           mapVariant: "blank",
           inputRange: [0, 0.001],
