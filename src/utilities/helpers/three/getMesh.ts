@@ -10,7 +10,6 @@ type Props = {
 
 export function getMesh({ material, geometry, scaleZ = threeProperties.defaultThickness }: Props) {
   const mesh = new Mesh(geometry, material);
-  mesh.up.set(0, 0, 1);
   mesh.scale.z = scaleZ;
   mesh.position.z = scaleZ;
   return mesh;

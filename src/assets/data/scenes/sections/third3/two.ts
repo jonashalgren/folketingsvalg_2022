@@ -24,10 +24,11 @@ export const two: S = {
     positionExit: [5, 2, -2],
   },
   elements: {
-    logos: [
+    boxes: [
       {
-        inputRange: [0, 1],
         partyLetter: "I",
+        texture: "logo",
+        inputRange: [0, 1],
         positionRange: [
           [0, 18, 0],
           [0, 18, 0],

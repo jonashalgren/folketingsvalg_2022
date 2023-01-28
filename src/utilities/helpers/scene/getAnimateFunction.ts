@@ -9,7 +9,7 @@ export function getAnimateFunction({ scenes, renderer }: Props) {
   return function () {
     renderer.autoClear = false;
     renderer.clearDepth();
-    scenes.forEach((scene) => scene.render({ renderer, scrollY }));
+    scenes.forEach((scene) => scene.render({ renderer }));
     renderer.autoClear = true;
   };
 }

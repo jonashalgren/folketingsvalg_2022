@@ -1,12 +1,12 @@
 import type {
   S,
   CanvasProperties,
-  S_E_Meshes,
+  S_E_Mesh,
   S_Camera_Mapper,
   TextPosition,
   S_Progress_Mapper,
   S_Progress,
-  S_E_Meshes_Collection,
+  S_E_Mesh_Collection,
   S_E_Data,
 } from "@models";
 import { AmbientLight, SpotLight, WebGLRenderer, GridHelper } from "three";
@@ -24,7 +24,7 @@ export class Scene {
   spotLight: SpotLight;
   ambientLight: AmbientLight;
   controls: OrbitControls;
-  elements: Scene_Element<S_E_Data, S_E_Meshes>[];
+  elements: Scene_Element<S_E_Data, S_E_Mesh[]>[];
 
   mapperProgress: S_Progress_Mapper;
   mapperCamera: S_Camera_Mapper;
@@ -33,7 +33,7 @@ export class Scene {
 
   constructor(
     public data: S,
-    public elementMeshesCollection: S_E_Meshes_Collection,
+    public elementMeshesCollection: S_E_Mesh_Collection,
     public canvas: HTMLCanvasElement,
     public canvasProperties: CanvasProperties,
     public textPosition: TextPosition
@@ -88,7 +88,7 @@ export class Scene {
 
   addElementMeshesToScene() {
     this.elements.forEach((element) => {
-      this.scene.add(...element.meshes);
+      this.scene.add(element.group);
     });
   }
 
@@ -97,6 +97,7 @@ export class Scene {
 
     if (this.progress.state === "active" || this.progress.state === "next") {
       this.mapperCamera({ progress: this.progress, camera: this.camera, controls: this.controls });
+      this.elements.forEach((item) => item.animate(this.progress));
       this.controls.update();
       renderer.render(this.scene, this.camera);
     }

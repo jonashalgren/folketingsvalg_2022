@@ -56,9 +56,10 @@ export const three: S = {
         },
       ],
     },
-    logos: [
+    boxes: [
       {
         partyLetter: "Æ",
+        texture: "logo",
         size: mapLogoSize,
         inputRange: [0, 0.1, 1],
         positionRange: [mapLogoPosition, mapLogoPosition, mapLogoPosition],

@@ -8,7 +8,7 @@ function logoIsScaled(val: P_Letter) {
   return [1, 1, partyCollection[val].procent_af_stemmer_2022 * 50] as [number, number, number];
 }
 
-export const outro: S = (function () {
+export const outro: S = (function (): S {
   return {
     mode: "auto",
     hasLogoIntro: true,
@@ -122,9 +122,10 @@ export const outro: S = (function () {
           },
         ],
       },
-      logo: [
+      boxes: [
         {
           partyLetter: "A",
+          texture: "logo",
           size: 10,
           inputRange: [0, 0.005, 0.07],
           positionRange: [logoPosition, logoPosition, logoPosition],
@@ -132,6 +133,7 @@ export const outro: S = (function () {
         },
         {
           partyLetter: "V",
+          texture: "logo",
           size: 10,
           inputRange: [0.01, 0.07, 0.09, 0.14],
           positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
@@ -139,6 +141,7 @@ export const outro: S = (function () {
         },
         {
           partyLetter: "Æ",
+          texture: "logo",
           size: 10,
           inputRange: [0.09, 0.14, 0.16, 0.22],
           positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
@@ -146,6 +149,7 @@ export const outro: S = (function () {
         },
         {
           partyLetter: "M",
+          texture: "logo",
           size: 10,
           inputRange: [0.16, 0.22, 0.24, 0.3],
           positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
@@ -153,6 +157,7 @@ export const outro: S = (function () {
         },
         {
           partyLetter: "B",
+          texture: "logo",
           size: 10,
           inputRange: [0.24, 0.3, 0.32, 0.38],
           positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
@@ -160,6 +165,7 @@ export const outro: S = (function () {
         },
         {
           partyLetter: "F",
+          texture: "logo",
           size: 10,
           inputRange: [0.32, 0.38, 0.4, 0.45],
           positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
@@ -167,6 +173,7 @@ export const outro: S = (function () {
         },
         {
           partyLetter: "D",
+          texture: "logo",
           size: 10,
           inputRange: [0.4, 0.45, 0.47, 0.53],
           positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
@@ -174,6 +181,7 @@ export const outro: S = (function () {
         },
         {
           partyLetter: "K",
+          texture: "logo",
           size: 10,
           inputRange: [0.47, 0.53, 0.55, 0.6],
           positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
@@ -181,6 +189,7 @@ export const outro: S = (function () {
         },
         {
           partyLetter: "O",
+          texture: "logo",
           size: 10,
           inputRange: [0.55, 0.6, 0.62, 0.67],
           positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
@@ -188,6 +197,7 @@ export const outro: S = (function () {
         },
         {
           partyLetter: "C",
+          texture: "logo",
           size: 10,
           inputRange: [0.62, 0.67, 0.69, 0.75],
           positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
@@ -195,6 +205,7 @@ export const outro: S = (function () {
         },
         {
           partyLetter: "I",
+          texture: "logo",
           size: 10,
           inputRange: [0.69, 0.75, 0.77, 0.82],
           positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
@@ -202,6 +213,7 @@ export const outro: S = (function () {
         },
         {
           partyLetter: "Å",
+          texture: "logo",
           size: 10,
           inputRange: [0.77, 0.83, 0.85, 0.92],
           positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
@@ -209,6 +221,7 @@ export const outro: S = (function () {
         },
         {
           partyLetter: "Ø",
+          texture: "logo",
           size: 10,
           inputRange: [0.85, 0.92, 0.94, 0.995],
           positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
@@ -216,6 +229,7 @@ export const outro: S = (function () {
         },
         {
           partyLetter: "A",
+          texture: "logo",
           size: 10,
           inputRange: [0.94, 0.995, 1],
           positionRange: [logoPosition, logoPosition, logoPosition],

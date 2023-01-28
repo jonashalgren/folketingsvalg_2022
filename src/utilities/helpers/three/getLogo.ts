@@ -40,7 +40,6 @@ export function getLogo({ size }: Props) {
     const mesh = new Mesh(geometry, material);
     const positionOutputRange = [x * item.x, y * item.y, 5 + i * 7] as [number, number, number];
 
-    mesh.up.set(0, 0, 1);
     mesh.scale.z = 0.1;
     mesh.position.z = 0;
     mesh.position.set(...positionOutputRange);

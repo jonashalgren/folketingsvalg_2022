@@ -31,28 +31,26 @@ export function getProcessedData({ data, camera }: Props): S {
     },
     elements: {
       ...data.elements,
-      images: (data.elements?.images ?? []).map((item) => {
+      map: data.elements.map ? { ...data.elements.map, type: "map" } : undefined,
+      boxes: (data.elements?.boxes ?? []).map((item) => {
         return {
           ...item,
-          positionRange: getOutputList({ outputOffsetZ, output: item.positionRange ?? [] }),
-          scaleRange: getOutputList({ outputOffsetZ, output: item.scaleRange ?? [], isPDivided: true }),
-        };
-      }),
-      logos: (data.elements?.logos ?? []).map((item) => {
-        return {
-          ...item,
+          type: "box",
           positionRange: getOutputList({ outputOffsetZ, output: item.positionRange ?? [] }),
           scaleRange: getOutputList({ outputOffsetZ, output: item.scaleRange ?? [], isPDivided: true }),
         };
       }),
       texts: (data.elements?.texts ?? []).map((item) => {
         return {
+          type: "text",
+
           ...item,
           position: getOutputItem({ outputOffsetZ, output: item.position }),
         };
       }),
       numbers: (data.elements?.numbers ?? []).map((item) => {
         return {
+          type: "number",
           ...item,
           positionRange: {
             ...item?.positionRange,

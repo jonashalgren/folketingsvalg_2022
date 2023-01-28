@@ -23,10 +23,22 @@ export const one: S = {
     positionExit: [0, 27, -5],
   },
   elements: {
-    logos: [
+    boxes: [
       {
-        inputRange: [0, 1],
         partyLetter: "C",
+        texture: "leader",
+        inputRange: [0, 1],
+        positionRange: [
+          [0, -4, 0],
+          [0, -4, 0],
+        ],
+        rotation: [0, 0, 0],
+        size: 50,
+      },
+      {
+        partyLetter: "C",
+        texture: "logo",
+        inputRange: [0, 1],
         positionRange: [
           [0, 29, 0],
           [0, 29, 0],
@@ -37,18 +49,6 @@ export const one: S = {
           [1, 1, 1],
         ],
         size: 8,
-      },
-    ],
-    images: [
-      {
-        partyLetter: "C",
-        inputRange: [0, 1],
-        positionRange: [
-          [0, -4, 0],
-          [0, -4, 0],
-        ],
-        rotation: [0, 0, 0],
-        size: 50,
       },
     ],
   },

@@ -24,9 +24,10 @@ export const one: S = {
   },
 
   elements: {
-    images: [
+    boxes: [
       {
         partyLetter: "M",
+        texture: "leader",
         inputRange: [0, 1],
         positionRange: [
           [0, -4, 0],
@@ -35,11 +36,10 @@ export const one: S = {
         rotation: [0, 0, 0],
         size: 50,
       },
-    ],
-    logos: [
       {
-        inputRange: [0, 1],
         partyLetter: "M",
+        texture: "logo",
+        inputRange: [0, 1],
         positionRange: [
           [0, 29, 0],
           [0, 29, 0],

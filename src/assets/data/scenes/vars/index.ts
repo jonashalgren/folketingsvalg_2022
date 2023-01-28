@@ -8,8 +8,8 @@ export const mapLogoSize = 10;
 
 export function getMapLogoIsScaled(val: P_Letter, year: number) {
   if (year === 2019) {
-    return [1, 1, partyCollection[val].procent_af_stemmer_2019 * 50] as [number, number, number];
+    return [1, 1, partyCollection[val].procent_af_stemmer_2019 * 2] as [number, number, number];
   } else {
-    return [1, 1, partyCollection[val].procent_af_stemmer_2022 * 50] as [number, number, number];
+    return [1, 1, partyCollection[val].procent_af_stemmer_2022 * 2] as [number, number, number];
   }
 }

@@ -55,7 +55,7 @@ export const two: S = {
     targetExit: [0, 50, -5],
   },
   elements: {
-    logos: [
+    boxes: [
       {
         partyLetter: "O",
         inputRange: getInputRange(),
@@ -63,7 +63,6 @@ export const two: S = {
         scaleRange: getScaleRange({ num: partyCollection.O.procent_af_stemmer_2007 }),
         rotation: [0, 0, 0],
         size,
-        isLetterHidden: true,
       },
       {
         partyLetter: "O",
@@ -72,7 +71,6 @@ export const two: S = {
         scaleRange: getScaleRange({ num: partyCollection.O.procent_af_stemmer_2011 }),
         rotation: [0, 0, 0],
         size,
-        isLetterHidden: true,
       },
       {
         partyLetter: "O",
@@ -81,7 +79,6 @@ export const two: S = {
         scaleRange: getScaleRange({ num: partyCollection.O.procent_af_stemmer_2015 }),
         rotation: [0, 0, 0],
         size,
-        isLetterHidden: true,
       },
       {
         partyLetter: "O",
@@ -90,7 +87,6 @@ export const two: S = {
         scaleRange: getScaleRange({ num: partyCollection.O.procent_af_stemmer_2019 }),
         rotation: [0, 0, 0],
         size,
-        isLetterHidden: true,
       },
       {
         partyLetter: "O",
@@ -99,7 +95,6 @@ export const two: S = {
         scaleRange: getScaleRange({ num: partyCollection.O.procent_af_stemmer_2022 }),
         rotation: [0, 0, 0],
         size,
-        isLetterHidden: true,
       },
     ],
     numbers: [

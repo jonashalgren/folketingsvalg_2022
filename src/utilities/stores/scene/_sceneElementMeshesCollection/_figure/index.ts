@@ -1,10 +1,10 @@
 import { readable } from "svelte/store";
 import { SVGLoader } from "three/examples/jsm/loaders/SVGLoader";
 import Mand from "@assets/misc/images/mand_ikon.svg";
-import type { S_E_Figure_Meshes } from "@models";
+import type { S_E_Figure_Mesh } from "@models";
 import { getFigureMeshes } from "./getFigureMeshes";
 
-export const _figure = readable<S_E_Figure_Meshes>(undefined, function start(set) {
+export const _figure = readable<S_E_Figure_Mesh[]>(undefined, function start(set) {
   new SVGLoader().load(
     Mand,
     function (data) {

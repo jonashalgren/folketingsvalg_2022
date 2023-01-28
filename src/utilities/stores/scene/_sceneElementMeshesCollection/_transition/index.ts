@@ -1,9 +1,9 @@
 import { readable } from "svelte/store";
-import type { S_E_Transition_Meshes } from "@models";
+import type { S_E_Transition_Mesh } from "@models";
 import { getTransitionMesh } from "./getTransitionMesh";
 import { Shape, Color } from "three";
 
-export const _transition = readable<S_E_Transition_Meshes>(undefined, function start(set) {
+export const _transition = readable<S_E_Transition_Mesh[]>(undefined, function start(set) {
   const size = 40;
   const shape = new Shape();
 

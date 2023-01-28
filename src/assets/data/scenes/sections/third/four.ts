@@ -41,25 +41,25 @@ export const four: S = {
     positionExit: [0, -38, -10],
   },
   elements: {
-    logos: [
+    boxes: [
       {
         partyLetter: "M",
         inputRange: getInputRange(),
         positionRange: getLogoPositionRange({ x: 0 }),
         scaleRange: [
-          [1, 0, 0.01],
-          [1, -partyCollection.M.procent_af_stemmer_2022 / 6, 0.01],
+          [1, 0, 1],
+          [1, -partyCollection.M.procent_af_stemmer_2022 / 6, 1],
         ],
         rotation: [0, 0, 0],
         size,
-        isLetterHidden: true,
       },
       {
         partyLetter: "M",
+        texture: "logo",
         inputRange: [0, 1],
         positionRange: [
-          [0, -24.8, 0.1],
-          [0, -24.8, 0.1],
+          [0, -24.8, 0],
+          [0, -24.8, 0],
         ],
         scaleRange: [
           [1, 1, 1],
@@ -73,19 +73,19 @@ export const four: S = {
         inputRange: getInputRange(),
         positionRange: getLogoPositionRange({ x: -20 }),
         scaleRange: [
-          [1, -partyCollection.V.procent_af_stemmer_2019 / 6, 0.01],
-          [1, -partyCollection.V.procent_af_stemmer_2022 / 6, 0.01],
+          [1, -partyCollection.V.procent_af_stemmer_2019 / 6, 1],
+          [1, -partyCollection.V.procent_af_stemmer_2022 / 6, 1],
         ],
         rotation: [0, 0, 0],
         size,
-        isLetterHidden: true,
       },
       {
         partyLetter: "V",
+        texture: "logo",
         inputRange: [0, 1],
         positionRange: [
-          [-20, -24.8, 0.1],
-          [-20, -24.8, 0.1],
+          [-20, -24.8, 0],
+          [-20, -24.8, 0],
         ],
         scaleRange: [
           [1, 1, 1],
@@ -99,19 +99,19 @@ export const four: S = {
         inputRange: getInputRange(),
         positionRange: getLogoPositionRange({ x: 20 }),
         scaleRange: [
-          [1, 0, 0.01],
-          [1, -partyCollection.Æ.procent_af_stemmer_2022 / 6, 0.01],
+          [1, 0, 1],
+          [1, -partyCollection.Æ.procent_af_stemmer_2022 / 6, 1],
         ],
         rotation: [0, 0, 0],
         size,
-        isLetterHidden: true,
       },
       {
         partyLetter: "Æ",
+        texture: "logo",
         inputRange: [0, 1],
         positionRange: [
-          [20, -24.8, 0.1],
-          [20, -24.8, 0.1],
+          [20, -24.8, 0],
+          [20, -24.8, 0],
         ],
         scaleRange: [
           [1, 1, 1],

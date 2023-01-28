@@ -61,9 +61,10 @@ export const two: S = {
     //     },
     //   ],
     // },
-    logos: [
+    boxes: [
       {
         partyLetter: "V",
+        texture: "logo",
         size: 14,
         inputRange: [0, 1],
         positionRange: [

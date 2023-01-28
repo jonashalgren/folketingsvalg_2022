@@ -1,6 +1,6 @@
 import { Text } from "troika-three-text";
 import { threeProperties } from "@assets";
-import type { S_E_Text_Meshes } from "@models";
+import type { S_E_Text_Mesh } from "@models";
 
 export function getTextMeshes() {
   const text = new Text();
@@ -17,5 +17,5 @@ export function getTextMeshes() {
   text.color = threeProperties.color_misc;
   text.sync();
 
-  return [text] as S_E_Text_Meshes;
+  return [text] as S_E_Text_Mesh[];
 }

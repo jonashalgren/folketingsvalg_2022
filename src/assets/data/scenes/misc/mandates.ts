@@ -18,7 +18,6 @@ const partyInputRange = [0, 0.48, 0.63, 0.76, 0.9, 1];
 
 export const mandates: S = {
   hasLogoIntro: true,
-  isPartyFloating: true,
   bbox: { x: 100, y: 180 },
   additionalScroll: [
     [0, 0.5, 0.5],
@@ -133,9 +132,11 @@ export const mandates: S = {
         },
       },
     ],
-    logos: [
+    boxes: [
       {
         partyLetter: "A",
+        texture: "logo",
+        isFloating: true,
         inputRange: partyInputRange,
         positionRange: [
           [-25, 85, 0],
@@ -151,6 +152,8 @@ export const mandates: S = {
       },
       {
         partyLetter: "Ø",
+        texture: "logo",
+        isFloating: true,
         inputRange: partyInputRange,
         positionRange: [
           [-30, 53, 0],
@@ -166,6 +169,8 @@ export const mandates: S = {
       },
       {
         partyLetter: "F",
+        texture: "logo",
+        isFloating: true,
         inputRange: partyInputRange,
         positionRange: [
           [6, 90, 0],
@@ -181,6 +186,8 @@ export const mandates: S = {
       },
       {
         partyLetter: "Å",
+        texture: "logo",
+        isFloating: true,
         inputRange: partyInputRange,
         positionRange: [
           [15, 65, 0],
@@ -196,6 +203,8 @@ export const mandates: S = {
       },
       {
         partyLetter: "B",
+        texture: "logo",
+        isFloating: true,
         inputRange: partyInputRange,
         positionRange: [
           [5, 74, 0],
@@ -211,6 +220,8 @@ export const mandates: S = {
       },
       {
         partyLetter: "M",
+        texture: "logo",
+        isFloating: true,
         inputRange: partyInputRange,
         positionRange: [
           [0, 5, 0],
@@ -226,6 +237,8 @@ export const mandates: S = {
       },
       {
         partyLetter: "V",
+        texture: "logo",
+        isFloating: true,
         inputRange: partyInputRange,
         positionRange: [
           [25, -62, 0],
@@ -241,6 +254,8 @@ export const mandates: S = {
       },
       {
         partyLetter: "C",
+        texture: "logo",
+        isFloating: true,
         inputRange: partyInputRange,
         positionRange: [
           [5, -60, 0],
@@ -256,6 +271,8 @@ export const mandates: S = {
       },
       {
         partyLetter: "O",
+        texture: "logo",
+        isFloating: true,
         inputRange: partyInputRange,
         positionRange: [
           [25, -28, 0],
@@ -271,6 +288,8 @@ export const mandates: S = {
       },
       {
         partyLetter: "D",
+        texture: "logo",
+        isFloating: true,
         inputRange: partyInputRange,
         positionRange: [
           [-5, -45, 0],
@@ -286,6 +305,8 @@ export const mandates: S = {
       },
       {
         partyLetter: "I",
+        texture: "logo",
+        isFloating: true,
         inputRange: partyInputRange,
         positionRange: [
           [10, -40, 0],
@@ -301,6 +322,8 @@ export const mandates: S = {
       },
       {
         partyLetter: "Æ",
+        texture: "logo",
+        isFloating: true,
         inputRange: partyInputRange,
         positionRange: [
           [30, -42, 0],

@@ -8,7 +8,6 @@ export type S = {
   outputOffsetZ?: number;
   additionalScroll?: AdditionalScroll[];
   camera: S_Camera;
-  isPartyFloating?: Boolean;
   mode?: "auto" | "scroll";
   autoDuration?: number;
   hasLogoIntro?: boolean;
