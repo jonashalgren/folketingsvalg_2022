@@ -2,12 +2,12 @@ import type { S } from "@models";
 import { partyCollection, threeProperties } from "@assets";
 
 const newScaleRange = [
-  [1, 1, 200],
-  [1, 1, 200],
-  [1, 1, 200],
-  [1, 1, 200],
-  [1, 1, 200],
-  [1, 1, 200],
+  [1, 1, 2],
+  [1, 1, 2],
+  [1, 1, 2],
+  [1, 1, 2],
+  [1, 1, 2],
+  [1, 1, 2],
 ] as [number, number, number][];
 
 function getSize(num: number) {

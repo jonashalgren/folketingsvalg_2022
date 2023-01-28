@@ -8,7 +8,7 @@ type Props = {
 
 export function getElements({ elementDataCollection: data, elementMeshesCollection: meshes }: Props) {
   return [
-    ...(data.boxes?.map((image) => new Scene_Element_Box(image, meshes.box)) ?? []),
+    ...(data.boxes?.map((image, index) => new Scene_Element_Box(image, meshes.box, index)) ?? []),
     // ...(data.map ? [new Scene_Element_Map(data.map, meshes.map)] : []),
   ];
 }

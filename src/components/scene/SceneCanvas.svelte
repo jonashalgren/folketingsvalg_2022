@@ -26,7 +26,7 @@
   //subscribe/resubscribe animate to rAF
   $: if (renderer && $_scenes.length > 0) {
     unsubscribe();
-    unsubscribe = _rAF.add(animate);
+    unsubscribe = _rAF.add(animate, 16);
   }
 
   // remove preloader
