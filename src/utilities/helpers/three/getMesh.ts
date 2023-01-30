@@ -12,5 +12,6 @@ export function getMesh({ material, geometry, scaleZ = threeProperties.defaultTh
   const mesh = new Mesh(geometry, material);
   mesh.scale.z = scaleZ;
   mesh.position.z = scaleZ;
+  mesh.up.set(0, 0, 1);
   return mesh;
 }

@@ -7,7 +7,7 @@ export function setPromises(item: Props) {
     promises: <Promise<PromiseProps>[]>item.detailList.map(
       (entry) =>
         new Promise((resolve, reject) => {
-          const { color, partyLetter, image, texture } = entry;
+          const { color, partyLetter, texture } = entry;
           if (entry.texture) {
             new TextureLoader().load(
               entry.image,

@@ -11,5 +11,6 @@ export function filterMeshes(item: Props) {
       ),
     };
   }
+
   return item;
 }

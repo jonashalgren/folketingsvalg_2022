@@ -3,7 +3,7 @@ type Props = {
   size: number;
 };
 
-export function getFloatingYOffsetMapper({ size }: Props) {
+export function getMapperFloatingYOffset({ size }: Props) {
   const easeIn = cubicBezier(0.11, 0, 0.5, 0);
   const easeOut = cubicBezier(0.5, 1, 0.89, 1);
   const step = 0.8 + size / 15;

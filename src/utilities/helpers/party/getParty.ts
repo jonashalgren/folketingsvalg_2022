@@ -1,8 +1,8 @@
-import type { P_Letter } from "@models";
+import type { Party_Letter } from "@models";
 import { partyCollection } from "@assets";
 
 type Props = {
-  partyLetter: P_Letter;
+  partyLetter: Party_Letter;
 };
 
 export function getParty({ partyLetter }: Props) {

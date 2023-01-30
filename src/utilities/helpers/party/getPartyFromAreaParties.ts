@@ -1,8 +1,8 @@
-import type { ER_Area_Party, P_Letter } from "@models";
+import type { ElectionResult_Area_Party, Party_Letter } from "@models";
 
 type Props = {
-  partyLetter: P_Letter;
-  areaParties: ER_Area_Party[];
+  partyLetter: Party_Letter;
+  areaParties: ElectionResult_Area_Party[];
 };
 
 export function getPartyFromAreaParties({ partyLetter, areaParties }: Props) {

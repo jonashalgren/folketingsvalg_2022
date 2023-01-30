@@ -6,7 +6,7 @@ type Props = {
   data: S_E_Box_Data;
 };
 
-export function getPositionMapper({ data }: Props): (progress: number) => Vector3Tuple {
+export function getMapperPosition({ data }: Props): (progress: number) => Vector3Tuple {
   const { inputRange, positionRange } = data;
 
   if (positionRange?.length > 0) {

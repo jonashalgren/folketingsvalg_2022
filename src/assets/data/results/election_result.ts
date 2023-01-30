@@ -1,6 +1,6 @@
-import type { ER } from "@models";
+import type { ElectionResult_Area } from "@models";
 
-export const election_result: ER = [
+export const election_result: ElectionResult_Area[] = [
   {
     id: "Brønderslev",
     partier: [

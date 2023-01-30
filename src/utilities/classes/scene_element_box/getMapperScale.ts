@@ -6,7 +6,7 @@ type Props = {
   data: S_E_Box_Data;
 };
 
-export function getScaleMapper({ data }: Props): (progress: number) => Vector3Tuple {
+export function getMapperScale({ data }: Props): (progress: number) => Vector3Tuple {
   const { inputRange, scaleRange } = data;
 
   if (scaleRange?.length > 0) {

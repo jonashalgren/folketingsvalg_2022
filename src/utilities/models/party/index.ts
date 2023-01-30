@@ -1,11 +1,11 @@
 export * from "./partyLogoMesh";
 export * from "./partyLeaderMesh";
 
-export type P = {
+export type Party = {
   color: string;
   secondaryColor: string;
   shortName: string;
-  partyLetter: P_Letter;
+  partyLetter: Party_Letter;
   name: string;
   logo: string;
   leader: string;
@@ -38,21 +38,21 @@ export type P = {
   mandater_2022: number;
 };
 
-export type P_Letter = "A" | "C" | "Æ" | "V" | "F" | "Ø" | "B" | "D" | "I" | "M" | "O" | "Å" | "K" | "Q";
+export type Party_Letter = "A" | "C" | "Æ" | "V" | "F" | "Ø" | "B" | "D" | "I" | "M" | "O" | "Å" | "K" | "Q";
 
-export type P_Collection = {
-  A: P;
-  C: P;
-  Æ: P;
-  V: P;
-  F: P;
-  Ø: P;
-  B: P;
-  D: P;
-  I: P;
-  M: P;
-  O: P;
-  Å: P;
-  K: P;
-  Q: P;
+export type Party_Collection = {
+  A: Party;
+  C: Party;
+  Æ: Party;
+  V: Party;
+  F: Party;
+  Ø: Party;
+  B: Party;
+  D: Party;
+  I: Party;
+  M: Party;
+  O: Party;
+  Å: Party;
+  K: Party;
+  Q: Party;
 };

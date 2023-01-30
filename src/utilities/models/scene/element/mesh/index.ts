@@ -1,6 +1,6 @@
-import type { BoxGeometry, Mesh, MeshBasicMaterial, ExtrudeGeometry, MeshLambertMaterial } from "three";
+import type { BoxGeometry, Mesh, MeshLambertMaterial, ExtrudeGeometry } from "three";
 
-export type S_E_Box_Mesh = Mesh<BoxGeometry, MeshBasicMaterial[]>;
+export type S_E_Box_Mesh = Mesh<BoxGeometry, MeshLambertMaterial[]>;
 
 //------------------------------------------------------------
 

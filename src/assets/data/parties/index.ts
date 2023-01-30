@@ -1,4 +1,4 @@
-import type { P_Collection, P_Letter } from "@models";
+import type { Party_Collection, Party_Letter } from "@models";
 import { party_result } from "@assets";
 import A_Logo from "./logo/A.svg";
 import B_Logo from "./logo/B.svg";
@@ -30,14 +30,14 @@ import OE_Leader from "./leader/OE.jpg";
 import AA_Leader from "./leader/AA.jpg";
 
 type Props = {
-  partyLetter: P_Letter;
+  partyLetter: Party_Letter;
 };
 
 function getPartyResult({ partyLetter }: Props) {
   return party_result.find((item) => item.parti_letter === partyLetter);
 }
 
-export const partyCollection: P_Collection = (function () {
+export const partyCollection: Party_Collection = (function () {
   return {
     A: {
       color: "#A82721",

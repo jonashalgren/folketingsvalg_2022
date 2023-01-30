@@ -1,17 +1,13 @@
-import type { S, S_Camera_Mapper_Params } from "@models";
-import { getMapperPositionCamera } from "./getMapperPositionCamera";
-import { getMapperTargetCamera } from "./getMapperTargetCamera";
+import type { S, S_Camera_Mapper_Params, S_Camera } from "@models";
+import { setProcessedCameraData } from "./setProcessedCameraData";
+import { setMapper } from "./setMapper";
+import { pipe } from "@helpers";
 
-type Props = {
+export type Props = {
   data: S;
+  dimensionZ: number;
+  processedCameraData?: S_Camera;
+  mapper?: ({ progress, controls, camera }: S_Camera_Mapper_Params) => void;
 };
 
-export function getMapperCamera({ data }: Props) {
-  const mapperPositionCamera = getMapperPositionCamera({ data });
-  const mapperTargetCamera = getMapperTargetCamera({ data });
-
-  return function ({ progress, controls, camera }: S_Camera_Mapper_Params) {
-    mapperPositionCamera({ progress, camera });
-    mapperTargetCamera({ progress, controls });
-  };
-}
+export const getMapperCamera = pipe(setProcessedCameraData, setMapper);

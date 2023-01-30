@@ -8,14 +8,15 @@ import type {
   S_Progress,
   S_E_Mesh_Collection,
   S_E_Data,
+  S_Bounding_Box,
 } from "@models";
 import { AmbientLight, SpotLight, WebGLRenderer, GridHelper } from "three";
 import { PerspectiveCamera, Scene as ThreeScene } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { getProcessedData } from "./getProcessedData";
 import { getElements } from "./getElements";
 import { getMapperCamera } from "./getMapperCamera";
 import { getMapperProgress } from "./getMapperProgress";
+import { getDimensionZ } from "./getDimensionZ";
 import type { Scene_Element } from "../scene_element";
 
 export class Scene {
@@ -24,12 +25,14 @@ export class Scene {
   spotLight: SpotLight;
   ambientLight: AmbientLight;
   controls: OrbitControls;
+
+  dimensionZ: number;
+  boundingBox: S_Bounding_Box;
   elements: Scene_Element<S_E_Data, S_E_Mesh[]>[];
+  progress: S_Progress;
 
   mapperProgress: S_Progress_Mapper;
   mapperCamera: S_Camera_Mapper;
-
-  progress: S_Progress;
 
   constructor(
     public data: S,
@@ -41,10 +44,11 @@ export class Scene {
     this.scene = new ThreeScene();
     this.camera = new PerspectiveCamera(50, canvasProperties.width / canvasProperties.height, 0.1, 1000);
 
-    this.data = getProcessedData({ data, camera: this.camera });
-    this.elements = getElements({ elementDataCollection: this.data.elements, elementMeshesCollection });
+    this.boundingBox = data.boundingBox ?? { x: 100, y: 100 };
+    this.dimensionZ = getDimensionZ({ boundingBox: this.boundingBox, camera: this.camera });
+    this.elements = getElements({ elementDataCollection: data.elements, elementMeshesCollection });
 
-    this.mapperCamera = getMapperCamera({ data: this.data });
+    this.mapperCamera = getMapperCamera({ data, dimensionZ: this.dimensionZ }).mapper;
     this.mapperProgress = getMapperProgress({ textPosition }).mapper;
 
     this.setLight();

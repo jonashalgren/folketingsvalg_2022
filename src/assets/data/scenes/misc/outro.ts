@@ -1,11 +1,11 @@
-import type { S, P_Letter } from "@models";
+import type { S, Party_Letter } from "@models";
 import { partyCollection } from "@assets";
 
 const logoPosition: [number, number, number] = [25, 20, 0];
 const logoNotScaled: [number, number, number] = [1, 1, 0];
 
-function logoIsScaled(val: P_Letter) {
-  return [1, 1, partyCollection[val].procent_af_stemmer_2022 * 50] as [number, number, number];
+function logoIsScaled(val: Party_Letter) {
+  return [1, 1, partyCollection[val].procent_af_stemmer_2022 * 1.5] as [number, number, number];
 }
 
 export const outro: S = (function (): S {

@@ -1,4 +1,4 @@
-import type { P_Letter, ER_Year, Motion } from "@models";
+import type { Party_Letter, Motion } from "@models";
 import type { S_E_Map_Data_Area_Id } from "./mapAreaId";
 export * from "./mapAreaId";
 
@@ -7,7 +7,7 @@ export * from "./mapAreaId";
 export type S_E_Box_Data = {
   type?: "box";
   texture?: S_E_Box_Data_Texture;
-  partyLetter: P_Letter;
+  partyLetter: Party_Letter;
   inputRange: number[];
   positionRange: [number, number, number][];
   scaleRange?: [number, number, number][];
@@ -24,6 +24,8 @@ export type S_E_Map_Data = {
   type?: "map";
   configs: (S_E_Map_Data_Config_Party_Allocation | S_E_Map_Data_Config_Blank)[];
   focus?: S_E_Map_Data_Focus[];
+  scaleZRange?: Motion<number>;
+  colorRange?: Motion<string>;
 };
 
 export type S_E_Map_Data_Focus = {
@@ -31,10 +33,12 @@ export type S_E_Map_Data_Focus = {
   areas: S_E_Map_Data_Area_Id[];
 };
 
+export type S_E_Map_Data_Year = "2019" | "2022";
+
 export type S_E_Map_Data_Config_Party_Allocation = {
   mapVariant: "party_vote_allocation";
-  year: ER_Year;
-  partyLetter: P_Letter;
+  year: S_E_Map_Data_Year;
+  partyLetter: Party_Letter;
   inputRange: [number, number];
 };
 

@@ -1,18 +1,18 @@
 import { Scene_Element } from "@classes";
 import type { S_E_Box_Mesh, S_E_Box_Data, S_Progress } from "@models";
-import { getScaleMapper } from "./getScaleMapper";
-import { getPositionMapper } from "./getPositionMapper";
-import { getFloatingYOffsetMapper } from "./getFloatingYOffsetMapper";
+import { getMapperScale } from "./getMapperScale";
+import { getMapperPosition } from "./getPositionMapper";
+import { getMapperFloatingYOffset } from "./getMapperFloatingYOffset";
 import type { Vector3Tuple } from "three";
 import { degreesToRadians } from "popmotion";
 import { spring } from "svelte/motion";
 import type { Spring } from "svelte/motion";
 import { get } from "svelte/store";
 
-export class Scene_Element_Box extends Scene_Element<S_E_Box_Data, S_E_Box_Mesh[], number> {
-  scaleMapper: (progress: number) => Vector3Tuple;
-  positionMapper: (progress: number) => Vector3Tuple;
-  floatingYOffsetMapper: (progress: number) => number;
+export class Scene_Element_Box extends Scene_Element<S_E_Box_Data, S_E_Box_Mesh[]> {
+  mapperScale: (progress: number) => Vector3Tuple;
+  mapperPosition: (progress: number) => Vector3Tuple;
+  mapperFloatingYOffset: (progress: number) => number;
 
   floatingYDirection: "up" | "down";
   floatingYOffsetProgress: number;
@@ -20,8 +20,8 @@ export class Scene_Element_Box extends Scene_Element<S_E_Box_Data, S_E_Box_Mesh[
   floatingProgress: Spring<number>;
   mesh: S_E_Box_Mesh;
 
-  constructor(public data: S_E_Box_Data, public originalMeshes: S_E_Box_Mesh[], index: number) {
-    super(data, originalMeshes, index);
+  constructor(public data: S_E_Box_Data, public originalMeshes: S_E_Box_Mesh[], public index: number) {
+    super(data, originalMeshes);
     this.mesh = this.group.children[0] as S_E_Box_Mesh;
     this.localProgress = undefined;
     this.floatingYDirection = Math.random() > 0.5 ? "down" : "up";
@@ -31,9 +31,9 @@ export class Scene_Element_Box extends Scene_Element<S_E_Box_Data, S_E_Box_Mesh[
       precision: 0.001,
     });
 
-    this.positionMapper = getPositionMapper({ data: this.data });
-    this.scaleMapper = getScaleMapper({ data: this.data });
-    this.floatingYOffsetMapper = getFloatingYOffsetMapper({ size: this.data.size });
+    this.mapperPosition = getMapperPosition({ data: this.data });
+    this.mapperScale = getMapperScale({ data: this.data });
+    this.mapperFloatingYOffset = getMapperFloatingYOffset({ size: this.data.size });
 
     this.setGroupProperties();
     this.setAnimate();
@@ -77,9 +77,9 @@ export class Scene_Element_Box extends Scene_Element<S_E_Box_Data, S_E_Box_Mesh[
 
       if (this.localProgress !== progress || this.data.isFloating) {
         this.localProgress = progress;
-        const scale = this.scaleMapper(progress);
-        const position = this.positionMapper(progress);
-        const floatingYOffset = this.floatingYOffsetMapper(this.floatingYOffsetProgress);
+        const scale = this.mapperScale(progress);
+        const position = this.mapperPosition(progress);
+        const floatingYOffset = this.mapperFloatingYOffset(this.floatingYOffsetProgress);
         this.mesh.scale.set(
           scale[0] * this.data.size + 0.001 * this.index,
           scale[1] * this.data.size + 0.001 * this.index,
