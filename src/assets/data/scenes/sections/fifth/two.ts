@@ -27,17 +27,21 @@ export const two: S = {
       {
         partyLetter: "B",
         texture: "logo",
-        inputRange: [0, 1],
-        positionRange: [
-          [0, 30, 0],
-          [0, 30, 0],
-        ],
         rotation: [0, 0, 0],
-        scaleRange: [
-          [1, 1, 1],
-          [1, 1, 1],
-        ],
         size: 8,
+        motion: {
+          inputRange: [0, 1],
+          outputRange: {
+            position: [
+              [0, 30, 0],
+              [0, 30, 0],
+            ],
+            scale: [
+              [1, 1, 1],
+              [1, 1, 1],
+            ],
+          },
+        },
       },
     ],
     figures: [

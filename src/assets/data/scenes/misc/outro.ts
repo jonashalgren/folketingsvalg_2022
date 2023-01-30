@@ -127,113 +127,169 @@ export const outro: S = (function (): S {
           partyLetter: "A",
           texture: "logo",
           size: 10,
-          inputRange: [0, 0.005, 0.07],
-          positionRange: [logoPosition, logoPosition, logoPosition],
-          scaleRange: [logoIsScaled("A"), logoIsScaled("A"), logoNotScaled],
+          motion: {
+            inputRange: [0, 0.005, 0.07],
+            outputRange: {
+              position: [logoPosition, logoPosition, logoPosition],
+              scale: [logoIsScaled("A"), logoIsScaled("A"), logoNotScaled],
+            },
+          },
         },
         {
           partyLetter: "V",
           texture: "logo",
           size: 10,
-          inputRange: [0.01, 0.07, 0.09, 0.14],
-          positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
-          scaleRange: [logoNotScaled, logoIsScaled("V"), logoIsScaled("V"), logoNotScaled],
+          motion: {
+            inputRange: [0.01, 0.07, 0.09, 0.14],
+            outputRange: {
+              position: [logoPosition, logoPosition, logoPosition, logoPosition],
+              scale: [logoNotScaled, logoIsScaled("V"), logoIsScaled("V"), logoNotScaled],
+            },
+          },
         },
         {
           partyLetter: "Æ",
           texture: "logo",
           size: 10,
-          inputRange: [0.09, 0.14, 0.16, 0.22],
-          positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
-          scaleRange: [logoNotScaled, logoIsScaled("Æ"), logoIsScaled("Æ"), logoNotScaled],
+          motion: {
+            inputRange: [0.09, 0.14, 0.16, 0.22],
+            outputRange: {
+              position: [logoPosition, logoPosition, logoPosition, logoPosition],
+              scale: [logoNotScaled, logoIsScaled("Æ"), logoIsScaled("Æ"), logoNotScaled],
+            },
+          },
         },
         {
           partyLetter: "M",
           texture: "logo",
           size: 10,
-          inputRange: [0.16, 0.22, 0.24, 0.3],
-          positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
-          scaleRange: [logoNotScaled, logoIsScaled("M"), logoIsScaled("M"), logoNotScaled],
+          motion: {
+            inputRange: [0.16, 0.22, 0.24, 0.3],
+            outputRange: {
+              position: [logoPosition, logoPosition, logoPosition, logoPosition],
+              scale: [logoNotScaled, logoIsScaled("M"), logoIsScaled("M"), logoNotScaled],
+            },
+          },
         },
         {
           partyLetter: "B",
           texture: "logo",
           size: 10,
-          inputRange: [0.24, 0.3, 0.32, 0.38],
-          positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
-          scaleRange: [logoNotScaled, logoIsScaled("B"), logoIsScaled("B"), logoNotScaled],
+          motion: {
+            inputRange: [0.24, 0.3, 0.32, 0.38],
+            outputRange: {
+              position: [logoPosition, logoPosition, logoPosition, logoPosition],
+              scale: [logoNotScaled, logoIsScaled("B"), logoIsScaled("B"), logoNotScaled],
+            },
+          },
         },
         {
           partyLetter: "F",
           texture: "logo",
           size: 10,
-          inputRange: [0.32, 0.38, 0.4, 0.45],
-          positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
-          scaleRange: [logoNotScaled, logoIsScaled("F"), logoIsScaled("F"), logoNotScaled],
+          motion: {
+            inputRange: [0.32, 0.38, 0.4, 0.45],
+            outputRange: {
+              position: [logoPosition, logoPosition, logoPosition, logoPosition],
+              scale: [logoNotScaled, logoIsScaled("F"), logoIsScaled("F"), logoNotScaled],
+            },
+          },
         },
         {
           partyLetter: "D",
           texture: "logo",
           size: 10,
-          inputRange: [0.4, 0.45, 0.47, 0.53],
-          positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
-          scaleRange: [logoNotScaled, logoIsScaled("D"), logoIsScaled("D"), logoNotScaled],
+          motion: {
+            inputRange: [0.4, 0.45, 0.47, 0.53],
+            outputRange: {
+              position: [logoPosition, logoPosition, logoPosition, logoPosition],
+              scale: [logoNotScaled, logoIsScaled("D"), logoIsScaled("D"), logoNotScaled],
+            },
+          },
         },
         {
           partyLetter: "K",
           texture: "logo",
           size: 10,
-          inputRange: [0.47, 0.53, 0.55, 0.6],
-          positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
-          scaleRange: [logoNotScaled, logoIsScaled("K"), logoIsScaled("K"), logoNotScaled],
+          motion: {
+            inputRange: [0.47, 0.53, 0.55, 0.6],
+            outputRange: {
+              position: [logoPosition, logoPosition, logoPosition, logoPosition],
+              scale: [logoNotScaled, logoIsScaled("K"), logoIsScaled("K"), logoNotScaled],
+            },
+          },
         },
         {
           partyLetter: "O",
           texture: "logo",
           size: 10,
-          inputRange: [0.55, 0.6, 0.62, 0.67],
-          positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
-          scaleRange: [logoNotScaled, logoIsScaled("O"), logoIsScaled("O"), logoNotScaled],
+          motion: {
+            inputRange: [0.55, 0.6, 0.62, 0.67],
+            outputRange: {
+              position: [logoPosition, logoPosition, logoPosition, logoPosition],
+              scale: [logoNotScaled, logoIsScaled("O"), logoIsScaled("O"), logoNotScaled],
+            },
+          },
         },
         {
           partyLetter: "C",
           texture: "logo",
           size: 10,
-          inputRange: [0.62, 0.67, 0.69, 0.75],
-          positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
-          scaleRange: [logoNotScaled, logoIsScaled("C"), logoIsScaled("C"), logoNotScaled],
+          motion: {
+            inputRange: [0.62, 0.67, 0.69, 0.75],
+            outputRange: {
+              position: [logoPosition, logoPosition, logoPosition, logoPosition],
+              scale: [logoNotScaled, logoIsScaled("C"), logoIsScaled("C"), logoNotScaled],
+            },
+          },
         },
         {
           partyLetter: "I",
           texture: "logo",
           size: 10,
-          inputRange: [0.69, 0.75, 0.77, 0.82],
-          positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
-          scaleRange: [logoNotScaled, logoIsScaled("I"), logoIsScaled("I"), logoNotScaled],
+          motion: {
+            inputRange: [0.69, 0.75, 0.77, 0.82],
+            outputRange: {
+              position: [logoPosition, logoPosition, logoPosition, logoPosition],
+              scale: [logoNotScaled, logoIsScaled("I"), logoIsScaled("I"), logoNotScaled],
+            },
+          },
         },
         {
           partyLetter: "Å",
           texture: "logo",
           size: 10,
-          inputRange: [0.77, 0.83, 0.85, 0.92],
-          positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
-          scaleRange: [logoNotScaled, logoIsScaled("Å"), logoIsScaled("Å"), logoNotScaled],
+          motion: {
+            inputRange: [0.77, 0.83, 0.85, 0.92],
+            outputRange: {
+              position: [logoPosition, logoPosition, logoPosition, logoPosition],
+              scale: [logoNotScaled, logoIsScaled("Å"), logoIsScaled("Å"), logoNotScaled],
+            },
+          },
         },
         {
           partyLetter: "Ø",
           texture: "logo",
           size: 10,
-          inputRange: [0.85, 0.92, 0.94, 0.995],
-          positionRange: [logoPosition, logoPosition, logoPosition, logoPosition],
-          scaleRange: [logoNotScaled, logoIsScaled("Ø"), logoIsScaled("Ø"), logoNotScaled],
+          motion: {
+            inputRange: [0.85, 0.92, 0.94, 0.995],
+            outputRange: {
+              position: [logoPosition, logoPosition, logoPosition, logoPosition],
+              scale: [logoNotScaled, logoIsScaled("Ø"), logoIsScaled("Ø"), logoNotScaled],
+            },
+          },
         },
         {
           partyLetter: "A",
           texture: "logo",
           size: 10,
-          inputRange: [0.94, 0.995, 1],
-          positionRange: [logoPosition, logoPosition, logoPosition],
-          scaleRange: [logoNotScaled, logoIsScaled("A"), logoIsScaled("A")],
+          motion: {
+            inputRange: [0.94, 0.995, 1],
+            outputRange: {
+              position: [logoPosition, logoPosition, logoPosition],
+              scale: [logoNotScaled, logoIsScaled("A"), logoIsScaled("A")],
+            },
+          },
         },
       ],
     },

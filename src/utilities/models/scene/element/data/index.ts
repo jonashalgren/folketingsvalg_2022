@@ -1,4 +1,5 @@
 import type { Party_Letter, Motion } from "@models";
+import type { Vector3Tuple } from "three";
 import type { S_E_Map_Data_Area_Id } from "./mapAreaId";
 export * from "./mapAreaId";
 
@@ -8,12 +9,18 @@ export type S_E_Box_Data = {
   type?: "box";
   texture?: S_E_Box_Data_Texture;
   partyLetter: Party_Letter;
-  inputRange: number[];
-  positionRange: [number, number, number][];
-  scaleRange?: [number, number, number][];
-  rotation?: [number, number, number];
   size: number;
   isFloating?: boolean;
+  rotation?: [number, number, number];
+  motion: S_E_Box_Data_Motion;
+};
+
+export type S_E_Box_Data_Motion = {
+  inputRange: number[];
+  outputRange: {
+    position?: [number, number, number][];
+    scale?: [number, number, number][];
+  };
 };
 
 export type S_E_Box_Data_Texture = "logo" | "leader";
@@ -24,8 +31,15 @@ export type S_E_Map_Data = {
   type?: "map";
   configs: (S_E_Map_Data_Config_Party_Allocation | S_E_Map_Data_Config_Blank)[];
   focus?: S_E_Map_Data_Focus[];
-  scaleZRange?: Motion<number>;
-  colorRange?: Motion<string>;
+  motion?: S_E_Map_Data_Motion;
+};
+
+export type S_E_Map_Data_Motion = {
+  inputRange: number[];
+  outputRange: {
+    scaleZ?: number[];
+    color?: string[];
+  };
 };
 
 export type S_E_Map_Data_Focus = {
@@ -74,10 +88,10 @@ export type S_E_Text_Data = {
   fontSize: number;
   maxWidth: number;
   textAlign: "center" | "left" | "right";
-  rotation: [number, number, number];
-  position: [number, number, number];
   color: string;
   isResponsive?: boolean;
+  rotation: [number, number, number];
+  position: [number, number, number];
 };
 
 //------------------------------------------------------------
@@ -86,16 +100,17 @@ export type S_E_Number_Data = {
   type?: "number";
   font: string;
   unit: string;
-  animRange: {
-    inputRange: number[];
-    colorRange: string[];
-    valueRange: number[];
-    sizeRange: number[];
-  };
-  positionRange: Motion<[number, number, number]>;
+  motion: S_E_Number_Data_Motion;
   decimals: number;
   textAlign: "center" | "left" | "right";
   rotation: [number, number, number];
+};
+
+export type S_E_Number_Data_Motion = {
+  position: Motion<Vector3Tuple>;
+  color: Motion<string>;
+  value: Motion<number>;
+  size: Motion<number>;
 };
 
 //------------------------------------------------------------

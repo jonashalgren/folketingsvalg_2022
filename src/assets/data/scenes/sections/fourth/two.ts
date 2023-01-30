@@ -58,43 +58,66 @@ export const two: S = {
     boxes: [
       {
         partyLetter: "O",
-        inputRange: getInputRange(),
-        positionRange: getLogoPositionRange({ x: -43 }),
-        scaleRange: getScaleRange({ num: partyCollection.O.procent_af_stemmer_2007 }),
+
         rotation: [0, 0, 0],
         size,
+        motion: {
+          inputRange: getInputRange(),
+          outputRange: {
+            position: getLogoPositionRange({ x: -43 }),
+            scale: getScaleRange({ num: partyCollection.O.procent_af_stemmer_2007 }),
+          },
+        },
       },
       {
         partyLetter: "O",
-        inputRange: getInputRange(),
-        positionRange: getLogoPositionRange({ x: -21.5 }),
-        scaleRange: getScaleRange({ num: partyCollection.O.procent_af_stemmer_2011 }),
+
         rotation: [0, 0, 0],
         size,
+        motion: {
+          inputRange: getInputRange(),
+          outputRange: {
+            position: getLogoPositionRange({ x: -21.5 }),
+            scale: getScaleRange({ num: partyCollection.O.procent_af_stemmer_2011 }),
+          },
+        },
       },
       {
         partyLetter: "O",
-        inputRange: getInputRange(),
-        positionRange: getLogoPositionRange({ x: 0 }),
-        scaleRange: getScaleRange({ num: partyCollection.O.procent_af_stemmer_2015 }),
+
         rotation: [0, 0, 0],
         size,
+        motion: {
+          inputRange: getInputRange(),
+          outputRange: {
+            position: getLogoPositionRange({ x: 0 }),
+            scale: getScaleRange({ num: partyCollection.O.procent_af_stemmer_2015 }),
+          },
+        },
       },
       {
         partyLetter: "O",
-        inputRange: getInputRange(),
-        positionRange: getLogoPositionRange({ x: 21.5 }),
-        scaleRange: getScaleRange({ num: partyCollection.O.procent_af_stemmer_2019 }),
         rotation: [0, 0, 0],
         size,
+        motion: {
+          inputRange: getInputRange(),
+          outputRange: {
+            position: getLogoPositionRange({ x: 21.5 }),
+            scale: getScaleRange({ num: partyCollection.O.procent_af_stemmer_2019 }),
+          },
+        },
       },
       {
         partyLetter: "O",
-        inputRange: getInputRange(),
-        positionRange: getLogoPositionRange({ x: 43 }),
-        scaleRange: getScaleRange({ num: partyCollection.O.procent_af_stemmer_2022 }),
         rotation: [0, 0, 0],
         size,
+        motion: {
+          inputRange: getInputRange(),
+          outputRange: {
+            position: getLogoPositionRange({ x: 43 }),
+            scale: getScaleRange({ num: partyCollection.O.procent_af_stemmer_2022 }),
+          },
+        },
       },
     ],
     numbers: [
@@ -104,38 +127,26 @@ export const two: S = {
         decimals: 1,
         textAlign: "center",
         rotation: getNumberRotation(),
-        animRange: {
-          inputRange: [0, 0.36],
-          colorRange: [threeProperties.color_dark, threeProperties.color_dark],
-          valueRange: [0, partyCollection.O.procent_af_stemmer_2007],
-          sizeRange: [0, 5],
-        },
-        positionRange: {
-          inputRange: getInputRange(),
-          outputRange: getNumberPositionRange({
-            x: -43,
-            y: partyCollection.O.procent_af_stemmer_2007 * 3.5,
-          }),
-        },
-      },
-      {
-        font: threeProperties.font_ane,
-        unit: "%",
-        decimals: 1,
-        textAlign: "center",
-        rotation: getNumberRotation(),
-        animRange: {
-          inputRange: [0, 0.36],
-          colorRange: [threeProperties.color_dark, threeProperties.color_dark],
-          valueRange: [0, partyCollection.O.procent_af_stemmer_2011],
-          sizeRange: [0, 5],
-        },
-        positionRange: {
-          inputRange: getInputRange(),
-          outputRange: getNumberPositionRange({
-            x: -21.5,
-            y: partyCollection.O.procent_af_stemmer_2011 * 3.5,
-          }),
+        motion: {
+          position: {
+            inputRange: getInputRange(),
+            outputRange: getNumberPositionRange({
+              x: -43,
+              y: partyCollection.O.procent_af_stemmer_2007 * 3.5,
+            }),
+          },
+          color: {
+            inputRange: [0, 0.36],
+            outputRange: [threeProperties.color_dark, threeProperties.color_dark],
+          },
+          value: {
+            inputRange: [0, 0.36],
+            outputRange: [0, partyCollection.O.procent_af_stemmer_2007],
+          },
+          size: {
+            inputRange: [0, 0.36],
+            outputRange: [0, 5],
+          },
         },
       },
       {
@@ -144,38 +155,26 @@ export const two: S = {
         decimals: 1,
         textAlign: "center",
         rotation: getNumberRotation(),
-        animRange: {
-          inputRange: [0, 0.36],
-          colorRange: [threeProperties.color_dark, threeProperties.color_dark],
-          valueRange: [0, partyCollection.O.procent_af_stemmer_2015],
-          sizeRange: [0, 5],
-        },
-        positionRange: {
-          inputRange: getInputRange(),
-          outputRange: getNumberPositionRange({
-            x: 0,
-            y: partyCollection.O.procent_af_stemmer_2015 * 3.5,
-          }),
-        },
-      },
-      {
-        font: threeProperties.font_ane,
-        unit: "%",
-        decimals: 1,
-        textAlign: "center",
-        rotation: getNumberRotation(),
-        animRange: {
-          inputRange: [0, 0.36],
-          colorRange: [threeProperties.color_dark, threeProperties.color_dark],
-          valueRange: [0, partyCollection.O.procent_af_stemmer_2019],
-          sizeRange: [0, 5],
-        },
-        positionRange: {
-          inputRange: getInputRange(),
-          outputRange: getNumberPositionRange({
-            x: 21.5,
-            y: partyCollection.O.procent_af_stemmer_2019 * 3.5,
-          }),
+        motion: {
+          position: {
+            inputRange: getInputRange(),
+            outputRange: getNumberPositionRange({
+              x: -21.5,
+              y: partyCollection.O.procent_af_stemmer_2011 * 3.5,
+            }),
+          },
+          color: {
+            inputRange: [0, 0.36],
+            outputRange: [threeProperties.color_dark, threeProperties.color_dark],
+          },
+          value: {
+            inputRange: [0, 0.36],
+            outputRange: [0, partyCollection.O.procent_af_stemmer_2011],
+          },
+          size: {
+            inputRange: [0, 0.36],
+            outputRange: [0, 5],
+          },
         },
       },
       {
@@ -184,18 +183,82 @@ export const two: S = {
         decimals: 1,
         textAlign: "center",
         rotation: getNumberRotation(),
-        animRange: {
-          inputRange: [0, 0.36],
-          colorRange: [threeProperties.color_dark, threeProperties.color_dark],
-          valueRange: [0, partyCollection.O.procent_af_stemmer_2022],
-          sizeRange: [0, 5],
+        motion: {
+          position: {
+            inputRange: getInputRange(),
+            outputRange: getNumberPositionRange({
+              x: 0,
+              y: partyCollection.O.procent_af_stemmer_2015 * 3.5,
+            }),
+          },
+          color: {
+            inputRange: [0, 0.36],
+            outputRange: [threeProperties.color_dark, threeProperties.color_dark],
+          },
+          value: {
+            inputRange: [0, 0.36],
+            outputRange: [0, partyCollection.O.procent_af_stemmer_2015],
+          },
+          size: {
+            inputRange: [0, 0.36],
+            outputRange: [0, 5],
+          },
         },
-        positionRange: {
-          inputRange: getInputRange(),
-          outputRange: getNumberPositionRange({
-            x: 43,
-            y: partyCollection.O.procent_af_stemmer_2022 * 3.5,
-          }),
+      },
+      {
+        font: threeProperties.font_ane,
+        unit: "%",
+        decimals: 1,
+        textAlign: "center",
+        rotation: getNumberRotation(),
+        motion: {
+          position: {
+            inputRange: getInputRange(),
+            outputRange: getNumberPositionRange({
+              x: 21.5,
+              y: partyCollection.O.procent_af_stemmer_2019 * 3.5,
+            }),
+          },
+          color: {
+            inputRange: [0, 0.36],
+            outputRange: [threeProperties.color_dark, threeProperties.color_dark],
+          },
+          value: {
+            inputRange: [0, 0.36],
+            outputRange: [0, partyCollection.O.procent_af_stemmer_2019],
+          },
+          size: {
+            inputRange: [0, 0.36],
+            outputRange: [0, 5],
+          },
+        },
+      },
+      {
+        font: threeProperties.font_ane,
+        unit: "%",
+        decimals: 1,
+        textAlign: "center",
+        rotation: getNumberRotation(),
+        motion: {
+          position: {
+            inputRange: getInputRange(),
+            outputRange: getNumberPositionRange({
+              x: 43,
+              y: partyCollection.O.procent_af_stemmer_2022 * 3.5,
+            }),
+          },
+          color: {
+            inputRange: [0, 0.36],
+            outputRange: [threeProperties.color_dark, threeProperties.color_dark],
+          },
+          value: {
+            inputRange: [0, 0.36],
+            outputRange: [0, partyCollection.O.procent_af_stemmer_2022],
+          },
+          size: {
+            inputRange: [0, 0.36],
+            outputRange: [0, 5],
+          },
         },
       },
     ],

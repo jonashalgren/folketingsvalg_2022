@@ -46,7 +46,12 @@ export class Scene {
 
     this.boundingBox = data.boundingBox ?? { x: 100, y: 100 };
     this.dimensionZ = getDimensionZ({ boundingBox: this.boundingBox, camera: this.camera });
-    this.elements = getElements({ elementDataCollection: data.elements, elementMeshesCollection });
+
+    this.elements = getElements({
+      elementDataCollection: data.elements,
+      elementMeshesCollection,
+      dimensionZ: this.dimensionZ,
+    });
 
     this.mapperCamera = getMapperCamera({ data, dimensionZ: this.dimensionZ }).mapper;
     this.mapperProgress = getMapperProgress({ textPosition }).mapper;

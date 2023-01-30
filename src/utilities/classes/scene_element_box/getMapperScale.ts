@@ -7,10 +7,10 @@ type Props = {
 };
 
 export function getMapperScale({ data }: Props): (progress: number) => Vector3Tuple {
-  const { inputRange, scaleRange } = data;
+  const { inputRange, outputRange } = data.motion;
 
-  if (scaleRange?.length > 0) {
-    return interpolate(inputRange, scaleRange);
+  if (outputRange?.scale?.length > 0) {
+    return interpolate(inputRange, outputRange.scale);
   }
 
   return function () {

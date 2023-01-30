@@ -10,4 +10,4 @@ export type Props = {
   mapper?: ((progress: number) => number)[];
 };
 
-export const getScaleZMapper = pipe();
+export const getMapperScaleZ = pipe();

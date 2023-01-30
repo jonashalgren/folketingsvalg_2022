@@ -61,31 +61,43 @@ export const three: S = {
         partyLetter: "Æ",
         texture: "logo",
         size: mapLogoSize,
-        inputRange: [0, 0.1, 1],
-        positionRange: [mapLogoPosition, mapLogoPosition, mapLogoPosition],
-        scaleRange: [mapLogoNotScaled, getMapLogoIsScaled("Æ", 2022), getMapLogoIsScaled("Æ", 2022)],
+        motion: {
+          inputRange: [0, 0.1, 1],
+          outputRange: {
+            position: [mapLogoPosition, mapLogoPosition, mapLogoPosition],
+            scale: [mapLogoNotScaled, getMapLogoIsScaled("Æ", 2022), getMapLogoIsScaled("Æ", 2022)],
+          },
+        },
       },
     ],
     numbers: [
       {
         font: threeProperties.font_ane,
-        positionRange: {
-          inputRange: [0, 1],
-          outputRange: [
-            [26, 9, 0],
-            [26, 9, 0],
-          ],
-        },
-        animRange: {
-          inputRange: [0, 0.1, 1],
-          colorRange: [partyCollection.Æ.color, partyCollection.Æ.color, partyCollection.Æ.color],
-          valueRange: [0, partyCollection.Æ.procent_af_stemmer_2022, partyCollection.Æ.procent_af_stemmer_2022],
-          sizeRange: [0, mapNumberSize, mapNumberSize],
-        },
         unit: "%",
         decimals: 1,
         textAlign: "center",
         rotation: [0, 0, 0],
+        motion: {
+          position: {
+            inputRange: [0, 1],
+            outputRange: [
+              [26, 9, 0],
+              [26, 9, 0],
+            ],
+          },
+          color: {
+            inputRange: [0, 0.1, 1],
+            outputRange: [partyCollection.Æ.color, partyCollection.Æ.color, partyCollection.Æ.color],
+          },
+          value: {
+            inputRange: [0, 0.1, 1],
+            outputRange: [0, partyCollection.Æ.procent_af_stemmer_2022, partyCollection.Æ.procent_af_stemmer_2022],
+          },
+          size: {
+            inputRange: [0, 0.1, 1],
+            outputRange: [0, mapNumberSize, mapNumberSize],
+          },
+        },
       },
     ],
   },

@@ -5,9 +5,12 @@ import { getMeshesGroup } from "./getMeshesGroup";
 export class Scene_Element<D extends S_E_Data, M extends S_E_Mesh[]> {
   animate: (progress: S_Progress) => void;
   group: Group;
-  constructor(public data: D, public originalMeshes: M) {
+  localProgress: number | undefined;
+  constructor(public data: D, public originalMeshes: M, public dimensionZ: number) {
     this.animate = function () {};
     this.data = data;
+    this.dimensionZ = dimensionZ;
+    this.localProgress = undefined;
     this.group = getMeshesGroup({ meshes: this.originalMeshes, data: this.data }).group;
   }
 }

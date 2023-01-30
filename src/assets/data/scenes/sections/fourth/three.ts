@@ -50,36 +50,49 @@ export const three: S = {
         partyLetter: "O",
         texture: "logo",
         size: mapLogoSize,
-        inputRange: [0, 0.01, 0.16, 1],
-        positionRange: [mapLogoPosition, mapLogoPosition, mapLogoPosition, mapLogoPosition],
-        scaleRange: [mapLogoNotScaled, mapLogoNotScaled, getMapLogoIsScaled("O", 200), getMapLogoIsScaled("O", 200)],
+        motion: {
+          inputRange: [0, 0.01, 0.16, 1],
+          outputRange: {
+            position: [mapLogoPosition, mapLogoPosition, mapLogoPosition, mapLogoPosition],
+            scale: [mapLogoNotScaled, mapLogoNotScaled, getMapLogoIsScaled("O", 200), getMapLogoIsScaled("O", 200)],
+          },
+        },
       },
     ],
     numbers: [
       {
         font: threeProperties.font_ane,
-        positionRange: {
-          inputRange: [0, 1],
-          outputRange: [
-            [26, 9, 0],
-            [26, 9, 0],
-          ],
-        },
-        animRange: {
-          inputRange: [0, 0.001, 0.16, 1],
-          colorRange: [
-            partyCollection.O.color,
-            partyCollection.O.color,
-            partyCollection.O.color,
-            partyCollection.O.color,
-          ],
-          valueRange: [0, 0, partyCollection.O.procent_af_stemmer_2022, partyCollection.O.procent_af_stemmer_2022],
-          sizeRange: [0, 0, mapNumberSize, mapNumberSize],
-        },
+
         unit: "%",
         decimals: 1,
         textAlign: "center",
         rotation: [0, 0, 0],
+        motion: {
+          position: {
+            inputRange: [0, 1],
+            outputRange: [
+              [26, 9, 0],
+              [26, 9, 0],
+            ],
+          },
+          color: {
+            inputRange: [0, 0.001, 0.16, 1],
+            outputRange: [
+              partyCollection.O.color,
+              partyCollection.O.color,
+              partyCollection.O.color,
+              partyCollection.O.color,
+            ],
+          },
+          value: {
+            inputRange: [0, 0.001, 0.16, 1],
+            outputRange: [0, 0, partyCollection.O.procent_af_stemmer_2022, partyCollection.O.procent_af_stemmer_2022],
+          },
+          size: {
+            inputRange: [0, 0.001, 0.16, 1],
+            outputRange: [0, 0, mapNumberSize, mapNumberSize],
+          },
+        },
       },
     ],
   },

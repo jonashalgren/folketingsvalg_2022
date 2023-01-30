@@ -66,15 +66,19 @@ export const two: S = {
         partyLetter: "V",
         texture: "logo",
         size: 14,
-        inputRange: [0, 1],
-        positionRange: [
-          [0, 64, 0],
-          [0, 64, 0],
-        ],
-        scaleRange: [
-          [1, 1, 1],
-          [1, 1, 1],
-        ],
+        motion: {
+          inputRange: [0, 1],
+          outputRange: {
+            position: [
+              [0, 64, 0],
+              [0, 64, 0],
+            ],
+            scale: [
+              [1, 1, 1],
+              [1, 1, 1],
+            ],
+          },
+        },
       },
     ],
   },

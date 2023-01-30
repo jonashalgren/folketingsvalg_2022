@@ -28,17 +28,21 @@ export const two: S = {
       {
         partyLetter: "Æ",
         texture: "logo",
-        inputRange: [0, 1],
-        positionRange: [
-          [0, 18, 0],
-          [0, 18, 0],
-        ],
         rotation: [0, 0, 0],
-        scaleRange: [
-          [1, 1, 1],
-          [1, 1, 1],
-        ],
         size: 8,
+        motion: {
+          inputRange: [0, 1],
+          outputRange: {
+            position: [
+              [0, 18, 0],
+              [0, 18, 0],
+            ],
+            scale: [
+              [1, 1, 1],
+              [1, 1, 1],
+            ],
+          },
+        },
       },
     ],
     numbers: [
@@ -48,18 +52,26 @@ export const two: S = {
         unit: "%",
         rotation: [0, 0, 0],
         textAlign: "center",
-        positionRange: {
-          inputRange: [0, 1],
-          outputRange: [
-            [0, -11, 0],
-            [0, -11, 0],
-          ],
-        },
-        animRange: {
-          inputRange: [0, 0.5, 1],
-          colorRange: [partyCollection.Æ.color, partyCollection.Æ.color, partyCollection.Æ.color],
-          valueRange: [0, partyCollection.Æ.procent_af_stemmer_2022, partyCollection.Æ.procent_af_stemmer_2022],
-          sizeRange: [30, 30, 30],
+        motion: {
+          position: {
+            inputRange: [0, 1],
+            outputRange: [
+              [0, -11, 0],
+              [0, -11, 0],
+            ],
+          },
+          color: {
+            inputRange: [0, 0.5, 1],
+            outputRange: [partyCollection.Æ.color, partyCollection.Æ.color, partyCollection.Æ.color],
+          },
+          value: {
+            inputRange: [0, 0.5, 1],
+            outputRange: [0, partyCollection.Æ.procent_af_stemmer_2022, partyCollection.Æ.procent_af_stemmer_2022],
+          },
+          size: {
+            inputRange: [0, 0.5, 1],
+            outputRange: [30, 30, 30],
+          },
         },
       },
     ],

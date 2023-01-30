@@ -28,17 +28,21 @@ export const two: S = {
       {
         partyLetter: "C",
         texture: "logo",
-        inputRange: [0, 1],
-        positionRange: [
-          [0, 18, 0],
-          [0, 18, 0],
-        ],
         rotation: [0, 0, 0],
-        scaleRange: [
-          [1, 1, 1],
-          [1, 1, 1],
-        ],
         size: 8,
+        motion: {
+          inputRange: [0, 1],
+          outputRange: {
+            position: [
+              [0, 18, 0],
+              [0, 18, 0],
+            ],
+            scale: [
+              [1, 1, 1],
+              [1, 1, 1],
+            ],
+          },
+        },
       },
     ],
     numbers: [
@@ -48,22 +52,30 @@ export const two: S = {
         unit: "",
         rotation: [0, 0, 0],
         textAlign: "center",
-        positionRange: {
-          inputRange: [0, 1],
-          outputRange: [
-            [0, -11, 0],
-            [0, -11, 0],
-          ],
-        },
-        animRange: {
-          inputRange: [0, 0.5, 1],
-          colorRange: [partyCollection.C.color, partyCollection.C.color, partyCollection.C.color],
-          valueRange: [
-            partyCollection.C.mandater_2019,
-            partyCollection.C.mandater_2022,
-            partyCollection.C.mandater_2022,
-          ],
-          sizeRange: [30, 30, 30],
+        motion: {
+          position: {
+            inputRange: [0, 1],
+            outputRange: [
+              [0, -11, 0],
+              [0, -11, 0],
+            ],
+          },
+          color: {
+            inputRange: [0, 0.5, 1],
+            outputRange: [partyCollection.C.color, partyCollection.C.color, partyCollection.C.color],
+          },
+          value: {
+            inputRange: [0, 0.5, 1],
+            outputRange: [
+              partyCollection.C.mandater_2019,
+              partyCollection.C.mandater_2022,
+              partyCollection.C.mandater_2022,
+            ],
+          },
+          size: {
+            inputRange: [0, 0.5, 1],
+            outputRange: [30, 30, 30],
+          },
         },
       },
     ],

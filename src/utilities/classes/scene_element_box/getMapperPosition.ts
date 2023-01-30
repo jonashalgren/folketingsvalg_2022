@@ -7,10 +7,10 @@ type Props = {
 };
 
 export function getMapperPosition({ data }: Props): (progress: number) => Vector3Tuple {
-  const { inputRange, positionRange } = data;
+  const { inputRange, outputRange } = data.motion;
 
-  if (positionRange?.length > 0) {
-    return interpolate(inputRange, positionRange);
+  if (outputRange?.position?.length > 0) {
+    return interpolate(inputRange, outputRange.position);
   }
 
   return function () {
