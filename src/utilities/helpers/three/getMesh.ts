@@ -1,6 +1,6 @@
 import type { ExtrudeBufferGeometry, MeshLambertMaterial } from "three";
 import { Mesh } from "three";
-import { threeProperties } from "@assets";
+import { defaults } from "@assets";
 
 type Props = {
   material: MeshLambertMaterial;
@@ -8,10 +8,9 @@ type Props = {
   scaleZ?: number;
 };
 
-export function getMesh({ material, geometry, scaleZ = threeProperties.defaultThickness }: Props) {
+export function getMesh({ material, geometry, scaleZ = defaults.meshThickness }: Props) {
   const mesh = new Mesh(geometry, material);
   mesh.scale.z = scaleZ;
   mesh.position.z = scaleZ;
-  mesh.up.set(0, 0, 1);
   return mesh;
 }

@@ -10,31 +10,31 @@ export function setProcessedCameraData(item: Props): Props {
         ...camera.positionMain,
         outputRange: getProcessedOutputRangeList({
           dimensionZ: item.dimensionZ,
-          originalOutputRange: camera.positionMain.outputRange,
+          originalOutputRangeList: camera.positionMain.outputRange,
         }),
       },
       targetMain: {
         ...camera.targetMain,
         outputRange: getProcessedOutputRangeList({
           dimensionZ: item.dimensionZ,
-          originalOutputRange: camera.targetMain.outputRange,
+          originalOutputRangeList: camera.targetMain.outputRange,
         }),
       },
       positionEntry: getProcessedOutputRangeItem({
         dimensionZ: item.dimensionZ,
-        originalOutputRange: camera.positionEntry,
+        originalOutputRangeItem: camera.positionEntry,
       }),
       targetEntry: getProcessedOutputRangeItem({
         dimensionZ: item.dimensionZ,
-        originalOutputRange: camera.targetEntry,
+        originalOutputRangeItem: camera.targetEntry,
       }),
       positionExit: getProcessedOutputRangeItem({
         dimensionZ: item.dimensionZ,
-        originalOutputRange: camera.positionExit,
+        originalOutputRangeItem: camera.positionExit,
       }),
       targetExit: getProcessedOutputRangeItem({
         dimensionZ: item.dimensionZ,
-        originalOutputRange: camera.targetExit,
+        originalOutputRangeItem: camera.targetExit,
       }),
     },
   };

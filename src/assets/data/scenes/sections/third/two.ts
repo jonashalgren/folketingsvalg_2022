@@ -23,7 +23,26 @@ export const two: S = {
     targetExit: [0, 20, -2],
     positionExit: [0, 20, -3],
   },
-  elements: {
+  elements: [
+    {
+      type: "box",
+      partyLetter: "V",
+      texture: "logo",
+      size: 14,
+      motion: {
+        inputRange: [0, 1],
+        outputRange: {
+          position: [
+            [0, 64, 0],
+            [0, 64, 0],
+          ],
+          scale: [
+            [1, 1, 1],
+            [1, 1, 1],
+          ],
+        },
+      },
+    },
     // lineChart: {
     //   width: 100,
     //   topValue: 30,
@@ -61,25 +80,5 @@ export const two: S = {
     //     },
     //   ],
     // },
-    boxes: [
-      {
-        partyLetter: "V",
-        texture: "logo",
-        size: 14,
-        motion: {
-          inputRange: [0, 1],
-          outputRange: {
-            position: [
-              [0, 64, 0],
-              [0, 64, 0],
-            ],
-            scale: [
-              [1, 1, 1],
-              [1, 1, 1],
-            ],
-          },
-        },
-      },
-    ],
-  },
+  ],
 };

@@ -1,5 +1,5 @@
 import type { Props } from "./index";
-import type { S_E_Mesh } from "@models";
+import type { S_E_Box_Mesh } from "@models";
 
 export function filterMeshes(item: Props) {
   if (item.data.type === "box") {
@@ -7,7 +7,7 @@ export function filterMeshes(item: Props) {
     return {
       ...item,
       meshes: meshes.filter(
-        ({ userData }: S_E_Mesh) => userData?.partyLetter === data.partyLetter && data?.texture === userData?.texture
+        ({ userData }: S_E_Box_Mesh) => userData.partyLetter === data.partyLetter && data.texture === userData.texture
       ),
     };
   }

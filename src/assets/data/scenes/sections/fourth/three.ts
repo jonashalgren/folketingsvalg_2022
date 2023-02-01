@@ -1,5 +1,5 @@
 import type { S } from "@models";
-import { partyCollection, threeProperties } from "@assets";
+import { partyCollection, fonts } from "@assets";
 import { getMapLogoIsScaled, mapLogoNotScaled, mapLogoPosition, mapNumberSize, mapLogoSize } from "../../vars";
 
 export const three: S = {
@@ -28,8 +28,9 @@ export const three: S = {
     positionExit: [-4, -15, -2],
   },
   additionalScroll: [[0, 0.5, 0.5]],
-  elements: {
-    map: {
+  elements: [
+    {
+      type: "map",
       focus: [{ areas: ["Hedensted", "Vejle_Nord"], inputRange: [0.7, 1] }],
       configs: [
         {
@@ -45,55 +46,52 @@ export const three: S = {
         },
       ],
     },
-    boxes: [
-      {
-        partyLetter: "O",
-        texture: "logo",
-        size: mapLogoSize,
-        motion: {
-          inputRange: [0, 0.01, 0.16, 1],
-          outputRange: {
-            position: [mapLogoPosition, mapLogoPosition, mapLogoPosition, mapLogoPosition],
-            scale: [mapLogoNotScaled, mapLogoNotScaled, getMapLogoIsScaled("O", 200), getMapLogoIsScaled("O", 200)],
-          },
+    {
+      type: "box",
+      partyLetter: "O",
+      texture: "logo",
+      size: mapLogoSize,
+      motion: {
+        inputRange: [0, 0.01, 0.16, 1],
+        outputRange: {
+          position: [mapLogoPosition, mapLogoPosition, mapLogoPosition, mapLogoPosition],
+          scale: [mapLogoNotScaled, mapLogoNotScaled, getMapLogoIsScaled("O", 200), getMapLogoIsScaled("O", 200)],
         },
       },
-    ],
-    numbers: [
-      {
-        font: threeProperties.font_ane,
-
-        unit: "%",
-        decimals: 1,
-        textAlign: "center",
-        rotation: [0, 0, 0],
-        motion: {
-          position: {
-            inputRange: [0, 1],
-            outputRange: [
-              [26, 9, 0],
-              [26, 9, 0],
-            ],
-          },
-          color: {
-            inputRange: [0, 0.001, 0.16, 1],
-            outputRange: [
-              partyCollection.O.color,
-              partyCollection.O.color,
-              partyCollection.O.color,
-              partyCollection.O.color,
-            ],
-          },
-          value: {
-            inputRange: [0, 0.001, 0.16, 1],
-            outputRange: [0, 0, partyCollection.O.procent_af_stemmer_2022, partyCollection.O.procent_af_stemmer_2022],
-          },
-          size: {
-            inputRange: [0, 0.001, 0.16, 1],
-            outputRange: [0, 0, mapNumberSize, mapNumberSize],
-          },
+    },
+    {
+      type: "number",
+      font: fonts.ane,
+      unit: "%",
+      decimals: 1,
+      textAlign: "center",
+      rotation: [0, 0, 0],
+      motion: {
+        position: {
+          inputRange: [0, 1],
+          outputRange: [
+            [26, 9, 0],
+            [26, 9, 0],
+          ],
+        },
+        color: {
+          inputRange: [0, 0.001, 0.16, 1],
+          outputRange: [
+            partyCollection.O.color,
+            partyCollection.O.color,
+            partyCollection.O.color,
+            partyCollection.O.color,
+          ],
+        },
+        value: {
+          inputRange: [0, 0.001, 0.16, 1],
+          outputRange: [0, 0, partyCollection.O.procent_af_stemmer_2022, partyCollection.O.procent_af_stemmer_2022],
+        },
+        size: {
+          inputRange: [0, 0.001, 0.16, 1],
+          outputRange: [0, 0, mapNumberSize, mapNumberSize],
         },
       },
-    ],
-  },
+    },
+  ],
 };

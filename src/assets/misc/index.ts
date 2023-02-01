@@ -1,2 +1,2 @@
-export * from "./three";
+export * from "./defaults";
 export * from "./map";

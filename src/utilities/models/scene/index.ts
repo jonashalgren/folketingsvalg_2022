@@ -1,4 +1,4 @@
-import type { AdditionalScroll, S_Camera, S_E_Data_Collection } from "@models";
+import type { AdditionalScroll, S_Camera, S_E_Data } from "@models";
 
 export * from "./element";
 
@@ -13,5 +13,5 @@ export type S = {
   mode?: "auto" | "scroll";
   autoDuration?: number;
   hasLogoIntro?: boolean;
-  elements: S_E_Data_Collection;
+  elements: S_E_Data[];
 };

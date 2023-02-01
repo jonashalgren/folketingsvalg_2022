@@ -23,12 +23,12 @@ export const overview: S = {
     positionExit: [7, 4, -5],
     targetExit: [7, 4, -10],
   },
-  elements: {
+  elements: [
     // barChart: {
     //   animConfigs: [
     //     { variant: "blank", inputRange: [0, 0.01] },
     //     { variant: "normal", year: "2022", inputRange: [0.2, 1] },
     //   ],
     // },
-  },
+  ],
 };

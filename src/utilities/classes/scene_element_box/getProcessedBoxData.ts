@@ -15,11 +15,11 @@ export function getProcessedBoxData({ data, dimensionZ }: Props): S_E_Box_Data {
       outputRange: {
         position: getProcessedOutputRangeList({
           dimensionZ,
-          originalOutputRange: data.motion.outputRange.position ?? [],
+          originalOutputRangeList: data.motion.outputRange.position ?? [],
         }),
         scale: getProcessedOutputRangeList({
           dimensionZ,
-          originalOutputRange: data.motion.outputRange.scale ?? [],
+          originalOutputRangeList: data.motion.outputRange.scale ?? [],
         }),
       },
     },

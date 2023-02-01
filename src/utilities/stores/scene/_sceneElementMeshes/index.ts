@@ -7,7 +7,7 @@ import { _map } from "./_map";
 import { _text } from "./_text";
 import { _transition } from "./_transition";
 
-export const _sceneElementMeshesCollection: Readable<S_E_Mesh_Collection | undefined> = derived(
+export const _sceneElementMeshCollection: Readable<S_E_Mesh_Collection | undefined> = derived(
   [_figure, _box, _map, _text, _transition],
   ([$_figure, $_box, $_map, $_text, $_transition]) => {
     if ($_figure?.length > 0 && $_box?.length > 0 && $_map?.length > 0 && $_text?.length > 0) {

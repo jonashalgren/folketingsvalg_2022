@@ -5,7 +5,7 @@ const logoPosition: [number, number, number] = [25, 20, 0];
 const logoNotScaled: [number, number, number] = [1, 1, 0];
 
 function logoIsScaled(val: Party_Letter) {
-  return [1, 1, partyCollection[val].procent_af_stemmer_2022 * 1.5] as [number, number, number];
+  return [1, 1, partyCollection[val].procent_af_stemmer_2022 / 2] as [number, number, number];
 }
 
 export const outro: S = (function (): S {
@@ -33,8 +33,9 @@ export const outro: S = (function (): S {
       targetExit: [0, 60, 15],
       positionExit: [0, -130, 75],
     },
-    elements: {
-      map: {
+    elements: [
+      {
+        type: "map",
         configs: [
           {
             mapVariant: "party_vote_allocation",
@@ -122,176 +123,188 @@ export const outro: S = (function (): S {
           },
         ],
       },
-      boxes: [
-        {
-          partyLetter: "A",
-          texture: "logo",
-          size: 10,
-          motion: {
-            inputRange: [0, 0.005, 0.07],
-            outputRange: {
-              position: [logoPosition, logoPosition, logoPosition],
-              scale: [logoIsScaled("A"), logoIsScaled("A"), logoNotScaled],
-            },
+      {
+        type: "box",
+        partyLetter: "A",
+        texture: "logo",
+        size: 10,
+        motion: {
+          inputRange: [0, 0.005, 0.07],
+          outputRange: {
+            position: [logoPosition, logoPosition, logoPosition],
+            scale: [logoIsScaled("A"), logoIsScaled("A"), logoNotScaled],
           },
         },
-        {
-          partyLetter: "V",
-          texture: "logo",
-          size: 10,
-          motion: {
-            inputRange: [0.01, 0.07, 0.09, 0.14],
-            outputRange: {
-              position: [logoPosition, logoPosition, logoPosition, logoPosition],
-              scale: [logoNotScaled, logoIsScaled("V"), logoIsScaled("V"), logoNotScaled],
-            },
+      },
+      {
+        type: "box",
+        partyLetter: "V",
+        texture: "logo",
+        size: 10,
+        motion: {
+          inputRange: [0.01, 0.07, 0.09, 0.14],
+          outputRange: {
+            position: [logoPosition, logoPosition, logoPosition, logoPosition],
+            scale: [logoNotScaled, logoIsScaled("V"), logoIsScaled("V"), logoNotScaled],
           },
         },
-        {
-          partyLetter: "Æ",
-          texture: "logo",
-          size: 10,
-          motion: {
-            inputRange: [0.09, 0.14, 0.16, 0.22],
-            outputRange: {
-              position: [logoPosition, logoPosition, logoPosition, logoPosition],
-              scale: [logoNotScaled, logoIsScaled("Æ"), logoIsScaled("Æ"), logoNotScaled],
-            },
+      },
+      {
+        type: "box",
+        partyLetter: "Æ",
+        texture: "logo",
+        size: 10,
+        motion: {
+          inputRange: [0.09, 0.14, 0.16, 0.22],
+          outputRange: {
+            position: [logoPosition, logoPosition, logoPosition, logoPosition],
+            scale: [logoNotScaled, logoIsScaled("Æ"), logoIsScaled("Æ"), logoNotScaled],
           },
         },
-        {
-          partyLetter: "M",
-          texture: "logo",
-          size: 10,
-          motion: {
-            inputRange: [0.16, 0.22, 0.24, 0.3],
-            outputRange: {
-              position: [logoPosition, logoPosition, logoPosition, logoPosition],
-              scale: [logoNotScaled, logoIsScaled("M"), logoIsScaled("M"), logoNotScaled],
-            },
+      },
+      {
+        type: "box",
+        partyLetter: "M",
+        texture: "logo",
+        size: 10,
+        motion: {
+          inputRange: [0.16, 0.22, 0.24, 0.3],
+          outputRange: {
+            position: [logoPosition, logoPosition, logoPosition, logoPosition],
+            scale: [logoNotScaled, logoIsScaled("M"), logoIsScaled("M"), logoNotScaled],
           },
         },
-        {
-          partyLetter: "B",
-          texture: "logo",
-          size: 10,
-          motion: {
-            inputRange: [0.24, 0.3, 0.32, 0.38],
-            outputRange: {
-              position: [logoPosition, logoPosition, logoPosition, logoPosition],
-              scale: [logoNotScaled, logoIsScaled("B"), logoIsScaled("B"), logoNotScaled],
-            },
+      },
+      {
+        type: "box",
+        partyLetter: "B",
+        texture: "logo",
+        size: 10,
+        motion: {
+          inputRange: [0.24, 0.3, 0.32, 0.38],
+          outputRange: {
+            position: [logoPosition, logoPosition, logoPosition, logoPosition],
+            scale: [logoNotScaled, logoIsScaled("B"), logoIsScaled("B"), logoNotScaled],
           },
         },
-        {
-          partyLetter: "F",
-          texture: "logo",
-          size: 10,
-          motion: {
-            inputRange: [0.32, 0.38, 0.4, 0.45],
-            outputRange: {
-              position: [logoPosition, logoPosition, logoPosition, logoPosition],
-              scale: [logoNotScaled, logoIsScaled("F"), logoIsScaled("F"), logoNotScaled],
-            },
+      },
+      {
+        type: "box",
+        partyLetter: "F",
+        texture: "logo",
+        size: 10,
+        motion: {
+          inputRange: [0.32, 0.38, 0.4, 0.45],
+          outputRange: {
+            position: [logoPosition, logoPosition, logoPosition, logoPosition],
+            scale: [logoNotScaled, logoIsScaled("F"), logoIsScaled("F"), logoNotScaled],
           },
         },
-        {
-          partyLetter: "D",
-          texture: "logo",
-          size: 10,
-          motion: {
-            inputRange: [0.4, 0.45, 0.47, 0.53],
-            outputRange: {
-              position: [logoPosition, logoPosition, logoPosition, logoPosition],
-              scale: [logoNotScaled, logoIsScaled("D"), logoIsScaled("D"), logoNotScaled],
-            },
+      },
+      {
+        type: "box",
+        partyLetter: "D",
+        texture: "logo",
+        size: 10,
+        motion: {
+          inputRange: [0.4, 0.45, 0.47, 0.53],
+          outputRange: {
+            position: [logoPosition, logoPosition, logoPosition, logoPosition],
+            scale: [logoNotScaled, logoIsScaled("D"), logoIsScaled("D"), logoNotScaled],
           },
         },
-        {
-          partyLetter: "K",
-          texture: "logo",
-          size: 10,
-          motion: {
-            inputRange: [0.47, 0.53, 0.55, 0.6],
-            outputRange: {
-              position: [logoPosition, logoPosition, logoPosition, logoPosition],
-              scale: [logoNotScaled, logoIsScaled("K"), logoIsScaled("K"), logoNotScaled],
-            },
+      },
+      {
+        type: "box",
+        partyLetter: "K",
+        texture: "logo",
+        size: 10,
+        motion: {
+          inputRange: [0.47, 0.53, 0.55, 0.6],
+          outputRange: {
+            position: [logoPosition, logoPosition, logoPosition, logoPosition],
+            scale: [logoNotScaled, logoIsScaled("K"), logoIsScaled("K"), logoNotScaled],
           },
         },
-        {
-          partyLetter: "O",
-          texture: "logo",
-          size: 10,
-          motion: {
-            inputRange: [0.55, 0.6, 0.62, 0.67],
-            outputRange: {
-              position: [logoPosition, logoPosition, logoPosition, logoPosition],
-              scale: [logoNotScaled, logoIsScaled("O"), logoIsScaled("O"), logoNotScaled],
-            },
+      },
+      {
+        type: "box",
+        partyLetter: "O",
+        texture: "logo",
+        size: 10,
+        motion: {
+          inputRange: [0.55, 0.6, 0.62, 0.67],
+          outputRange: {
+            position: [logoPosition, logoPosition, logoPosition, logoPosition],
+            scale: [logoNotScaled, logoIsScaled("O"), logoIsScaled("O"), logoNotScaled],
           },
         },
-        {
-          partyLetter: "C",
-          texture: "logo",
-          size: 10,
-          motion: {
-            inputRange: [0.62, 0.67, 0.69, 0.75],
-            outputRange: {
-              position: [logoPosition, logoPosition, logoPosition, logoPosition],
-              scale: [logoNotScaled, logoIsScaled("C"), logoIsScaled("C"), logoNotScaled],
-            },
+      },
+      {
+        type: "box",
+        partyLetter: "C",
+        texture: "logo",
+        size: 10,
+        motion: {
+          inputRange: [0.62, 0.67, 0.69, 0.75],
+          outputRange: {
+            position: [logoPosition, logoPosition, logoPosition, logoPosition],
+            scale: [logoNotScaled, logoIsScaled("C"), logoIsScaled("C"), logoNotScaled],
           },
         },
-        {
-          partyLetter: "I",
-          texture: "logo",
-          size: 10,
-          motion: {
-            inputRange: [0.69, 0.75, 0.77, 0.82],
-            outputRange: {
-              position: [logoPosition, logoPosition, logoPosition, logoPosition],
-              scale: [logoNotScaled, logoIsScaled("I"), logoIsScaled("I"), logoNotScaled],
-            },
+      },
+      {
+        type: "box",
+        partyLetter: "I",
+        texture: "logo",
+        size: 10,
+        motion: {
+          inputRange: [0.69, 0.75, 0.77, 0.82],
+          outputRange: {
+            position: [logoPosition, logoPosition, logoPosition, logoPosition],
+            scale: [logoNotScaled, logoIsScaled("I"), logoIsScaled("I"), logoNotScaled],
           },
         },
-        {
-          partyLetter: "Å",
-          texture: "logo",
-          size: 10,
-          motion: {
-            inputRange: [0.77, 0.83, 0.85, 0.92],
-            outputRange: {
-              position: [logoPosition, logoPosition, logoPosition, logoPosition],
-              scale: [logoNotScaled, logoIsScaled("Å"), logoIsScaled("Å"), logoNotScaled],
-            },
+      },
+      {
+        type: "box",
+        partyLetter: "Å",
+        texture: "logo",
+        size: 10,
+        motion: {
+          inputRange: [0.77, 0.83, 0.85, 0.92],
+          outputRange: {
+            position: [logoPosition, logoPosition, logoPosition, logoPosition],
+            scale: [logoNotScaled, logoIsScaled("Å"), logoIsScaled("Å"), logoNotScaled],
           },
         },
-        {
-          partyLetter: "Ø",
-          texture: "logo",
-          size: 10,
-          motion: {
-            inputRange: [0.85, 0.92, 0.94, 0.995],
-            outputRange: {
-              position: [logoPosition, logoPosition, logoPosition, logoPosition],
-              scale: [logoNotScaled, logoIsScaled("Ø"), logoIsScaled("Ø"), logoNotScaled],
-            },
+      },
+      {
+        type: "box",
+        partyLetter: "Ø",
+        texture: "logo",
+        size: 10,
+        motion: {
+          inputRange: [0.85, 0.92, 0.94, 0.995],
+          outputRange: {
+            position: [logoPosition, logoPosition, logoPosition, logoPosition],
+            scale: [logoNotScaled, logoIsScaled("Ø"), logoIsScaled("Ø"), logoNotScaled],
           },
         },
-        {
-          partyLetter: "A",
-          texture: "logo",
-          size: 10,
-          motion: {
-            inputRange: [0.94, 0.995, 1],
-            outputRange: {
-              position: [logoPosition, logoPosition, logoPosition],
-              scale: [logoNotScaled, logoIsScaled("A"), logoIsScaled("A")],
-            },
+      },
+      {
+        type: "box",
+        partyLetter: "A",
+        texture: "logo",
+        size: 10,
+        motion: {
+          inputRange: [0.94, 0.995, 1],
+          outputRange: {
+            position: [logoPosition, logoPosition, logoPosition],
+            scale: [logoNotScaled, logoIsScaled("A"), logoIsScaled("A")],
           },
         },
-      ],
-    },
+      },
+    ],
   };
 })();

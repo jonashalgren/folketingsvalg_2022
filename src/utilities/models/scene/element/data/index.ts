@@ -6,7 +6,7 @@ export * from "./mapAreaId";
 //------------------------------------------------------------
 
 export type S_E_Box_Data = {
-  type?: "box";
+  type: "box";
   texture?: S_E_Box_Data_Texture;
   partyLetter: Party_Letter;
   size: number;
@@ -28,18 +28,9 @@ export type S_E_Box_Data_Texture = "logo" | "leader";
 //------------------------------------------------------------
 
 export type S_E_Map_Data = {
-  type?: "map";
-  configs: (S_E_Map_Data_Config_Party_Allocation | S_E_Map_Data_Config_Blank)[];
+  type: "map";
+  configs: S_E_Map_Data_Config[];
   focus?: S_E_Map_Data_Focus[];
-  motion?: S_E_Map_Data_Motion;
-};
-
-export type S_E_Map_Data_Motion = {
-  inputRange: number[];
-  outputRange: {
-    scaleZ?: number[];
-    color?: string[];
-  };
 };
 
 export type S_E_Map_Data_Focus = {
@@ -49,11 +40,21 @@ export type S_E_Map_Data_Focus = {
 
 export type S_E_Map_Data_Year = "2019" | "2022";
 
+export type S_E_Map_Data_Config = S_E_Map_Data_Config_Party_Allocation | S_E_Map_Data_Config_Blank;
+
 export type S_E_Map_Data_Config_Party_Allocation = {
   mapVariant: "party_vote_allocation";
   year: S_E_Map_Data_Year;
   partyLetter: Party_Letter;
   inputRange: [number, number];
+  areasProperties?: S_E_Map_Data_Config_Party_Allocation_area_Properties[];
+  highestAreaResultPct?: number;
+  lowestAreaResultPct?: number;
+};
+export type S_E_Map_Data_Config_Party_Allocation_area_Properties = {
+  areaId: S_E_Map_Data_Area_Id;
+  pct: number;
+  color?: string;
 };
 
 export type S_E_Map_Data_Config_Blank = {
@@ -65,7 +66,7 @@ export type S_E_Map_Data_Config_Blank = {
 //------------------------------------------------------------
 
 export type S_E_Figure_Data = {
-  type?: "figure";
+  type: "figure";
   inputRange: [number, number];
   amount: number;
   color: string;
@@ -82,7 +83,7 @@ export type S_E_Figure_Data_Item = {
 //------------------------------------------------------------
 
 export type S_E_Text_Data = {
-  type?: "text";
+  type: "text";
   font: string;
   text: string;
   fontSize: number;
@@ -97,7 +98,7 @@ export type S_E_Text_Data = {
 //------------------------------------------------------------
 
 export type S_E_Number_Data = {
-  type?: "number";
+  type: "number";
   font: string;
   unit: string;
   motion: S_E_Number_Data_Motion;
@@ -111,16 +112,6 @@ export type S_E_Number_Data_Motion = {
   color: Motion<string>;
   value: Motion<number>;
   size: Motion<number>;
-};
-
-//------------------------------------------------------------
-
-export type S_E_Data_Collection = {
-  map?: S_E_Map_Data;
-  numbers?: S_E_Number_Data[];
-  texts?: S_E_Text_Data[];
-  boxes?: S_E_Box_Data[];
-  figures?: S_E_Figure_Data[];
 };
 
 //------------------------------------------------------------

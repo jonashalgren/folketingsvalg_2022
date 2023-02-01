@@ -2,11 +2,11 @@ import type {
   S,
   CanvasProperties,
   S_E_Mesh,
+  S_E_Mesh_Collection,
   S_Camera_Mapper,
   TextPosition,
   S_Progress_Mapper,
   S_Progress,
-  S_E_Mesh_Collection,
   S_E_Data,
   S_Bounding_Box,
 } from "@models";
@@ -36,7 +36,7 @@ export class Scene {
 
   constructor(
     public data: S,
-    public elementMeshesCollection: S_E_Mesh_Collection,
+    public elementMeshCollection: S_E_Mesh_Collection,
     public canvas: HTMLCanvasElement,
     public canvasProperties: CanvasProperties,
     public textPosition: TextPosition
@@ -48,8 +48,8 @@ export class Scene {
     this.dimensionZ = getDimensionZ({ boundingBox: this.boundingBox, camera: this.camera });
 
     this.elements = getElements({
-      elementDataCollection: data.elements,
-      elementMeshesCollection,
+      elementData: data.elements,
+      elementMeshCollection,
       dimensionZ: this.dimensionZ,
     });
 
@@ -103,7 +103,6 @@ export class Scene {
 
   render({ renderer }: { renderer: WebGLRenderer }) {
     this.setProgress();
-
     if (this.progress.state === "active" || this.progress.state === "next") {
       this.mapperCamera({ progress: this.progress, camera: this.camera, controls: this.controls });
       this.elements.forEach((item) => item.animate(this.progress));
