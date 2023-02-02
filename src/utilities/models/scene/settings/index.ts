@@ -2,7 +2,6 @@ import type { Motion, S_S_Element } from "@models";
 import type { Vector3Tuple } from "three";
 
 export * from "./element";
-export * from "./camera";
 
 export type S_S_Camera = {
   positionMain: Motion<Vector3Tuple>;
