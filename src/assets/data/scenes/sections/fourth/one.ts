@@ -1,6 +1,6 @@
-import type { S } from "@models";
+import type { S_Settings } from "@models";
 
-export const one: S = {
+export const one: S_Settings = {
   hasLogoIntro: true,
   camera: {
     targetMain: {

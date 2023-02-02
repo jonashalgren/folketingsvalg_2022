@@ -1,7 +1,7 @@
-import type { S_E_Map_Data_Area_Id, Party_Letter } from "@models";
+import type { S_S_E_Map_Area_Id, Party_Letter } from "@models";
 
 export type ElectionResult_Area = {
-  id: S_E_Map_Data_Area_Id;
+  id: S_S_E_Map_Area_Id;
   partier: ElectionResult_Area_Party[];
 };
 

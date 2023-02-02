@@ -1,6 +1,6 @@
-import type { S } from "@models";
+import type { S_Settings } from "@models";
 
-export const overview: S = {
+export const overview: S_Settings = {
   hasLogoIntro: true,
   additionalScroll: [[0, 0.5, 0]],
   camera: {

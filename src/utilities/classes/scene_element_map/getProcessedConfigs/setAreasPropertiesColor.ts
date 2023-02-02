@@ -1,5 +1,5 @@
 import type { Props } from ".";
-import type { S_E_Map_Data_Config } from "@models";
+import type { S_S_E_Map_Config } from "@models";
 import { defaults } from "@assets";
 import { getParty } from "@helpers";
 import { interpolate } from "popmotion";
@@ -7,7 +7,7 @@ import { interpolate } from "popmotion";
 export function setAreasPropertiesColor(item: Props): Props {
   return {
     ...item,
-    configs: <S_E_Map_Data_Config[]>item.configs.map((config) => {
+    configs: <S_S_E_Map_Config[]>item.configs.map((config) => {
       if (config.mapVariant === "party_vote_allocation") {
         const party = getParty({ partyLetter: config.partyLetter });
         return {

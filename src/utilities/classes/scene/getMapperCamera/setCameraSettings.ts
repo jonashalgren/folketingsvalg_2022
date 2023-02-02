@@ -1,39 +1,39 @@
 import { getProcessedOutputRangeItem, getProcessedOutputRangeList } from "@helpers";
 import type { Props } from "./index";
 
-export function setProcessedCameraData(item: Props): Props {
-  const { camera } = item.data;
+export function setCameraSettings(item: Props): Props {
+  const { camera, dimensionZ } = item.settings;
   return {
     ...item,
-    processedCameraData: {
+    cameraSettings: {
       positionMain: {
         ...camera.positionMain,
         outputRange: getProcessedOutputRangeList({
-          dimensionZ: item.dimensionZ,
+          dimensionZ: dimensionZ,
           originalOutputRangeList: camera.positionMain.outputRange,
         }),
       },
       targetMain: {
         ...camera.targetMain,
         outputRange: getProcessedOutputRangeList({
-          dimensionZ: item.dimensionZ,
+          dimensionZ: dimensionZ,
           originalOutputRangeList: camera.targetMain.outputRange,
         }),
       },
       positionEntry: getProcessedOutputRangeItem({
-        dimensionZ: item.dimensionZ,
+        dimensionZ: dimensionZ,
         originalOutputRangeItem: camera.positionEntry,
       }),
       targetEntry: getProcessedOutputRangeItem({
-        dimensionZ: item.dimensionZ,
+        dimensionZ: dimensionZ,
         originalOutputRangeItem: camera.targetEntry,
       }),
       positionExit: getProcessedOutputRangeItem({
-        dimensionZ: item.dimensionZ,
+        dimensionZ: dimensionZ,
         originalOutputRangeItem: camera.positionExit,
       }),
       targetExit: getProcessedOutputRangeItem({
-        dimensionZ: item.dimensionZ,
+        dimensionZ: dimensionZ,
         originalOutputRangeItem: camera.targetExit,
       }),
     },

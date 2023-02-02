@@ -1,17 +1,17 @@
-import type { S_Camera, S_Progress } from "@models";
+import type { S_S_Camera, S_Progress } from "@models";
 import { interpolate } from "popmotion";
 import type { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 type Props = {
-  camera: S_Camera;
+  cameraSettings: S_S_Camera;
 };
-export function getMapperTargetCamera({ camera }: Props) {
+export function getMapperTargetCamera({ cameraSettings }: Props) {
   let localProgress = 0;
   let localExit = undefined;
   let localEntry = undefined;
 
-  const { inputRange, outputRange } = camera.targetMain;
-  const { targetEntry, targetExit } = camera;
+  const { inputRange, outputRange } = cameraSettings.targetMain;
+  const { targetEntry, targetExit } = cameraSettings;
 
   const mapperMain = interpolate(inputRange, outputRange);
   const mapperExit = interpolate([0, 1], [outputRange[outputRange.length - 1], targetExit]);

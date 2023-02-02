@@ -1,8 +1,8 @@
-import type { S } from "@models";
+import type { S_Settings } from "@models";
 import { partyCollection, fonts } from "@assets";
 import { getMapLogoIsScaled, mapLogoNotScaled, mapLogoPosition, mapNumberSize, mapLogoSize } from "../../vars";
 
-export const three: S = {
+export const three: S_Settings = {
   camera: {
     targetMain: {
       inputRange: [0, 0.51, 0.72, 1],

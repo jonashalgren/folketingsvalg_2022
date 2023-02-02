@@ -1,8 +1,8 @@
-import type { S } from "@models";
+import type { S_Settings } from "@models";
 import { partyCollection, fonts } from "@assets";
 import { getMapLogoIsScaled, mapLogoNotScaled, mapLogoPosition, mapNumberSize, mapLogoSize } from "../../vars";
 
-export const three: S = {
+export const three: S_Settings = {
   additionalScroll: [
     [0, 0.5, 0.5],
     [1, 0, 0.5],

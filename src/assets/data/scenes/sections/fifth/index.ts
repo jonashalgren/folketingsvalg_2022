@@ -1,6 +1,6 @@
-import type { S } from "@models";
+import type { S_Settings } from "@models";
 import { one } from "./one";
 import { two } from "./two";
 import { three } from "./three";
 
-export const fifth: S[] = [one, two, three];
+export const fifth: S_Settings[] = [one, two, three];

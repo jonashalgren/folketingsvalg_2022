@@ -1,6 +1,6 @@
 <script lang="ts">
   import { setNGetRenderer, getAnimateFunction, removePreloader } from "@helpers";
-  import { _canvasElement, _canvasProperties, _viewport, _rAF, _scenes } from "@stores";
+  import { _canvasElement, _canvasSettings, _viewport, _rAF, _scenes } from "@stores";
   import type { Scene } from "@classes";
 
   const preloaderElement = <HTMLDivElement>document.getElementById("preloader");
@@ -9,7 +9,7 @@
   // create 3d scene renderer
   $: renderer = setNGetRenderer({
     element: $_canvasElement,
-    canvasProperties: $_canvasProperties,
+    canvasSettings: $_canvasSettings,
     viewport: $_viewport,
   });
 
@@ -36,7 +36,7 @@
 </script>
 
 <div>
-  <canvas style="left: -{$_canvasProperties.left}px;" bind:this={$_canvasElement} />
+  <canvas style="left: {$_canvasSettings.left}px;" bind:this={$_canvasElement} />
 </div>
 
 <style lang="scss">

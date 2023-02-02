@@ -1,10 +1,10 @@
-import type { S_E_Map_Data_Area_Id, S_E_Map_Data_Config } from "@models";
+import type { S_S_E_Map_Area_Id, S_S_E_Map_Config } from "@models";
 import { getProcessedZ } from "@helpers";
 import { interpolate } from "popmotion";
 
 export type Props = {
-  areaId: S_E_Map_Data_Area_Id;
-  configs: S_E_Map_Data_Config[];
+  areaId: S_S_E_Map_Area_Id;
+  configs: S_S_E_Map_Config[];
   dimensionZ: number;
 };
 

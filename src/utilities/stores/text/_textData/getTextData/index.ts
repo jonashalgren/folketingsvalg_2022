@@ -2,10 +2,10 @@ import { pipe } from "@helpers";
 import { fitScene } from "./fitScene";
 import { setTextData } from "./setTextData";
 import { cleanupData } from "./cleanupData";
-import type { S } from "@models";
+import type { S_Settings } from "@models";
 
 export type Props = {
-  sceneData: S[];
+  scenesSettings: S_Settings[];
   textData: string[][];
   data: any[];
 };

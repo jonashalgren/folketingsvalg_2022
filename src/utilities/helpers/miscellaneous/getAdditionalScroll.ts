@@ -1,10 +1,10 @@
-import type { S, AdditionalScroll } from "@models";
+import type { S_Settings, S_S_AdditionalScroll } from "@models";
 
 type Props = {
-  sceneData: S;
+  sceneSettings: S_Settings;
   index: number;
 };
 
-export function getAdditionalScroll({ sceneData, index }: Props): AdditionalScroll {
-  return sceneData.additionalScroll?.find((item) => item[0] === index) ?? [index, 0, 0];
+export function getAdditionalScroll({ sceneSettings, index }: Props): S_S_AdditionalScroll {
+  return sceneSettings.additionalScroll?.find((item) => item[0] === index) ?? [index, 0, 0];
 }

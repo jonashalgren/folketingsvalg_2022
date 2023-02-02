@@ -1,4 +1,4 @@
-export type S_E_Map_Data_Area_Id =
+export type S_S_E_Map_Area_Id =
   | "Østerbro"
   | "Sundbyvester"
   | "Indre_By"

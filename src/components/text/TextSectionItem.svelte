@@ -1,20 +1,18 @@
 <script lang="ts">
   import { _viewport } from "@stores";
-  import type { AdditionalScroll } from "@models";
+  import type { S_S_AdditionalScroll } from "@models";
   export let textSectionItem: string;
   export let isFirst: boolean;
   export let isFirstItem: boolean;
   export let isLastItem: boolean;
-  export let additionalScroll: AdditionalScroll;
+  export let additionalScroll: S_S_AdditionalScroll;
 </script>
 
 {#if textSectionItem.length > 0}
   <div
     class="s-p1 text-item"
     style="margin-top: {(isFirstItem ? $_viewport.h * (isFirst ? 0.5 : 0.8) : $_viewport.h * 0.2) +
-      additionalScroll[1] * $_viewport.h}px; margin-bottom: {(isLastItem
-      ? $_viewport.h * 0.75
-      : $_viewport.h / 2) +
+      additionalScroll[1] * $_viewport.h}px; margin-bottom: {(isLastItem ? $_viewport.h * 0.75 : $_viewport.h / 2) +
       additionalScroll[2] * $_viewport.h * 2}px;"
   >
     {@html textSectionItem}
@@ -22,9 +20,7 @@
 {:else}
   <div
     style="margin-top: {(isFirstItem ? $_viewport.h * (isFirst ? 0.5 : 0.8) : $_viewport.h * 0.2) +
-      additionalScroll[1] * $_viewport.h}px; margin-bottom: {(isLastItem
-      ? $_viewport.h * 0.75
-      : $_viewport.h / 2) +
+      additionalScroll[1] * $_viewport.h}px; margin-bottom: {(isLastItem ? $_viewport.h * 0.75 : $_viewport.h / 2) +
       additionalScroll[2] * $_viewport.h * 2}px;"
   />
 {/if}

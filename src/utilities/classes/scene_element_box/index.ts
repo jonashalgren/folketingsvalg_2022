@@ -1,33 +1,32 @@
 import { Scene_Element } from "@classes";
-import type { S_E_Box_Mesh, S_E_Box_Data, S_Progress } from "@models";
+import type { S_E_Box_Mesh, S_S_E_Box, S_Progress, S_Settings } from "@models";
 import { getMapperScale } from "./getMapperScale";
 import { getMapperPosition } from "./getMapperPosition";
 import { getMapperFloatingYOffset } from "./getMapperFloatingYOffset";
-import { getProcessedBoxData } from "./getProcessedBoxData";
+import { getProcessedBoxSettings } from "./getProcessedBoxSettings";
 import type { Vector3Tuple } from "three";
 import { degreesToRadians } from "popmotion";
 import { spring } from "svelte/motion";
 import type { Spring } from "svelte/motion";
 import { get } from "svelte/store";
 
-export class Scene_Element_Box extends Scene_Element<S_E_Box_Data, S_E_Box_Mesh[]> {
+export class Scene_Element_Box extends Scene_Element<S_S_E_Box, S_E_Box_Mesh[]> {
   mapperScale: (progress: number) => Vector3Tuple;
   mapperPosition: (progress: number) => Vector3Tuple;
   mapperFloatingYOffset: (progress: number) => number;
 
-  processedBoxData: S_E_Box_Data;
   floatingYDirection: "up" | "down";
   floatingYOffsetProgress: number;
   floatingProgress: Spring<number>;
 
   constructor(
-    public data: S_E_Box_Data,
+    public boxSettings: S_S_E_Box,
     public originalMeshes: S_E_Box_Mesh[],
-    public dimensionZ: number,
+    public sceneSettings: S_Settings,
     public index: number
   ) {
-    super(data, originalMeshes, dimensionZ);
-    this.processedBoxData = getProcessedBoxData({ data, dimensionZ });
+    super(boxSettings, originalMeshes, sceneSettings);
+    this.boxSettings = getProcessedBoxSettings({ boxSettings, sceneSettings });
     this.floatingYDirection = Math.random() > 0.5 ? "down" : "up";
     this.floatingYOffsetProgress = Math.random();
     this.floatingProgress = spring(0, {
@@ -35,20 +34,20 @@ export class Scene_Element_Box extends Scene_Element<S_E_Box_Data, S_E_Box_Mesh[
       precision: 0.001,
     });
 
-    this.mapperPosition = getMapperPosition({ data: this.processedBoxData });
-    this.mapperScale = getMapperScale({ data: this.processedBoxData });
-    this.mapperFloatingYOffset = getMapperFloatingYOffset({ data: this.processedBoxData });
+    this.mapperPosition = getMapperPosition({ boxSettings: this.boxSettings });
+    this.mapperScale = getMapperScale({ boxSettings: this.boxSettings });
+    this.mapperFloatingYOffset = getMapperFloatingYOffset({ boxSettings: this.boxSettings });
 
     this.setGroupProperties();
     this.setAnimate();
   }
 
   setGroupProperties() {
-    if (this.data?.rotation) {
+    if (this.boxSettings?.rotation) {
       this.group.children[0].rotation.set(
-        degreesToRadians(this.data.rotation[0]),
-        degreesToRadians(this.data.rotation[1]),
-        degreesToRadians(this.data.rotation[2])
+        degreesToRadians(this.boxSettings.rotation[0]),
+        degreesToRadians(this.boxSettings.rotation[1]),
+        degreesToRadians(this.boxSettings.rotation[2])
       );
     }
   }
@@ -72,25 +71,25 @@ export class Scene_Element_Box extends Scene_Element<S_E_Box_Data, S_E_Box_Mesh[
   setAnimate() {
     this.animate = (prog: S_Progress) => {
       let progress = prog.main;
-      if (this.data.isFloating) {
+      if (this.boxSettings.isFloating) {
         this.setFloatingYOffsetProgress();
         this.floatingProgress.set(progress);
         progress = get(this.floatingProgress);
       }
 
-      if (this.localProgress !== progress || this.data.isFloating) {
+      if (this.localProgress !== progress || this.boxSettings.isFloating) {
         this.localProgress = progress;
         const scale = this.mapperScale(progress);
         const position = this.mapperPosition(progress);
         const floatingYOffset = this.mapperFloatingYOffset(this.floatingYOffsetProgress);
         this.group.children[0].scale.set(
-          scale[0] * this.data.size + 0.001 * this.index,
-          scale[1] * this.data.size + 0.001 * this.index,
+          scale[0] * this.boxSettings.size + 0.001 * this.index,
+          scale[1] * this.boxSettings.size + 0.001 * this.index,
           scale[2] * 0.8 + 0.001 * this.index
         );
         this.group.children[0].position.set(
-          position[0] - ((scale[0] - 1) * this.data.size) / 2,
-          position[1] - ((scale[1] - 1) * this.data.size) / 2 + floatingYOffset,
+          position[0] - ((scale[0] - 1) * this.boxSettings.size) / 2,
+          position[1] - ((scale[1] - 1) * this.boxSettings.size) / 2 + floatingYOffset,
           position[2] + (scale[2] * 0.8) / 2
         );
       }

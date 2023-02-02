@@ -4,6 +4,7 @@ export type S_Progress = {
   main: number;
   entry: number;
   exit: number;
+  auto: number;
   state: S_Progress_State;
 };
 

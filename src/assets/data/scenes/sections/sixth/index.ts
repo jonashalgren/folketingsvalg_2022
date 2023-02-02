@@ -1,5 +1,5 @@
-import type { S } from "@models";
+import type { S_Settings } from "@models";
 import { one } from "./one";
 import { two } from "./two";
 
-export const sixth: S[] = [one, two];
+export const sixth: S_Settings[] = [one, two];

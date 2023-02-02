@@ -1,4 +1,4 @@
-import type { S } from "@models";
+import type { S_Settings } from "@models";
 import { partyCollection, fonts } from "@assets";
 
 const newScaleRange = [
@@ -16,7 +16,7 @@ function getSize(num: number) {
 
 const partyInputRange = [0, 0.48, 0.63, 0.76, 0.9, 1];
 
-export const mandates: S = {
+export const mandates: S_Settings = {
   hasLogoIntro: true,
   boundingBox: { x: 100, y: 180 },
   additionalScroll: [

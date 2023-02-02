@@ -4,8 +4,9 @@ import { getMapperTargetCamera } from "./getMapperTargetCamera";
 import type { S_Camera_Mapper_Params } from "@models";
 
 export function setMapper(item: Props): Props {
-  const mapperPositionCamera = getMapperPositionCamera({ camera: item.processedCameraData });
-  const mapperTargetCamera = getMapperTargetCamera({ camera: item.processedCameraData });
+  const { cameraSettings } = item;
+  const mapperPositionCamera = getMapperPositionCamera({ cameraSettings });
+  const mapperTargetCamera = getMapperTargetCamera({ cameraSettings });
 
   return {
     ...item,

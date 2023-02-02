@@ -1,14 +1,13 @@
 import type {
-  S,
-  CanvasProperties,
+  CanvasSettings,
   S_E_Mesh,
-  S_E_Mesh_Collection,
+  S_E_Mesh_Templates,
   S_Camera_Mapper,
   TextPosition,
   S_Progress_Mapper,
   S_Progress,
-  S_E_Data,
-  S_Bounding_Box,
+  S_Settings,
+  S_S_Element,
 } from "@models";
 import { AmbientLight, SpotLight, WebGLRenderer, GridHelper } from "three";
 import { PerspectiveCamera, Scene as ThreeScene } from "three";
@@ -16,7 +15,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { getElements } from "./getElements";
 import { getMapperCamera } from "./getMapperCamera";
 import { getMapperProgress } from "./getMapperProgress";
-import { getDimensionZ } from "./getDimensionZ";
+import { getProcessedSettings } from "./getProcessedSettings";
 import type { Scene_Element } from "../scene_element";
 
 export class Scene {
@@ -26,35 +25,25 @@ export class Scene {
   ambientLight: AmbientLight;
   controls: OrbitControls;
 
-  dimensionZ: number;
-  boundingBox: S_Bounding_Box;
-  elements: Scene_Element<S_E_Data, S_E_Mesh[]>[];
+  elements: Scene_Element<S_S_Element, S_E_Mesh[]>[];
   progress: S_Progress;
 
   mapperProgress: S_Progress_Mapper;
   mapperCamera: S_Camera_Mapper;
 
   constructor(
-    public data: S,
-    public elementMeshCollection: S_E_Mesh_Collection,
+    public settings: S_Settings,
+    public meshTemplates: S_E_Mesh_Templates,
     public canvas: HTMLCanvasElement,
-    public canvasProperties: CanvasProperties,
+    public canvasSettings: CanvasSettings,
     public textPosition: TextPosition
   ) {
     this.scene = new ThreeScene();
-    this.camera = new PerspectiveCamera(50, canvasProperties.width / canvasProperties.height, 0.1, 1000);
-
-    this.boundingBox = data.boundingBox ?? { x: 100, y: 100 };
-    this.dimensionZ = getDimensionZ({ boundingBox: this.boundingBox, camera: this.camera });
-
-    this.elements = getElements({
-      elementData: data.elements,
-      elementMeshCollection,
-      dimensionZ: this.dimensionZ,
-    });
-
-    this.mapperCamera = getMapperCamera({ data, dimensionZ: this.dimensionZ }).mapper;
-    this.mapperProgress = getMapperProgress({ textPosition }).mapper;
+    this.camera = new PerspectiveCamera(50, canvasSettings.width / canvasSettings.height, 0.1, 1000);
+    this.settings = getProcessedSettings({ camera: this.camera, settings }).settings;
+    this.elements = getElements({ settings: this.settings, meshTemplates });
+    this.mapperCamera = getMapperCamera({ settings: this.settings }).mapper;
+    this.mapperProgress = getMapperProgress({ textPosition, settings: this.settings }).mapper;
 
     this.setLight();
     this.setGrid();

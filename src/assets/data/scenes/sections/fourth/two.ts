@@ -1,4 +1,4 @@
-import type { S } from "@models";
+import type { S_Settings } from "@models";
 import { partyCollection, fonts, defaults } from "@assets";
 
 const size = 14;
@@ -32,7 +32,7 @@ function getNumberRotation() {
   return [0, 0, 0] as [number, number, number];
 }
 
-export const two: S = {
+export const two: S_Settings = {
   additionalScroll: [[0, 0.5, 0]],
   camera: {
     targetMain: {

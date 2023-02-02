@@ -1,6 +1,6 @@
-import type { S } from "@models";
+import type { S_Settings } from "@models";
 
-export const two: S = {
+export const two: S_Settings = {
   additionalScroll: [[0, 0.5, 0]],
   camera: {
     targetMain: {

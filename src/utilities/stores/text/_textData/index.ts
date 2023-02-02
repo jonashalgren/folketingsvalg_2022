@@ -1,5 +1,5 @@
 import { readable } from "svelte/store";
-import { sceneData } from "@assets";
+import { scenesSettings } from "@assets";
 import { getTextData } from "./getTextData";
 
 export const _textData = readable<string[][]>([], function start(set) {
@@ -8,7 +8,7 @@ export const _textData = readable<string[][]>([], function start(set) {
       return res.json();
     })
     .then((json) => {
-      set(getTextData({ data: json.data, sceneData, textData: [] }).textData);
+      set(getTextData({ data: json.data, scenesSettings, textData: [] }).textData);
     })
     .catch((error) => {
       console.log(error);

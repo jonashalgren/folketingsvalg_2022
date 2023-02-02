@@ -1,8 +1,9 @@
-import type { ElectionResult_Area, S_E_Map_Data_Config, S_E_Map_Mesh } from "@models";
+import type { ElectionResult_Area, S_S_E_Map_Config, S_E_Map_Mesh } from "@models";
 import { Scene_Element_Map_Area } from "@classes";
+
 type Props = {
   electionResult: ElectionResult_Area[];
-  configs: S_E_Map_Data_Config[];
+  configs: S_S_E_Map_Config[];
   meshes: S_E_Map_Mesh[];
   dimensionZ: number;
 };
