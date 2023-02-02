@@ -1,6 +1,6 @@
 <script lang="ts">
   import { _viewport, _canvasCreditOpacity } from "@stores";
-  import logo from "@assets/misc/images/valg_logo.png";
+  import logo from "@assets/images/valg_logo.png";
 </script>
 
 <div

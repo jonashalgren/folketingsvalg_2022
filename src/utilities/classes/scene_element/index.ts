@@ -1,9 +1,9 @@
-import type { S_E_Mesh, S_Settings, S_Progress, S_S_Element } from "@models";
+import type { S_E_Mesh, S_Settings, S_S_Element } from "@models";
 import type { Group } from "three";
 import { getElementGroup } from "./getElementGroup";
 
 export class Scene_Element<D extends S_S_Element, M extends S_E_Mesh[]> {
-  animate: (progress: S_Progress) => void;
+  animate: (progress: number) => void;
   group: Group;
   localProgress: number | undefined;
   constructor(public elementSettings: D, public meshesTemplate: M, public sceneSettings: S_Settings) {

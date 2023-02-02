@@ -1,6 +1,6 @@
 import type { Props } from ".";
 import type { S_S_E_Map_Config } from "@models";
-import { defaults } from "@assets";
+import { mesh_default_settings } from "@assets";
 import { getParty } from "@helpers";
 import { interpolate } from "popmotion";
 
@@ -26,7 +26,7 @@ export function setAreasPropertiesColor(item: Props): Props {
 
       return {
         ...config,
-        areaColor: defaults.color_neutral,
+        areaColor: mesh_default_settings.color_neutral,
       };
     }),
   };

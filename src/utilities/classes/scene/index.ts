@@ -29,7 +29,7 @@ export class Scene {
   progress: S_Progress;
 
   mapperProgress: S_Progress_Mapper;
-  mapperCamera: S_Camera_Mapper;
+  mapperCamera: (props: S_Camera_Mapper) => void;
 
   constructor(
     public settings: S_Settings,
@@ -49,7 +49,6 @@ export class Scene {
     this.setGrid();
     this.setControls();
     this.setCamera();
-    this.setProgress();
     this.addElementMeshesToScene();
   }
 
@@ -80,10 +79,6 @@ export class Scene {
     this.camera.up.set(0, 0, 1);
   }
 
-  setProgress() {
-    this.progress = this.mapperProgress({ scrollY });
-  }
-
   addElementMeshesToScene() {
     this.elements.forEach((element) => {
       this.scene.add(element.group);
@@ -91,10 +86,13 @@ export class Scene {
   }
 
   render({ renderer }: { renderer: WebGLRenderer }) {
-    this.setProgress();
-    if (this.progress.state === "active" || this.progress.state === "next") {
-      this.mapperCamera({ progress: this.progress, camera: this.camera, controls: this.controls });
-      this.elements.forEach((item) => item.animate(this.progress));
+    this.progress = this.mapperProgress({ scrollY });
+    const progress = this.progress,
+      settings = this.settings;
+
+    if (progress.state === "active" || progress.state === "next") {
+      this.mapperCamera({ progress: progress, camera: this.camera, controls: this.controls });
+      this.elements.forEach((item) => item.animate(settings.mode === "auto" ? progress.auto : progress.main));
       this.controls.update();
       renderer.render(this.scene, this.camera);
     }

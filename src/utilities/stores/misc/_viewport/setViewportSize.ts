@@ -1,25 +1,14 @@
 import type { Viewport } from "@models";
 import type { Subscriber } from "svelte/store";
-import { getViewportSize, pipe } from "@helpers";
+import { getViewportSize } from "./getViewportSize";
 
 type Props = {
   currentViewportSize: Viewport;
-  newViewportSize: Viewport;
   set: Subscriber<Viewport>;
 };
 
-export function setViewportSize(item: Props) {
-  return pipe(getNewViewportSize, setNewViewportSize)(item);
-}
-
-function getNewViewportSize(item: Props) {
-  return {
-    ...item,
-    newViewportSize: getViewportSize(),
-  };
-}
-
-function setNewViewportSize({ currentViewportSize, newViewportSize, set }: Props) {
+export function setViewportSize({ currentViewportSize, set }: Props) {
+  const newViewportSize = getViewportSize();
   if (
     newViewportSize.h > currentViewportSize.h ||
     newViewportSize.h < currentViewportSize.h - 200 ||
@@ -27,6 +16,4 @@ function setNewViewportSize({ currentViewportSize, newViewportSize, set }: Props
   ) {
     set(newViewportSize);
   }
-
-  return { currentViewportSize, newViewportSize, set };
 }

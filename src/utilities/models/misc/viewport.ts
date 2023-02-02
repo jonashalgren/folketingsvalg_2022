@@ -1,4 +1,4 @@
 export type Viewport = {
-    w: number;
-    h: number;
+  w: number;
+  h: number;
 };

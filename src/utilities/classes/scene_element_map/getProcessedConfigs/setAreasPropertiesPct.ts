@@ -1,5 +1,5 @@
 import type { Props } from ".";
-import type { S_S_E_Map_Config } from "@models";
+import type { S_S_E_Map_Config, Election_Result_Area_Party } from "@models";
 
 export function setAreasPropertiesPct(item: Props): Props {
   return {
@@ -9,7 +9,9 @@ export function setAreasPropertiesPct(item: Props): Props {
         return {
           ...config,
           areasProperties: item.electionResult.map((item) => {
-            const { pct, pct_pm } = item.partier.find((entry) => entry.letter === config.partyLetter);
+            const { pct, pct_pm } = item.partier.find(
+              (entry: Election_Result_Area_Party) => entry.letter === config.partyLetter
+            );
             return {
               areaId: item.id,
               pct: config.year === "2022" ? pct : pct - pct_pm,

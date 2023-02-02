@@ -1,7 +1,6 @@
 import type { Props } from "../index";
 import { getMapperPositionCamera } from "./getMapperPositionCamera";
 import { getMapperTargetCamera } from "./getMapperTargetCamera";
-import type { S_Camera_Mapper_Params } from "@models";
 
 export function setMapper(item: Props): Props {
   const { cameraSettings } = item;
@@ -10,7 +9,7 @@ export function setMapper(item: Props): Props {
 
   return {
     ...item,
-    mapper: function ({ progress, controls, camera }: S_Camera_Mapper_Params) {
+    mapper: function ({ progress, controls, camera }) {
       mapperPositionCamera({ progress, camera });
       mapperTargetCamera({ progress, controls });
     },

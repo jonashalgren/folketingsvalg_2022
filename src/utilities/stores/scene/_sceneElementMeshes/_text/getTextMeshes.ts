@@ -1,5 +1,5 @@
 import { Text } from "troika-three-text";
-import { defaults, fonts } from "@assets";
+import { mesh_default_settings, fonts } from "@assets";
 import type { S_E_Text_Mesh } from "@models";
 
 export function getTextMeshes() {
@@ -14,7 +14,7 @@ export function getTextMeshes() {
   text.position.y = 0;
   text.anchorX = "center";
   text.anchorY = "middle";
-  text.color = defaults.color_misc;
+  text.color = mesh_default_settings.color_misc;
   text.sync();
 
   return [text] as S_E_Text_Mesh[];

@@ -1,26 +1,22 @@
 <script lang="ts">
   import TextSectionItem from "./TextSectionItem.svelte";
   import { _viewport, _scenes } from "@stores";
-  import { getAdditionalScroll } from "@helpers";
-  import { scenesSettings } from "@assets";
+  import type { S_Settings } from "@models";
   export let textSection: string[];
   export let isLast: boolean;
   export let isFirst: boolean;
-  export let index: number;
-  $: nextSceneSettings = scenesSettings[index + 1] ?? scenesSettings[index];
+  export let sceneSettings: S_Settings;
+  export let nextSceneSettings: S_Settings;
 </script>
 
 <div style="margin-bottom: {isLast ? 0 : nextSceneSettings.hasLogoIntro ? $_viewport.h * 0.5 : $_viewport.h * 0.1}px;">
-  {#each textSection as textSectionItem, i}
+  {#each textSection as textSectionItem, textSectionIndex}
     <TextSectionItem
       {textSectionItem}
       {isFirst}
-      isFirstItem={i === 0}
-      isLastItem={i === textSection.length - 1}
-      additionalScroll={getAdditionalScroll({
-        sceneSettings: scenesSettings[index],
-        index: i,
-      })}
+      isFirstItem={textSectionIndex === 0}
+      isLastItem={textSectionIndex === textSection.length - 1}
+      extraTextMargin={sceneSettings.extraTextMargin?.find((item) => item.index === textSectionIndex)}
     />
   {/each}
 </div>

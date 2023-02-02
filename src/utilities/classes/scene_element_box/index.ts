@@ -1,5 +1,5 @@
 import { Scene_Element } from "@classes";
-import type { S_E_Box_Mesh, S_S_E_Box, S_Progress, S_Settings } from "@models";
+import type { S_E_Box_Mesh, S_S_E_Box, S_Settings } from "@models";
 import { getMapperScale } from "./getMapperScale";
 import { getMapperPosition } from "./getMapperPosition";
 import { getMapperFloatingYOffset } from "./getMapperFloatingYOffset";
@@ -21,11 +21,11 @@ export class Scene_Element_Box extends Scene_Element<S_S_E_Box, S_E_Box_Mesh[]> 
 
   constructor(
     public boxSettings: S_S_E_Box,
-    public originalMeshes: S_E_Box_Mesh[],
+    public meshesTemplate: S_E_Box_Mesh[],
     public sceneSettings: S_Settings,
     public index: number
   ) {
-    super(boxSettings, originalMeshes, sceneSettings);
+    super(boxSettings, meshesTemplate, sceneSettings);
     this.boxSettings = getProcessedBoxSettings({ boxSettings, sceneSettings });
     this.floatingYDirection = Math.random() > 0.5 ? "down" : "up";
     this.floatingYOffsetProgress = Math.random();
@@ -69,8 +69,7 @@ export class Scene_Element_Box extends Scene_Element<S_S_E_Box, S_E_Box_Mesh[]> 
   }
 
   setAnimate() {
-    this.animate = (prog: S_Progress) => {
-      let progress = prog.main;
+    this.animate = (progress: number) => {
       if (this.boxSettings.isFloating) {
         this.setFloatingYOffsetProgress();
         this.floatingProgress.set(progress);
