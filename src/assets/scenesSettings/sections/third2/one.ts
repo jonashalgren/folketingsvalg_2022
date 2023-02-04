@@ -1,7 +1,6 @@
 import type { S_Settings } from "@models";
 
 export const one: S_Settings = {
-  hasLogoIntro: true,
   camera: {
     targetMain: {
       inputRange: [0, 1],
@@ -23,6 +22,7 @@ export const one: S_Settings = {
     positionExit: [0, 27, -5],
   },
   elements: [
+    { type: "transition" },
     {
       type: "box",
       partyLetter: "C",

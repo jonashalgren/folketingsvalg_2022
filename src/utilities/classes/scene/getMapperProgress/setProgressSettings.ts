@@ -2,7 +2,7 @@ import { _scrollY } from "@stores";
 import type { Props } from "./index";
 
 export function setProgressSettings(item: Props): Props {
-  const { bottom, lastEnd, nextTop, top } = item.textPosition;
+  const { bottom, lastEnd, nextTop, top } = item.contentSectionOffsets;
   return {
     ...item,
     progressSettings: {

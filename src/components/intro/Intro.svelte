@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { _viewport, _canvasIntroOpacity } from "@stores";
+  import { _viewport, _introOpacity } from "@stores";
   import logo from "@assets/images/valg_logo.png";
   import pil from "@assets/images/pil.svg";
 </script>
 
-<div style="height: {$_viewport.h * 1.2}px; opacity: {$_canvasIntroOpacity};" class="intro-wrapper">
+<div style="height: {$_viewport.h * 1.2}px; opacity: {$_introOpacity};" class="intro-wrapper">
   <div style="height: {$_viewport.h}px;" class="intro-container">
     <div class="intro-slot">
       <img src={logo} alt="logo" />

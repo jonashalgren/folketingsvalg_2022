@@ -1,10 +1,10 @@
-import type { Election_Result_Area, S_S_E_Map_Config, S_E_Map_Mesh, S_Settings } from "@models";
+import type { Election_Result_Area, S_S_E_Map_Config, S_E_M_Map, S_Settings } from "@models";
 import { Scene_Element_Map_Area } from "@classes";
 
 type Props = {
   electionResult: Election_Result_Area[];
   configs: S_S_E_Map_Config[];
-  meshes: S_E_Map_Mesh[];
+  meshes: S_E_M_Map[];
   sceneSettings: S_Settings;
 };
 

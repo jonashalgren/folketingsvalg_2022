@@ -17,7 +17,6 @@ function getSize(num: number) {
 const partyInputRange = [0, 0.48, 0.63, 0.76, 0.9, 1];
 
 export const mandates: S_Settings = {
-  hasLogoIntro: true,
   boundingBox: { x: 100, y: 180 },
   extraTextMargin: [
     { index: 0, top: 0, bottom: 0.5 },
@@ -54,6 +53,7 @@ export const mandates: S_Settings = {
     targetExit: [-10, 20, -10],
   },
   elements: [
+    { type: "transition" },
     {
       type: "number",
       font: fonts.ane,

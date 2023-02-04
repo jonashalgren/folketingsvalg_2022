@@ -1,3 +1,2 @@
-export * from "./_properties";
-export * from "./_element";
-export * from "./_canvasOpacity";
+export * from "./_canvasSettings";
+export * from "./_canvasDOMElement";

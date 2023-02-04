@@ -1,7 +1,6 @@
 import type { S_Settings } from "@models";
 
 export const overview: S_Settings = {
-  hasLogoIntro: true,
   extraTextMargin: [{ index: 0, top: 0.5, bottom: 0 }],
   camera: {
     targetMain: {
@@ -24,6 +23,7 @@ export const overview: S_Settings = {
     targetExit: [7, 4, -10],
   },
   elements: [
+    { type: "transition" },
     // barChart: {
     //   animConfigs: [
     //     { variant: "blank", inputRange: [0, 0.01] },

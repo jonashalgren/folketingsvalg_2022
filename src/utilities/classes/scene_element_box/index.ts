@@ -1,5 +1,5 @@
 import { Scene_Element } from "@classes";
-import type { S_E_Box_Mesh, S_S_E_Box, S_Settings } from "@models";
+import type { S_E_M_Box, S_S_E_Box, S_Settings } from "@models";
 import { getMapperScale } from "./getMapperScale";
 import { getMapperPosition } from "./getMapperPosition";
 import { getMapperFloatingYOffset } from "./getMapperFloatingYOffset";
@@ -10,7 +10,7 @@ import { spring } from "svelte/motion";
 import type { Spring } from "svelte/motion";
 import { get } from "svelte/store";
 
-export class Scene_Element_Box extends Scene_Element<S_S_E_Box, S_E_Box_Mesh[]> {
+export class Scene_Element_Box extends Scene_Element<S_S_E_Box, S_E_M_Box[]> {
   mapperScale: (progress: number) => Vector3Tuple;
   mapperPosition: (progress: number) => Vector3Tuple;
   mapperFloatingYOffset: (progress: number) => number;
@@ -21,7 +21,7 @@ export class Scene_Element_Box extends Scene_Element<S_S_E_Box, S_E_Box_Mesh[]> 
 
   constructor(
     public boxSettings: S_S_E_Box,
-    public meshesTemplate: S_E_Box_Mesh[],
+    public meshesTemplate: S_E_M_Box[],
     public sceneSettings: S_Settings,
     public index: number
   ) {

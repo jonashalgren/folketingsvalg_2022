@@ -1,9 +1,9 @@
 import type {
-  CanvasSettings,
+  Canvas_Settings,
   S_E_Mesh,
   S_E_Mesh_Templates,
   S_Camera_Mapper,
-  TextPosition,
+  Content_Section_Offsets,
   S_Progress_Mapper,
   S_Progress,
   S_Settings,
@@ -33,17 +33,17 @@ export class Scene {
 
   constructor(
     public settings: S_Settings,
-    public meshTemplates: S_E_Mesh_Templates,
+    public elementsMeshTemplates: S_E_Mesh_Templates,
     public canvas: HTMLCanvasElement,
-    public canvasSettings: CanvasSettings,
-    public textPosition: TextPosition
+    public canvasSettings: Canvas_Settings,
+    public contentSectionOffsets: Content_Section_Offsets
   ) {
     this.scene = new ThreeScene();
     this.camera = new PerspectiveCamera(50, canvasSettings.width / canvasSettings.height, 0.1, 1000);
     this.settings = getProcessedSettings({ camera: this.camera, settings }).settings;
-    this.elements = getElements({ settings: this.settings, meshTemplates });
+    this.elements = getElements({ settings: this.settings, elementsMeshTemplates });
     this.mapperCamera = getMapperCamera({ settings: this.settings }).mapper;
-    this.mapperProgress = getMapperProgress({ textPosition, settings: this.settings }).mapper;
+    this.mapperProgress = getMapperProgress({ contentSectionOffsets, settings: this.settings }).mapper;
 
     this.setLight();
     this.setGrid();

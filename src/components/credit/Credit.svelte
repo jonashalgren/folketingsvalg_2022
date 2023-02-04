@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { _viewport, _canvasCreditOpacity } from "@stores";
+  import { _viewport, _creditsOpacity } from "@stores";
   import logo from "@assets/images/valg_logo.png";
 </script>
 
 <div
-  style=" height: {$_viewport.h * 1.5}px; opacity: {$_canvasCreditOpacity}; pointer-events: {$_canvasCreditOpacity > 0
+  style=" height: {$_viewport.h * 1.5}px; opacity: {$_creditsOpacity}; pointer-events: {$_creditsOpacity > 0
     ? 'auto'
     : 'none'}"
   class="credit-wrapper"

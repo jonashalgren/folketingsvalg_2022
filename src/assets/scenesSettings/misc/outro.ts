@@ -10,7 +10,6 @@ function logoIsScaled(val: Party_Letter) {
 
 export const outro: S_Settings = {
   mode: "auto",
-  hasLogoIntro: true,
   autoDuration: 14000,
   camera: {
     targetMain: {
@@ -33,6 +32,7 @@ export const outro: S_Settings = {
     positionExit: [0, -130, 75],
   },
   elements: [
+    { type: "transition" },
     {
       type: "map",
       configs: [

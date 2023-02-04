@@ -1,3 +1,3 @@
-export * from "./setNGetRenderer";
-export * from "./getAnimateFunction";
+export * from "./getScenesAnimate";
 export * from "./getProcessedOutputRange";
+export * from "./scenesToCanvas";
