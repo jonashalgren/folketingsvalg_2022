@@ -2,7 +2,7 @@ import type { Props } from "./index";
 import type { S_E_M_Box } from "@models";
 
 export function filterMeshes(item: Props) {
-  if (item.elementSettings.type === "box") {
+  if (item?.elementSettings?.type === "box") {
     const { elementSettings, meshesTemplate } = item;
     return {
       ...item,

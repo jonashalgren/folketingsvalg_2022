@@ -21,7 +21,6 @@ export function getTransitionMesh({ index, color, shape, xOffset, yOffset, size 
 
   mesh.up.set(0, 0, 1);
   mesh.scale.z = 0.1;
-  mesh.position.set(size * xOffset, size * yOffset, 5 + index * 7);
 
   return mesh;
 }

@@ -17,4 +17,4 @@ export type S_Progress = {
   state: S_Progress_State;
 };
 
-export type S_Progress_Mapper = ({ scrollY }: { scrollY: number }) => S_Progress;
+export type S_Progress_Mapper = () => S_Progress;

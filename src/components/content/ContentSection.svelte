@@ -1,6 +1,6 @@
 <script lang="ts">
   import ContentSectionText from "./ContentSectionText.svelte";
-  import { _viewport, _scenes } from "@stores";
+  import { _viewport } from "@stores";
   import type { S_Settings } from "@models";
   export let sectionTexts: string[];
   export let isLastSection: boolean;

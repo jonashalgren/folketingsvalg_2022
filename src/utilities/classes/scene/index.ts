@@ -8,6 +8,7 @@ import type {
   S_Progress,
   S_Settings,
   S_S_Element,
+  Viewport,
 } from "@models";
 import { AmbientLight, SpotLight, WebGLRenderer, GridHelper } from "three";
 import { PerspectiveCamera, Scene as ThreeScene } from "three";
@@ -34,16 +35,17 @@ export class Scene {
   constructor(
     public settings: S_Settings,
     public elementsMeshTemplates: S_E_Mesh_Templates,
-    public canvas: HTMLCanvasElement,
+    public canvasDOMElement: HTMLCanvasElement,
     public canvasSettings: Canvas_Settings,
-    public contentSectionOffsets: Content_Section_Offsets
+    public contentDOMElement: HTMLDivElement,
+    public viewport: Viewport
   ) {
     this.scene = new ThreeScene();
     this.camera = new PerspectiveCamera(50, canvasSettings.width / canvasSettings.height, 0.1, 1000);
     this.settings = getProcessedSettings({ camera: this.camera, settings }).settings;
-    this.elements = getElements({ settings: this.settings, elementsMeshTemplates });
-    this.mapperCamera = getMapperCamera({ settings: this.settings }).mapper;
-    this.mapperProgress = getMapperProgress({ contentSectionOffsets, settings: this.settings }).mapper;
+    this.elements = getElements({ settings, elementsMeshTemplates });
+    this.mapperCamera = getMapperCamera({ settings }).mapper;
+    this.mapperProgress = getMapperProgress({ contentDOMElement, settings, viewport }).mapper;
 
     this.setLight();
     this.setGrid();
@@ -70,7 +72,7 @@ export class Scene {
   }
 
   setControls() {
-    this.controls = new OrbitControls(this.camera, this.canvas);
+    this.controls = new OrbitControls(this.camera, this.canvasDOMElement);
     this.controls.enableZoom = false;
     this.controls.enablePan = false;
   }
@@ -86,13 +88,16 @@ export class Scene {
   }
 
   render({ renderer }: { renderer: WebGLRenderer }) {
-    this.progress = this.mapperProgress({ scrollY });
-    const progress = this.progress,
-      settings = this.settings;
+    this.progress = this.mapperProgress();
 
-    if (progress.state === "active" || progress.state === "next") {
-      this.mapperCamera({ progress: progress, camera: this.camera, controls: this.controls });
-      this.elements.forEach((item) => item.animate(settings.mode === "auto" ? progress.auto : progress.main));
+    if (this.progress.state === "active" || this.progress.state === "next") {
+      this.mapperCamera({ progress: this.progress, camera: this.camera, controls: this.controls });
+
+      this.elements.forEach((item) => {
+        const progress = this.settings.mode === "auto" ? this.progress.auto : this.progress.main;
+        item.animate(progress, this.progress.entry);
+      });
+
       this.controls.update();
       renderer.render(this.scene, this.camera);
     }

@@ -1,16 +1,21 @@
 <script lang="ts">
-  import { scenesToCanvas } from "@helpers";
-  import { _canvasDOMElement, _canvasSettings, _viewport, _scenes } from "@stores";
+  import { _contentDOMElement, _viewport, _sceneElementsMeshTemplates } from "@stores";
+  import { Canvas } from "@classes";
+  const canvas = new Canvas();
 </script>
 
 <div id="scenes">
   <div style="height: {$_viewport.h}px;">
     <div>
-      <canvas
-        bind:this={$_canvasDOMElement}
-        use:scenesToCanvas={{ viewport: $_viewport, scenes: $_scenes, canvasSettings: $_canvasSettings }}
-        style="left: {$_canvasSettings.left}px;"
-      />
+      {#if Boolean($_contentDOMElement && $_sceneElementsMeshTemplates)}
+        <canvas
+          use:canvas.init={{
+            viewport: $_viewport,
+            sceneElementsMeshTemplates: $_sceneElementsMeshTemplates,
+            contentDOMElement: $_contentDOMElement,
+          }}
+        />
+      {/if}
     </div>
   </div>
 </div>

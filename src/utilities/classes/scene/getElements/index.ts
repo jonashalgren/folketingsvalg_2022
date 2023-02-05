@@ -15,7 +15,7 @@ export function getElements({ settings, elementsMeshTemplates }: Props) {
         case "map":
           return new Scene_Element_Map(item, elementsMeshTemplates.map, settings);
         case "transition":
-          return new Scene_Element_Transition(item, elementsMeshTemplates.transition);
+          return new Scene_Element_Transition(item);
         default:
           return;
       }

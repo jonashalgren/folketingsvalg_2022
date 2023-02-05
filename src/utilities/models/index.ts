@@ -10,3 +10,4 @@ export * from "./scene";
 export * from "./sceneSettings";
 export * from "./sceneSettingsElement";
 export * from "./sceneElementsMesh";
+export * from "./canvas";
