@@ -3,6 +3,7 @@ import type { Props } from "./index";
 
 export function setCameraSettings(item: Props): Props {
   const { camera, dimensionZ } = item.settings;
+
   return {
     ...item,
     cameraSettings: {

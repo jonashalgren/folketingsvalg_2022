@@ -41,11 +41,15 @@ export class Scene {
     public viewport: Viewport
   ) {
     this.scene = new ThreeScene();
-    this.camera = new PerspectiveCamera(50, canvasSettings.width / canvasSettings.height, 0.1, 1000);
-    this.settings = getProcessedSettings({ camera: this.camera, settings }).settings;
-    this.elements = getElements({ settings, elementsMeshTemplates });
-    this.mapperCamera = getMapperCamera({ settings }).mapper;
-    this.mapperProgress = getMapperProgress({ contentDOMElement, settings, viewport }).mapper;
+    this.camera = new PerspectiveCamera(50, this.canvasSettings.width / this.canvasSettings.height, 0.1, 1000);
+    this.settings = getProcessedSettings({ camera: this.camera, settings: this.settings }).settings;
+    this.elements = getElements({ settings: this.settings, elementsMeshTemplates: this.elementsMeshTemplates });
+    this.mapperCamera = getMapperCamera({ settings: this.settings }).mapper;
+    this.mapperProgress = getMapperProgress({
+      contentDOMElement: this.contentDOMElement,
+      settings: this.settings,
+      viewport: this.viewport,
+    }).mapper;
 
     this.setLight();
     this.setGrid();

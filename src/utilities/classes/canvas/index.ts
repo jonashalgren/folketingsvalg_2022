@@ -22,7 +22,6 @@ export class Canvas {
     this.viewport = viewport;
     this.canvasDOMElement = canvasDOMElement;
     this.contentDOMElement = contentDOMElement;
-
     this.renderer = new WebGLRenderer({ antialias: true, canvas: this.canvasDOMElement, logarithmicDepthBuffer: true });
 
     this.setCanvasSettings();
@@ -45,7 +44,6 @@ export class Canvas {
         this.setScenes();
         this.setBackground();
         this.setAnimate();
-        console.log(this);
 
         this.unsubscribe();
         this.unsubscribe = _rAF.add(this.animate, 16.6);
