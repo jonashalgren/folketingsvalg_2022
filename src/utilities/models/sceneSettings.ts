@@ -12,15 +12,21 @@ export type S_S_Camera = {
 
 export type S_S_Bounding_Box = { x: number; y: number };
 export type S_S_Mode = "auto" | "scroll";
-export type S_S_ExtraTextMargin = { index: number; top: number; bottom: number };
+export type S_S_Extra_Text_Margin = { index: number; top: number; bottom: number };
+export type S_S_Progress_Settings = {
+  mainStart: number;
+  mainEnd: number;
+  entryStart: number;
+  exitEnd: number;
+};
 
 export type S_Settings = {
   camera: S_S_Camera;
   elements: S_S_Element[];
-  index?: number;
   boundingBox?: S_S_Bounding_Box;
   dimensionZ?: number;
-  extraTextMargin?: S_S_ExtraTextMargin[];
+  progressSettings: S_S_Progress_Settings;
+  extraTextMargin?: S_S_Extra_Text_Margin[];
   mode?: S_S_Mode;
   autoDuration?: number;
 };

@@ -1,31 +1,17 @@
-import type {
-  Canvas_Settings,
-  S_E_Mesh,
-  S_E_Mesh_Templates,
-  S_Camera_Mapper,
-  Content_Section_Offsets,
-  S_Progress_Mapper,
-  S_Progress,
-  S_Settings,
-  S_S_Element,
-  Viewport,
-} from "@models";
+import type { S_E_Mesh, S_E_Mesh_Templates, S_Camera_Mapper, Content_Section_Offsets, S_Progress_Mapper, S_Progress, S_Settings, S_S_Element, Viewport } from "@models";
 import { AmbientLight, SpotLight, WebGLRenderer, GridHelper } from "three";
 import { PerspectiveCamera, Scene as ThreeScene } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { getElements } from "./getElements";
 import { getMapperCamera } from "./getMapperCamera";
 import { getMapperProgress } from "./getMapperProgress";
-import { getProcessedSettings } from "./getProcessedSettings";
 import type { Scene_Element } from "../scene_element";
 
 export class Scene {
   scene: ThreeScene;
-  camera: PerspectiveCamera;
   spotLight: SpotLight;
   ambientLight: AmbientLight;
   controls: OrbitControls;
-
   elements: Scene_Element<S_S_Element, S_E_Mesh[]>[];
   progress: S_Progress;
 
@@ -35,27 +21,34 @@ export class Scene {
   constructor(
     public settings: S_Settings,
     public elementsMeshTemplates: S_E_Mesh_Templates,
+    public camera: PerspectiveCamera,
     public canvasDOMElement: HTMLCanvasElement,
-    public canvasSettings: Canvas_Settings,
     public contentDOMElement: HTMLDivElement,
     public viewport: Viewport
   ) {
     this.scene = new ThreeScene();
-    this.camera = new PerspectiveCamera(50, this.canvasSettings.width / this.canvasSettings.height, 0.1, 1000);
-    this.settings = getProcessedSettings({ camera: this.camera, settings: this.settings }).settings;
-    this.elements = getElements({ settings: this.settings, elementsMeshTemplates: this.elementsMeshTemplates });
-    this.mapperCamera = getMapperCamera({ settings: this.settings }).mapper;
-    this.mapperProgress = getMapperProgress({
-      contentDOMElement: this.contentDOMElement,
-      settings: this.settings,
-      viewport: this.viewport,
-    }).mapper;
+    this.camera = camera.clone();
 
+    this.setElements();
+    this.setMapperCamera();
+    this.setMapperProgress();
     this.setLight();
     this.setGrid();
     this.setControls();
     this.setCamera();
     this.addElementMeshesToScene();
+  }
+
+  setMapperCamera() {
+    this.mapperCamera = getMapperCamera({ settings: this.settings }).mapper;
+  }
+
+  setMapperProgress() {
+    this.mapperProgress = getMapperProgress({ contentDOMElement: this.contentDOMElement, settings: this.settings, viewport: this.viewport }).mapper;
+  }
+
+  setElements() {
+    this.elements = getElements({ settings: this.settings, elementsMeshTemplates: this.elementsMeshTemplates });
   }
 
   setLight() {

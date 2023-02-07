@@ -1,4 +1,4 @@
-import type { Canvas_Settings, Viewport } from "@models";
+import type { Viewport } from "@models";
 import {
   Mesh,
   MeshBasicMaterial,
@@ -18,15 +18,11 @@ export class Background {
   plane: Mesh;
   spotLight: SpotLight;
   ambientLight: AmbientLight;
-  camera: PerspectiveCamera;
   controls: OrbitControls;
 
-  constructor(
-    public canvasDOMElement: HTMLCanvasElement,
-    public canvasSettings: Canvas_Settings,
-    public viewport: Viewport
-  ) {
+  constructor(public canvasDOMElement: HTMLCanvasElement, public camera: PerspectiveCamera, public viewport: Viewport) {
     this.scene = new Scene();
+    this.camera = camera.clone();
     this.setPlane();
     this.setCamera();
     this.setControls();
@@ -42,7 +38,6 @@ export class Background {
   }
 
   setCamera() {
-    this.camera = new PerspectiveCamera(50, this.canvasSettings.width / this.viewport.h, 0.1, 1000);
     this.camera.up.set(0, 0, 1);
     this.camera.position.set(0, 0, 200);
   }

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { _contentDOMElement, _viewport, _sceneElementsMeshTemplates } from "@stores";
-  import { Canvas } from "@classes";
-  const canvas = new Canvas();
+  import { animate } from "@actions";
+  import { scenesSettings } from "@assets";
 </script>
 
 <div id="scenes">
@@ -9,7 +9,8 @@
     <div>
       {#if Boolean($_contentDOMElement && $_sceneElementsMeshTemplates)}
         <canvas
-          use:canvas.init={{
+          use:animate={{
+            scenesSettings,
             viewport: $_viewport,
             sceneElementsMeshTemplates: $_sceneElementsMeshTemplates,
             contentDOMElement: $_contentDOMElement,

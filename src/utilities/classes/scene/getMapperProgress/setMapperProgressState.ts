@@ -3,7 +3,7 @@ import { interpolate } from "popmotion";
 import type { S_Progress_State } from "@models";
 
 export function setMapperProgressState(item: Props): Props {
-  const { entryStart, exitEnd, mainStart } = item.progressSettings;
+  const { entryStart, exitEnd, mainStart } = item.settings.progressSettings;
 
   return {
     ...item,
