@@ -1,8 +1,8 @@
-import type { S_Settings } from "@models";
+import type { C_S_Settings } from "@models";
 import { partyCollection, fonts } from "@assets";
 import { getMapLogoIsScaled, mapLogoNotScaled, mapLogoPosition, mapNumberSize, mapLogoSize } from "../../vars";
 
-export const three: S_Settings = {
+export const three: C_S_Settings = {
   extraTextMargin: [
     { index: 0, top: 0.5, bottom: 0 },
     { index: 1, top: 0.5, bottom: 0.5 },
@@ -63,22 +63,8 @@ export const three: S_Settings = {
       motion: {
         inputRange: [0, 0.001, 0.1, 0.29, 0.41, 1],
         outputRange: {
-          position: [
-            mapLogoPosition,
-            mapLogoPosition,
-            mapLogoPosition,
-            mapLogoPosition,
-            mapLogoPosition,
-            mapLogoPosition,
-          ],
-          scale: [
-            mapLogoNotScaled,
-            mapLogoNotScaled,
-            getMapLogoIsScaled("V", 2019),
-            getMapLogoIsScaled("V", 2019),
-            getMapLogoIsScaled("V", 2022),
-            getMapLogoIsScaled("V", 2022),
-          ],
+          position: [mapLogoPosition, mapLogoPosition, mapLogoPosition, mapLogoPosition, mapLogoPosition, mapLogoPosition],
+          scale: [mapLogoNotScaled, mapLogoNotScaled, getMapLogoIsScaled("V", 2019), getMapLogoIsScaled("V", 2019), getMapLogoIsScaled("V", 2022), getMapLogoIsScaled("V", 2022)],
         },
       },
     },
@@ -99,14 +85,7 @@ export const three: S_Settings = {
         },
         color: {
           inputRange: [0, 0.001, 0.1, 0.29, 0.41, 1],
-          outputRange: [
-            partyCollection.V.color,
-            partyCollection.V.color,
-            partyCollection.V.color,
-            partyCollection.V.color,
-            partyCollection.V.color,
-            partyCollection.V.color,
-          ],
+          outputRange: [partyCollection.V.color, partyCollection.V.color, partyCollection.V.color, partyCollection.V.color, partyCollection.V.color, partyCollection.V.color],
         },
         value: {
           inputRange: [0, 0.001, 0.1, 0.29, 0.41, 1],

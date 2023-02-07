@@ -1,4 +1,4 @@
-import type { S_Settings } from "@models";
+import type { C_S_Settings } from "@models";
 import { partyCollection, fonts } from "@assets";
 
 const newScaleRange = [
@@ -16,7 +16,7 @@ function getSize(num: number) {
 
 const partyInputRange = [0, 0.48, 0.63, 0.76, 0.9, 1];
 
-export const mandates: S_Settings = {
+export const mandates: C_S_Settings = {
   boundingBox: { x: 100, y: 180 },
   extraTextMargin: [
     { index: 0, top: 0, bottom: 0.5 },
@@ -71,12 +71,7 @@ export const mandates: S_Settings = {
         },
         color: {
           inputRange: [0, 0.07, 0.2, 0.35],
-          outputRange: [
-            partyCollection.A.color,
-            partyCollection.A.color,
-            partyCollection.A.color,
-            partyCollection.A.color,
-          ],
+          outputRange: [partyCollection.A.color, partyCollection.A.color, partyCollection.A.color, partyCollection.A.color],
         },
         value: {
           inputRange: [0, 0.07, 0.2, 0.35],
@@ -105,12 +100,7 @@ export const mandates: S_Settings = {
         },
         color: {
           inputRange: [0, 0.07, 0.2, 0.35],
-          outputRange: [
-            partyCollection.V.color,
-            partyCollection.V.color,
-            partyCollection.V.color,
-            partyCollection.V.color,
-          ],
+          outputRange: [partyCollection.V.color, partyCollection.V.color, partyCollection.V.color, partyCollection.V.color],
         },
         value: {
           inputRange: [0, 0.07, 0.2, 0.35],
@@ -139,12 +129,7 @@ export const mandates: S_Settings = {
         },
         color: {
           inputRange: [0, 0.07, 0.2, 0.35],
-          outputRange: [
-            partyCollection.M.color,
-            partyCollection.M.color,
-            partyCollection.M.color,
-            partyCollection.M.color,
-          ],
+          outputRange: [partyCollection.M.color, partyCollection.M.color, partyCollection.M.color, partyCollection.M.color],
         },
         value: {
           inputRange: [0, 0.07, 0.2, 0.35],

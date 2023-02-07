@@ -2,15 +2,11 @@ import { getMeshGeometry } from "@helpers";
 import { Color, Mesh, MeshLambertMaterial, CustomBlending, MinEquation, SrcAlphaFactor, Shape } from "three";
 
 type Props = {
-  index: number;
   color: Color;
   shape: Shape;
-  size: number;
-  xOffset: number;
-  yOffset: number;
 };
 
-export function getTransitionMesh({ index, color, shape, xOffset, yOffset, size }: Props) {
+export function getTransitionMesh({ color, shape }: Props) {
   const geometry = getMeshGeometry({ shape });
   const material = new MeshLambertMaterial({ color });
   const mesh = new Mesh(geometry, material);

@@ -1,9 +1,9 @@
-import type { S_E_Mesh_Templates, Viewport, S_Settings } from "@models";
+import type { C_S_E_Mesh_Templates, Viewport, C_S_Settings } from "@models";
 import { _rAF } from "@stores";
 import { Canvas } from "@classes";
 type Props = {
-  scenesSettings: S_Settings[];
-  sceneElementsMeshTemplates: S_E_Mesh_Templates;
+  scenesSettings: C_S_Settings[];
+  sceneElementsMeshTemplates: C_S_E_Mesh_Templates;
   contentDOMElement: HTMLDivElement;
   viewport: Viewport;
 };
@@ -15,7 +15,8 @@ export function animate(canvasDOMElement: HTMLCanvasElement, item: Props) {
   let unsubscribe = function () {};
   unsubscribe = _rAF.add(() => canvas.animate());
   return {
-    update() {
+    update({ viewport }: Props) {
+      canvas.update(viewport);
       unsubscribe();
       unsubscribe = _rAF.add(() => canvas.animate());
     },

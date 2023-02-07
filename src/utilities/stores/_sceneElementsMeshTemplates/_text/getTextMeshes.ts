@@ -1,6 +1,6 @@
 import { Text } from "troika-three-text";
 import { mesh_default_settings, fonts } from "@assets";
-import type { S_E_M_Text } from "@models";
+import type { C_S_E_M_Text } from "@models";
 
 export function getTextMeshes() {
   const text = new Text();
@@ -17,5 +17,5 @@ export function getTextMeshes() {
   text.color = mesh_default_settings.color_misc;
   text.sync();
 
-  return [text] as S_E_M_Text[];
+  return [text] as C_S_E_M_Text[];
 }

@@ -1,7 +1,7 @@
-import type { S_Settings } from "@models";
+import type { C_S_Settings } from "@models";
 import { partyCollection } from "@assets";
 
-export const two: S_Settings = {
+export const two: C_S_Settings = {
   camera: {
     targetMain: {
       inputRange: [0, 1],

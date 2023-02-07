@@ -1,6 +1,6 @@
-import type { S_Settings } from "@models";
+import type { C_S_Settings } from "@models";
 
-export const one: S_Settings = {
+export const one: C_S_Settings = {
   camera: {
     targetMain: {
       inputRange: [0, 1],

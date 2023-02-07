@@ -1,6 +1,6 @@
-import type { S_S_E_Map_Area_Id } from "@models";
+import type { C_S_S_E_Map_Area_Id } from "@models";
 
-export const mapAreaIds: S_S_E_Map_Area_Id[] = [
+export const mapAreaIds: C_S_S_E_Map_Area_Id[] = [
   "Indre_By",
   "Østerbro",
   "Sundbyvester",

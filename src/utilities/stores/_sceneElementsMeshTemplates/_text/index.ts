@@ -2,9 +2,9 @@ import { readable } from "svelte/store";
 import { fonts } from "@assets";
 import { preloadFont } from "troika-three-text";
 import { getTextMeshes } from "./getTextMeshes";
-import type { S_E_M_Text } from "@models";
+import type { C_S_E_M_Text } from "@models";
 
-export const _text = readable<S_E_M_Text[]>(undefined, function start(set) {
+export const _text = readable<C_S_E_M_Text[]>(undefined, function start(set) {
   Promise.all(
     [fonts.ane, fonts.publik, fonts.publik_regular].map((item) => {
       return new Promise((resolve) => {

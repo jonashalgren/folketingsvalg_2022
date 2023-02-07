@@ -1,4 +1,4 @@
-import type { S_Settings, Party_Letter } from "@models";
+import type { C_S_Settings, Party_Letter } from "@models";
 import { partyCollection } from "@assets";
 
 const logoPosition: [number, number, number] = [25, 20, 0];
@@ -8,7 +8,7 @@ function logoIsScaled(val: Party_Letter) {
   return [1, 1, partyCollection[val].procent_af_stemmer_2022 / 2] as [number, number, number];
 }
 
-export const outro: S_Settings = {
+export const outro: C_S_Settings = {
   mode: "auto",
   autoDuration: 14000,
   camera: {

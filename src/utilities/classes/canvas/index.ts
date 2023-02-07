@@ -1,30 +1,30 @@
-import type { Canvas_Settings, Viewport, S_E_Mesh_Templates, S_Settings } from "@models";
+import type { C_Settings, Viewport, C_S_E_Mesh_Templates, C_S_Settings } from "@models";
 import { PerspectiveCamera, WebGLRenderer } from "three";
-import { Scene, Background } from "@classes";
+import { Canvas_Scene, Canvas_Background } from "@classes";
 import { _rAF } from "@stores";
 import { getCanvasSettings } from "./getCanvasSettings";
 import { getProcessedSettings } from "./getProcessedSettings";
 
 export class Canvas {
-  renderer: WebGLRenderer;
-  camera: PerspectiveCamera;
-  scenes: Scene[];
-  background: Background;
-  canvasSettings: Canvas_Settings;
+  private renderer: WebGLRenderer;
+  private camera: PerspectiveCamera;
+  private scenes: Canvas_Scene[];
+  private background: Canvas_Background;
+  private canvasSettings: C_Settings;
 
   constructor(
-    public scenesSettings: S_Settings[],
-    public canvasDOMElement: HTMLCanvasElement,
-    public contentDOMElement: HTMLDivElement,
-    public sceneElementsMeshTemplates: S_E_Mesh_Templates,
-    public viewport: Viewport
+    private scenesSettings: C_S_Settings[],
+    private canvasDOMElement: HTMLCanvasElement,
+    private contentDOMElement: HTMLDivElement,
+    private sceneElementsMeshTemplates: C_S_E_Mesh_Templates,
+    private viewport: Viewport
   ) {
     this.renderer = new WebGLRenderer({ antialias: true, canvas: this.canvasDOMElement, logarithmicDepthBuffer: true });
     this.setCanvasSettings();
     this.setRenderer();
     this.setCamera();
     this.setCanvasDOMStyles();
-    this.setScenesSettings(scenesSettings);
+    this.setScenesSettings();
     this.setScenes();
     this.setBackground();
   }
@@ -33,8 +33,13 @@ export class Canvas {
     this.canvasSettings = getCanvasSettings({ viewport: this.viewport });
   }
 
-  private setScenesSettings(scenesSettings: S_Settings[]) {
-    this.scenesSettings = getProcessedSettings({ scenesSettings, camera: this.camera, contentDOMElement: this.contentDOMElement, viewport: this.viewport }).scenesSettings;
+  private setScenesSettings() {
+    this.scenesSettings = getProcessedSettings({
+      scenesSettings: this.scenesSettings,
+      camera: this.camera,
+      contentDOMElement: this.contentDOMElement,
+      viewport: this.viewport,
+    }).scenesSettings;
   }
 
   private setCanvasDOMStyles() {
@@ -45,6 +50,11 @@ export class Canvas {
     this.camera = new PerspectiveCamera(50, this.canvasSettings.width / this.canvasSettings.height, 0.1, 1000);
   }
 
+  private updateCamera() {
+    this.camera.aspect = this.canvasSettings.width / this.canvasSettings.height;
+    this.camera.updateProjectionMatrix();
+  }
+
   private setRenderer() {
     this.renderer.setSize(this.canvasSettings.width, this.viewport.h);
     this.renderer.setPixelRatio(this.viewport.w < 900 && window.devicePixelRatio >= 2 ? 2 : 1);
@@ -52,18 +62,42 @@ export class Canvas {
 
   private setScenes() {
     this.scenes = this.scenesSettings.map(
-      (sceneSettings) => new Scene(sceneSettings, this.sceneElementsMeshTemplates, this.camera, this.canvasDOMElement, this.contentDOMElement, this.viewport)
+      (sceneSettings) => new Canvas_Scene(sceneSettings, this.sceneElementsMeshTemplates, this.camera, this.canvasDOMElement, this.contentDOMElement, this.viewport)
     );
   }
+
+  private updateScenes() {
+    this.scenesSettings.forEach((sceneSettings, index) => {
+      this.scenes[index].update(sceneSettings, this.camera);
+    });
+  }
+
   private setBackground() {
-    this.background = new Background(this.canvasDOMElement, this.camera, this.viewport);
+    this.background = new Canvas_Background(this.canvasDOMElement, this.camera);
+  }
+
+  private updateBackground() {
+    this.background.update(this.camera);
+  }
+
+  update(viewport: Viewport) {
+    this.viewport = viewport;
+
+    this.setCanvasSettings();
+    this.setRenderer();
+    this.updateCamera();
+    this.setCanvasDOMStyles();
+    this.setScenesSettings();
+
+    this.updateBackground();
+    this.updateScenes();
   }
 
   animate() {
     this.background.render({ renderer: this.renderer });
     this.renderer.autoClear = false;
     this.renderer.clearDepth();
-    this.scenes.forEach((scene: Scene) => scene.render({ renderer: this.renderer }));
+    this.scenes.forEach((scene: Canvas_Scene) => scene.render({ renderer: this.renderer }));
     this.renderer.autoClear = true;
   }
 }

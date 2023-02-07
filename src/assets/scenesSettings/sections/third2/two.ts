@@ -1,7 +1,7 @@
-import type { S_Settings } from "@models";
+import type { C_S_Settings } from "@models";
 import { partyCollection, fonts } from "@assets";
 
-export const two: S_Settings = {
+export const two: C_S_Settings = {
   extraTextMargin: [{ index: 0, top: 0.5, bottom: 0 }],
   camera: {
     targetMain: {
@@ -65,11 +65,7 @@ export const two: S_Settings = {
         },
         value: {
           inputRange: [0, 0.5, 1],
-          outputRange: [
-            partyCollection.C.mandater_2019,
-            partyCollection.C.mandater_2022,
-            partyCollection.C.mandater_2022,
-          ],
+          outputRange: [partyCollection.C.mandater_2019, partyCollection.C.mandater_2022, partyCollection.C.mandater_2022],
         },
         size: {
           inputRange: [0, 0.5, 1],

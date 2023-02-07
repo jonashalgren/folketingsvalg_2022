@@ -1,4 +1,4 @@
-import type { S_Settings } from "@models";
+import type { C_S_Settings } from "@models";
 import { partyCollection, fonts, mesh_default_settings } from "@assets";
 
 const size = 14;
@@ -32,7 +32,7 @@ function getNumberRotation() {
   return [0, 0, 0] as [number, number, number];
 }
 
-export const two: S_Settings = {
+export const two: C_S_Settings = {
   extraTextMargin: [{ index: 0, top: 0.5, bottom: 0 }],
   camera: {
     targetMain: {

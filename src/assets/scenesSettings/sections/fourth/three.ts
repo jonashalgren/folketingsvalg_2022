@@ -1,8 +1,8 @@
-import type { S_Settings } from "@models";
+import type { C_S_Settings } from "@models";
 import { partyCollection, fonts } from "@assets";
 import { getMapLogoIsScaled, mapLogoNotScaled, mapLogoPosition, mapNumberSize, mapLogoSize } from "../../vars";
 
-export const three: S_Settings = {
+export const three: C_S_Settings = {
   extraTextMargin: [{ index: 0, top: 0.5, bottom: 0.5 }],
   camera: {
     targetMain: {
@@ -76,12 +76,7 @@ export const three: S_Settings = {
         },
         color: {
           inputRange: [0, 0.001, 0.16, 1],
-          outputRange: [
-            partyCollection.O.color,
-            partyCollection.O.color,
-            partyCollection.O.color,
-            partyCollection.O.color,
-          ],
+          outputRange: [partyCollection.O.color, partyCollection.O.color, partyCollection.O.color, partyCollection.O.color],
         },
         value: {
           inputRange: [0, 0.001, 0.16, 1],

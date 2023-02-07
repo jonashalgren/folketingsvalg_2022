@@ -1,7 +1,7 @@
 import { SVGLoader, type SVGResult } from "three/examples/jsm/loaders/SVGLoader";
 import { Color } from "three";
 import { mesh_default_settings } from "@assets";
-import type { S_E_M_Figure } from "@models";
+import type { C_S_E_M_Figure } from "@models";
 import { getMeshGeometry, getMeshMaterial, getMesh } from "@helpers";
 
 type Props = {
@@ -19,7 +19,7 @@ export function getFigureMeshes({ data }: Props) {
 
       mesh.userData.isFaded = false;
 
-      return mesh as S_E_M_Figure;
+      return mesh as C_S_E_M_Figure;
     });
   });
 }

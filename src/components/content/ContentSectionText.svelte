@@ -1,22 +1,18 @@
 <script lang="ts">
   import { _viewport } from "@stores";
-  import type { S_S_ExtraTextMargin } from "@models";
+  import type { C_S_S_Extra_Text_Margin } from "@models";
   export let text: string;
   export let isFirstSection: boolean;
   export let isFirstText: boolean;
   export let isLastText: boolean;
-  export let extraMargin: S_S_ExtraTextMargin | undefined = { index: 0, top: 0, bottom: 0 };
+  export let extraMargin: C_S_S_Extra_Text_Margin | undefined = { index: 0, top: 0, bottom: 0 };
 
-  $: marginTop =
-    (isFirstText ? $_viewport.h * (isFirstSection ? 0.5 : 0.8) : $_viewport.h * 0.2) + extraMargin.top * $_viewport.h;
+  $: marginTop = (isFirstText ? $_viewport.h * (isFirstSection ? 0.5 : 0.8) : $_viewport.h * 0.2) + extraMargin.top * $_viewport.h;
 
   $: marginBottom = (isLastText ? $_viewport.h * 0.75 : $_viewport.h / 2) + extraMargin.bottom * $_viewport.h * 2;
 </script>
 
-<div
-  class={text.length > 0 ? "s-p1 text-item" : ""}
-  style="margin-top: {marginTop}px; margin-bottom: {marginBottom}px;"
->
+<div class={text.length > 0 ? "s-p1 text-item" : ""} style="margin-top: {marginTop}px; margin-bottom: {marginBottom}px;">
   {@html text}
 </div>
 

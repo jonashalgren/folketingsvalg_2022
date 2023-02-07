@@ -1,6 +1,6 @@
-import type { S_Settings } from "@models";
+import type { C_S_Settings } from "@models";
 
-export const two: S_Settings = {
+export const two: C_S_Settings = {
   extraTextMargin: [{ index: 0, top: 0.5, bottom: 0 }],
   camera: {
     targetMain: {

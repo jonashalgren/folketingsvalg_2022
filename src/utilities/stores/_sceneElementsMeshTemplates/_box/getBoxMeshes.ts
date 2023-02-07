@@ -1,6 +1,6 @@
 import { RepeatWrapping } from "three";
 import { Color, Mesh, MeshLambertMaterial, BoxGeometry } from "three";
-import type { S_E_M_Box } from "@models";
+import type { C_S_E_M_Box } from "@models";
 import type { Props } from "./index";
 
 export function getBoxMeshes(items: Props) {
@@ -26,6 +26,6 @@ export function getBoxMeshes(items: Props) {
     mesh.userData.partyLetter = item.partyLetter;
     mesh.userData.texture = item?.texture ?? undefined;
 
-    return mesh as S_E_M_Box;
+    return mesh as C_S_E_M_Box;
   });
 }
