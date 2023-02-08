@@ -1,4 +1,4 @@
-import type { C_Settings, Viewport, C_S_E_Mesh_Templates, C_S_Settings } from "@models";
+import type { C_Settings, Viewport, C_S_E_Details, C_S_Settings } from "@models";
 import { PerspectiveCamera, WebGLRenderer } from "three";
 import { Canvas_Scene, Canvas_Background } from "@classes";
 import { _rAF } from "@stores";
@@ -17,7 +17,7 @@ export class Canvas {
   constructor(
     private canvasDOMElement: HTMLCanvasElement,
     private contentDOMElement: HTMLDivElement,
-    private sceneElementsMeshTemplates: C_S_E_Mesh_Templates,
+    private canvasSceneElementsDetails: C_S_E_Details,
     private viewport: Viewport
   ) {
     this.renderer = new WebGLRenderer({ antialias: true, canvas: this.canvasDOMElement, logarithmicDepthBuffer: true });
@@ -63,7 +63,7 @@ export class Canvas {
 
   private setScenes() {
     this.scenes = this.scenesSettings.map(
-      (sceneSettings) => new Canvas_Scene(sceneSettings, this.sceneElementsMeshTemplates, this.camera, this.canvasDOMElement, this.contentDOMElement, this.viewport)
+      (sceneSettings) => new Canvas_Scene(sceneSettings, this.canvasSceneElementsDetails, this.camera, this.canvasDOMElement, this.contentDOMElement, this.viewport)
     );
   }
 

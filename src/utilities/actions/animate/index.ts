@@ -1,17 +1,16 @@
-import type { C_S_E_Mesh_Templates, Viewport } from "@models";
+import type { C_S_E_Details, Viewport } from "@models";
 import { _rAF } from "@stores";
 import { Canvas } from "@classes";
 import { tick } from "svelte";
 
 type Props = {
-  sceneElementsMeshTemplates: C_S_E_Mesh_Templates;
+  canvasSceneElementsDetails: C_S_E_Details;
   contentDOMElement: HTMLDivElement;
   viewport: Viewport;
 };
 
 export function animate(canvasDOMElement: HTMLCanvasElement, item: Props) {
-  const { sceneElementsMeshTemplates, contentDOMElement, viewport } = item;
-  const canvas = new Canvas(canvasDOMElement, contentDOMElement, sceneElementsMeshTemplates, viewport);
+  const canvas = new Canvas(canvasDOMElement, item.contentDOMElement, item.canvasSceneElementsDetails, item.viewport);
 
   let unsubscribe = function () {};
   unsubscribe = _rAF.add(() => canvas.animate());

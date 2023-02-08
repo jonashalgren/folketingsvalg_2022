@@ -4,7 +4,7 @@ export * from "./viewport";
 export * from "./canvas";
 export * from "./party";
 export * from "./electionResult";
-export * from "./canvasSceneElementsMesh";
+export * from "./canvasSceneElement";
 export * from "./canvas";
 export * from "./canvasScene";
 export * from "./canvasSceneSettings";

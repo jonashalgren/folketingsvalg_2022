@@ -6,7 +6,7 @@ import Map from "@assets/images/map.svg";
 import { getMapMeshes } from "./getMapMeshes";
 import { mapAreaIds } from "./mapAreaIds";
 
-export const _map = readable<C_S_E_M_Map[]>(undefined, function start(set) {
+export const _map = readable<C_S_E_M_Map[]>([], function start(set) {
   new SVGLoader().load(
     Map,
     function (data: SVGResult) {

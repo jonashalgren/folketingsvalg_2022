@@ -1,4 +1,4 @@
-import type { C_S_E_Mesh, C_S_E_Mesh_Templates, C_S_Camera_Mapper, C_S_Progress, C_S_Settings, C_S_S_Element, Viewport } from "@models";
+import type { C_S_E_Mesh, C_S_Camera_Mapper, C_S_Progress, C_S_Settings, C_S_S_Element, Viewport, C_S_E_Details } from "@models";
 import { AmbientLight, SpotLight, WebGLRenderer, GridHelper } from "three";
 import { PerspectiveCamera, Scene as ThreeScene } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
@@ -20,7 +20,7 @@ export class Canvas_Scene {
 
   constructor(
     private sceneSettings: C_S_Settings,
-    private elementsMeshTemplates: C_S_E_Mesh_Templates,
+    private canvasSceneElementsDetails: C_S_E_Details,
     private camera: PerspectiveCamera,
     private canvasDOMElement: HTMLCanvasElement,
     private contentDOMElement: HTMLDivElement,
@@ -48,7 +48,7 @@ export class Canvas_Scene {
   }
 
   private setElements() {
-    this.elements = getElements({ sceneSettings: this.sceneSettings, elementsMeshTemplates: this.elementsMeshTemplates });
+    this.elements = getElements({ sceneSettings: this.sceneSettings, canvasSceneElementsDetails: this.canvasSceneElementsDetails });
   }
 
   private setLight() {

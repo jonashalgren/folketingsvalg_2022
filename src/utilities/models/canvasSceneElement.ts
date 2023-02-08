@@ -1,5 +1,6 @@
 import type { BoxGeometry, Mesh, MeshLambertMaterial, ExtrudeGeometry } from "three";
 import type { Party_Letter, C_S_S_E_Map_Area_Id, C_S_S_E_Box_Texture } from "@models";
+import type { Canvas_Scene_Element_Box, Canvas_Scene_Element_Map, Canvas_Scene_Element_Transition } from "@classes";
 
 export type C_S_E_M_Box = Mesh<BoxGeometry, MeshLambertMaterial[]> & {
   userData: {
@@ -31,9 +32,16 @@ export type C_S_E_M_Map = Mesh<ExtrudeGeometry, MeshLambertMaterial> & {
 
 export type C_S_E_Mesh = C_S_E_M_Box | C_S_E_M_Figure | C_S_E_M_Text | C_S_E_M_Map;
 
-export type C_S_E_Mesh_Templates = {
-  box: C_S_E_M_Box[];
-  figure: C_S_E_M_Figure[];
-  text: C_S_E_M_Text[];
-  map: C_S_E_M_Map[];
+export type C_S_E_Details = {
+  box: {
+    class: typeof Canvas_Scene_Element_Box;
+    meshes: C_S_E_M_Box[];
+  };
+  transition: {
+    class: typeof Canvas_Scene_Element_Transition;
+  };
+  map: {
+    class: typeof Canvas_Scene_Element_Map;
+    meshes: C_S_E_M_Map[];
+  };
 };
