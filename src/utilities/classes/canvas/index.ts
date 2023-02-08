@@ -69,7 +69,7 @@ export class Canvas {
 
   private updateScenes() {
     this.scenesSettings.forEach((sceneSettings, index) => {
-      this.scenes[index].update(sceneSettings, this.camera);
+      this.scenes[index].resize(sceneSettings, this.camera);
     });
   }
 
@@ -78,10 +78,10 @@ export class Canvas {
   }
 
   private updateBackground() {
-    this.background.update(this.camera);
+    this.background.resize(this.camera);
   }
 
-  update(viewport: Viewport) {
+  resize(viewport: Viewport) {
     this.viewport = viewport;
 
     this.setCanvasSettings();
@@ -94,11 +94,11 @@ export class Canvas {
     this.updateScenes();
   }
 
-  animate() {
-    this.background.render({ renderer: this.renderer });
+  update() {
+    this.background.update({ renderer: this.renderer });
     this.renderer.autoClear = false;
     this.renderer.clearDepth();
-    this.scenes.forEach((scene: Canvas_Scene) => scene.render({ renderer: this.renderer }));
+    this.scenes.forEach((scene: Canvas_Scene) => scene.update({ renderer: this.renderer }));
     this.renderer.autoClear = true;
   }
 }

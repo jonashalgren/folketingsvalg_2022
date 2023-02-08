@@ -16,6 +16,7 @@ export function getTextMeshes() {
   text.anchorY = "middle";
   text.color = mesh_default_settings.color_misc;
   text.sync();
+  text.userData.stayHidden = false;
 
   return [text] as C_S_E_M_Text[];
 }

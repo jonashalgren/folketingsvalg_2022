@@ -71,7 +71,7 @@ export class Canvas_Scene_Element_Transition extends Canvas_Scene_Element<C_S_S_
     });
   }
 
-  update(): void {}
+  resize(): void {}
 
   animate(_: number, entryProgress: number) {
     if (this.localProgress !== entryProgress) {

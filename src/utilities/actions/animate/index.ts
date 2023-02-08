@@ -13,13 +13,13 @@ export function animate(canvasDOMElement: HTMLCanvasElement, item: Props) {
   const canvas = new Canvas(canvasDOMElement, item.contentDOMElement, item.canvasSceneElementsDetails, item.viewport);
 
   let unsubscribe = function () {};
-  unsubscribe = _rAF.add(() => canvas.animate());
+  unsubscribe = _rAF.add(() => canvas.update());
   return {
     async update({ viewport }: Props) {
       await tick();
-      canvas.update(viewport);
+      canvas.resize(viewport);
       unsubscribe();
-      unsubscribe = _rAF.add(() => canvas.animate());
+      unsubscribe = _rAF.add(() => canvas.update());
     },
   };
 }

@@ -17,7 +17,9 @@ export type C_S_E_M_Figure = Mesh<ExtrudeGeometry, MeshLambertMaterial> & {
 
 //------------------------------------------------------------
 
-export type C_S_E_M_Text = Mesh<ExtrudeGeometry, MeshLambertMaterial>;
+export type C_S_E_M_Text = Mesh<ExtrudeGeometry, MeshLambertMaterial> & {
+  stayHidden: boolean;
+};
 
 //------------------------------------------------------------
 

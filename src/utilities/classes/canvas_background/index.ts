@@ -52,11 +52,11 @@ export class Canvas_Background {
     this.scene.add(this.ambientLight);
   }
 
-  update(camera: PerspectiveCamera) {
+  resize(camera: PerspectiveCamera) {
     this.updateCamera(camera);
   }
 
-  render({ renderer }: { renderer: WebGLRenderer }) {
+  update({ renderer }: { renderer: WebGLRenderer }) {
     this.controls.update();
     renderer.render(this.scene, this.camera);
   }

@@ -23,6 +23,7 @@ export type C_S_S_Progress_Settings = {
 export type C_S_Settings = {
   camera: C_S_S_Camera;
   elements: C_S_S_Element[];
+  hasTransition?: boolean;
   boundingBox?: C_S_S_Bounding_Box;
   dimensionZ?: number;
   progressSettings?: C_S_S_Progress_Settings;

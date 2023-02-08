@@ -93,7 +93,7 @@ export class Canvas_Scene {
     });
   }
 
-  update(sceneSettings: C_S_Settings, camera: PerspectiveCamera) {
+  resize(sceneSettings: C_S_Settings, camera: PerspectiveCamera) {
     this.sceneSettings = sceneSettings;
     this.updateCamera(camera);
     this.updateControls();
@@ -101,7 +101,7 @@ export class Canvas_Scene {
     this.setMapperProgress();
   }
 
-  render({ renderer }: { renderer: WebGLRenderer }) {
+  update({ renderer }: { renderer: WebGLRenderer }) {
     this.progress = this.mapperProgress();
 
     if (this.progress.state === "active" || this.progress.state === "next") {
@@ -109,7 +109,7 @@ export class Canvas_Scene {
 
       this.elements.forEach((item) => {
         const progress = this.sceneSettings.mode === "auto" ? this.progress.auto : this.progress.main;
-        item.animate(progress, this.progress.entry);
+        item.update(progress, this.progress.entry);
       });
 
       this.controls.update();

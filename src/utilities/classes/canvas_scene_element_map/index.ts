@@ -41,7 +41,7 @@ export class Canvas_Scene_Element_Map extends Canvas_Scene_Element<C_S_S_E_Map, 
     });
   }
 
-  update(mapSettings: C_S_S_E_Map, sceneSettings: C_S_Settings) {
+  resize(mapSettings: C_S_S_E_Map, sceneSettings: C_S_Settings) {
     this.mapSettings = mapSettings;
     this.sceneSettings = sceneSettings;
 

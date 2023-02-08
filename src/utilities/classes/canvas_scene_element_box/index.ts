@@ -80,7 +80,7 @@ export class Canvas_Scene_Element_Box extends Canvas_Scene_Element<C_S_S_E_Box, 
     }
   }
 
-  update(boxSettings: C_S_S_E_Box) {
+  resize(boxSettings: C_S_S_E_Box) {
     this.boxSettings = boxSettings;
 
     this.setBoxSettings();
