@@ -9,7 +9,7 @@ import { setMapperProgressTransition } from "./setMapperProgressTransition";
 
 export type Props = {
   contentDOMElement: HTMLDivElement;
-  settings: C_S_Settings;
+  sceneSettings: C_S_Settings;
   viewport: Viewport;
   mapperProgressState?: (progress: number) => C_S_Progress_State;
   mapperProgressAuto?: () => number;

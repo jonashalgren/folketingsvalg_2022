@@ -1,5 +1,6 @@
 <script lang="ts">
   import { _viewport } from "@stores";
+  import { afterUpdate } from "svelte";
   import type { C_S_S_Extra_Text_Margin } from "@models";
   export let text: string;
   export let isFirstSection: boolean;

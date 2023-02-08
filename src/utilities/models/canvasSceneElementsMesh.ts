@@ -29,10 +29,6 @@ export type C_S_E_M_Map = Mesh<ExtrudeGeometry, MeshLambertMaterial> & {
 
 //------------------------------------------------------------
 
-export type S_E_M_Transition = Mesh<ExtrudeGeometry, MeshLambertMaterial>;
-
-//------------------------------------------------------------
-
 export type C_S_E_Mesh = C_S_E_M_Box | C_S_E_M_Figure | C_S_E_M_Text | C_S_E_M_Map;
 
 export type C_S_E_Mesh_Templates = {

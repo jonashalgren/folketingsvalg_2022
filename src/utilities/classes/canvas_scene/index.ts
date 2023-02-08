@@ -19,7 +19,7 @@ export class Canvas_Scene {
   mapperCamera: (props: C_S_Camera_Mapper) => void;
 
   constructor(
-    private settings: C_S_Settings,
+    private sceneSettings: C_S_Settings,
     private elementsMeshTemplates: C_S_E_Mesh_Templates,
     private camera: PerspectiveCamera,
     private canvasDOMElement: HTMLCanvasElement,
@@ -40,15 +40,15 @@ export class Canvas_Scene {
   }
 
   private setMapperCamera() {
-    this.mapperCamera = getMapperCamera({ settings: this.settings }).mapper;
+    this.mapperCamera = getMapperCamera({ sceneSettings: this.sceneSettings }).mapper;
   }
 
   private setMapperProgress() {
-    this.mapperProgress = getMapperProgress({ contentDOMElement: this.contentDOMElement, settings: this.settings, viewport: this.viewport }).mapper;
+    this.mapperProgress = getMapperProgress({ contentDOMElement: this.contentDOMElement, sceneSettings: this.sceneSettings, viewport: this.viewport }).mapper;
   }
 
   private setElements() {
-    this.elements = getElements({ settings: this.settings, elementsMeshTemplates: this.elementsMeshTemplates });
+    this.elements = getElements({ sceneSettings: this.sceneSettings, elementsMeshTemplates: this.elementsMeshTemplates });
   }
 
   private setLight() {
@@ -94,8 +94,7 @@ export class Canvas_Scene {
   }
 
   update(sceneSettings: C_S_Settings, camera: PerspectiveCamera) {
-    this.settings = sceneSettings;
-
+    this.sceneSettings = sceneSettings;
     this.updateCamera(camera);
     this.updateControls();
     this.setMapperCamera();
@@ -109,7 +108,7 @@ export class Canvas_Scene {
       this.mapperCamera({ progress: this.progress, camera: this.camera, controls: this.controls });
 
       this.elements.forEach((item) => {
-        const progress = this.settings.mode === "auto" ? this.progress.auto : this.progress.main;
+        const progress = this.sceneSettings.mode === "auto" ? this.progress.auto : this.progress.main;
         item.animate(progress, this.progress.entry);
       });
 

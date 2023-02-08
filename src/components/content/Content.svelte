@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { _contentDOMElement, _contentSectionsTexts, _viewport } from "@stores";
+  import { _contentDOMElement, _contentSectionsTexts } from "@stores";
   import ContentSection from "./ContentSection.svelte";
   import { scenesSettings } from "@assets";
+  import { afterUpdate } from "svelte";
 </script>
 
 <div bind:this={$_contentDOMElement}>

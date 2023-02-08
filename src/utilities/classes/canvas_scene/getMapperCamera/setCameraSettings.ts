@@ -2,7 +2,7 @@ import { getProcessedOutputRangeItem, getProcessedOutputRangeList } from "@helpe
 import type { Props } from "./index";
 
 export function setCameraSettings(item: Props): Props {
-  const { camera, dimensionZ } = item.settings;
+  const { camera, dimensionZ } = item.sceneSettings;
 
   return {
     ...item,

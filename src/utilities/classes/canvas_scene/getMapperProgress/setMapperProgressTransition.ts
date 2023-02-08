@@ -2,7 +2,7 @@ import type { Props } from "./index";
 import { interpolate } from "popmotion";
 
 export function setMapperProgressTransition(item: Props): Props {
-  const { entryStart, exitEnd, mainEnd, mainStart } = item.settings.progressSettings;
+  const { entryStart, exitEnd, mainEnd, mainStart } = item.sceneSettings.progressSettings;
   return {
     ...item,
     mapperProgressEntry: interpolate([entryStart, mainStart], [0, 1]),

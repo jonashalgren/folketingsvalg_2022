@@ -4,6 +4,7 @@ import { Canvas_Scene, Canvas_Background } from "@classes";
 import { _rAF } from "@stores";
 import { getCanvasSettings } from "./getCanvasSettings";
 import { getProcessedSettings } from "./getProcessedSettings";
+import { scenesSettings } from "@assets";
 
 export class Canvas {
   private renderer: WebGLRenderer;
@@ -11,9 +12,9 @@ export class Canvas {
   private scenes: Canvas_Scene[];
   private background: Canvas_Background;
   private canvasSettings: C_Settings;
+  private scenesSettings: C_S_Settings[];
 
   constructor(
-    private scenesSettings: C_S_Settings[],
     private canvasDOMElement: HTMLCanvasElement,
     private contentDOMElement: HTMLDivElement,
     private sceneElementsMeshTemplates: C_S_E_Mesh_Templates,
@@ -35,7 +36,7 @@ export class Canvas {
 
   private setScenesSettings() {
     this.scenesSettings = getProcessedSettings({
-      scenesSettings: this.scenesSettings,
+      scenesSettings,
       camera: this.camera,
       contentDOMElement: this.contentDOMElement,
       viewport: this.viewport,
