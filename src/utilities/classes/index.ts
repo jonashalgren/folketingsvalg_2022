@@ -1,5 +1,5 @@
 export * from "./canvas";
-export * from "./canvas_scene";
+export * from "./canvas_content";
 export * from "./canvas_background";
 export * from "./canvas_scene_element_box";
 export * from "./canvas_scene_element_map";

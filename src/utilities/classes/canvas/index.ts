@@ -1,6 +1,6 @@
 import type { C_Settings, Viewport, C_S_E_Details, C_S_Settings } from "@models";
 import { PerspectiveCamera, WebGLRenderer } from "three";
-import { Canvas_Scene, Canvas_Background } from "@classes";
+import { Canvas_Content, Canvas_Background } from "@classes";
 import { _rAF } from "@stores";
 import { getCanvasSettings } from "./getCanvasSettings";
 import { getProcessedSettings } from "./getProcessedSettings";
@@ -9,7 +9,7 @@ import { scenesSettings } from "@assets";
 export class Canvas {
   private renderer: WebGLRenderer;
   private camera: PerspectiveCamera;
-  private scenes: Canvas_Scene[];
+  private scenes: Canvas_Content[];
   private background: Canvas_Background;
   private canvasSettings: C_Settings;
   private scenesSettings: C_S_Settings[];
@@ -63,7 +63,8 @@ export class Canvas {
 
   private setScenes() {
     this.scenes = this.scenesSettings.map(
-      (sceneSettings) => new Canvas_Scene(this.renderer, sceneSettings, this.canvasSceneElementsDetails, this.camera, this.canvasDOMElement, this.contentDOMElement, this.viewport)
+      (sceneSettings) =>
+        new Canvas_Content(this.renderer, sceneSettings, this.canvasSceneElementsDetails, this.camera, this.canvasDOMElement, this.contentDOMElement, this.viewport)
     );
   }
 
@@ -98,7 +99,7 @@ export class Canvas {
     this.background.update();
     this.renderer.autoClear = false;
     this.renderer.clearDepth();
-    this.scenes.forEach((scene: Canvas_Scene) => scene.update());
+    this.scenes.forEach((scene: Canvas_Content) => scene.update());
     this.renderer.autoClear = true;
   }
 }

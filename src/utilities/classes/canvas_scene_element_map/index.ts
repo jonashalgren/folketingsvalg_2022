@@ -1,9 +1,10 @@
-import { Canvas_Scene_Element, Canvas_Scene_Element_Map_Area } from "@classes";
+import { Canvas_Scene_Element_Map_Area } from "@classes";
+import { Canvas_Content_Element } from "@abstract_classes";
 import { election_result_areas } from "@assets";
 import type { C_S_E_M_Map, C_S_Settings, C_S_S_E_Map, C_S_S_E_Map_Config } from "@models";
 import { getProcessedConfigs } from "./getProcessedConfigs";
 
-export class Canvas_Scene_Element_Map extends Canvas_Scene_Element<C_S_S_E_Map, C_S_E_M_Map[]> {
+export class Canvas_Scene_Element_Map extends Canvas_Content_Element<C_S_S_E_Map, C_S_E_M_Map[]> {
   private configs: C_S_S_E_Map_Config[];
   private meshes: C_S_E_M_Map[];
   private areas: Canvas_Scene_Element_Map_Area[];

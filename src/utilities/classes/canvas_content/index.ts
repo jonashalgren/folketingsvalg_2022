@@ -5,14 +5,14 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { getElements } from "./getElements";
 import { getMapperCamera } from "./getMapperCamera";
 import { getMapperProgress } from "./getMapperProgress";
-import type { Canvas_Scene_Element } from "@classes";
+import type { Canvas_Content_Element } from "@abstract_classes";
 
-export class Canvas_Scene {
+export class Canvas_Content {
   private scene: ThreeScene;
   private spotLight: SpotLight;
   private ambientLight: AmbientLight;
   private controls: OrbitControls;
-  private elements: Canvas_Scene_Element<C_S_S_Element, C_S_E_Mesh[]>[];
+  private elements: Canvas_Content_Element<C_S_S_Element, C_S_E_Mesh[]>[];
   private progress: C_S_Progress;
 
   mapperProgress: () => C_S_Progress;

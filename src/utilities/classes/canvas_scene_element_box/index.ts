@@ -1,4 +1,4 @@
-import { Canvas_Scene_Element } from "@classes";
+import { Canvas_Content_Element } from "@abstract_classes";
 import type { C_S_E_M_Box, C_S_S_E_Box, C_S_Settings } from "@models";
 import { getMapperScale } from "./getMapperScale";
 import { getMapperPosition } from "./getMapperPosition";
@@ -10,7 +10,7 @@ import { spring } from "svelte/motion";
 import type { Spring } from "svelte/motion";
 import { get } from "svelte/store";
 
-export class Canvas_Scene_Element_Box extends Canvas_Scene_Element<C_S_S_E_Box, C_S_E_M_Box[]> {
+export class Canvas_Scene_Element_Box extends Canvas_Content_Element<C_S_S_E_Box, C_S_E_M_Box[]> {
   private mapperScale: (progress: number) => Vector3Tuple;
   private mapperPosition: (progress: number) => Vector3Tuple;
   private mapperFloatingYOffset: (progress: number) => number;

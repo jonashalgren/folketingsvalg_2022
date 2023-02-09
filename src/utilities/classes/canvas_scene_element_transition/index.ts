@@ -1,9 +1,10 @@
 import { Color } from "three";
-import { Canvas_Scene_Element_Transition_Square, Canvas_Scene_Element } from "@classes";
+import { Canvas_Scene_Element_Transition_Square } from "@classes";
+import { Canvas_Content_Element } from "@abstract_classes";
 import type { C_S_S_E_Transition } from "@models";
 import { interpolate } from "popmotion";
 
-export class Canvas_Scene_Element_Transition extends Canvas_Scene_Element<C_S_S_E_Transition, undefined> {
+export class Canvas_Scene_Element_Transition extends Canvas_Content_Element<C_S_S_E_Transition, undefined> {
   private whiteColor: Color;
   private blackColor: Color;
   private squaresSettings: any[];
