@@ -1,14 +1,14 @@
 <script lang="ts">
   import ContentSectionText from "./ContentSectionText.svelte";
   import { _viewport } from "@stores";
-  import type { C_S_Settings } from "@models";
+  import type { C_Content_Settings } from "@models";
   export let sectionTexts: string[];
   export let isLastSection: boolean;
   export let isFirstSection: boolean;
-  export let matchedSceneSettings: C_S_Settings;
-  export let nextMatchedSceneSettings: C_S_Settings;
+  export let matchedContentSettings: C_Content_Settings;
+  export let nextMatchedContentSettings: C_Content_Settings;
 
-  $: marginBottom = isLastSection ? 0 : nextMatchedSceneSettings.elements.find((item) => item.type === "transition") ? $_viewport.h * 0.5 : $_viewport.h * 0.1;
+  $: marginBottom = isLastSection ? 0 : nextMatchedContentSettings.elements.find((item) => item.type === "transition") ? $_viewport.h * 0.5 : $_viewport.h * 0.1;
 </script>
 
 <div style="margin-bottom: {marginBottom}px;">
@@ -18,7 +18,7 @@
       {isFirstSection}
       isFirstText={textIndex === 0}
       isLastText={textIndex === sectionTexts.length - 1}
-      extraMargin={matchedSceneSettings.extraTextMargin?.find((item) => item.index === textIndex)}
+      extraMargin={matchedContentSettings.extraTextMargin?.find((item) => item.index === textIndex)}
     />
   {/each}
 </div>

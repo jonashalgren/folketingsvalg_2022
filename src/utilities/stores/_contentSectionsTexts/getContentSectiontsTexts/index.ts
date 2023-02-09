@@ -1,12 +1,12 @@
 import { pipe } from "@helpers";
-import { syncWithSceneSettings } from "./syncWithSceneSettings";
+import { syncWithContentSettings } from "./syncWithContentSettings";
 import { setContentSectionsTexts } from "./setContentSectionsTexts";
 import { cleanupData } from "./cleanupData";
-import type { C_S_Settings } from "@models";
+import type { C_Content_Settings } from "@models";
 
 export type Props = {
-  scenesSettings: C_S_Settings[];
+  contentSettingsList: C_Content_Settings[];
   contentSectionsTexts?: string[][];
   responseData: { scenenr: string; tekst: string }[];
 };
-export const getContentSectiontsTexts = pipe(cleanupData, setContentSectionsTexts, syncWithSceneSettings);
+export const getContentSectiontsTexts = pipe(cleanupData, setContentSectionsTexts, syncWithContentSettings);

@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { _contentDOMElement, _viewport, _canvasSceneElementsDetails } from "@stores";
+  import { _contentDOMElement, _viewport, _canvasContentElementsDetails } from "@stores";
   import { animate } from "@actions";
 </script>
 
 <div id="scenes">
   <div style="height: {$_viewport.h}px;">
     <div>
-      {#if Boolean($_contentDOMElement && $_canvasSceneElementsDetails)}
+      {#if Boolean($_contentDOMElement && $_canvasContentElementsDetails)}
         <canvas
           use:animate={{
             viewport: $_viewport,
-            canvasSceneElementsDetails: $_canvasSceneElementsDetails,
+            canvasContentElementsDetails: $_canvasContentElementsDetails,
             contentDOMElement: $_contentDOMElement,
           }}
         />

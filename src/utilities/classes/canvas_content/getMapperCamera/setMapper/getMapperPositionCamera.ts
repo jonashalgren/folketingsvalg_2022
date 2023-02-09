@@ -1,9 +1,9 @@
 import { interpolate } from "popmotion";
-import type { C_S_Progress, C_S_S_Camera } from "@models";
+import type { C_Content_Progress, C_C_Settings_Camera } from "@models";
 import type { PerspectiveCamera } from "three";
 
 type Props = {
-  cameraSettings: C_S_S_Camera;
+  cameraSettings: C_C_Settings_Camera;
 };
 
 export function getMapperPositionCamera({ cameraSettings }: Props) {
@@ -18,7 +18,7 @@ export function getMapperPositionCamera({ cameraSettings }: Props) {
   const mapperExit = interpolate([0, 1], [outputRange[outputRange.length - 1], positionExit]);
   const mapperEntry = interpolate([0, 1], [positionEntry, outputRange[0]]);
 
-  return function ({ progress, camera }: { progress: C_S_Progress; camera: PerspectiveCamera }) {
+  return function ({ progress, camera }: { progress: C_Content_Progress; camera: PerspectiveCamera }) {
     if (localProgress !== progress.main) {
       localProgress = progress.main;
       camera.position.set(...mapperMain(progress.main));

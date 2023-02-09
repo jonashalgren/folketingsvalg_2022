@@ -1,9 +1,9 @@
-import type { C_S_S_Camera, C_S_Progress } from "@models";
+import type { C_C_Settings_Camera, C_Content_Progress } from "@models";
 import { interpolate } from "popmotion";
 import type { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 type Props = {
-  cameraSettings: C_S_S_Camera;
+  cameraSettings: C_C_Settings_Camera;
 };
 export function getMapperTargetCamera({ cameraSettings }: Props) {
   let localProgress = 0;
@@ -17,7 +17,7 @@ export function getMapperTargetCamera({ cameraSettings }: Props) {
   const mapperExit = interpolate([0, 1], [outputRange[outputRange.length - 1], targetExit]);
   const mapperEntry = interpolate([0, 1], [targetEntry, outputRange[0]]);
 
-  return function ({ progress, controls }: { progress: C_S_Progress; controls: OrbitControls }) {
+  return function ({ progress, controls }: { progress: C_Content_Progress; controls: OrbitControls }) {
     if (localProgress !== progress.main) {
       localProgress = progress.main;
       controls.target.set(...mapperMain(progress.main));

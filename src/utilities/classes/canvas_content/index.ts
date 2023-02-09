@@ -1,27 +1,36 @@
-import type { C_S_E_Mesh, C_S_Camera_Mapper, C_S_Progress, C_S_Settings, C_S_S_Element, Viewport, C_S_E_Details } from "@models";
+import type {
+  C_C_Element_Mesh,
+  C_Content_Camera_Mapper,
+  C_Content_Progress,
+  C_Content_Progress_Mapper,
+  C_Content_Settings,
+  C_S_S_Element,
+  Viewport,
+  C_C_Element_Details,
+} from "@models";
 import { AmbientLight, SpotLight, WebGLRenderer, GridHelper } from "three";
 import { PerspectiveCamera, Scene as ThreeScene } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { getElements } from "./getElements";
 import { getMapperCamera } from "./getMapperCamera";
 import { getMapperProgress } from "./getMapperProgress";
-import type { Canvas_Content_Element } from "@abstract_classes";
+import type { Canvas_Content_Element } from "src/utilities/classes_abstract";
 
 export class Canvas_Content {
   private scene: ThreeScene;
   private spotLight: SpotLight;
   private ambientLight: AmbientLight;
   private controls: OrbitControls;
-  private elements: Canvas_Content_Element<C_S_S_Element, C_S_E_Mesh[]>[];
-  private progress: C_S_Progress;
+  private elements: Canvas_Content_Element<C_S_S_Element, C_C_Element_Mesh[]>[];
+  private progress: C_Content_Progress;
 
-  mapperProgress: () => C_S_Progress;
-  mapperCamera: (props: C_S_Camera_Mapper) => void;
+  mapperProgress: C_Content_Progress_Mapper;
+  mapperCamera: C_Content_Camera_Mapper;
 
   constructor(
     private renderer: WebGLRenderer,
-    private sceneSettings: C_S_Settings,
-    private canvasSceneElementsDetails: C_S_E_Details,
+    private contentSettings: C_Content_Settings,
+    private canvasContentElementsDetails: C_C_Element_Details,
     private camera: PerspectiveCamera,
     private canvasDOMElement: HTMLCanvasElement,
     private contentDOMElement: HTMLDivElement,
@@ -41,20 +50,20 @@ export class Canvas_Content {
   }
 
   private setMapperCamera() {
-    this.mapperCamera = getMapperCamera({ sceneSettings: this.sceneSettings }).mapper;
+    this.mapperCamera = getMapperCamera({ contentSettings: this.contentSettings }).mapper;
   }
 
   private setMapperProgress() {
-    this.mapperProgress = getMapperProgress({ contentDOMElement: this.contentDOMElement, sceneSettings: this.sceneSettings, viewport: this.viewport }).mapper;
+    this.mapperProgress = getMapperProgress({ contentDOMElement: this.contentDOMElement, contentSettings: this.contentSettings, viewport: this.viewport }).mapper;
   }
 
   private setElements() {
-    this.elements = getElements({ sceneSettings: this.sceneSettings, canvasSceneElementsDetails: this.canvasSceneElementsDetails });
+    this.elements = getElements({ contentSettings: this.contentSettings, canvasContentElementsDetails: this.canvasContentElementsDetails });
   }
 
   private updateElements() {
     this.elements.forEach((element) => {
-      const progress = this.sceneSettings.mode === "auto" ? this.progress.auto : this.progress.main;
+      const progress = this.contentSettings.mode === "auto" ? this.progress.auto : this.progress.main;
       element.update(progress, this.progress.entry);
     });
   }
@@ -105,8 +114,8 @@ export class Canvas_Content {
     this.renderer.render(this.scene, this.camera);
   }
 
-  resize(sceneSettings: C_S_Settings, camera: PerspectiveCamera) {
-    this.sceneSettings = sceneSettings;
+  resize(contentSettings: C_Content_Settings, camera: PerspectiveCamera) {
+    this.contentSettings = contentSettings;
     this.updateCamera(camera);
     this.updateControls();
     this.setMapperCamera();

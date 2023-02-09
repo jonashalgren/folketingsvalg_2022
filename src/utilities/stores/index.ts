@@ -5,4 +5,4 @@ export * from "./_viewport";
 export * from "./_creditsOpacity";
 export * from "./_introOpacity";
 export * from "./_contentSectionsTexts";
-export * from "./_canvasSceneElementsDetails";
+export * from "./_canvasContentElementsDetails";

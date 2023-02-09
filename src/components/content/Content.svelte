@@ -1,7 +1,7 @@
 <script lang="ts">
   import { _contentDOMElement, _contentSectionsTexts } from "@stores";
   import ContentSection from "./ContentSection.svelte";
-  import { scenesSettings } from "@assets";
+  import { contentSettingsList } from "@assets";
 </script>
 
 <div bind:this={$_contentDOMElement}>
@@ -10,8 +10,8 @@
       {sectionTexts}
       isFirstSection={sectionIndex === 0}
       isLastSection={sectionIndex === $_contentSectionsTexts.length - 1}
-      matchedSceneSettings={scenesSettings[sectionIndex]}
-      nextMatchedSceneSettings={scenesSettings[sectionIndex + 1] ?? scenesSettings[sectionIndex]}
+      matchedContentSettings={contentSettingsList[sectionIndex]}
+      nextMatchedContentSettings={contentSettingsList[sectionIndex + 1] ?? contentSettingsList[sectionIndex]}
     />
   {/each}
 </div>

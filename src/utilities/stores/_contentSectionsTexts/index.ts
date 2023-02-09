@@ -1,5 +1,5 @@
 import { readable } from "svelte/store";
-import { scenesSettings } from "@assets";
+import { contentSettingsList } from "@assets";
 import { getContentSectiontsTexts } from "./getContentSectiontsTexts";
 
 export const _contentSectionsTexts = readable<string[][]>([], function (set) {
@@ -8,7 +8,7 @@ export const _contentSectionsTexts = readable<string[][]>([], function (set) {
     try {
       const response = await fetch(api);
       const { data } = await response.json();
-      const { contentSectionsTexts } = getContentSectiontsTexts({ responseData: data, scenesSettings });
+      const { contentSectionsTexts } = getContentSectiontsTexts({ responseData: data, contentSettingsList });
       set(contentSectionsTexts);
     } catch (error) {
       console.log(error);

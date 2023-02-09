@@ -15,7 +15,7 @@ export function setMapperProgress(item: Props): Props {
         entry = item.mapperProgressEntry(scrollY);
         exit = item.mapperProgressExit(scrollY);
 
-        if (item?.sceneSettings?.mode === "auto") {
+        if (item?.contentSettings?.mode === "auto") {
           auto = item.mapperProgressAuto();
         }
       }
