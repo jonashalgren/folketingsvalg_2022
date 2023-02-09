@@ -19,6 +19,7 @@ export class Canvas_Scene {
   mapperCamera: (props: C_S_Camera_Mapper) => void;
 
   constructor(
+    private renderer: WebGLRenderer,
     private sceneSettings: C_S_Settings,
     private canvasSceneElementsDetails: C_S_E_Details,
     private camera: PerspectiveCamera,
@@ -49,6 +50,13 @@ export class Canvas_Scene {
 
   private setElements() {
     this.elements = getElements({ sceneSettings: this.sceneSettings, canvasSceneElementsDetails: this.canvasSceneElementsDetails });
+  }
+
+  private updateElements() {
+    this.elements.forEach((element) => {
+      const progress = this.sceneSettings.mode === "auto" ? this.progress.auto : this.progress.main;
+      element.update(progress, this.progress.entry);
+    });
   }
 
   private setLight() {
@@ -93,6 +101,10 @@ export class Canvas_Scene {
     });
   }
 
+  private updateRenderer() {
+    this.renderer.render(this.scene, this.camera);
+  }
+
   resize(sceneSettings: C_S_Settings, camera: PerspectiveCamera) {
     this.sceneSettings = sceneSettings;
     this.updateCamera(camera);
@@ -101,19 +113,15 @@ export class Canvas_Scene {
     this.setMapperProgress();
   }
 
-  update({ renderer }: { renderer: WebGLRenderer }) {
+  update() {
     this.progress = this.mapperProgress();
 
     if (this.progress.state === "active" || this.progress.state === "next") {
       this.mapperCamera({ progress: this.progress, camera: this.camera, controls: this.controls });
+      this.updateElements();
+      this.updateControls();
 
-      this.elements.forEach((item) => {
-        const progress = this.sceneSettings.mode === "auto" ? this.progress.auto : this.progress.main;
-        item.update(progress, this.progress.entry);
-      });
-
-      this.controls.update();
-      renderer.render(this.scene, this.camera);
+      this.updateRenderer();
     }
   }
 }

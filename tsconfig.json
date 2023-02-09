@@ -15,6 +15,7 @@
       "@styles": ["src/utilities/styles"],
       "@models": ["src/utilities/models"],
       "@classes": ["src/utilities/classes"],
+      "@abstract_classes": ["src/utilities/abstract_classes"],
       "@actions": ["src/utilities/actions"],
       "@assets": ["src/assets"]
     }

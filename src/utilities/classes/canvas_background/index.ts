@@ -10,7 +10,7 @@ export class Canvas_Background {
   private ambientLight: AmbientLight;
   private controls: OrbitControls;
 
-  constructor(private canvasDOMElement: HTMLCanvasElement, private camera: PerspectiveCamera) {
+  constructor(private renderer: WebGLRenderer, private canvasDOMElement: HTMLCanvasElement, private camera: PerspectiveCamera) {
     this.scene = new Scene();
     this.camera = camera.clone();
     this.setPlane();
@@ -43,6 +43,14 @@ export class Canvas_Background {
     this.controls.enablePan = false;
   }
 
+  private updateControls() {
+    this.controls.update();
+  }
+
+  private updateRenderer() {
+    this.renderer.render(this.scene, this.camera);
+  }
+
   private setLights() {
     this.spotLight = new SpotLight(0xffffff, 0.4);
     this.spotLight.position.set(0, 0, 200);
@@ -56,8 +64,8 @@ export class Canvas_Background {
     this.updateCamera(camera);
   }
 
-  update({ renderer }: { renderer: WebGLRenderer }) {
-    this.controls.update();
-    renderer.render(this.scene, this.camera);
+  update() {
+    this.updateControls();
+    this.updateRenderer();
   }
 }

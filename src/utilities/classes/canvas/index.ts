@@ -63,7 +63,7 @@ export class Canvas {
 
   private setScenes() {
     this.scenes = this.scenesSettings.map(
-      (sceneSettings) => new Canvas_Scene(sceneSettings, this.canvasSceneElementsDetails, this.camera, this.canvasDOMElement, this.contentDOMElement, this.viewport)
+      (sceneSettings) => new Canvas_Scene(this.renderer, sceneSettings, this.canvasSceneElementsDetails, this.camera, this.canvasDOMElement, this.contentDOMElement, this.viewport)
     );
   }
 
@@ -74,7 +74,7 @@ export class Canvas {
   }
 
   private setBackground() {
-    this.background = new Canvas_Background(this.canvasDOMElement, this.camera);
+    this.background = new Canvas_Background(this.renderer, this.canvasDOMElement, this.camera);
   }
 
   private updateBackground() {
@@ -95,10 +95,10 @@ export class Canvas {
   }
 
   update() {
-    this.background.update({ renderer: this.renderer });
+    this.background.update();
     this.renderer.autoClear = false;
     this.renderer.clearDepth();
-    this.scenes.forEach((scene: Canvas_Scene) => scene.update({ renderer: this.renderer }));
+    this.scenes.forEach((scene: Canvas_Scene) => scene.update());
     this.renderer.autoClear = true;
   }
 }

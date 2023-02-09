@@ -49,6 +49,7 @@ export default defineConfig(({ command, mode }) => {
         "@models": `${__dirname}/src/utilities/models`,
         "@styles": `${__dirname}/src/utilities/styles`,
         "@classes": `${__dirname}/src/utilities/classes`,
+        "@abstract_classes": `${__dirname}/src/utilities/abstract_classes`,
         "@actions": `${__dirname}/src/utilities/actions`,
       },
     },
