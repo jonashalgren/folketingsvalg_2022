@@ -1,4 +1,4 @@
-import { Canvas_Content_Element } from "src/utilities/classes_abstract";
+import { Canvas_Content_Element } from "@classes_abstract";
 import type { C_C_E_Mesh_Box, C_C_S_Element_Box, C_Content_Settings } from "@models";
 import { getMapperScale } from "./getMapperScale";
 import { getMapperPosition } from "./getMapperPosition";

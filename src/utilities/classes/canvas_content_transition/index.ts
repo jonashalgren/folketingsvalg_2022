@@ -1,6 +1,6 @@
 import { Color } from "three";
 import { Canvas_Content_Transition_Square } from "@classes";
-import { Canvas_Content_Element } from "src/utilities/classes_abstract";
+import { Canvas_Content_Element } from "@classes_abstract";
 import type { C_C_S_Element_Transition } from "@models";
 import { interpolate } from "popmotion";
 

@@ -9,7 +9,7 @@ import { contentSettingsList } from "@assets";
 export class Canvas {
   private renderer: WebGLRenderer;
   private camera: PerspectiveCamera;
-  private scenes: Canvas_Content[];
+  private contentList: Canvas_Content[];
   private background: Canvas_Background;
   private canvasSettings: C_Settings;
   private contentSettingsList: C_Content_Settings[];
@@ -26,8 +26,21 @@ export class Canvas {
     this.setCamera();
     this.setCanvasDOMStyles();
     this.setContentSettingsList();
-    this.setScenes();
+    this.setContent();
     this.setBackground();
+    this.removePreloader();
+  }
+
+  private removePreloader() {
+    const preloaderElement = <HTMLDivElement>document.getElementById("preloader");
+    if (preloaderElement) {
+      setTimeout(() => {
+        preloaderElement.style.opacity = "0";
+      }, 300);
+      setTimeout(() => {
+        preloaderElement.remove();
+      }, 1000);
+    }
   }
 
   private setCanvasSettings() {
@@ -61,16 +74,16 @@ export class Canvas {
     this.renderer.setPixelRatio(this.viewport.w < 900 && window.devicePixelRatio >= 2 ? 2 : 1);
   }
 
-  private setScenes() {
-    this.scenes = this.contentSettingsList.map(
+  private setContent() {
+    this.contentList = this.contentSettingsList.map(
       (contentSettings) =>
         new Canvas_Content(this.renderer, contentSettings, this.canvasContentElementsDetails, this.camera, this.canvasDOMElement, this.contentDOMElement, this.viewport)
     );
   }
 
-  private updateScenes() {
+  private updateContent() {
     this.contentSettingsList.forEach((contentSettings, index) => {
-      this.scenes[index].resize(contentSettings, this.camera);
+      this.contentList[index].resize(contentSettings, this.camera);
     });
   }
 
@@ -92,14 +105,14 @@ export class Canvas {
     this.setContentSettingsList();
 
     this.updateBackground();
-    this.updateScenes();
+    this.updateContent();
   }
 
   update() {
     this.background.update();
     this.renderer.autoClear = false;
     this.renderer.clearDepth();
-    this.scenes.forEach((scene: Canvas_Content) => scene.update());
+    this.contentList.forEach((content: Canvas_Content) => content.update());
     this.renderer.autoClear = true;
   }
 }
