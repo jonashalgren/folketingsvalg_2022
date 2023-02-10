@@ -5,14 +5,15 @@ import type { C_Content_Settings } from "@models";
 export abstract class Canvas_Scene {
   public scene: Scene;
   public controls: OrbitControls;
+  public camera: PerspectiveCamera;
 
   private spotLight: SpotLight;
   private ambientLight: AmbientLight;
 
-  abstract resize(camera: PerspectiveCamera, contentSettings: C_Content_Settings): void;
+  abstract resize(cameraAspect: number, contentSettings: C_Content_Settings): void;
   abstract update(): void;
 
-  constructor(public renderer: WebGLRenderer, public canvasDOMElement: HTMLCanvasElement, public camera: PerspectiveCamera) {
+  constructor(public renderer: WebGLRenderer, public canvasDOMElement: HTMLCanvasElement, public cameraAspect: number) {
     this.scene = new Scene();
     this.setCamera();
     this.setControls();
@@ -27,19 +28,20 @@ export abstract class Canvas_Scene {
     this.scene.add(this.spotLight, this.ambientLight);
   }
 
-  public setCamera() {
+  private setCamera() {
+    this.camera = new PerspectiveCamera(50, this.cameraAspect, 0.1, 1000);
     this.camera = this.camera.clone();
     this.camera.up.set(0, 0, 1);
   }
 
-  public setControls() {
+  private setControls() {
     this.controls = new OrbitControls(this.camera, this.canvasDOMElement);
     this.controls.enableZoom = false;
     this.controls.enablePan = false;
   }
 
-  public updateCamera(camera: PerspectiveCamera) {
-    this.camera.aspect = camera.aspect;
+  public updateCamera(cameraAspect: number) {
+    this.camera.aspect = cameraAspect;
     this.camera.updateProjectionMatrix();
   }
 

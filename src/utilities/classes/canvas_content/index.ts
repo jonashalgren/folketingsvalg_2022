@@ -24,14 +24,12 @@ export class Canvas_Content extends Canvas_Scene {
     public renderer: WebGLRenderer,
     private contentSettings: C_Content_Settings,
     private canvasContentElementsDetails: C_C_Element_Details,
-    public camera: PerspectiveCamera,
+    public cameraAspect: number,
     public canvasDOMElement: HTMLCanvasElement,
     private contentDOMElement: HTMLDivElement,
     private viewport: Viewport
   ) {
-    super(renderer, canvasDOMElement, camera);
-    this.setCamera();
-    this.setControls();
+    super(renderer, canvasDOMElement, cameraAspect);
     this.setElements();
     this.setMapperCamera();
     this.setMapperProgress();
@@ -74,9 +72,9 @@ export class Canvas_Content extends Canvas_Scene {
     });
   }
 
-  resize(camera: PerspectiveCamera, contentSettings: C_Content_Settings) {
+  resize(cameraAspect: number, contentSettings: C_Content_Settings) {
     this.contentSettings = contentSettings;
-    this.updateCamera(camera);
+    this.updateCamera(cameraAspect);
     this.updateControls();
     this.setMapperCamera();
     this.setMapperProgress();

@@ -2,7 +2,6 @@ import type { C_Settings, Viewport, C_C_Element_Details, C_Content_Settings } fr
 import { PerspectiveCamera, WebGLRenderer } from "three";
 import { Canvas_Content, Canvas_Background } from "@classes";
 import { _rAF } from "@stores";
-import { getCanvasSettings } from "./getCanvasSettings";
 import { getProcessedContentSettingsList } from "./getProcessedContentSettingsList";
 import { contentSettingsList } from "@assets";
 
@@ -44,7 +43,10 @@ export class Canvas {
   }
 
   private setCanvasSettings() {
-    this.canvasSettings = getCanvasSettings({ viewport: this.viewport });
+    const hasOffset = (this.viewport.h * 1.2) / this.viewport.w < 1;
+    const left = -(hasOffset ? ((this.viewport.h / this.viewport.w) * this.viewport.w) / 4 : 0);
+    const width = -left + this.viewport.w;
+    this.canvasSettings = { left, width, height: this.viewport.h };
   }
 
   private setContentSettingsList() {
@@ -77,22 +79,22 @@ export class Canvas {
   private setContent() {
     this.contentList = this.contentSettingsList.map(
       (contentSettings) =>
-        new Canvas_Content(this.renderer, contentSettings, this.canvasContentElementsDetails, this.camera, this.canvasDOMElement, this.contentDOMElement, this.viewport)
+        new Canvas_Content(this.renderer, contentSettings, this.canvasContentElementsDetails, this.camera.aspect, this.canvasDOMElement, this.contentDOMElement, this.viewport)
     );
   }
 
   private updateContent() {
     this.contentSettingsList.forEach((contentSettings, index) => {
-      this.contentList[index].resize(this.camera, contentSettings);
+      this.contentList[index].resize(this.camera.aspect, contentSettings);
     });
   }
 
   private setBackground() {
-    this.background = new Canvas_Background(this.renderer, this.canvasDOMElement, this.camera);
+    this.background = new Canvas_Background(this.renderer, this.canvasDOMElement, this.camera.aspect);
   }
 
   private updateBackground() {
-    this.background.resize(this.camera);
+    this.background.resize(this.camera.aspect);
   }
 
   resize(viewport: Viewport) {
