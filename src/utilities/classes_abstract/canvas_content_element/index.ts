@@ -3,11 +3,22 @@ import type { Group } from "three";
 import { getElementGroup } from "./getElementGroup";
 
 export abstract class Canvas_Content_Element<D extends C_S_S_Element, M extends C_C_Element_Mesh[]> {
-  abstract animate(progress: number, entryProgress: number): void;
-  abstract resize(elementSettings: D, contentSettings: C_Content_Settings): void;
+  public elementSettings: D;
+  public meshesTemplate: M;
+  public contentSettings: C_Content_Settings;
+  public index: number;
+
   group: Group;
   localProgress: number | undefined;
-  constructor(public contentElementSettings: D, public meshesTemplate: M, public contentSettings: C_Content_Settings) {
+
+  abstract animate(progress: number, entryProgress: number): void;
+  abstract resize(elementSettings: D, contentSettings: C_Content_Settings): void;
+
+  constructor(elementSettings: D, meshesTemplate: M, contentSettings: C_Content_Settings, index: number) {
+    this.elementSettings = elementSettings;
+    this.meshesTemplate = meshesTemplate;
+    this.contentSettings = contentSettings;
+    this.index = index;
     this.localProgress = undefined;
     this.setElementGroup();
   }
@@ -15,7 +26,7 @@ export abstract class Canvas_Content_Element<D extends C_S_S_Element, M extends 
   private setElementGroup() {
     this.group = getElementGroup({
       meshesTemplate: this.meshesTemplate ?? [],
-      contentElementSettings: this.contentElementSettings,
+      elementSettings: this.elementSettings,
     }).group;
   }
 

@@ -3,11 +3,11 @@ import { interpolate } from "popmotion";
 import type { Vector3Tuple } from "three";
 
 type Props = {
-  boxSettings: C_C_S_Element_Box;
+  elementSettings: C_C_S_Element_Box;
 };
 
-export function getMapperScale({ boxSettings }: Props): (progress: number) => Vector3Tuple {
-  const { inputRange, outputRange } = boxSettings.motion;
+export function getMapperScale({ elementSettings }: Props): (progress: number) => Vector3Tuple {
+  const { inputRange, outputRange } = elementSettings.motion;
 
   if (outputRange?.scale?.length > 0) {
     return interpolate(inputRange, outputRange.scale);

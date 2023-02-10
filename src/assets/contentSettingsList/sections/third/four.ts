@@ -1,5 +1,5 @@
 import type { C_Content_Settings } from "@models";
-import { partyCollection, fonts, mesh_default_settings } from "@assets";
+import { partyCollection, fonts, mesh_static_settings } from "@assets";
 
 const size = 14;
 
@@ -166,7 +166,7 @@ export const four: C_Content_Settings = {
         },
         color: {
           inputRange: [0, 0.36],
-          outputRange: [mesh_default_settings.color_dark, mesh_default_settings.color_dark],
+          outputRange: [mesh_static_settings.color_dark, mesh_static_settings.color_dark],
         },
         value: {
           inputRange: [0, 0.36],
@@ -195,7 +195,7 @@ export const four: C_Content_Settings = {
         },
         color: {
           inputRange: [0, 0.36],
-          outputRange: [mesh_default_settings.color_dark, mesh_default_settings.color_dark],
+          outputRange: [mesh_static_settings.color_dark, mesh_static_settings.color_dark],
         },
         value: {
           inputRange: [0, 0.36],
@@ -224,7 +224,7 @@ export const four: C_Content_Settings = {
         },
         color: {
           inputRange: [0, 0.36],
-          outputRange: [mesh_default_settings.color_dark, mesh_default_settings.color_dark],
+          outputRange: [mesh_static_settings.color_dark, mesh_static_settings.color_dark],
         },
         value: {
           inputRange: [0, 0.36],
@@ -253,7 +253,7 @@ export const four: C_Content_Settings = {
         },
         color: {
           inputRange: [0, 0.36],
-          outputRange: [mesh_default_settings.color_dark, mesh_default_settings.color_dark],
+          outputRange: [mesh_static_settings.color_dark, mesh_static_settings.color_dark],
         },
         value: {
           inputRange: [0, 0.36],
@@ -282,7 +282,7 @@ export const four: C_Content_Settings = {
         },
         color: {
           inputRange: [0, 0.36],
-          outputRange: [mesh_default_settings.color_dark, mesh_default_settings.color_dark],
+          outputRange: [mesh_static_settings.color_dark, mesh_static_settings.color_dark],
         },
         value: {
           inputRange: [0, 0.36],

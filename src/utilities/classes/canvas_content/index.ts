@@ -15,25 +15,36 @@ import { getMapperProgress } from "./getMapperProgress";
 import { Canvas_Scene, type Canvas_Content_Element } from "@classes_abstract";
 
 export class Canvas_Content extends Canvas_Scene {
+  private contentSettings: C_Content_Settings;
+  private canvasContentElementsDetails: C_C_Element_Details;
+  private contentDOMElement: HTMLDivElement;
+  private viewport: Viewport;
+
   private elements: Canvas_Content_Element<C_S_S_Element, C_C_Element_Mesh[]>[];
   private progress: C_Content_Progress;
   mapperProgress: C_Content_Progress_Mapper;
   mapperCamera: C_Content_Camera_Mapper;
 
   constructor(
-    public renderer: WebGLRenderer,
-    private contentSettings: C_Content_Settings,
-    private canvasContentElementsDetails: C_C_Element_Details,
-    public cameraAspect: number,
-    public canvasDOMElement: HTMLCanvasElement,
-    private contentDOMElement: HTMLDivElement,
-    private viewport: Viewport
+    renderer: WebGLRenderer,
+    camera: PerspectiveCamera,
+    canvasDOMElement: HTMLCanvasElement,
+
+    contentSettings: C_Content_Settings,
+    canvasContentElementsDetails: C_C_Element_Details,
+    contentDOMElement: HTMLDivElement,
+    viewport: Viewport
   ) {
-    super(renderer, canvasDOMElement, cameraAspect);
+    super(renderer, canvasDOMElement, camera);
+
+    this.contentSettings = contentSettings;
+    this.canvasContentElementsDetails = canvasContentElementsDetails;
+    this.contentDOMElement = contentDOMElement;
+    this.viewport = viewport;
+
     this.setElements();
     this.setMapperCamera();
     this.setMapperProgress();
-
     this.setGrid();
     this.addElementMeshesToScene();
   }
@@ -72,9 +83,9 @@ export class Canvas_Content extends Canvas_Scene {
     });
   }
 
-  resize(cameraAspect: number, contentSettings: C_Content_Settings) {
+  resize(camera: PerspectiveCamera, contentSettings: C_Content_Settings) {
     this.contentSettings = contentSettings;
-    this.updateCamera(cameraAspect);
+    this.updateCamera(camera);
     this.updateControls();
     this.setMapperCamera();
     this.setMapperProgress();

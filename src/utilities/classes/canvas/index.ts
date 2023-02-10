@@ -6,6 +6,11 @@ import { getProcessedContentSettingsList } from "./getProcessedContentSettingsLi
 import { contentSettingsList } from "@assets";
 
 export class Canvas {
+  private canvasDOMElement: HTMLCanvasElement;
+  private contentDOMElement: HTMLDivElement;
+  private canvasContentElementsDetails: C_C_Element_Details;
+  private viewport: Viewport;
+
   private renderer: WebGLRenderer;
   private camera: PerspectiveCamera;
   private contentList: Canvas_Content[];
@@ -13,12 +18,12 @@ export class Canvas {
   private canvasSettings: C_Settings;
   private contentSettingsList: C_Content_Settings[];
 
-  constructor(
-    private canvasDOMElement: HTMLCanvasElement,
-    private contentDOMElement: HTMLDivElement,
-    private canvasContentElementsDetails: C_C_Element_Details,
-    private viewport: Viewport
-  ) {
+  constructor(canvasDOMElement: HTMLCanvasElement, contentDOMElement: HTMLDivElement, canvasContentElementsDetails: C_C_Element_Details, viewport: Viewport) {
+    this.canvasDOMElement = canvasDOMElement;
+    this.contentDOMElement = contentDOMElement;
+    this.canvasContentElementsDetails = canvasContentElementsDetails;
+    this.viewport = viewport;
+
     this.renderer = new WebGLRenderer({ antialias: true, canvas: this.canvasDOMElement, logarithmicDepthBuffer: true });
     this.setCanvasSettings();
     this.setRenderer();
@@ -79,22 +84,22 @@ export class Canvas {
   private setContent() {
     this.contentList = this.contentSettingsList.map(
       (contentSettings) =>
-        new Canvas_Content(this.renderer, contentSettings, this.canvasContentElementsDetails, this.camera.aspect, this.canvasDOMElement, this.contentDOMElement, this.viewport)
+        new Canvas_Content(this.renderer, this.camera, this.canvasDOMElement, contentSettings, this.canvasContentElementsDetails, this.contentDOMElement, this.viewport)
     );
   }
 
   private updateContent() {
     this.contentSettingsList.forEach((contentSettings, index) => {
-      this.contentList[index].resize(this.camera.aspect, contentSettings);
+      this.contentList[index].resize(this.camera, contentSettings);
     });
   }
 
   private setBackground() {
-    this.background = new Canvas_Background(this.renderer, this.canvasDOMElement, this.camera.aspect);
+    this.background = new Canvas_Background(this.renderer, this.canvasDOMElement, this.camera);
   }
 
   private updateBackground() {
-    this.background.resize(this.camera.aspect);
+    this.background.resize(this.camera);
   }
 
   resize(viewport: Viewport) {

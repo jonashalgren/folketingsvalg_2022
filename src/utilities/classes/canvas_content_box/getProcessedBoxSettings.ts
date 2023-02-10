@@ -2,24 +2,24 @@ import type { C_Content_Settings, C_C_S_Element_Box } from "@models";
 import { getProcessedOutputRangeList } from "@helpers";
 
 type Props = {
-  boxSettings: C_C_S_Element_Box;
+  elementSettings: C_C_S_Element_Box;
   contentSettings: C_Content_Settings;
 };
 
-export function getProcessedBoxSettings({ boxSettings, contentSettings }: Props): C_C_S_Element_Box {
+export function getProcessedBoxSettings({ elementSettings, contentSettings }: Props): C_C_S_Element_Box {
   return {
-    ...boxSettings,
+    ...elementSettings,
     type: "box",
     motion: {
-      ...boxSettings.motion,
+      ...elementSettings.motion,
       outputRange: {
         position: getProcessedOutputRangeList({
           dimensionZ: contentSettings.dimensionZ,
-          originalOutputRangeList: boxSettings.motion.outputRange.position ?? [],
+          originalOutputRangeList: elementSettings.motion.outputRange.position ?? [],
         }),
         scale: getProcessedOutputRangeList({
           dimensionZ: contentSettings.dimensionZ,
-          originalOutputRangeList: boxSettings.motion.outputRange.scale ?? [],
+          originalOutputRangeList: elementSettings.motion.outputRange.scale ?? [],
         }),
       },
     },

@@ -19,8 +19,8 @@ export class Canvas_Content_Box extends Canvas_Content_Element<C_C_S_Element_Box
   private floatingYOffsetProgress: number;
   private floatingProgress: Spring<number>;
 
-  constructor(public boxSettings: C_C_S_Element_Box, public meshesTemplate: C_C_E_Mesh_Box[], public contentSettings: C_Content_Settings, public index: number) {
-    super(boxSettings, meshesTemplate, contentSettings);
+  constructor(elementSettings: C_C_S_Element_Box, meshesTemplate: C_C_E_Mesh_Box[], contentSettings: C_Content_Settings, index: number) {
+    super(elementSettings, meshesTemplate, contentSettings, index);
     this.setBoxSettings();
     this.setFloatingProperties();
     this.setMapperPosition();
@@ -30,19 +30,19 @@ export class Canvas_Content_Box extends Canvas_Content_Element<C_C_S_Element_Box
   }
 
   private setBoxSettings() {
-    this.boxSettings = getProcessedBoxSettings({ boxSettings: this.boxSettings, contentSettings: this.contentSettings });
+    this.elementSettings = getProcessedBoxSettings({ elementSettings: this.elementSettings, contentSettings: this.contentSettings });
   }
 
   private setMapperPosition() {
-    this.mapperPosition = getMapperPosition({ boxSettings: this.boxSettings });
+    this.mapperPosition = getMapperPosition({ elementSettings: this.elementSettings });
   }
 
   private setMapperScale() {
-    this.mapperScale = getMapperScale({ boxSettings: this.boxSettings });
+    this.mapperScale = getMapperScale({ elementSettings: this.elementSettings });
   }
 
   private setMapperFloatingYOffset() {
-    this.mapperFloatingYOffset = getMapperFloatingYOffset({ boxSettings: this.boxSettings });
+    this.mapperFloatingYOffset = getMapperFloatingYOffset({ elementSettings: this.elementSettings });
   }
 
   private setFloatingProperties() {
@@ -55,11 +55,11 @@ export class Canvas_Content_Box extends Canvas_Content_Element<C_C_S_Element_Box
   }
 
   private setRotation() {
-    if (this.boxSettings?.rotation) {
+    if (this.elementSettings?.rotation) {
       this.group.children[0].rotation.set(
-        degreesToRadians(this.boxSettings.rotation[0]),
-        degreesToRadians(this.boxSettings.rotation[1]),
-        degreesToRadians(this.boxSettings.rotation[2])
+        degreesToRadians(this.elementSettings.rotation[0]),
+        degreesToRadians(this.elementSettings.rotation[1]),
+        degreesToRadians(this.elementSettings.rotation[2])
       );
     }
   }
@@ -81,7 +81,7 @@ export class Canvas_Content_Box extends Canvas_Content_Element<C_C_S_Element_Box
   }
 
   resize(boxSettings: C_C_S_Element_Box) {
-    this.boxSettings = boxSettings;
+    this.elementSettings = boxSettings;
 
     this.setBoxSettings();
     this.setMapperPosition();
@@ -90,25 +90,25 @@ export class Canvas_Content_Box extends Canvas_Content_Element<C_C_S_Element_Box
   }
 
   animate(progress: number) {
-    if (this.boxSettings.isFloating) {
+    if (this.elementSettings.isFloating) {
       this.setFloatingYOffsetProgress();
       this.floatingProgress.set(progress);
       progress = get(this.floatingProgress);
     }
 
-    if (this.localProgress !== progress || this.boxSettings.isFloating) {
+    if (this.localProgress !== progress || this.elementSettings.isFloating) {
       this.localProgress = progress;
       const scale = this.mapperScale(progress);
       const position = this.mapperPosition(progress);
       const floatingYOffset = this.mapperFloatingYOffset(this.floatingYOffsetProgress);
       this.group.children[0].scale.set(
-        scale[0] * this.boxSettings.size + 0.001 * this.index,
-        scale[1] * this.boxSettings.size + 0.001 * this.index,
+        scale[0] * this.elementSettings.size + 0.001 * this.index,
+        scale[1] * this.elementSettings.size + 0.001 * this.index,
         scale[2] * 0.8 + 0.001 * this.index
       );
       this.group.children[0].position.set(
-        position[0] - ((scale[0] - 1) * this.boxSettings.size) / 2,
-        position[1] - ((scale[1] - 1) * this.boxSettings.size) / 2 + floatingYOffset,
+        position[0] - ((scale[0] - 1) * this.elementSettings.size) / 2,
+        position[1] - ((scale[1] - 1) * this.elementSettings.size) / 2 + floatingYOffset,
         position[2] + (scale[2] * 0.8) / 2
       );
     }

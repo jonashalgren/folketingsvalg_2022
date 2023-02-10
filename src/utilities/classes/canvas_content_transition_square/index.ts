@@ -4,6 +4,12 @@ import { Color, Mesh, MeshLambertMaterial, CustomBlending, MinEquation, SrcAlpha
 import type { ExtrudeBufferGeometry, Vector3Tuple } from "three";
 
 export class Canvas_Content_Transition_Square {
+  private color: Color;
+  private whiteColor: Color;
+  private blackColor: Color;
+  private positionOutputRange: [Vector3Tuple, Vector3Tuple];
+  private rotationOutputRange: [Vector3Tuple, Vector3Tuple];
+
   private material: MeshLambertMaterial;
   private geometry: ExtrudeBufferGeometry;
   private shape: Shape;
@@ -13,13 +19,13 @@ export class Canvas_Content_Transition_Square {
   positionMapper: (progress: number) => Vector3Tuple;
   rotationMapper: (progress: number) => Vector3Tuple;
 
-  constructor(
-    private color: Color,
-    private whiteColor: Color,
-    private blackColor: Color,
-    private positionOutputRange: [Vector3Tuple, Vector3Tuple],
-    private rotationOutputRange: [Vector3Tuple, Vector3Tuple]
-  ) {
+  constructor(color: Color, whiteColor: Color, blackColor: Color, positionOutputRange: [Vector3Tuple, Vector3Tuple], rotationOutputRange: [Vector3Tuple, Vector3Tuple]) {
+    this.color = color;
+    this.whiteColor = whiteColor;
+    this.blackColor = blackColor;
+    this.positionOutputRange = positionOutputRange;
+    this.rotationOutputRange = rotationOutputRange;
+
     this.setShape();
     this.setGeometry();
     this.setMaterial();

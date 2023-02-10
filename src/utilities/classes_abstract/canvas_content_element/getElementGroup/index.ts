@@ -6,7 +6,7 @@ import { filterMeshes } from "./filterMeshes";
 import { groupMeshes } from "./groupMeshes";
 
 export type Props = {
-  contentElementSettings: C_S_S_Element;
+  elementSettings: C_S_S_Element;
   meshesTemplate: C_C_Element_Mesh[];
   group?: Group;
 };

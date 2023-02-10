@@ -1,10 +1,10 @@
 import { Color, MeshLambertMaterial } from "three";
-import { mesh_default_settings } from "@assets";
+import { mesh_static_settings } from "@assets";
 
 type Props = {
   color?: Color;
 };
 
 export function getMeshMaterial({ color }: Props) {
-  return new MeshLambertMaterial({ color: color ? color : mesh_default_settings.color_neutral });
+  return new MeshLambertMaterial({ color: color ? color : mesh_static_settings.color_neutral });
 }

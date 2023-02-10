@@ -1,4 +1,4 @@
-export const mesh_default_settings = {
+export const mesh_static_settings = {
   color_neutral: "#e9eae8",
   color_misc: "#3b3a3a",
   color_dark: "#000000",

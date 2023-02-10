@@ -9,8 +9,8 @@ export class Canvas_Content_Map extends Canvas_Content_Element<C_C_S_Element_Map
   private meshes: C_C_E_Mesh_Map[];
   private areas: Canvas_Content_Map_Area[];
 
-  constructor(public mapSettings: C_C_S_Element_Map, public meshesTemplate: C_C_E_Mesh_Map[], public contentSettings: C_Content_Settings) {
-    super(mapSettings, meshesTemplate, contentSettings);
+  constructor(elementSettings: C_C_S_Element_Map, meshesTemplate: C_C_E_Mesh_Map[], contentSettings: C_Content_Settings) {
+    super(elementSettings, meshesTemplate, contentSettings, 0);
     this.meshes = <C_C_E_Mesh_Map[]>this.group.children;
 
     this.setConfigs();
@@ -20,7 +20,7 @@ export class Canvas_Content_Map extends Canvas_Content_Element<C_C_S_Element_Map
   private setConfigs() {
     this.configs = getProcessedConfigs({
       electionResult: election_result_areas,
-      configs: this.mapSettings.configs,
+      configs: this.elementSettings.configs,
     }).configs;
   }
 
@@ -42,8 +42,8 @@ export class Canvas_Content_Map extends Canvas_Content_Element<C_C_S_Element_Map
     });
   }
 
-  resize(mapSettings: C_C_S_Element_Map, contentSettings: C_Content_Settings) {
-    this.mapSettings = mapSettings;
+  resize(elementSettings: C_C_S_Element_Map, contentSettings: C_Content_Settings) {
+    this.elementSettings = elementSettings;
     this.contentSettings = contentSettings;
 
     this.setConfigs();

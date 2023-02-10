@@ -4,8 +4,8 @@ import { Canvas_Scene } from "@classes_abstract";
 export class Canvas_Background extends Canvas_Scene {
   private plane: Mesh;
 
-  constructor(public renderer: WebGLRenderer, public canvasDOMElement: HTMLCanvasElement, public cameraAspect: number) {
-    super(renderer, canvasDOMElement, cameraAspect);
+  constructor(renderer: WebGLRenderer, canvasDOMElement: HTMLCanvasElement, camera: PerspectiveCamera) {
+    super(renderer, canvasDOMElement, camera);
     this.setPlane();
     this.camera.position.set(0, 0, 200);
   }
@@ -18,8 +18,8 @@ export class Canvas_Background extends Canvas_Scene {
     this.scene.add(this.plane);
   }
 
-  resize(cameraAspect: number) {
-    this.updateCamera(cameraAspect);
+  resize(camera: PerspectiveCamera) {
+    this.updateCamera(camera);
   }
 
   update() {

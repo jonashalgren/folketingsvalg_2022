@@ -3,19 +3,23 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import type { C_Content_Settings } from "@models";
 
 export abstract class Canvas_Scene {
-  public scene: Scene;
-  public controls: OrbitControls;
-  public camera: PerspectiveCamera;
+  renderer: WebGLRenderer;
+  canvasDOMElement: HTMLCanvasElement;
+  camera: PerspectiveCamera;
 
+  scene: Scene;
+  controls: OrbitControls;
   private spotLight: SpotLight;
   private ambientLight: AmbientLight;
 
-  abstract resize(cameraAspect: number, contentSettings: C_Content_Settings): void;
+  abstract resize(camera: PerspectiveCamera, contentSettings: C_Content_Settings): void;
   abstract update(): void;
 
-  constructor(public renderer: WebGLRenderer, public canvasDOMElement: HTMLCanvasElement, public cameraAspect: number) {
+  constructor(renderer: WebGLRenderer, canvasDOMElement: HTMLCanvasElement, camera: PerspectiveCamera) {
+    this.renderer = renderer;
+    this.canvasDOMElement = canvasDOMElement;
     this.scene = new Scene();
-    this.setCamera();
+    this.setCamera(camera);
     this.setControls();
     this.setLights();
   }
@@ -28,9 +32,8 @@ export abstract class Canvas_Scene {
     this.scene.add(this.spotLight, this.ambientLight);
   }
 
-  private setCamera() {
-    this.camera = new PerspectiveCamera(50, this.cameraAspect, 0.1, 1000);
-    this.camera = this.camera.clone();
+  private setCamera(camera: PerspectiveCamera) {
+    this.camera = camera.clone();
     this.camera.up.set(0, 0, 1);
   }
 
@@ -40,8 +43,8 @@ export abstract class Canvas_Scene {
     this.controls.enablePan = false;
   }
 
-  public updateCamera(cameraAspect: number) {
-    this.camera.aspect = cameraAspect;
+  public updateCamera(camera: PerspectiveCamera) {
+    this.camera.aspect = camera.aspect;
     this.camera.updateProjectionMatrix();
   }
 
