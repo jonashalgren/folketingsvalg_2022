@@ -1,63 +1,21 @@
-import { Mesh, MeshBasicMaterial, PlaneGeometry, Scene, SpotLight, AmbientLight, PerspectiveCamera, WebGLRenderer } from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { Mesh, MeshBasicMaterial, PlaneGeometry, PerspectiveCamera, WebGLRenderer } from "three";
+import { Canvas_Scene } from "@classes_abstract";
 
-export class Canvas_Background {
-  private scene: Scene;
-  private geometry: PlaneGeometry;
-  private material: MeshBasicMaterial;
+export class Canvas_Background extends Canvas_Scene {
   private plane: Mesh;
-  private spotLight: SpotLight;
-  private ambientLight: AmbientLight;
-  private controls: OrbitControls;
 
-  constructor(private renderer: WebGLRenderer, private canvasDOMElement: HTMLCanvasElement, private camera: PerspectiveCamera) {
-    this.scene = new Scene();
-    this.camera = camera.clone();
+  constructor(public renderer: WebGLRenderer, public canvasDOMElement: HTMLCanvasElement, public camera: PerspectiveCamera) {
+    super(renderer, canvasDOMElement, camera);
     this.setPlane();
-    this.setCamera();
-    this.setControls();
-    this.setLights();
-  }
-
-  private setPlane() {
-    this.geometry = new PlaneGeometry(10000, 10000);
-    this.material = new MeshBasicMaterial({ color: "#e6e6e1" });
-    this.plane = new Mesh(this.geometry, this.material);
-    this.plane.position.set(0, 0, 1);
-    this.scene.add(this.plane);
-  }
-
-  private setCamera() {
-    this.camera.up.set(0, 0, 1);
     this.camera.position.set(0, 0, 200);
   }
 
-  private updateCamera(camera: PerspectiveCamera) {
-    this.camera.aspect = camera.aspect;
-    this.camera.updateProjectionMatrix();
-  }
-
-  private setControls() {
-    this.controls = new OrbitControls(this.camera, this.canvasDOMElement);
-    this.controls.enableZoom = false;
-    this.controls.enablePan = false;
-  }
-
-  private updateControls() {
-    this.controls.update();
-  }
-
-  private updateRenderer() {
-    this.renderer.render(this.scene, this.camera);
-  }
-
-  private setLights() {
-    this.spotLight = new SpotLight(0xffffff, 0.4);
-    this.spotLight.position.set(0, 0, 200);
-    this.scene.add(this.spotLight);
-    this.ambientLight = new AmbientLight(0xffffff, 0.6);
-    this.ambientLight.position.set(0, 0, 200);
-    this.scene.add(this.ambientLight);
+  private setPlane() {
+    const geometry = new PlaneGeometry(10000, 10000);
+    const material = new MeshBasicMaterial({ color: "#e6e6e1" });
+    this.plane = new Mesh(geometry, material);
+    this.plane.position.set(0, 0, 1);
+    this.scene.add(this.plane);
   }
 
   resize(camera: PerspectiveCamera) {

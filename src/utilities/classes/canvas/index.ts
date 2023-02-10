@@ -83,7 +83,7 @@ export class Canvas {
 
   private updateContent() {
     this.contentSettingsList.forEach((contentSettings, index) => {
-      this.contentList[index].resize(contentSettings, this.camera);
+      this.contentList[index].resize(this.camera, contentSettings);
     });
   }
 
