@@ -1,4 +1,4 @@
-import { Scene, SpotLight, AmbientLight, PerspectiveCamera, WebGLRenderer } from "three";
+import { Scene, SpotLight, AmbientLight, PerspectiveCamera, WebGLRenderer, GridHelper, Mesh } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import type { C_Content_Settings } from "@models";
 
@@ -9,6 +9,7 @@ export abstract class Canvas_Scene {
 
   scene: Scene;
   controls: OrbitControls;
+
   private spotLight: SpotLight;
   private ambientLight: AmbientLight;
 
@@ -41,6 +42,19 @@ export abstract class Canvas_Scene {
     this.controls = new OrbitControls(this.camera, this.canvasDOMElement);
     this.controls.enableZoom = false;
     this.controls.enablePan = false;
+  }
+
+  public setGrid() {
+    const gridXZ = new GridHelper(100, 10, "#000", "#aaaaaa");
+    const gridXY = new GridHelper(100, 10, "#000", "#aaaaaa");
+    const gridYZ = new GridHelper(100, 10, "#000", "#aaaaaa");
+    gridXY.rotation.x = Math.PI / 2;
+    gridYZ.rotation.z = Math.PI / 2;
+    this.scene.add(gridYZ, gridXZ, gridXY);
+  }
+
+  public addElementMeshesToScene(meshes: Mesh[]) {
+    this.scene.add(...meshes);
   }
 
   public updateCamera(camera: PerspectiveCamera) {

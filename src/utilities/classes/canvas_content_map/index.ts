@@ -6,12 +6,10 @@ import { getProcessedConfigs } from "./getProcessedConfigs";
 
 export class Canvas_Content_Map extends Canvas_Content_Element<C_C_S_Element_Map, C_C_E_Mesh_Map[]> {
   private configs: C_S_S_E_Map_Config[];
-  private meshes: C_C_E_Mesh_Map[];
   private areas: Canvas_Content_Map_Area[];
 
   constructor(elementSettings: C_C_S_Element_Map, meshesTemplate: C_C_E_Mesh_Map[], contentSettings: C_Content_Settings) {
     super(elementSettings, meshesTemplate, contentSettings, 0);
-    this.meshes = <C_C_E_Mesh_Map[]>this.group.children;
 
     this.setConfigs();
     this.setAreas();

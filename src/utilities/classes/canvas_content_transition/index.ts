@@ -1,11 +1,11 @@
 import { Color } from "three";
 import { Canvas_Content_Transition_Square } from "@classes";
 import { Canvas_Content_Element } from "@classes_abstract";
-import type { C_C_S_Element_Transition } from "@models";
+import type { C_C_E_Mesh_Transition, C_C_S_Element_Transition } from "@models";
 import { interpolate } from "popmotion";
 import { transition_square_static_settings } from "@assets";
 
-export class Canvas_Content_Transition extends Canvas_Content_Element<C_C_S_Element_Transition, undefined> {
+export class Canvas_Content_Transition extends Canvas_Content_Element<C_C_S_Element_Transition, C_C_E_Mesh_Transition[]> {
   public transitionSettings: C_C_S_Element_Transition;
 
   private squares: Canvas_Content_Transition_Square[];
@@ -16,7 +16,7 @@ export class Canvas_Content_Transition extends Canvas_Content_Element<C_C_S_Elem
   static blackColor = new Color("#000000");
 
   constructor(transitionSettings: C_C_S_Element_Transition) {
-    super(transitionSettings, undefined, undefined, 0);
+    super(transitionSettings, [], undefined, 0);
     this.transitionSettings = transitionSettings;
     this.colorAlphaMapper = interpolate([0, 0.3, 0.9, 1], [1, 0, 0, 1]);
     this.setSquares();
@@ -31,7 +31,7 @@ export class Canvas_Content_Transition extends Canvas_Content_Element<C_C_S_Elem
 
   private addSquaresToGroup() {
     this.squares.forEach((square) => {
-      this.group.add(square.mesh);
+      this.meshes.push(square.mesh);
     });
   }
 

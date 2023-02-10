@@ -8,7 +8,7 @@ import type {
   Viewport,
   C_C_Element_Details,
 } from "@models";
-import { WebGLRenderer, GridHelper, type PerspectiveCamera } from "three";
+import type { WebGLRenderer, PerspectiveCamera } from "three";
 import { getElements } from "./getElements";
 import { getMapperCamera } from "./getMapperCamera";
 import { getMapperProgress } from "./getMapperProgress";
@@ -46,7 +46,7 @@ export class Canvas_Content extends Canvas_Scene {
     this.setMapperCamera();
     this.setMapperProgress();
     this.setGrid();
-    this.addElementMeshesToScene();
+    this.addElementMeshesToScene(this.elements.flatMap((element) => element.meshes));
   }
 
   private setMapperCamera() {
@@ -65,21 +65,6 @@ export class Canvas_Content extends Canvas_Scene {
     this.elements.forEach((element) => {
       const progress = this.contentSettings.mode === "auto" ? this.progress.auto : this.progress.main;
       element.update(progress, this.progress.entry);
-    });
-  }
-
-  private setGrid() {
-    const gridXZ = new GridHelper(100, 10, "#000", "#aaaaaa");
-    const gridXY = new GridHelper(100, 10, "#000", "#aaaaaa");
-    const gridYZ = new GridHelper(100, 10, "#000", "#aaaaaa");
-    gridXY.rotation.x = Math.PI / 2;
-    gridYZ.rotation.z = Math.PI / 2;
-    this.scene.add(gridYZ, gridXZ, gridXY);
-  }
-
-  private addElementMeshesToScene() {
-    this.elements.forEach((element) => {
-      this.scene.add(element.group);
     });
   }
 

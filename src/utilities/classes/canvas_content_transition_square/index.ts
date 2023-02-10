@@ -2,6 +2,7 @@ import { getMeshGeometry } from "@helpers";
 import { interpolate } from "popmotion";
 import { Color, Mesh, MeshLambertMaterial, CustomBlending, MinEquation, SrcAlphaFactor, Shape } from "three";
 import type { ExtrudeBufferGeometry, Vector3Tuple } from "three";
+import type { C_C_E_Mesh_Transition } from "@models";
 
 export class Canvas_Content_Transition_Square {
   private color: Color;
@@ -14,7 +15,7 @@ export class Canvas_Content_Transition_Square {
   private geometry: ExtrudeBufferGeometry;
   private shape: Shape;
   private localProgress: number;
-  mesh: Mesh<ExtrudeBufferGeometry, MeshLambertMaterial>;
+  mesh: C_C_E_Mesh_Transition;
 
   positionMapper: (progress: number) => Vector3Tuple;
   rotationMapper: (progress: number) => Vector3Tuple;

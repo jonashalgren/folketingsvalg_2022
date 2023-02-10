@@ -1,14 +1,12 @@
 import { pipe } from "@helpers";
 import type { C_S_S_Element, C_C_Element_Mesh } from "@models";
-import type { Group } from "three";
 import { cloneMeshes } from "./cloneMeshes";
 import { filterMeshes } from "./filterMeshes";
-import { groupMeshes } from "./groupMeshes";
 
 export type Props = {
   elementSettings: C_S_S_Element;
   meshesTemplate: C_C_Element_Mesh[];
-  group?: Group;
+  meshes?: C_C_Element_Mesh[];
 };
 
-export const getElementGroup = pipe(filterMeshes, cloneMeshes, groupMeshes);
+export const getElementMeshes = pipe(filterMeshes, cloneMeshes);

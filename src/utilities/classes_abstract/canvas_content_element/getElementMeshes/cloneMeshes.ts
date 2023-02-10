@@ -4,7 +4,7 @@ import type { Props } from "./index";
 export function cloneMeshes(item: Props) {
   return {
     ...item,
-    meshesTemplate: item.meshesTemplate.map((item: C_C_Element_Mesh) => {
+    meshes: item.meshes.map((item: C_C_Element_Mesh) => {
       const clone = item.clone();
       clone.userData = item.userData;
       clone.geometry = clone.geometry.clone() as any;

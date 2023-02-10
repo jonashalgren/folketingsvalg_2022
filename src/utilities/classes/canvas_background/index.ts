@@ -6,8 +6,9 @@ export class Canvas_Background extends Canvas_Scene {
 
   constructor(renderer: WebGLRenderer, canvasDOMElement: HTMLCanvasElement, camera: PerspectiveCamera) {
     super(renderer, canvasDOMElement, camera);
-    this.setPlane();
     this.camera.position.set(0, 0, 200);
+    this.setPlane();
+    this.addElementMeshesToScene([this.plane]);
   }
 
   private setPlane() {
@@ -15,7 +16,6 @@ export class Canvas_Background extends Canvas_Scene {
     const material = new MeshBasicMaterial({ color: "#e6e6e1" });
     this.plane = new Mesh(geometry, material);
     this.plane.position.set(0, 0, 1);
-    this.scene.add(this.plane);
   }
 
   resize(camera: PerspectiveCamera) {

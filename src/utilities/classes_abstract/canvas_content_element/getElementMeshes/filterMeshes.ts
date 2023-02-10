@@ -6,9 +6,12 @@ export function filterMeshes(item: Props) {
     const { elementSettings, meshesTemplate } = item;
     return {
       ...item,
-      meshesTemplate: meshesTemplate.filter(({ userData }: C_C_E_Mesh_Box) => userData.partyLetter === elementSettings.partyLetter && elementSettings.texture === userData.texture),
+      meshes: meshesTemplate.filter(({ userData }: C_C_E_Mesh_Box) => userData.partyLetter === elementSettings.partyLetter && elementSettings.texture === userData.texture),
     };
   }
 
-  return item;
+  return {
+    ...item,
+    meshes: item.meshesTemplate,
+  };
 }

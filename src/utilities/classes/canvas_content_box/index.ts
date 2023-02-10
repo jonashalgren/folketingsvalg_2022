@@ -56,7 +56,7 @@ export class Canvas_Content_Box extends Canvas_Content_Element<C_C_S_Element_Box
 
   private setRotation() {
     if (this.elementSettings?.rotation) {
-      this.group.children[0].rotation.set(
+      this.meshes[0].rotation.set(
         degreesToRadians(this.elementSettings.rotation[0]),
         degreesToRadians(this.elementSettings.rotation[1]),
         degreesToRadians(this.elementSettings.rotation[2])
@@ -101,12 +101,12 @@ export class Canvas_Content_Box extends Canvas_Content_Element<C_C_S_Element_Box
       const scale = this.mapperScale(progress);
       const position = this.mapperPosition(progress);
       const floatingYOffset = this.mapperFloatingYOffset(this.floatingYOffsetProgress);
-      this.group.children[0].scale.set(
+      this.meshes[0].scale.set(
         scale[0] * this.elementSettings.size + 0.001 * this.index,
         scale[1] * this.elementSettings.size + 0.001 * this.index,
         scale[2] * 0.8 + 0.001 * this.index
       );
-      this.group.children[0].position.set(
+      this.meshes[0].position.set(
         position[0] - ((scale[0] - 1) * this.elementSettings.size) / 2,
         position[1] - ((scale[1] - 1) * this.elementSettings.size) / 2 + floatingYOffset,
         position[2] + (scale[2] * 0.8) / 2

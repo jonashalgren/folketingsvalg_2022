@@ -32,7 +32,13 @@ export type C_C_E_Mesh_Map = Mesh<ExtrudeGeometry, MeshLambertMaterial> & {
 
 //------------------------------------------------------------
 
-export type C_C_Element_Mesh = C_C_E_Mesh_Box | C_C_E_Mesh_Figure | C_C_E_Mesh_Text | C_C_E_Mesh_Map;
+export type C_C_E_Mesh_Transition = Mesh<ExtrudeGeometry, MeshLambertMaterial> & {
+  stayHidden: boolean;
+};
+
+//------------------------------------------------------------
+
+export type C_C_Element_Mesh = C_C_E_Mesh_Box | C_C_E_Mesh_Figure | C_C_E_Mesh_Text | C_C_E_Mesh_Map | C_C_E_Mesh_Transition;
 
 export type C_C_Element_Details = {
   box: {
