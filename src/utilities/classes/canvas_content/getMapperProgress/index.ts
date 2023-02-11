@@ -1,7 +1,7 @@
 import { _scrollY } from "@stores";
 import { pipe } from "@helpers";
 import type { C_Content_Progress, C_Content_Progress_State, C_Content_Settings, Viewport } from "@models";
-import { setMapperProgress } from "./setMapperProgress";
+import { setMapper } from "./setMapper";
 import { setMapperProgressMain } from "./setMapperProgressMain";
 import { setMapperProgressAuto } from "./setMapperProgressAuto";
 import { setMapperProgressState } from "./setMapperProgressState";
@@ -19,4 +19,4 @@ export type Props = {
   mapper?: () => C_Content_Progress;
 };
 
-export const getMapperProgress = pipe(setMapperProgressState, setMapperProgressTransition, setMapperProgressMain, setMapperProgressAuto, setMapperProgress);
+export const getMapperProgress = pipe(setMapperProgressState, setMapperProgressTransition, setMapperProgressMain, setMapperProgressAuto, setMapper);

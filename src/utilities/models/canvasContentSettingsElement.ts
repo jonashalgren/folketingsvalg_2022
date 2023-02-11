@@ -27,7 +27,7 @@ export type C_C_S_Element_Box_Texture = "logo" | "leader";
 
 export type C_C_S_Element_Map = {
   type: "map";
-  configs: C_S_S_E_Map_Config[];
+  configs: C_C_S_E_Map_Config[];
   focus?: C_C_S_Element_Map_Focus[];
 };
 
@@ -38,9 +38,9 @@ export type C_C_S_Element_Map_Focus = {
 
 export type C_C_S_Element_Map_Year = "2019" | "2022";
 
-export type C_S_S_E_Map_Config = C_S_S_E_Map_Config_Party_Allocation | C_C_S_Element_Map_Config_Blank;
+export type C_C_S_E_Map_Config = C_C_S_E_Map_Config_Party_Allocation | C_C_S_Element_Map_Config_Blank;
 
-export type C_S_S_E_Map_Config_Party_Allocation = {
+export type C_C_S_E_Map_Config_Party_Allocation = {
   mapVariant: "party_vote_allocation";
   year: C_C_S_Element_Map_Year;
   partyLetter: Party_Letter;

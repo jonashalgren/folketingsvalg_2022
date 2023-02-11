@@ -8,7 +8,8 @@ export abstract class Canvas_Content_Element<D extends C_S_S_Element, M extends 
   index: number;
 
   meshes: M;
-  localProgress: number | undefined;
+  localProgress: number | undefined = undefined;
+  localOpacity: number = 0;
 
   abstract animate(progress: number, entryProgress: number): void;
   abstract resize(elementSettings: D, contentSettings: C_Content_Settings): void;
@@ -18,7 +19,6 @@ export abstract class Canvas_Content_Element<D extends C_S_S_Element, M extends 
     this.meshesTemplate = meshesTemplate;
     this.contentSettings = contentSettings;
     this.index = index;
-    this.localProgress = undefined;
     this.setMeshes();
   }
 
@@ -30,15 +30,18 @@ export abstract class Canvas_Content_Element<D extends C_S_S_Element, M extends 
   }
 
   private setMeshesOpacity(opacity: number) {
-    this.meshes.forEach((mesh) => {
-      if (!mesh.userData.stayHidden) {
-        if (Array.isArray(mesh.material)) {
-          mesh.material.forEach((material) => (material.opacity = opacity));
-        } else {
-          mesh.material.opacity = opacity;
+    if (this.localOpacity !== opacity) {
+      this.localOpacity = opacity;
+      this.meshes.forEach((mesh) => {
+        if (!mesh.userData.stayHidden) {
+          if (Array.isArray(mesh.material)) {
+            mesh.material.forEach((material) => (material.opacity = opacity));
+          } else {
+            mesh.material.opacity = opacity;
+          }
         }
-      }
-    });
+      });
+    }
   }
 
   update(progress: number = 0, entryProgress: number = 0, opacity: number = 0) {

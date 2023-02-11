@@ -1,13 +1,13 @@
 import type {
   C_C_Element_Mesh,
   C_Content_Camera_Mapper,
-  C_Content_Progress,
   C_Content_Progress_Mapper,
   C_Content_Opacity_Mapper,
   C_Content_Settings,
   C_S_S_Element,
   Viewport,
   C_C_Element_Details,
+  C_Content_Progress,
 } from "@models";
 import type { WebGLRenderer, PerspectiveCamera } from "three";
 import { getElements } from "./getElements";
@@ -58,7 +58,11 @@ export class Canvas_Content extends Canvas_Scene {
   }
 
   private setMapperProgress() {
-    this.mapperProgress = getMapperProgress({ contentDOMElement: this.contentDOMElement, contentSettings: this.contentSettings, viewport: this.viewport }).mapper;
+    this.mapperProgress = getMapperProgress({
+      contentDOMElement: this.contentDOMElement,
+      contentSettings: this.contentSettings,
+      viewport: this.viewport,
+    }).mapper;
   }
 
   private setMapperOpacity() {
@@ -69,10 +73,25 @@ export class Canvas_Content extends Canvas_Scene {
     this.elements = getElements({ contentSettings: this.contentSettings, canvasContentElementsDetails: this.canvasContentElementsDetails });
   }
 
-  private updateElements({ progress, progressEntry, opacity }: { progress: number; progressEntry: number; opacity: number }) {
+  private updateElements(progress: C_Content_Progress, opacity: number) {
+    const progressMain = this.contentSettings.mode === "auto" ? progress.auto : progress.main;
     this.elements.forEach((element) => {
-      element.update(progress, progressEntry, opacity);
+      element.update(progressMain, progress.entry, opacity);
     });
+  }
+
+  private moveCamera(progress: C_Content_Progress) {
+    const { positionEntry, positionExit, positionMain, targetEntry, targetExit, targetMain } = this.mapperCamera(progress);
+    if (progress.exit > 0) {
+      this.camera.position.set(...positionExit);
+      this.controls.target.set(...targetExit);
+    } else if (progress.main > 0) {
+      this.camera.position.set(...positionMain);
+      this.controls.target.set(...targetMain);
+    } else if (progress.entry > 0) {
+      this.camera.position.set(...positionEntry);
+      this.controls.target.set(...targetEntry);
+    }
   }
 
   resize(camera: PerspectiveCamera, contentSettings: C_Content_Settings) {
@@ -88,8 +107,8 @@ export class Canvas_Content extends Canvas_Scene {
     const opacity = this.mapperOpacity(progress.entry);
 
     if (progress.state === "active" || progress.state === "next") {
-      this.mapperCamera({ progress: progress, camera: this.camera, controls: this.controls });
-      this.updateElements({ progress: this.contentSettings.mode === "auto" ? progress.auto : progress.main, progressEntry: progress.entry, opacity });
+      this.moveCamera(progress);
+      this.updateElements(progress, opacity);
       this.updateControls();
       this.updateRenderer();
     }

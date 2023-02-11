@@ -1,6 +1,6 @@
 import type { Props } from "./index";
 
-export function setMapperProgress(item: Props): Props {
+export function setMapper(item: Props): Props {
   let main = item.mapperProgressMain(scrollY);
   let entry = item.mapperProgressEntry(scrollY);
   let exit = item.mapperProgressExit(scrollY);

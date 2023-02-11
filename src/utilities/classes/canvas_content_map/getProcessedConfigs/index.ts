@@ -1,12 +1,12 @@
 import { pipe } from "@helpers";
-import type { C_S_S_E_Map_Config, Election_Result_Area } from "@models";
+import type { C_C_S_Element_Map, Election_Result_Area } from "@models";
 import { setAreasPropertiesPct } from "./setAreasPropertiesPct";
 import { setHighestAreaResultPct } from "./setHighestAreaResultPct";
 import { setLowestAreaResultPct } from "./setLowestAreaResultPct";
 import { setAreasPropertiesColor } from "./setAreasPropertiesColor";
 
 export type Props = {
-  configs: C_S_S_E_Map_Config[];
+  elementSettings: C_C_S_Element_Map;
   electionResult: Election_Result_Area[];
 };
 

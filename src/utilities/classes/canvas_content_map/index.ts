@@ -1,25 +1,25 @@
 import { Canvas_Content_Map_Area } from "@classes";
 import { Canvas_Content_Element } from "@classes_abstract";
 import { election_result_areas } from "@assets";
-import type { C_C_E_Mesh_Map, C_Content_Settings, C_C_S_Element_Map, C_S_S_E_Map_Config } from "@models";
+import type { C_C_E_Mesh_Map, C_Content_Settings, C_C_S_Element_Map, C_C_S_Element_Map_Area_Id } from "@models";
 import { getProcessedConfigs } from "./getProcessedConfigs";
 
 export class Canvas_Content_Map extends Canvas_Content_Element<C_C_S_Element_Map, C_C_E_Mesh_Map[]> {
-  private configs: C_S_S_E_Map_Config[];
   private areas: Canvas_Content_Map_Area[];
+  private focusedAreas: C_C_S_Element_Map_Area_Id[] = [];
 
   constructor(elementSettings: C_C_S_Element_Map, meshesTemplate: C_C_E_Mesh_Map[], contentSettings: C_Content_Settings) {
     super(elementSettings, meshesTemplate, contentSettings, 0);
 
-    this.setConfigs();
+    this.setElementSettings();
     this.setAreas();
   }
 
-  private setConfigs() {
-    this.configs = getProcessedConfigs({
+  private setElementSettings() {
+    this.elementSettings = getProcessedConfigs({
       electionResult: election_result_areas,
-      configs: this.elementSettings.configs,
-    }).configs;
+      elementSettings: this.elementSettings,
+    }).elementSettings;
   }
 
   private setAreas() {
@@ -27,7 +27,7 @@ export class Canvas_Content_Map extends Canvas_Content_Element<C_C_S_Element_Map
       (area) =>
         new Canvas_Content_Map_Area(
           area.id,
-          this.configs,
+          this.elementSettings,
           this.meshes.filter((entry) => entry.userData.areaId === area.id),
           this.contentSettings
         )
@@ -36,7 +36,22 @@ export class Canvas_Content_Map extends Canvas_Content_Element<C_C_S_Element_Map
 
   private updateAreas() {
     this.areas.forEach((area) => {
-      area.resize(this.configs, this.contentSettings);
+      area.resize(this.elementSettings, this.contentSettings);
+    });
+  }
+
+  private updateFocusedAreas(progress: number) {
+    if (this.elementSettings.focus) {
+      this.focusedAreas = this.elementSettings.focus
+        .filter((item) => progress >= item.inputRange[0] && progress <= item.inputRange[1])
+        .flatMap((item) => item.areas);
+    }
+  }
+
+  private animateAreas(progress: number) {
+    this.areas.forEach((area: Canvas_Content_Map_Area) => {
+      const isFaded = this.focusedAreas.length > 0 && !this.focusedAreas.includes(area.areaId);
+      area.animate(progress, isFaded);
     });
   }
 
@@ -44,11 +59,16 @@ export class Canvas_Content_Map extends Canvas_Content_Element<C_C_S_Element_Map
     this.elementSettings = elementSettings;
     this.contentSettings = contentSettings;
 
-    this.setConfigs();
+    this.setElementSettings();
     this.updateAreas();
   }
 
   animate(progress: number) {
-    this.areas.forEach((area: Canvas_Content_Map_Area) => area.animate(progress));
+    if (this.localProgress !== progress) {
+      this.localProgress = progress;
+
+      this.updateFocusedAreas(progress);
+      this.animateAreas(progress);
+    }
   }
 }
