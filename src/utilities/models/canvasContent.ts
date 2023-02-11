@@ -14,3 +14,5 @@ export type C_Content_Progress = {
 };
 
 export type C_Content_Progress_Mapper = () => C_Content_Progress;
+
+export type C_Content_Opacity_Mapper = (progress: number) => number;

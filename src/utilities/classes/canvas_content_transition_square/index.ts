@@ -1,4 +1,4 @@
-import { getMeshGeometry } from "@helpers";
+import { getExtrudeGeometry, getLambertMaterial } from "@helpers";
 import { interpolate } from "popmotion";
 import { Color, Mesh, MeshLambertMaterial, CustomBlending, MinEquation, SrcAlphaFactor, Shape } from "three";
 import type { ExtrudeBufferGeometry, Vector3Tuple } from "three";
@@ -45,19 +45,19 @@ export class Canvas_Content_Transition_Square {
   }
 
   private setGeometry() {
-    this.geometry = getMeshGeometry({ shape: this.shape });
+    this.geometry = getExtrudeGeometry({ shape: this.shape });
   }
 
   private setMaterial() {
-    this.material = new MeshLambertMaterial({ color: this.color });
-    this.material.transparent = true;
+    this.material = getLambertMaterial({ color: this.color });
     this.material.blending = CustomBlending;
     this.material.blendEquation = MinEquation;
     this.material.blendSrc = SrcAlphaFactor;
   }
 
   private setMesh() {
-    this.mesh = new Mesh(this.geometry, this.material);
+    this.mesh = new Mesh(this.geometry, this.material) as C_C_E_Mesh_Transition;
+    this.mesh.userData.stayHidden = true;
     this.mesh.scale.z = 0.1;
     this.mesh.position.set(...this.positionOutputRange[0]);
   }

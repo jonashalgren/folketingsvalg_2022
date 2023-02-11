@@ -1,12 +1,13 @@
 import { RepeatWrapping } from "three";
-import { Color, Mesh, MeshLambertMaterial, BoxGeometry } from "three";
+import { Color, Mesh, BoxGeometry } from "three";
+import { getLambertMaterial } from "@helpers";
 import type { C_C_E_Mesh_Box } from "@models";
 import type { Props } from "./index";
 
 export function getBoxMeshes(items: Props) {
   return items.flatMap((item) => {
     const color = new Color(item.color);
-    const material = new MeshLambertMaterial({ color: color });
+    const material = getLambertMaterial({ color: color });
     const geometry = new BoxGeometry(1, 1);
     let materials = [material, material, material, material, material, material];
 
@@ -14,7 +15,8 @@ export function getBoxMeshes(items: Props) {
       item.map.wrapS = RepeatWrapping;
       item.map.wrapT = RepeatWrapping;
       item.map.repeat.set(1, 1);
-      const materialTexture = new MeshLambertMaterial({ map: item.map });
+      const materialTexture = getLambertMaterial({ map: item.map });
+
       materials = [material, material, material, material, materialTexture, material];
     }
 

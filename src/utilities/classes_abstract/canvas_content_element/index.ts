@@ -19,17 +19,30 @@ export abstract class Canvas_Content_Element<D extends C_S_S_Element, M extends 
     this.contentSettings = contentSettings;
     this.index = index;
     this.localProgress = undefined;
-    this.setElementMeshes();
+    this.setMeshes();
   }
 
-  private setElementMeshes() {
+  private setMeshes() {
     this.meshes = getElementMeshes({
       meshesTemplate: this.meshesTemplate ?? [],
       elementSettings: this.elementSettings,
     }).meshes as M;
   }
 
-  update(progress: number, entryProgress: number) {
+  private setMeshesOpacity(opacity: number) {
+    this.meshes.forEach((mesh) => {
+      if (!mesh.userData.stayHidden) {
+        if (Array.isArray(mesh.material)) {
+          mesh.material.forEach((material) => (material.opacity = opacity));
+        } else {
+          mesh.material.opacity = opacity;
+        }
+      }
+    });
+  }
+
+  update(progress: number = 0, entryProgress: number = 0, opacity: number = 0) {
     this.animate(progress, entryProgress);
+    this.setMeshesOpacity(opacity);
   }
 }

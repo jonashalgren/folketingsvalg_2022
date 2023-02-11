@@ -20,7 +20,7 @@ export class Canvas_Content_Transition extends Canvas_Content_Element<C_C_S_Elem
     this.transitionSettings = transitionSettings;
     this.colorAlphaMapper = interpolate([0, 0.3, 0.9, 1], [1, 0, 0, 1]);
     this.setSquares();
-    this.addSquaresToGroup();
+    this.addSquaresToMeshes();
   }
 
   private setSquares() {
@@ -29,10 +29,8 @@ export class Canvas_Content_Transition extends Canvas_Content_Element<C_C_S_Elem
     });
   }
 
-  private addSquaresToGroup() {
-    this.squares.forEach((square) => {
-      this.meshes.push(square.mesh);
-    });
+  private addSquaresToMeshes() {
+    this.meshes.push(...this.squares.flatMap((item) => item.mesh));
   }
 
   resize(): void {}

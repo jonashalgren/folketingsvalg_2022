@@ -1,4 +1,3 @@
 export * from "./getMesh";
-export * from "./getMeshGeometry";
-export * from "./getMeshMaterial";
-export * from "./getLogo";
+export * from "./getExtrudeGeometry";
+export * from "./getLambertMaterial";
