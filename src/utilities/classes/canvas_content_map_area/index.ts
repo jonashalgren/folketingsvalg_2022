@@ -1,14 +1,15 @@
 import type { C_C_E_Mesh_Map, C_C_S_Element_Map, C_C_S_Element_Map_Area_Id, C_Content_Settings } from "@models";
 import { mesh_static_settings } from "@assets";
+import { getOpacityMapper } from "@helpers";
 import { getMapperScaleZ } from "./getMapperScaleZ";
 import { getMapperColor } from "./getMapperColor";
-import { getMapperOpacity } from "./getMapperOpacity";
 
 export class Canvas_Content_Map_Area {
   public areaId: C_C_S_Element_Map_Area_Id;
   private elementSettings: C_C_S_Element_Map;
   private meshes: C_C_E_Mesh_Map[];
   private contentSettings: C_Content_Settings;
+  private localOpacity: number | undefined = 1;
 
   private mapperScaleZ: (progress: number) => number;
   private mapperColor: (progress: number) => string;
@@ -34,7 +35,7 @@ export class Canvas_Content_Map_Area {
   }
 
   private setMapperOpacity() {
-    this.mapperOpacity = getMapperOpacity();
+    this.mapperOpacity = getOpacityMapper({ duration: 1200, fadeOutStrength: 0.2 });
   }
 
   resize(elementSettings: C_C_S_Element_Map, contentSettings: C_Content_Settings) {
@@ -53,7 +54,9 @@ export class Canvas_Content_Map_Area {
       mesh.scale.z = mesh_static_settings.meshThickness + scaleZ;
       mesh.position.z = mesh_static_settings.meshThickness + scaleZ;
       mesh.material.color.setStyle(color);
-      mesh.material.opacity = opacity;
+      if (this.localOpacity !== opacity) {
+        mesh.material.opacity = opacity;
+      }
     });
   }
 }

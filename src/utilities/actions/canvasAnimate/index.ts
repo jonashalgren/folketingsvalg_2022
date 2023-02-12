@@ -9,7 +9,7 @@ type Props = {
   viewport: Viewport;
 };
 
-export function animate(canvasDOMElement: HTMLCanvasElement, item: Props) {
+export function canvasAnimate(canvasDOMElement: HTMLCanvasElement, item: Props) {
   const canvas = new Canvas(canvasDOMElement, item.contentDOMElement, item.canvasContentElementsDetails, item.viewport);
 
   let unsubscribe = function () {};

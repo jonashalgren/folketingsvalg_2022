@@ -82,10 +82,19 @@ export class Canvas {
   }
 
   private setContent() {
-    this.contentList = this.contentSettingsList.map(
-      (contentSettings) =>
-        new Canvas_Content(this.renderer, this.camera, this.canvasDOMElement, contentSettings, this.canvasContentElementsDetails, this.contentDOMElement, this.viewport)
-    );
+    this.contentList = this.contentSettingsList.map((contentSettings, index) => {
+      const isLastContentItem = index === this.contentSettingsList.length - 1;
+      return new Canvas_Content(
+        this.renderer,
+        this.camera,
+        this.canvasDOMElement,
+        contentSettings,
+        this.canvasContentElementsDetails,
+        this.contentDOMElement,
+        this.viewport,
+        isLastContentItem
+      );
+    });
   }
 
   private updateContent() {

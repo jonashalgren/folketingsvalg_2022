@@ -64,11 +64,7 @@ export class Canvas_Content_Map extends Canvas_Content_Element<C_C_S_Element_Map
   }
 
   animate(progress: number) {
-    if (this.localProgress !== progress) {
-      this.localProgress = progress;
-
-      this.updateFocusedAreas(progress);
-      this.animateAreas(progress);
-    }
+    this.updateFocusedAreas(progress);
+    this.animateAreas(progress);
   }
 }

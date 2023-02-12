@@ -21,6 +21,7 @@ export class Canvas_Content extends Canvas_Scene {
   private canvasContentElementsDetails: C_C_Element_Details;
   private contentDOMElement: HTMLDivElement;
   private viewport: Viewport;
+  private isLastContentItem: boolean;
 
   private elements: Canvas_Content_Element<C_S_S_Element, C_C_Element_Mesh[]>[];
 
@@ -32,11 +33,11 @@ export class Canvas_Content extends Canvas_Scene {
     renderer: WebGLRenderer,
     camera: PerspectiveCamera,
     canvasDOMElement: HTMLCanvasElement,
-
     contentSettings: C_Content_Settings,
     canvasContentElementsDetails: C_C_Element_Details,
     contentDOMElement: HTMLDivElement,
-    viewport: Viewport
+    viewport: Viewport,
+    isLastContentItem: boolean
   ) {
     super(renderer, canvasDOMElement, camera);
 
@@ -44,6 +45,7 @@ export class Canvas_Content extends Canvas_Scene {
     this.canvasContentElementsDetails = canvasContentElementsDetails;
     this.contentDOMElement = contentDOMElement;
     this.viewport = viewport;
+    this.isLastContentItem = isLastContentItem;
 
     this.setElements();
     this.setMapperCamera();
@@ -62,11 +64,12 @@ export class Canvas_Content extends Canvas_Scene {
       contentDOMElement: this.contentDOMElement,
       contentSettings: this.contentSettings,
       viewport: this.viewport,
+      isLastContentItem: this.isLastContentItem,
     }).mapper;
   }
 
   private setMapperOpacity() {
-    this.mapperOpacity = interpolate(this.contentSettings.hasTransition ? [0.2, 0.5] : [0.6, 0.9], [0, 1]);
+    this.mapperOpacity = interpolate(this.contentSettings.hasTransition ? [0, 0.2, 0.5] : [0, 0.6, 0.9], [0, 0, 1]);
   }
 
   private setElements() {
@@ -105,7 +108,6 @@ export class Canvas_Content extends Canvas_Scene {
   update() {
     const progress = this.mapperProgress();
     const opacity = this.mapperOpacity(progress.entry);
-
     if (progress.state === "active" || progress.state === "next") {
       this.moveCamera(progress);
       this.updateElements(progress, opacity);

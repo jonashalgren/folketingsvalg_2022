@@ -96,21 +96,18 @@ export class Canvas_Content_Box extends Canvas_Content_Element<C_C_S_Element_Box
       progress = get(this.floatingProgress);
     }
 
-    if (this.localProgress !== progress || this.elementSettings.isFloating) {
-      this.localProgress = progress;
-      const scale = this.mapperScale(progress);
-      const position = this.mapperPosition(progress);
-      const floatingYOffset = this.mapperFloatingYOffset(this.floatingYOffsetProgress);
-      this.meshes[0].scale.set(
-        scale[0] * this.elementSettings.size + 0.001 * this.index,
-        scale[1] * this.elementSettings.size + 0.001 * this.index,
-        scale[2] * 0.8 + 0.001 * this.index
-      );
-      this.meshes[0].position.set(
-        position[0] - ((scale[0] - 1) * this.elementSettings.size) / 2,
-        position[1] - ((scale[1] - 1) * this.elementSettings.size) / 2 + floatingYOffset,
-        position[2] + (scale[2] * 0.8) / 2
-      );
-    }
+    const scale = this.mapperScale(progress);
+    const position = this.mapperPosition(progress);
+    const floatingYOffset = this.mapperFloatingYOffset(this.floatingYOffsetProgress);
+    this.meshes[0].scale.set(
+      scale[0] * this.elementSettings.size + 0.001 * this.index,
+      scale[1] * this.elementSettings.size + 0.001 * this.index,
+      scale[2] * 0.8 + 0.001 * this.index
+    );
+    this.meshes[0].position.set(
+      position[0] - ((scale[0] - 1) * this.elementSettings.size) / 2,
+      position[1] - ((scale[1] - 1) * this.elementSettings.size) / 2 + floatingYOffset,
+      position[2] + (scale[2] * 0.8) / 2
+    );
   }
 }

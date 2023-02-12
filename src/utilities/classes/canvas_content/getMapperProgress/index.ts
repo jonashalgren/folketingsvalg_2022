@@ -11,6 +11,7 @@ export type Props = {
   contentDOMElement: HTMLDivElement;
   contentSettings: C_Content_Settings;
   viewport: Viewport;
+  isLastContentItem: boolean;
   mapperProgressState?: (progress: number) => C_Content_Progress_State;
   mapperProgressAuto?: () => number;
   mapperProgressMain?: (progress: number) => number;

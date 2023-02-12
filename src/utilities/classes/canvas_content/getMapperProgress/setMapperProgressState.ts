@@ -4,12 +4,12 @@ import type { C_Content_Progress_State } from "@models";
 
 export function setMapperProgressState(item: Props): Props {
   const { entryStart, exitEnd, mainStart } = item.contentSettings.progressSettings;
-
+  const endValue = item.isLastContentItem ? "active" : "inactive";
   return {
     ...item,
     mapperProgressState: interpolate<C_Content_Progress_State>(
       [-1, entryStart, entryStart, mainStart, mainStart, exitEnd, exitEnd, Infinity],
-      ["inactive", "inactive", "next", "next", "active", "active", "inactive", "inactive"]
+      ["inactive", "inactive", "next", "next", "active", "active", endValue, endValue]
     ),
   };
 }

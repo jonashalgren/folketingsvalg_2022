@@ -25,7 +25,13 @@ export class Canvas_Content_Transition extends Canvas_Content_Element<C_C_S_Elem
 
   private setSquares() {
     this.squares = Canvas_Content_Transition.squaresSettings.map(({ color, positionOutputRange, rotationOutputRange }) => {
-      return new Canvas_Content_Transition_Square(color, Canvas_Content_Transition.whiteColor, Canvas_Content_Transition.blackColor, positionOutputRange, rotationOutputRange);
+      return new Canvas_Content_Transition_Square(
+        color,
+        Canvas_Content_Transition.whiteColor,
+        Canvas_Content_Transition.blackColor,
+        positionOutputRange,
+        rotationOutputRange
+      );
     });
   }
 
@@ -36,12 +42,9 @@ export class Canvas_Content_Transition extends Canvas_Content_Element<C_C_S_Elem
   resize(): void {}
 
   animate(_: number, entryProgress: number) {
-    if (this.localProgress !== entryProgress) {
-      this.localProgress = entryProgress;
-      const colorAlpha = this.colorAlphaMapper(entryProgress);
-      this.squares.forEach((square: Canvas_Content_Transition_Square) => {
-        square.animate(entryProgress, colorAlpha);
-      });
-    }
+    const colorAlpha = this.colorAlphaMapper(entryProgress);
+    this.squares.forEach((square: Canvas_Content_Transition_Square) => {
+      square.animate(entryProgress, colorAlpha);
+    });
   }
 }

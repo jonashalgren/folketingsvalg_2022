@@ -7,8 +7,11 @@
   export let isFirstSection: boolean;
   export let matchedContentSettings: C_Content_Settings;
   export let nextMatchedContentSettings: C_Content_Settings;
-
-  $: marginBottom = isLastSection ? 0 : nextMatchedContentSettings.elements.find((item) => item.type === "transition") ? $_viewport.h * 0.5 : $_viewport.h * 0.1;
+  $: marginBottom = isLastSection
+    ? 0
+    : nextMatchedContentSettings.elements.find((item) => item.type === "transition")
+    ? $_viewport.h * 0.5
+    : $_viewport.h * 0.1;
 </script>
 
 <div style="margin-bottom: {marginBottom}px;">

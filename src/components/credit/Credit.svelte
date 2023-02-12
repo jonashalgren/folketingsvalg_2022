@@ -1,14 +1,26 @@
 <script lang="ts">
-  import { _viewport, _creditsOpacity } from "@stores";
+  import { _viewport, _scrollY } from "@stores";
   import logo from "@assets/images/valg_logo.png";
+  import { getElementOffsets } from "@helpers";
+  import { interpolate } from "popmotion";
+  import { tick } from "svelte";
+
+  let element: HTMLDivElement;
+  $: elementTop = 0;
+  $: opacityMapper = interpolate([elementTop, elementTop + $_viewport.h * 0.3], [0, 1]);
+  $: opacity = opacityMapper($_scrollY);
+
+  $: if ($_viewport) {
+    setElementTop();
+  }
+
+  async function setElementTop() {
+    await tick();
+    elementTop = getElementOffsets({ element }).elementOffsetTop;
+  }
 </script>
 
-<div
-  style=" height: {$_viewport.h * 1.5}px; opacity: {$_creditsOpacity}; pointer-events: {$_creditsOpacity > 0
-    ? 'auto'
-    : 'none'}"
-  class="credit-wrapper"
->
+<div bind:this={element} style="height: {$_viewport.h * 1.5}px; opacity: {opacity}; pointer-events: {opacity > 0 ? 'auto' : 'none'}" class="credit-wrapper">
   <div class="credit-container" style="height: {$_viewport.h}px;">
     <div class="credit-slot">
       <div class="credit-item">

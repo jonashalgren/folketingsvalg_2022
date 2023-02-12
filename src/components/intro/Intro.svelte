@@ -1,10 +1,27 @@
 <script lang="ts">
-  import { _viewport, _introOpacity } from "@stores";
+  import { _viewport, _scrollY, _contentDOMElement } from "@stores";
   import logo from "@assets/images/valg_logo.png";
   import pil from "@assets/images/pil.svg";
+  import { interpolate } from "popmotion";
+  import { getElementOffsets } from "@helpers";
+  import { tick } from "svelte";
+
+  let element: HTMLDivElement;
+  $: elementTop = 0;
+  $: opacityMapper = interpolate([elementTop, elementTop + $_viewport.h * 0.2], [1, 0]);
+  $: opacity = opacityMapper($_scrollY);
+
+  $: if ($_viewport) {
+    setElementTop();
+  }
+
+  async function setElementTop() {
+    await tick();
+    elementTop = getElementOffsets({ element }).elementOffsetTop;
+  }
 </script>
 
-<div style="height: {$_viewport.h * 1.2}px; opacity: {$_introOpacity};" class="intro-wrapper">
+<div style="height: {$_viewport.h * 1.2}px; opacity: {opacity};" class="intro-wrapper">
   <div style="height: {$_viewport.h}px;" class="intro-container">
     <div class="intro-slot">
       <img src={logo} alt="logo" />
