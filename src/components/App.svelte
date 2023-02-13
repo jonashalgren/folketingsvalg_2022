@@ -10,10 +10,7 @@
 {#if $_contentIsRendered}
   <Intro />
   <Canvas />
+  <Credit />
 {/if}
 
 <Content />
-
-{#if $_contentIsRendered}
-  <Credit />
-{/if}
