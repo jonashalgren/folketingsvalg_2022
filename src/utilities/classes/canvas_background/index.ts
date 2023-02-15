@@ -1,7 +1,7 @@
 import { Mesh, MeshBasicMaterial, PlaneGeometry, PerspectiveCamera, WebGLRenderer } from "three";
-import { Canvas_Scene } from "@classes_abstract";
+import { Canvas_Item } from "@classes_abstract";
 
-export class Canvas_Background extends Canvas_Scene {
+export class Canvas_Background extends Canvas_Item {
   private plane: Mesh;
 
   constructor(renderer: WebGLRenderer, canvasDOMElement: HTMLCanvasElement, camera: PerspectiveCamera) {

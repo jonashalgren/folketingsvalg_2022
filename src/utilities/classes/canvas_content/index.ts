@@ -13,12 +13,12 @@ import type { WebGLRenderer, PerspectiveCamera } from "three";
 import { getElements } from "./getElements";
 import { getMapperCamera } from "./getMapperCamera";
 import { getMapperProgress } from "./getMapperProgress";
-import { Canvas_Scene, type Canvas_Content_Element } from "@classes_abstract";
+import { Canvas_Item, type Canvas_Content_Element } from "@classes_abstract";
 import { interpolate } from "popmotion";
 
-export class Canvas_Content extends Canvas_Scene {
+export class Canvas_Scene extends Canvas_Item {
   private contentSettings: C_Content_Settings;
-  private canvasContentElementsDetails: C_C_Element_Details;
+  private elementsDetails: C_C_Element_Details[];
   private contentDOMElement: HTMLDivElement;
   private viewport: Viewport;
   private isLastContentItem: boolean;
@@ -34,7 +34,7 @@ export class Canvas_Content extends Canvas_Scene {
     camera: PerspectiveCamera,
     canvasDOMElement: HTMLCanvasElement,
     contentSettings: C_Content_Settings,
-    canvasContentElementsDetails: C_C_Element_Details,
+    elementsDetails: C_C_Element_Details[],
     contentDOMElement: HTMLDivElement,
     viewport: Viewport,
     isLastContentItem: boolean
@@ -42,7 +42,7 @@ export class Canvas_Content extends Canvas_Scene {
     super(renderer, canvasDOMElement, camera);
 
     this.contentSettings = contentSettings;
-    this.canvasContentElementsDetails = canvasContentElementsDetails;
+    this.elementsDetails = elementsDetails;
     this.contentDOMElement = contentDOMElement;
     this.viewport = viewport;
     this.isLastContentItem = isLastContentItem;
@@ -73,7 +73,7 @@ export class Canvas_Content extends Canvas_Scene {
   }
 
   private setElements() {
-    this.elements = getElements({ contentSettings: this.contentSettings, canvasContentElementsDetails: this.canvasContentElementsDetails });
+    this.elements = getElements({ contentSettings: this.contentSettings, elementsDetails: this.elementsDetails });
   }
 
   private updateElements(progress: C_Content_Progress, opacity: number) {

@@ -1,12 +1,14 @@
 import type { Props } from "./index";
-import type { C_C_E_Mesh_Box } from "@models";
+import { C_C_Element_Type, type C_C_E_Mesh_Box } from "@models";
 
 export function filterMeshes(item: Props) {
-  if (item?.elementSettings?.type === "box") {
+  if (item?.elementSettings?.type === C_C_Element_Type.box) {
     const { elementSettings, meshesTemplate } = item;
     return {
       ...item,
-      meshes: meshesTemplate.filter(({ userData }: C_C_E_Mesh_Box) => userData.partyLetter === elementSettings.partyLetter && elementSettings.texture === userData.texture),
+      meshes: meshesTemplate.filter(
+        ({ userData }: C_C_E_Mesh_Box) => userData.partyLetter === elementSettings.partyLetter && elementSettings.texture === userData.texture
+      ),
     };
   }
 

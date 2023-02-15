@@ -1,10 +1,10 @@
-import type { Party_Letter, Motion } from "@models";
+import type { Party_Letter, Motion, C_C_Element_Type } from "@models";
 import type { Vector3Tuple } from "three";
 
 //------------------------------------------------------------
 
 export type C_C_S_Element_Box = {
-  type: "box";
+  type: C_C_Element_Type.box;
   texture?: C_C_S_Element_Box_Texture;
   partyLetter: Party_Letter;
   size: number;
@@ -26,7 +26,7 @@ export type C_C_S_Element_Box_Texture = "logo" | "leader";
 //------------------------------------------------------------
 
 export type C_C_S_Element_Map = {
-  type: "map";
+  type: C_C_Element_Type.map;
   configs: C_C_S_E_Map_Config[];
   focus?: C_C_S_Element_Map_Focus[];
 };
@@ -158,7 +158,7 @@ export type C_C_S_Element_Map_Area_Id =
 //------------------------------------------------------------
 
 export type C_C_S_Element_Figure = {
-  type: "figure";
+  type: C_C_Element_Type.figure;
   inputRange: [number, number];
   amount: number;
   color: string;
@@ -175,7 +175,7 @@ export type C_C_S_Element_Figure_Item = {
 //------------------------------------------------------------
 
 export type C_C_S_Element_Text = {
-  type: "text";
+  type: C_C_Element_Type.text;
   font: string;
   text: string;
   fontSize: number;
@@ -190,7 +190,7 @@ export type C_C_S_Element_Text = {
 //------------------------------------------------------------
 
 export type C_C_S_Element_Number = {
-  type: "number";
+  type: C_C_Element_Type.number;
   font: string;
   unit: string;
   motion: C_C_S_Element_Number_Motion;
@@ -209,7 +209,7 @@ export type C_C_S_Element_Number_Motion = {
 //------------------------------------------------------------
 
 export type C_C_S_Element_Transition = {
-  type: "transition";
+  type: C_C_Element_Type.transition;
 };
 
 //------------------------------------------------------------
