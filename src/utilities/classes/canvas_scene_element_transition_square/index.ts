@@ -2,7 +2,7 @@ import { getExtrudeGeometry, getLambertMaterial } from "@helpers";
 import { interpolate } from "popmotion";
 import { Color, Mesh, MeshLambertMaterial, CustomBlending, MinEquation, SrcAlphaFactor, Shape } from "three";
 import type { ExtrudeBufferGeometry, Vector3Tuple } from "three";
-import type { C_C_E_Mesh_Transition } from "@models";
+import type { C_S_E_Mesh_Transition } from "@models";
 
 export class Canvas_Scene_Element_Transition_Square {
   private color: Color;
@@ -15,7 +15,7 @@ export class Canvas_Scene_Element_Transition_Square {
   private geometry: ExtrudeBufferGeometry;
   private shape: Shape;
   private localProgress: number;
-  mesh: C_C_E_Mesh_Transition;
+  mesh: C_S_E_Mesh_Transition;
 
   positionMapper: (progress: number) => Vector3Tuple;
   rotationMapper: (progress: number) => Vector3Tuple;
@@ -62,7 +62,7 @@ export class Canvas_Scene_Element_Transition_Square {
   }
 
   private setMesh() {
-    this.mesh = new Mesh(this.geometry, this.material) as C_C_E_Mesh_Transition;
+    this.mesh = new Mesh(this.geometry, this.material) as C_S_E_Mesh_Transition;
     this.mesh.userData.stayHidden = true;
     this.mesh.scale.z = 0.1;
     this.mesh.position.set(...this.positionOutputRange[0]);

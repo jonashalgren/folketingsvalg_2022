@@ -1,13 +1,13 @@
 import type {
-  C_C_Element_Mesh,
+  C_S_Element_Mesh,
   C_Scene_Camera_Mapper,
   C_Scene_Progress_Mapper,
   C_Scene_Opacity_Mapper,
-  C_Content_Settings,
+  C_Scene_Settings,
   C_S_S_Element,
   Viewport,
   C_Scene_Progress,
-  C_C_Elements_Meshes,
+  C_S_Elements_Meshes,
 } from "@models";
 import type { WebGLRenderer, PerspectiveCamera } from "three";
 import { getElements } from "./getElements";
@@ -17,13 +17,13 @@ import { Canvas_Item, type Canvas_Scene_Element } from "@classes_abstract";
 import { interpolate } from "popmotion";
 
 export class Canvas_Scene extends Canvas_Item {
-  private sceneSettings: C_Content_Settings;
-  private elementsMeshes: C_C_Elements_Meshes;
+  private sceneSettings: C_Scene_Settings;
+  private elementsMeshes: C_S_Elements_Meshes;
   private contentDOMElement: HTMLDivElement;
   private viewport: Viewport;
   private isLastScene: boolean;
 
-  private elements: Canvas_Scene_Element<C_S_S_Element, C_C_Element_Mesh[]>[];
+  private elements: Canvas_Scene_Element<C_S_S_Element, C_S_Element_Mesh[]>[];
 
   mapperProgress: C_Scene_Progress_Mapper;
   mapperCamera: C_Scene_Camera_Mapper;
@@ -33,8 +33,8 @@ export class Canvas_Scene extends Canvas_Item {
     renderer: WebGLRenderer,
     camera: PerspectiveCamera,
     canvasDOMElement: HTMLCanvasElement,
-    sceneSettings: C_Content_Settings,
-    elementsMeshes: C_C_Elements_Meshes,
+    sceneSettings: C_Scene_Settings,
+    elementsMeshes: C_S_Elements_Meshes,
     contentDOMElement: HTMLDivElement,
     viewport: Viewport,
     isLastScene: boolean
@@ -97,7 +97,7 @@ export class Canvas_Scene extends Canvas_Item {
     }
   }
 
-  resize(camera: PerspectiveCamera, sceneSettings: C_Content_Settings) {
+  resize(camera: PerspectiveCamera, sceneSettings: C_Scene_Settings) {
     this.sceneSettings = sceneSettings;
     this.updateCamera(camera);
     this.updateControls();

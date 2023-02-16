@@ -1,6 +1,6 @@
 import { readable } from "svelte/store";
 import { tick } from "svelte";
-import { _contentSectionsTexts, _canvasSceneElementsMeshes } from "@stores";
+import { _contentSectionsTexts, _elementsMeshes } from "@stores";
 
 export const _contentIsRendered = readable<boolean>(false, function start(set) {
   let contentSectiongsTexts = [];
@@ -16,7 +16,7 @@ export const _contentIsRendered = readable<boolean>(false, function start(set) {
     setContentIsRendered();
   });
 
-  _canvasSceneElementsMeshes.subscribe(async (val) => {
+  _elementsMeshes.subscribe(async (val) => {
     elementsMeshes = val;
     setContentIsRendered();
   });

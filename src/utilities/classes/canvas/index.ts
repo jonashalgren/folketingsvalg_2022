@@ -1,4 +1,4 @@
-import type { C_Settings, Viewport, C_Content_Settings, C_C_Elements_Meshes } from "@models";
+import type { C_Settings, Viewport, C_Scene_Settings, C_S_Elements_Meshes } from "@models";
 import { PerspectiveCamera, WebGLRenderer } from "three";
 import { Canvas_Scene, Canvas_Background } from "@classes";
 import { _rAF } from "@stores";
@@ -7,8 +7,8 @@ import { getProcessedScenesSettings } from "./getProcessedScenesSettings";
 export class Canvas {
   private canvasDOMElement: HTMLCanvasElement;
   private contentDOMElement: HTMLDivElement;
-  private scenesSettings: C_Content_Settings[];
-  private elementsMeshes: C_C_Elements_Meshes;
+  private scenesSettings: C_Scene_Settings[];
+  private elementsMeshes: C_S_Elements_Meshes;
   private viewport: Viewport;
 
   private renderer: WebGLRenderer;
@@ -20,8 +20,8 @@ export class Canvas {
   constructor(
     canvasDOMElement: HTMLCanvasElement,
     contentDOMElement: HTMLDivElement,
-    scenesSettings: C_Content_Settings[],
-    elementsMeshes: C_C_Elements_Meshes,
+    scenesSettings: C_Scene_Settings[],
+    elementsMeshes: C_S_Elements_Meshes,
     viewport: Viewport
   ) {
     this.canvasDOMElement = canvasDOMElement;
@@ -30,9 +30,9 @@ export class Canvas {
     this.elementsMeshes = elementsMeshes;
     this.viewport = viewport;
 
-    this.renderer = new WebGLRenderer({ antialias: true, canvas: this.canvasDOMElement, logarithmicDepthBuffer: true });
-    this.setCanvasSettings();
     this.setRenderer();
+    this.setCanvasSettings();
+    this.setRendererSize();
     this.setCamera();
     this.setCanvasDOMStyles();
     this.setScenesSettings();
@@ -77,12 +77,16 @@ export class Canvas {
     this.camera = new PerspectiveCamera(50, this.canvasSettings.width / this.canvasSettings.height, 0.1, 1000);
   }
 
-  private updateCamera() {
+  private setCameraAspect() {
     this.camera.aspect = this.canvasSettings.width / this.canvasSettings.height;
     this.camera.updateProjectionMatrix();
   }
 
   private setRenderer() {
+    this.renderer = new WebGLRenderer({ antialias: true, canvas: this.canvasDOMElement, logarithmicDepthBuffer: true });
+  }
+
+  private setRendererSize() {
     this.renderer.setSize(this.canvasSettings.width, this.viewport.h);
     this.renderer.setPixelRatio(this.viewport.w < 900 && window.devicePixelRatio >= 2 ? 2 : 1);
   }
@@ -103,7 +107,7 @@ export class Canvas {
     });
   }
 
-  private updateContent() {
+  private resizeScenes() {
     this.scenesSettings.forEach((sceneSettings, index) => {
       this.scenes[index].resize(this.camera, sceneSettings);
     });
@@ -113,7 +117,7 @@ export class Canvas {
     this.background = new Canvas_Background(this.renderer, this.canvasDOMElement, this.camera);
   }
 
-  private updateBackground() {
+  private resizeBackground() {
     this.background.resize(this.camera);
   }
 
@@ -121,16 +125,16 @@ export class Canvas {
     this.viewport = viewport;
 
     this.setCanvasSettings();
-    this.setRenderer();
-    this.updateCamera();
+    this.setRendererSize();
+    this.setCameraAspect();
     this.setCanvasDOMStyles();
     this.setScenesSettings();
 
-    this.updateBackground();
-    this.updateContent();
+    this.resizeBackground();
+    this.resizeScenes();
   }
 
-  update() {
+  animate() {
     this.background.update();
     this.renderer.autoClear = false;
     this.renderer.clearDepth();

@@ -1,5 +1,5 @@
 import type { Props } from "./index";
-import { C_C_Element_Type } from "@models";
+import { C_S_Element_Type } from "@models";
 
 export function setBoundingBox(item: Props) {
   return {
@@ -7,7 +7,7 @@ export function setBoundingBox(item: Props) {
     scenesSettings: item.scenesSettings.map((sceneSettings) => {
       return {
         ...sceneSettings,
-        hasTransition: Boolean(sceneSettings.elements.find((item) => item.type === C_C_Element_Type.transition)),
+        hasTransition: Boolean(sceneSettings.elements.find((item) => item.type === C_S_Element_Type.transition)),
       };
     }),
   };

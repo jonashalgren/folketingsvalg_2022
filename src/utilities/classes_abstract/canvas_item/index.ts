@@ -1,6 +1,6 @@
 import { Scene, SpotLight, AmbientLight, PerspectiveCamera, WebGLRenderer, GridHelper, Mesh } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import type { C_Content_Settings } from "@models";
+import type { C_Scene_Settings } from "@models";
 
 export abstract class Canvas_Item {
   renderer: WebGLRenderer;
@@ -13,7 +13,7 @@ export abstract class Canvas_Item {
   private spotLight: SpotLight;
   private ambientLight: AmbientLight;
 
-  abstract resize(camera: PerspectiveCamera, sceneSettings: C_Content_Settings): void;
+  abstract resize(camera: PerspectiveCamera, sceneSettings: C_Scene_Settings): void;
   abstract update(): void;
 
   constructor(renderer: WebGLRenderer, canvasDOMElement: HTMLCanvasElement, camera: PerspectiveCamera) {

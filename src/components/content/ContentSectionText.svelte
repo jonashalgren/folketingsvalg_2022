@@ -1,11 +1,11 @@
 <script lang="ts">
   import { _viewport } from "@stores";
-  import type { C_C_Settings_Extra_Text_Margin } from "@models";
+  import type { C_S_Settings_Extra_Text_Margin } from "@models";
   export let text: string;
   export let isFirstSection: boolean;
   export let isFirstText: boolean;
   export let isLastText: boolean;
-  export let extraMargin: C_C_Settings_Extra_Text_Margin | undefined = { index: 0, top: 0, bottom: 0 };
+  export let extraMargin: C_S_Settings_Extra_Text_Margin | undefined = { index: 0, top: 0, bottom: 0 };
 
   $: marginTop = (isFirstText ? $_viewport.h * (isFirstSection ? 0.5 : 0.8) : $_viewport.h * 0.2) + extraMargin.top * $_viewport.h;
 

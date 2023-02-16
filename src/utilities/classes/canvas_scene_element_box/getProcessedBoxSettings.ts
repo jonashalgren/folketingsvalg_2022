@@ -1,15 +1,15 @@
-import { C_C_Element_Type, type C_Content_Settings, type C_C_S_Element_Box } from "@models";
+import { C_S_Element_Type, type C_Scene_Settings, type C_S_S_Element_Box } from "@models";
 import { getProcessedOutputRangeList } from "@helpers";
 
 type Props = {
-  elementSettings: C_C_S_Element_Box;
-  sceneSettings: C_Content_Settings;
+  elementSettings: C_S_S_Element_Box;
+  sceneSettings: C_Scene_Settings;
 };
 
-export function getProcessedBoxSettings({ elementSettings, sceneSettings }: Props): C_C_S_Element_Box {
+export function getProcessedBoxSettings({ elementSettings, sceneSettings }: Props): C_S_S_Element_Box {
   return {
     ...elementSettings,
-    type: C_C_Element_Type.box,
+    type: C_S_Element_Type.box,
     motion: {
       ...elementSettings.motion,
       outputRange: {

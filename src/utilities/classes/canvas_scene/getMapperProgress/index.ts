@@ -1,6 +1,6 @@
 import { _scrollY } from "@stores";
 import { pipe } from "@helpers";
-import type { C_Scene_Progress, C_Scene_Progress_State, C_Content_Settings, Viewport } from "@models";
+import type { C_Scene_Progress, C_Scene_Progress_State, C_Scene_Settings, Viewport } from "@models";
 import { setMapper } from "./setMapper";
 import { setMapperProgressMain } from "./setMapperProgressMain";
 import { setMapperProgressAuto } from "./setMapperProgressAuto";
@@ -9,7 +9,7 @@ import { setMapperProgressTransition } from "./setMapperProgressTransition";
 
 export type Props = {
   contentDOMElement: HTMLDivElement;
-  sceneSettings: C_Content_Settings;
+  sceneSettings: C_Scene_Settings;
   viewport: Viewport;
   isLastScene: boolean;
   mapperProgressState?: (progress: number) => C_Scene_Progress_State;

@@ -1,10 +1,10 @@
-import type { C_C_Element_Mesh, C_Content_Settings, C_S_S_Element } from "@models";
+import type { C_S_Element_Mesh, C_Scene_Settings, C_S_S_Element } from "@models";
 import { getElementMeshes } from "./getElementMeshes";
 
-export abstract class Canvas_Scene_Element<D extends C_S_S_Element, M extends C_C_Element_Mesh[]> {
+export abstract class Canvas_Scene_Element<D extends C_S_S_Element, M extends C_S_Element_Mesh[]> {
   elementSettings: D;
   elementMeshes: M;
-  sceneSettings: C_Content_Settings;
+  sceneSettings: C_Scene_Settings;
   index: number;
 
   meshes: M;
@@ -13,9 +13,9 @@ export abstract class Canvas_Scene_Element<D extends C_S_S_Element, M extends C_
 
   private localOpacity: number | undefined = undefined;
   abstract animate(progress: number, entryProgress: number): void;
-  abstract resize(elementSettings: D, sceneSettings: C_Content_Settings): void;
+  abstract resize(elementSettings: D, sceneSettings: C_Scene_Settings): void;
 
-  constructor(elementSettings: D, elementMeshes: M, sceneSettings: C_Content_Settings, index: number) {
+  constructor(elementSettings: D, elementMeshes: M, sceneSettings: C_Scene_Settings, index: number) {
     this.elementSettings = elementSettings;
     this.elementMeshes = elementMeshes;
     this.sceneSettings = sceneSettings;

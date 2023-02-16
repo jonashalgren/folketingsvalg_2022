@@ -1,11 +1,11 @@
-import type { C_Content_Settings, C_C_S_Element_Map_Area_Id, C_C_S_E_Map_Config } from "@models";
+import type { C_Scene_Settings, C_S_S_Element_Map_Area_Id, C_S_S_Element_Map_Config } from "@models";
 import { getProcessedZ } from "@helpers";
 import { interpolate } from "popmotion";
 
 export type Props = {
-  areaId: C_C_S_Element_Map_Area_Id;
-  configs: C_C_S_E_Map_Config[];
-  sceneSettings: C_Content_Settings;
+  areaId: C_S_S_Element_Map_Area_Id;
+  configs: C_S_S_Element_Map_Config[];
+  sceneSettings: C_Scene_Settings;
 };
 
 export function getMapperScaleZ({ areaId, configs, sceneSettings }: Props) {

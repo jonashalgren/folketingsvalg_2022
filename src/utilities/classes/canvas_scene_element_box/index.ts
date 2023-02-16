@@ -1,5 +1,5 @@
 import { Canvas_Scene_Element } from "@classes_abstract";
-import type { C_C_E_Mesh_Box, C_C_S_Element_Box, C_Content_Settings } from "@models";
+import type { C_S_E_Mesh_Box, C_S_S_Element_Box, C_Scene_Settings } from "@models";
 import { getMapperScale } from "./getMapperScale";
 import { getMapperPosition } from "./getMapperPosition";
 import { getMapperFloatingYOffset } from "./getMapperFloatingYOffset";
@@ -10,7 +10,7 @@ import { spring } from "svelte/motion";
 import type { Spring } from "svelte/motion";
 import { get } from "svelte/store";
 
-export class Canvas_Scene_Element_Box extends Canvas_Scene_Element<C_C_S_Element_Box, C_C_E_Mesh_Box[]> {
+export class Canvas_Scene_Element_Box extends Canvas_Scene_Element<C_S_S_Element_Box, C_S_E_Mesh_Box[]> {
   private mapperScale: (progress: number) => Vector3Tuple;
   private mapperPosition: (progress: number) => Vector3Tuple;
   private mapperFloatingYOffset: (progress: number) => number;
@@ -19,7 +19,7 @@ export class Canvas_Scene_Element_Box extends Canvas_Scene_Element<C_C_S_Element
   private floatingYOffsetProgress: number;
   private floatingProgress: Spring<number>;
 
-  constructor(elementSettings: C_C_S_Element_Box, elementMeshes: C_C_E_Mesh_Box[], sceneSettings: C_Content_Settings, index: number) {
+  constructor(elementSettings: C_S_S_Element_Box, elementMeshes: C_S_E_Mesh_Box[], sceneSettings: C_Scene_Settings, index: number) {
     super(elementSettings, elementMeshes, sceneSettings, index);
     this.setBoxSettings();
     this.setFloatingProperties();
@@ -80,7 +80,7 @@ export class Canvas_Scene_Element_Box extends Canvas_Scene_Element<C_C_S_Element
     }
   }
 
-  resize(boxSettings: C_C_S_Element_Box) {
+  resize(boxSettings: C_S_S_Element_Box) {
     this.elementSettings = boxSettings;
 
     this.setBoxSettings();

@@ -1,14 +1,14 @@
 import { Canvas_Scene_Element_Map_Area } from "@classes";
 import { Canvas_Scene_Element } from "@classes_abstract";
 import { election_result_areas } from "@assets";
-import type { C_C_E_Mesh_Map, C_Content_Settings, C_C_S_Element_Map, C_C_S_Element_Map_Area_Id } from "@models";
+import type { C_S_E_Mesh_Map, C_Scene_Settings, C_S_S_Element_Map, C_S_S_Element_Map_Area_Id } from "@models";
 import { getProcessedConfigs } from "./getProcessedConfigs";
 
-export class Canvas_Scene_Element_Map extends Canvas_Scene_Element<C_C_S_Element_Map, C_C_E_Mesh_Map[]> {
+export class Canvas_Scene_Element_Map extends Canvas_Scene_Element<C_S_S_Element_Map, C_S_E_Mesh_Map[]> {
   private areas: Canvas_Scene_Element_Map_Area[];
-  private focusedAreas: C_C_S_Element_Map_Area_Id[] = [];
+  private focusedAreas: C_S_S_Element_Map_Area_Id[] = [];
 
-  constructor(elementSettings: C_C_S_Element_Map, elementMeshes: C_C_E_Mesh_Map[], sceneSettings: C_Content_Settings) {
+  constructor(elementSettings: C_S_S_Element_Map, elementMeshes: C_S_E_Mesh_Map[], sceneSettings: C_Scene_Settings) {
     super(elementSettings, elementMeshes, sceneSettings, 0);
 
     this.setElementSettings();
@@ -55,7 +55,7 @@ export class Canvas_Scene_Element_Map extends Canvas_Scene_Element<C_C_S_Element
     });
   }
 
-  resize(elementSettings: C_C_S_Element_Map, sceneSettings: C_Content_Settings) {
+  resize(elementSettings: C_S_S_Element_Map, sceneSettings: C_Scene_Settings) {
     this.elementSettings = elementSettings;
     this.sceneSettings = sceneSettings;
 

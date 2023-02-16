@@ -1,8 +1,8 @@
 import { interpolate, cubicBezier } from "popmotion";
-import type { C_C_S_Element_Box } from "@models";
+import type { C_S_S_Element_Box } from "@models";
 
 type Props = {
-  elementSettings: C_C_S_Element_Box;
+  elementSettings: C_S_S_Element_Box;
 };
 
 export function getMapperFloatingYOffset({ elementSettings }: Props) {

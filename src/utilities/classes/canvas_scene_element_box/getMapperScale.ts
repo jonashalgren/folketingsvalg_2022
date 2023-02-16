@@ -1,9 +1,9 @@
-import type { C_C_S_Element_Box } from "@models";
+import type { C_S_S_Element_Box } from "@models";
 import { interpolate } from "popmotion";
 import type { Vector3Tuple } from "three";
 
 type Props = {
-  elementSettings: C_C_S_Element_Box;
+  elementSettings: C_S_S_Element_Box;
 };
 
 export function getMapperScale({ elementSettings }: Props): (progress: number) => Vector3Tuple {

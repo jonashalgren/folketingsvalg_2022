@@ -1,9 +1,9 @@
-import type { C_C_S_Element_Map_Area_Id, C_C_S_E_Map_Config } from "@models";
+import type { C_S_S_Element_Map_Area_Id, C_S_S_Element_Map_Config } from "@models";
 import { interpolate } from "popmotion";
 
 export type Props = {
-  areaId: C_C_S_Element_Map_Area_Id;
-  configs: C_C_S_E_Map_Config[];
+  areaId: C_S_S_Element_Map_Area_Id;
+  configs: C_S_S_Element_Map_Config[];
 };
 
 export function getMapperColor({ areaId, configs }: Props) {

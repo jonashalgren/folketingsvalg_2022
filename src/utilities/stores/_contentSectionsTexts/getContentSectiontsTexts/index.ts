@@ -2,10 +2,10 @@ import { pipe } from "@helpers";
 import { syncWithScenesSettings } from "./syncWithScenesSettings";
 import { setContentSectionsTexts } from "./setContentSectionsTexts";
 import { cleanupData } from "./cleanupData";
-import type { C_Content_Settings } from "@models";
+import type { C_Scene_Settings } from "@models";
 
 export type Props = {
-  canvasScenesSettings: C_Content_Settings[];
+  canvasScenesSettings: C_Scene_Settings[];
   contentSectionsTexts?: string[][];
   responseData: { scenenr: string; tekst: string }[];
 };
