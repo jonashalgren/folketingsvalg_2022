@@ -1,6 +1,10 @@
 import { Color, type Vector3Tuple } from "three";
 
-export const transition_square_static_settings: { color: Color; positionOutputRange: [Vector3Tuple, Vector3Tuple]; rotationOutputRange: [Vector3Tuple, Vector3Tuple] }[] = [
+export const transition_squares_settings: {
+  color: Color;
+  positionOutputRange: [Vector3Tuple, Vector3Tuple];
+  rotationOutputRange: [Vector3Tuple, Vector3Tuple];
+}[] = [
   {
     color: new Color("#e6ce51"),
     positionOutputRange: [

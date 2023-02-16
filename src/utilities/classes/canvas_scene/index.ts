@@ -76,7 +76,7 @@ export class Canvas_Scene extends Canvas_Item {
     this.elements = getElements({ sceneSettings: this.sceneSettings, elementsMeshes: this.elementsMeshes });
   }
 
-  private updateElements(progress: C_Scene_Progress, opacity: number) {
+  private animateElements(progress: C_Scene_Progress, opacity: number) {
     const progressMain = this.sceneSettings.mode === "auto" ? progress.auto : progress.main;
     this.elements.forEach((element) => {
       element.update(progressMain, progress.entry, opacity);
@@ -99,20 +99,18 @@ export class Canvas_Scene extends Canvas_Item {
 
   resize(camera: PerspectiveCamera, sceneSettings: C_Scene_Settings) {
     this.sceneSettings = sceneSettings;
-    this.updateCamera(camera);
-    this.updateControls();
+    this.setCameraAspect(camera);
     this.setMapperCamera();
     this.setMapperProgress();
   }
 
-  update() {
+  animate() {
     const progress = this.mapperProgress();
     const opacity = this.mapperOpacity(progress.entry);
     if (progress.state === "active" || progress.state === "next") {
       this.moveCamera(progress);
-      this.updateElements(progress, opacity);
-      this.updateControls();
-      this.updateRenderer();
+      this.animateElements(progress, opacity);
+      this.render();
     }
   }
 }

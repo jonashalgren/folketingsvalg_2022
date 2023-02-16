@@ -14,7 +14,7 @@ export abstract class Canvas_Item {
   private ambientLight: AmbientLight;
 
   abstract resize(camera: PerspectiveCamera, sceneSettings: C_Scene_Settings): void;
-  abstract update(): void;
+  abstract animate(): void;
 
   constructor(renderer: WebGLRenderer, canvasDOMElement: HTMLCanvasElement, camera: PerspectiveCamera) {
     this.renderer = renderer;
@@ -57,16 +57,13 @@ export abstract class Canvas_Item {
     this.scene.add(...meshes);
   }
 
-  public updateCamera(camera: PerspectiveCamera) {
+  public setCameraAspect(camera: PerspectiveCamera) {
     this.camera.aspect = camera.aspect;
     this.camera.updateProjectionMatrix();
   }
 
-  public updateControls() {
+  public render() {
     this.controls.update();
-  }
-
-  public updateRenderer() {
     this.renderer.render(this.scene, this.camera);
   }
 }

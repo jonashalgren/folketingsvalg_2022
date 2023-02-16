@@ -1,5 +1,5 @@
 import type { C_Scene_Settings } from "@models";
-import { partyCollection, fonts, mesh_static_settings } from "@assets";
+import { partyCollection, fonts, element_mesh_settings } from "@assets";
 import { C_S_Element_Type } from "@models";
 
 const size = 14;
@@ -167,7 +167,7 @@ export const four: C_Scene_Settings = {
         },
         color: {
           inputRange: [0, 0.36],
-          outputRange: [mesh_static_settings.color_dark, mesh_static_settings.color_dark],
+          outputRange: [element_mesh_settings.color_dark, element_mesh_settings.color_dark],
         },
         value: {
           inputRange: [0, 0.36],
@@ -196,7 +196,7 @@ export const four: C_Scene_Settings = {
         },
         color: {
           inputRange: [0, 0.36],
-          outputRange: [mesh_static_settings.color_dark, mesh_static_settings.color_dark],
+          outputRange: [element_mesh_settings.color_dark, element_mesh_settings.color_dark],
         },
         value: {
           inputRange: [0, 0.36],
@@ -225,7 +225,7 @@ export const four: C_Scene_Settings = {
         },
         color: {
           inputRange: [0, 0.36],
-          outputRange: [mesh_static_settings.color_dark, mesh_static_settings.color_dark],
+          outputRange: [element_mesh_settings.color_dark, element_mesh_settings.color_dark],
         },
         value: {
           inputRange: [0, 0.36],
@@ -254,7 +254,7 @@ export const four: C_Scene_Settings = {
         },
         color: {
           inputRange: [0, 0.36],
-          outputRange: [mesh_static_settings.color_dark, mesh_static_settings.color_dark],
+          outputRange: [element_mesh_settings.color_dark, element_mesh_settings.color_dark],
         },
         value: {
           inputRange: [0, 0.36],
@@ -283,7 +283,7 @@ export const four: C_Scene_Settings = {
         },
         color: {
           inputRange: [0, 0.36],
-          outputRange: [mesh_static_settings.color_dark, mesh_static_settings.color_dark],
+          outputRange: [element_mesh_settings.color_dark, element_mesh_settings.color_dark],
         },
         value: {
           inputRange: [0, 0.36],

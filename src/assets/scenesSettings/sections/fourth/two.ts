@@ -1,5 +1,5 @@
 import type { C_Scene_Settings } from "@models";
-import { partyCollection, fonts, mesh_static_settings } from "@assets";
+import { partyCollection, fonts, element_mesh_settings } from "@assets";
 import { C_S_Element_Type } from "@models";
 
 const size = 14;
@@ -140,7 +140,7 @@ export const two: C_Scene_Settings = {
         },
         color: {
           inputRange: [0, 0.36],
-          outputRange: [mesh_static_settings.color_dark, mesh_static_settings.color_dark],
+          outputRange: [element_mesh_settings.color_dark, element_mesh_settings.color_dark],
         },
         value: {
           inputRange: [0, 0.36],
@@ -169,7 +169,7 @@ export const two: C_Scene_Settings = {
         },
         color: {
           inputRange: [0, 0.36],
-          outputRange: [mesh_static_settings.color_dark, mesh_static_settings.color_dark],
+          outputRange: [element_mesh_settings.color_dark, element_mesh_settings.color_dark],
         },
         value: {
           inputRange: [0, 0.36],
@@ -198,7 +198,7 @@ export const two: C_Scene_Settings = {
         },
         color: {
           inputRange: [0, 0.36],
-          outputRange: [mesh_static_settings.color_dark, mesh_static_settings.color_dark],
+          outputRange: [element_mesh_settings.color_dark, element_mesh_settings.color_dark],
         },
         value: {
           inputRange: [0, 0.36],
@@ -227,7 +227,7 @@ export const two: C_Scene_Settings = {
         },
         color: {
           inputRange: [0, 0.36],
-          outputRange: [mesh_static_settings.color_dark, mesh_static_settings.color_dark],
+          outputRange: [element_mesh_settings.color_dark, element_mesh_settings.color_dark],
         },
         value: {
           inputRange: [0, 0.36],
@@ -256,7 +256,7 @@ export const two: C_Scene_Settings = {
         },
         color: {
           inputRange: [0, 0.36],
-          outputRange: [mesh_static_settings.color_dark, mesh_static_settings.color_dark],
+          outputRange: [element_mesh_settings.color_dark, element_mesh_settings.color_dark],
         },
         value: {
           inputRange: [0, 0.36],
@@ -277,7 +277,7 @@ export const two: C_Scene_Settings = {
       textAlign: "center",
       rotation: [0, 0, 0],
       position: [-43, -40, 0],
-      color: mesh_static_settings.color_dark,
+      color: element_mesh_settings.color_dark,
     },
     {
       type: C_S_Element_Type.text,
@@ -288,7 +288,7 @@ export const two: C_Scene_Settings = {
       textAlign: "center",
       rotation: [0, 0, 0],
       position: [-21.5, -40, 0],
-      color: mesh_static_settings.color_dark,
+      color: element_mesh_settings.color_dark,
     },
     {
       type: C_S_Element_Type.text,
@@ -299,7 +299,7 @@ export const two: C_Scene_Settings = {
       textAlign: "center",
       rotation: [0, 0, 0],
       position: [0, -40, 0],
-      color: mesh_static_settings.color_dark,
+      color: element_mesh_settings.color_dark,
     },
     {
       type: C_S_Element_Type.text,
@@ -310,7 +310,7 @@ export const two: C_Scene_Settings = {
       textAlign: "center",
       rotation: [0, 0, 0],
       position: [21.5, -40, 0],
-      color: mesh_static_settings.color_dark,
+      color: element_mesh_settings.color_dark,
     },
     {
       type: C_S_Element_Type.text,
@@ -321,7 +321,7 @@ export const two: C_Scene_Settings = {
       textAlign: "center",
       rotation: [0, 0, 0],
       position: [43, -40, 0],
-      color: mesh_static_settings.color_dark,
+      color: element_mesh_settings.color_dark,
     },
   ],
 };

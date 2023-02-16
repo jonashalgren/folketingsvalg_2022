@@ -19,11 +19,10 @@ export class Canvas_Background extends Canvas_Item {
   }
 
   resize(camera: PerspectiveCamera) {
-    this.updateCamera(camera);
+    this.setCameraAspect(camera);
   }
 
-  update() {
-    this.updateControls();
-    this.updateRenderer();
+  animate() {
+    this.render();
   }
 }

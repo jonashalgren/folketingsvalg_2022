@@ -5,7 +5,7 @@ import { cleanupData } from "./cleanupData";
 import type { C_Scene_Settings } from "@models";
 
 export type Props = {
-  canvasScenesSettings: C_Scene_Settings[];
+  scenesSettings: C_Scene_Settings[];
   contentSectionsTexts?: string[][];
   responseData: { scenenr: string; tekst: string }[];
 };

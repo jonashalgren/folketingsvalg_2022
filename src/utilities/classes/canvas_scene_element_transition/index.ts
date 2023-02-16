@@ -3,7 +3,7 @@ import { Canvas_Scene_Element_Transition_Square } from "@classes";
 import { Canvas_Scene_Element } from "@classes_abstract";
 import type { C_S_E_Mesh_Transition, C_S_S_Element_Transition } from "@models";
 import { interpolate } from "popmotion";
-import { transition_square_static_settings } from "@assets";
+import { transition_squares_settings } from "@assets";
 
 export class Canvas_Scene_Element_Transition extends Canvas_Scene_Element<C_S_S_Element_Transition, C_S_E_Mesh_Transition[]> {
   public transitionSettings: C_S_S_Element_Transition;
@@ -11,7 +11,7 @@ export class Canvas_Scene_Element_Transition extends Canvas_Scene_Element<C_S_S_
   private squares: Canvas_Scene_Element_Transition_Square[];
   private colorAlphaMapper: (progress: number) => number;
 
-  static squaresSettings = transition_square_static_settings;
+  static squaresSettings = transition_squares_settings;
   static whiteColor = new Color("#ffffff");
   static blackColor = new Color("#000000");
 

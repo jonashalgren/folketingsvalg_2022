@@ -1,5 +1,5 @@
 import type { C_S_E_Mesh_Map, C_S_S_Element_Map, C_S_S_Element_Map_Area_Id, C_Scene_Settings } from "@models";
-import { mesh_static_settings } from "@assets";
+import { element_mesh_settings } from "@assets";
 import { getOpacityMapper } from "@helpers";
 import { getMapperScaleZ } from "./getMapperScaleZ";
 import { getMapperColor } from "./getMapperColor";
@@ -51,8 +51,8 @@ export class Canvas_Scene_Element_Map_Area {
     const color = this.mapperColor(progress);
     const opacity = this.mapperOpacity(isFaded);
     this.meshes.forEach((mesh: C_S_E_Mesh_Map) => {
-      mesh.scale.z = mesh_static_settings.meshThickness + scaleZ;
-      mesh.position.z = mesh_static_settings.meshThickness + scaleZ;
+      mesh.scale.z = element_mesh_settings.meshThickness + scaleZ;
+      mesh.position.z = element_mesh_settings.meshThickness + scaleZ;
       mesh.material.color.setStyle(color);
       if (this.localOpacity !== opacity) {
         mesh.material.opacity = opacity;

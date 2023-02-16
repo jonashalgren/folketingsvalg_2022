@@ -1,5 +1,5 @@
 import type { Props } from ".";
-import { mesh_static_settings } from "@assets";
+import { element_mesh_settings } from "@assets";
 import { getParty } from "@helpers";
 import { interpolate } from "popmotion";
 
@@ -24,7 +24,7 @@ export function setAreasPropertiesColor(item: Props): Props {
 
         return {
           ...config,
-          areaColor: mesh_static_settings.color_neutral,
+          areaColor: element_mesh_settings.color_neutral,
         };
       }),
     },

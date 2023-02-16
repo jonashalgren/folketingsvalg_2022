@@ -34,13 +34,13 @@ export class Canvas_Scene_Element_Map extends Canvas_Scene_Element<C_S_S_Element
     );
   }
 
-  private updateAreas() {
+  private resizeAreas() {
     this.areas.forEach((area) => {
       area.resize(this.elementSettings, this.sceneSettings);
     });
   }
 
-  private updateFocusedAreas(progress: number) {
+  private animateFocusedAreas(progress: number) {
     if (this.elementSettings.focus) {
       this.focusedAreas = this.elementSettings.focus
         .filter((item) => progress >= item.inputRange[0] && progress <= item.inputRange[1])
@@ -60,11 +60,11 @@ export class Canvas_Scene_Element_Map extends Canvas_Scene_Element<C_S_S_Element
     this.sceneSettings = sceneSettings;
 
     this.setElementSettings();
-    this.updateAreas();
+    this.resizeAreas();
   }
 
   animate(progress: number) {
-    this.updateFocusedAreas(progress);
+    this.animateFocusedAreas(progress);
     this.animateAreas(progress);
   }
 }

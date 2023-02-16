@@ -1,6 +1,6 @@
 <script lang="ts">
   import { _contentDOMElement, _contentSectionsTexts } from "@stores";
-  import { canvasScenesSettings } from "@assets";
+  import { scenesSettings } from "@assets";
   import ContentSection from "./ContentSection.svelte";
 </script>
 
@@ -10,8 +10,8 @@
       {sectionTexts}
       isFirstSection={sectionIndex === 0}
       isLastSection={sectionIndex === $_contentSectionsTexts.length - 1}
-      matchedSceneSettings={canvasScenesSettings[sectionIndex]}
-      nextMatchedSceneSettings={canvasScenesSettings[sectionIndex + 1] ?? canvasScenesSettings[sectionIndex]}
+      matchedSceneSettings={scenesSettings[sectionIndex]}
+      nextMatchedSceneSettings={scenesSettings[sectionIndex + 1] ?? scenesSettings[sectionIndex]}
     />
   {/each}
 </div>

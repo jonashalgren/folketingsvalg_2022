@@ -135,10 +135,10 @@ export class Canvas {
   }
 
   animate() {
-    this.background.update();
+    this.background.animate();
     this.renderer.autoClear = false;
     this.renderer.clearDepth();
-    this.scenes.forEach((scene: Canvas_Scene) => scene.update());
+    this.scenes.forEach((scene: Canvas_Scene) => scene.animate());
     this.renderer.autoClear = true;
   }
 }
