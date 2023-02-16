@@ -1,18 +1,21 @@
-import type { C_Content_Settings, C_C_Element_Details } from "@models";
+import { C_C_Element_Type, type C_Content_Settings, type C_C_Elements_Meshes } from "@models";
+import { Canvas_Scene_Element_Box, Canvas_Scene_Element_Map, Canvas_Scene_Element_Transition } from "@classes";
 
 type Props = {
   sceneSettings: C_Content_Settings;
-  elementsDetails: C_C_Element_Details[];
+  elementsMeshes: C_C_Elements_Meshes;
 };
 
-export function getElements({ sceneSettings }: Props) {
+export function getElements({ sceneSettings, elementsMeshes }: Props) {
   return sceneSettings.elements
-    .map((element, index) => {
-      const elementsDetails = sceneSettings[element.type];
-      if (elementsDetails) {
-        return new elementsDetails.class(element, elementsDetails.meshes, sceneSettings, index);
+    .map((elementSettings, index) => {
+      if (elementSettings.type === C_C_Element_Type.box) {
+        return new Canvas_Scene_Element_Box(elementSettings, elementsMeshes.box, sceneSettings, index);
+      } else if (elementSettings.type === C_C_Element_Type.map) {
+        return new Canvas_Scene_Element_Map(elementSettings, elementsMeshes.map, sceneSettings);
+      } else if (elementSettings.type === C_C_Element_Type.transition) {
+        return new Canvas_Scene_Element_Transition(elementSettings);
       }
-      return;
     })
     .filter((item) => item);
 }

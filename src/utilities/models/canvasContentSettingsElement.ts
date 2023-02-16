@@ -1,5 +1,4 @@
-import type { Party_Letter, Motion, C_C_Element_Type, C_C_E_Mesh_Box, C_C_E_Mesh_Map, C_C_E_Mesh_Transition } from "@models";
-import type { Canvas_Scene_Element_Box, Canvas_Scene_Element_Map, Canvas_Scene_Element_Transition } from "@classes";
+import type { Party_Letter, Motion, C_C_Element_Type } from "@models";
 import type { Vector3Tuple } from "three";
 
 //------------------------------------------------------------
@@ -12,8 +11,6 @@ export type C_C_S_Element_Box = {
   isFloating?: boolean;
   rotation?: [number, number, number];
   motion: C_C_S_Element_Box_Motion;
-  class?: typeof Canvas_Scene_Element_Box;
-  templateMeshes?: C_C_E_Mesh_Box[];
 };
 
 export type C_C_S_Element_Box_Motion = {
@@ -32,8 +29,6 @@ export type C_C_S_Element_Map = {
   type: C_C_Element_Type.map;
   configs: C_C_S_E_Map_Config[];
   focus?: C_C_S_Element_Map_Focus[];
-  class?: typeof Canvas_Scene_Element_Map;
-  templateMeshes?: C_C_E_Mesh_Map[];
 };
 
 export type C_C_S_Element_Map_Focus = {
@@ -215,7 +210,6 @@ export type C_C_S_Element_Number_Motion = {
 
 export type C_C_S_Element_Transition = {
   type: C_C_Element_Type.transition;
-  class?: typeof Canvas_Scene_Element_Transition;
 };
 
 //------------------------------------------------------------

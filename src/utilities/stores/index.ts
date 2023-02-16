@@ -4,4 +4,4 @@ export * from "./_scrollY";
 export * from "./_viewport";
 export * from "./_contentSectionsTexts";
 export * from "./_contentIsRendered";
-export * from "./_canvasScenesSettings";
+export * from "./_canvasSceneElementsMeshes";

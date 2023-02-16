@@ -1,39 +1,40 @@
 import type {
   C_C_Element_Mesh,
-  C_Content_Camera_Mapper,
-  C_Content_Progress_Mapper,
-  C_Content_Opacity_Mapper,
+  C_Scene_Camera_Mapper,
+  C_Scene_Progress_Mapper,
+  C_Scene_Opacity_Mapper,
   C_Content_Settings,
   C_S_S_Element,
   Viewport,
-  C_C_Element_Details,
-  C_Content_Progress,
+  C_Scene_Progress,
+  C_C_Elements_Meshes,
 } from "@models";
 import type { WebGLRenderer, PerspectiveCamera } from "three";
 import { getElements } from "./getElements";
 import { getMapperCamera } from "./getMapperCamera";
 import { getMapperProgress } from "./getMapperProgress";
-import { Canvas_Item, type Canvas_Content_Element } from "@classes_abstract";
+import { Canvas_Item, type Canvas_Scene_Element } from "@classes_abstract";
 import { interpolate } from "popmotion";
 
 export class Canvas_Scene extends Canvas_Item {
   private sceneSettings: C_Content_Settings;
-  private elementsDetails: C_C_Element_Details[];
+  private elementsMeshes: C_C_Elements_Meshes;
   private contentDOMElement: HTMLDivElement;
   private viewport: Viewport;
   private isLastScene: boolean;
 
-  private elements: Canvas_Content_Element<C_S_S_Element, C_C_Element_Mesh[]>[];
+  private elements: Canvas_Scene_Element<C_S_S_Element, C_C_Element_Mesh[]>[];
 
-  mapperProgress: C_Content_Progress_Mapper;
-  mapperCamera: C_Content_Camera_Mapper;
-  mapperOpacity: C_Content_Opacity_Mapper;
+  mapperProgress: C_Scene_Progress_Mapper;
+  mapperCamera: C_Scene_Camera_Mapper;
+  mapperOpacity: C_Scene_Opacity_Mapper;
 
   constructor(
     renderer: WebGLRenderer,
     camera: PerspectiveCamera,
     canvasDOMElement: HTMLCanvasElement,
     sceneSettings: C_Content_Settings,
+    elementsMeshes: C_C_Elements_Meshes,
     contentDOMElement: HTMLDivElement,
     viewport: Viewport,
     isLastScene: boolean
@@ -41,6 +42,7 @@ export class Canvas_Scene extends Canvas_Item {
     super(renderer, canvasDOMElement, camera);
 
     this.sceneSettings = sceneSettings;
+    this.elementsMeshes = elementsMeshes;
     this.contentDOMElement = contentDOMElement;
     this.viewport = viewport;
     this.isLastScene = isLastScene;
@@ -71,17 +73,17 @@ export class Canvas_Scene extends Canvas_Item {
   }
 
   private setElements() {
-    this.elements = getElements({ sceneSettings: this.sceneSettings, elementsDetails: this.elementsDetails });
+    this.elements = getElements({ sceneSettings: this.sceneSettings, elementsMeshes: this.elementsMeshes });
   }
 
-  private updateElements(progress: C_Content_Progress, opacity: number) {
+  private updateElements(progress: C_Scene_Progress, opacity: number) {
     const progressMain = this.sceneSettings.mode === "auto" ? progress.auto : progress.main;
     this.elements.forEach((element) => {
       element.update(progressMain, progress.entry, opacity);
     });
   }
 
-  private moveCamera(progress: C_Content_Progress) {
+  private moveCamera(progress: C_Scene_Progress) {
     const { positionEntry, positionExit, positionMain, targetEntry, targetExit, targetMain } = this.mapperCamera(progress);
     if (progress.exit > 0) {
       this.camera.position.set(...positionExit);

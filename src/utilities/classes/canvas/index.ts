@@ -1,4 +1,4 @@
-import type { C_Settings, Viewport, C_Content_Settings } from "@models";
+import type { C_Settings, Viewport, C_Content_Settings, C_C_Elements_Meshes } from "@models";
 import { PerspectiveCamera, WebGLRenderer } from "three";
 import { Canvas_Scene, Canvas_Background } from "@classes";
 import { _rAF } from "@stores";
@@ -8,6 +8,7 @@ export class Canvas {
   private canvasDOMElement: HTMLCanvasElement;
   private contentDOMElement: HTMLDivElement;
   private scenesSettings: C_Content_Settings[];
+  private elementsMeshes: C_C_Elements_Meshes;
   private viewport: Viewport;
 
   private renderer: WebGLRenderer;
@@ -16,11 +17,19 @@ export class Canvas {
   private background: Canvas_Background;
   private canvasSettings: C_Settings;
 
-  constructor(canvasDOMElement: HTMLCanvasElement, contentDOMElement: HTMLDivElement, scenesSettings: C_Content_Settings[], viewport: Viewport) {
+  constructor(
+    canvasDOMElement: HTMLCanvasElement,
+    contentDOMElement: HTMLDivElement,
+    scenesSettings: C_Content_Settings[],
+    elementsMeshes: C_C_Elements_Meshes,
+    viewport: Viewport
+  ) {
     this.canvasDOMElement = canvasDOMElement;
     this.contentDOMElement = contentDOMElement;
-    this.viewport = viewport;
     this.scenesSettings = scenesSettings;
+    this.elementsMeshes = elementsMeshes;
+    this.viewport = viewport;
+
     this.renderer = new WebGLRenderer({ antialias: true, canvas: this.canvasDOMElement, logarithmicDepthBuffer: true });
     this.setCanvasSettings();
     this.setRenderer();
@@ -81,7 +90,16 @@ export class Canvas {
   private setScenes() {
     this.scenes = this.scenesSettings.map((sceneSettings, index) => {
       const isLastScene = index === this.scenesSettings.length - 1;
-      return new Canvas_Scene(this.renderer, this.camera, this.canvasDOMElement, sceneSettings, this.contentDOMElement, this.viewport, isLastScene);
+      return new Canvas_Scene(
+        this.renderer,
+        this.camera,
+        this.canvasDOMElement,
+        sceneSettings,
+        this.elementsMeshes,
+        this.contentDOMElement,
+        this.viewport,
+        isLastScene
+      );
     });
   }
 
