@@ -2,7 +2,7 @@ import type { Props } from "./index";
 import { getElementOffsets } from "@helpers";
 
 export function setProgressSettings(item: Props) {
-  const sceneOffsetList = item.contentSettingsList.map((_, index) => {
+  const sceneOffsetList = item.scenesSettings.map((_, index) => {
     const element = item.contentDOMElement.children[index] as HTMLDivElement;
     const { elementOffsetTop, elementOffsetBottom } = getElementOffsets({ element });
     return { top: elementOffsetTop, bottom: elementOffsetBottom - item.viewport.h };
@@ -10,12 +10,12 @@ export function setProgressSettings(item: Props) {
 
   return {
     ...item,
-    contentSettingsList: item.contentSettingsList.map((contentSettings, index) => {
+    scenesSettings: item.scenesSettings.map((sceneSettings, index) => {
       const prevOffsets = sceneOffsetList[index - 1] ? sceneOffsetList[index - 1] : sceneOffsetList[index];
       const offsets = sceneOffsetList[index];
       const nextOffsets = sceneOffsetList[index + 1] ? sceneOffsetList[index + 1] : sceneOffsetList[index];
       return {
-        ...contentSettings,
+        ...sceneSettings,
         progressSettings: {
           mainStart: offsets.top,
           mainEnd: offsets.bottom,

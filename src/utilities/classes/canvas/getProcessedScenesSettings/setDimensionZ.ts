@@ -4,7 +4,7 @@ import type { Props } from "./index";
 export function setDimensionZ(item: Props) {
   return {
     ...item,
-    contentSettingsList: item.contentSettingsList.map((contentSettings) => {
+    scenesSettings: item.scenesSettings.map((contentSettings) => {
       return {
         ...contentSettings,
         dimensionZ: (function () {

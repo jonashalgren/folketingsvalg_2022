@@ -3,10 +3,10 @@ import { getProcessedOutputRangeList } from "@helpers";
 
 type Props = {
   elementSettings: C_C_S_Element_Box;
-  contentSettings: C_Content_Settings;
+  sceneSettings: C_Content_Settings;
 };
 
-export function getProcessedBoxSettings({ elementSettings, contentSettings }: Props): C_C_S_Element_Box {
+export function getProcessedBoxSettings({ elementSettings, sceneSettings }: Props): C_C_S_Element_Box {
   return {
     ...elementSettings,
     type: C_C_Element_Type.box,
@@ -14,11 +14,11 @@ export function getProcessedBoxSettings({ elementSettings, contentSettings }: Pr
       ...elementSettings.motion,
       outputRange: {
         position: getProcessedOutputRangeList({
-          dimensionZ: contentSettings.dimensionZ,
+          dimensionZ: sceneSettings.dimensionZ,
           originalOutputRangeList: elementSettings.motion.outputRange.position ?? [],
         }),
         scale: getProcessedOutputRangeList({
-          dimensionZ: contentSettings.dimensionZ,
+          dimensionZ: sceneSettings.dimensionZ,
           originalOutputRangeList: elementSettings.motion.outputRange.scale ?? [],
         }),
       },

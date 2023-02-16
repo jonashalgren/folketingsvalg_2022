@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { _contentDOMElement, _viewport, _elementsDetails } from "@stores";
+  import { _contentDOMElement, _viewport, _canvasScenesSettings } from "@stores";
   import { canvasAnimate } from "@actions";
 </script>
 
 <div id="scenes">
   <div style="height: {$_viewport.h}px;">
     <div>
-      {#if Boolean($_elementsDetails.length > 0)}
+      {#if Boolean($_canvasScenesSettings.length > 0)}
         <canvas
           use:canvasAnimate={{
             viewport: $_viewport,
-            elementsDetails: $_elementsDetails,
+            canvasScenesSettings: $_canvasScenesSettings,
             contentDOMElement: $_contentDOMElement,
           }}
         />

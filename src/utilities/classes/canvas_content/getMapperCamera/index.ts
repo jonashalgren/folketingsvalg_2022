@@ -4,7 +4,7 @@ import { setMapper } from "./setMapper";
 import { pipe } from "@helpers";
 
 export type Props = {
-  contentSettings: C_Content_Settings;
+  sceneSettings: C_Content_Settings;
   cameraSettings?: C_C_Settings_Camera;
   mapper?: C_Content_Camera_Mapper;
 };

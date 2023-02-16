@@ -5,16 +5,16 @@ import { interpolate } from "popmotion";
 export type Props = {
   areaId: C_C_S_Element_Map_Area_Id;
   configs: C_C_S_E_Map_Config[];
-  contentSettings: C_Content_Settings;
+  sceneSettings: C_Content_Settings;
 };
 
-export function getMapperScaleZ({ areaId, configs, contentSettings }: Props) {
+export function getMapperScaleZ({ areaId, configs, sceneSettings }: Props) {
   return interpolate(
     configs.flatMap((item) => item.inputRange),
     configs.flatMap((item) => {
       if (item.mapVariant === "party_vote_allocation") {
         const area = item.areasProperties.find((entry) => areaId === entry.areaId);
-        const scaleZ = getProcessedZ({ dimensionZ: contentSettings.dimensionZ, z: area.pct / 5 });
+        const scaleZ = getProcessedZ({ dimensionZ: sceneSettings.dimensionZ, z: area.pct / 5 });
         return [scaleZ, scaleZ];
       } else if (item.mapVariant === "blank") {
         return [0, 0];

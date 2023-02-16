@@ -2,35 +2,32 @@ import type { C_Settings, Viewport, C_C_Element_Details, C_Content_Settings } fr
 import { PerspectiveCamera, WebGLRenderer } from "three";
 import { Canvas_Scene, Canvas_Background } from "@classes";
 import { _rAF } from "@stores";
-import { getProcessedContentSettingsList } from "./getProcessedContentSettingsList";
-import { contentSettingsList } from "@assets";
+import { getProcessedScenesSettings } from "./getProcessedScenesSettings";
 
 export class Canvas {
   private canvasDOMElement: HTMLCanvasElement;
   private contentDOMElement: HTMLDivElement;
-  private elementsDetails: C_C_Element_Details[];
+  private scenesSettings: C_Content_Settings[];
   private viewport: Viewport;
 
   private renderer: WebGLRenderer;
   private camera: PerspectiveCamera;
-  private contentList: Canvas_Scene[];
+  private scenes: Canvas_Scene[];
   private background: Canvas_Background;
   private canvasSettings: C_Settings;
-  private contentSettingsList: C_Content_Settings[];
 
-  constructor(canvasDOMElement: HTMLCanvasElement, contentDOMElement: HTMLDivElement, elementsDetails: C_C_Element_Details[], viewport: Viewport) {
+  constructor(canvasDOMElement: HTMLCanvasElement, contentDOMElement: HTMLDivElement, scenesSettings: C_Content_Settings[], viewport: Viewport) {
     this.canvasDOMElement = canvasDOMElement;
     this.contentDOMElement = contentDOMElement;
-    this.elementsDetails = elementsDetails;
     this.viewport = viewport;
-
+    this.scenesSettings = scenesSettings;
     this.renderer = new WebGLRenderer({ antialias: true, canvas: this.canvasDOMElement, logarithmicDepthBuffer: true });
     this.setCanvasSettings();
     this.setRenderer();
     this.setCamera();
     this.setCanvasDOMStyles();
-    this.setContentSettingsList();
-    this.setContent();
+    this.setScenesSettings();
+    this.setScenes();
     this.setBackground();
     this.removePreloader();
   }
@@ -54,13 +51,13 @@ export class Canvas {
     this.canvasSettings = { left, width, height: this.viewport.h };
   }
 
-  private setContentSettingsList() {
-    this.contentSettingsList = getProcessedContentSettingsList({
-      contentSettingsList,
+  private setScenesSettings() {
+    this.scenesSettings = getProcessedScenesSettings({
+      scenesSettings: this.scenesSettings,
       camera: this.camera,
       contentDOMElement: this.contentDOMElement,
       viewport: this.viewport,
-    }).contentSettingsList;
+    }).scenesSettings;
   }
 
   private setCanvasDOMStyles() {
@@ -81,25 +78,16 @@ export class Canvas {
     this.renderer.setPixelRatio(this.viewport.w < 900 && window.devicePixelRatio >= 2 ? 2 : 1);
   }
 
-  private setContent() {
-    this.contentList = this.contentSettingsList.map((contentSettings, index) => {
-      const isLastContentItem = index === this.contentSettingsList.length - 1;
-      return new Canvas_Scene(
-        this.renderer,
-        this.camera,
-        this.canvasDOMElement,
-        contentSettings,
-        this.elementsDetails,
-        this.contentDOMElement,
-        this.viewport,
-        isLastContentItem
-      );
+  private setScenes() {
+    this.scenes = this.scenesSettings.map((sceneSettings, index) => {
+      const isLastScene = index === this.scenesSettings.length - 1;
+      return new Canvas_Scene(this.renderer, this.camera, this.canvasDOMElement, sceneSettings, this.contentDOMElement, this.viewport, isLastScene);
     });
   }
 
   private updateContent() {
-    this.contentSettingsList.forEach((contentSettings, index) => {
-      this.contentList[index].resize(this.camera, contentSettings);
+    this.scenesSettings.forEach((sceneSettings, index) => {
+      this.scenes[index].resize(this.camera, sceneSettings);
     });
   }
 
@@ -118,7 +106,7 @@ export class Canvas {
     this.setRenderer();
     this.updateCamera();
     this.setCanvasDOMStyles();
-    this.setContentSettingsList();
+    this.setScenesSettings();
 
     this.updateBackground();
     this.updateContent();
@@ -128,7 +116,7 @@ export class Canvas {
     this.background.update();
     this.renderer.autoClear = false;
     this.renderer.clearDepth();
-    this.contentList.forEach((scene: Canvas_Scene) => scene.update());
+    this.scenes.forEach((scene: Canvas_Scene) => scene.update());
     this.renderer.autoClear = true;
   }
 }

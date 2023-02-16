@@ -19,8 +19,8 @@ export class Canvas_Content_Box extends Canvas_Content_Element<C_C_S_Element_Box
   private floatingYOffsetProgress: number;
   private floatingProgress: Spring<number>;
 
-  constructor(elementSettings: C_C_S_Element_Box, meshesTemplate: C_C_E_Mesh_Box[], contentSettings: C_Content_Settings, index: number) {
-    super(elementSettings, meshesTemplate, contentSettings, index);
+  constructor(elementSettings: C_C_S_Element_Box, meshesTemplate: C_C_E_Mesh_Box[], sceneSettings: C_Content_Settings, index: number) {
+    super(elementSettings, meshesTemplate, sceneSettings, index);
     this.setBoxSettings();
     this.setFloatingProperties();
     this.setMapperPosition();
@@ -30,7 +30,7 @@ export class Canvas_Content_Box extends Canvas_Content_Element<C_C_S_Element_Box
   }
 
   private setBoxSettings() {
-    this.elementSettings = getProcessedBoxSettings({ elementSettings: this.elementSettings, contentSettings: this.contentSettings });
+    this.elementSettings = getProcessedBoxSettings({ elementSettings: this.elementSettings, sceneSettings: this.sceneSettings });
   }
 
   private setMapperPosition() {

@@ -6,10 +6,10 @@ import { setDimensionZ } from "./setDimensionZ";
 import { setProgressSettings } from "./setProgressSettings";
 
 export type Props = {
-  contentSettingsList: C_Content_Settings[];
+  scenesSettings: C_Content_Settings[];
   camera: PerspectiveCamera;
   contentDOMElement: HTMLDivElement;
   viewport: Viewport;
 };
 
-export const getProcessedContentSettingsList = pipe(setBoundingBox, setDimensionZ, setProgressSettings);
+export const getProcessedScenesSettings = pipe(setBoundingBox, setDimensionZ, setProgressSettings);

@@ -2,7 +2,7 @@ import type { Props } from "./index";
 
 export function setMapperProgressAuto(item: Props): Props {
   let autoProgress = 0;
-  let autoDuration = item?.contentSettings?.autoDuration ?? 1000;
+  let autoDuration = item?.sceneSettings?.autoDuration ?? 1000;
   let autoStep = 16.6 / autoDuration;
 
   return {

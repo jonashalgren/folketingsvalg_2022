@@ -1,14 +1,15 @@
 import type { Props } from "./index";
+import { C_C_Element_Type } from "@models";
 
 export function setBoundingBox(item: Props) {
   return {
     ...item,
-    contentSettingsList: item.contentSettingsList.map((contentSettings) => {
+    scenesSettings: item.scenesSettings.map((sceneSettings) => {
       return {
-        ...contentSettings,
+        ...sceneSettings,
         boundingBox: (function () {
-          const elementTypes = contentSettings.elements.map((item) => item.type);
-          if (elementTypes.includes("map")) {
+          const elementTypes = sceneSettings.elements.map((item) => item.type);
+          if (elementTypes.includes(C_C_Element_Type.map)) {
             return { x: 85, y: 100 };
           }
           return { x: 100, y: 100 };

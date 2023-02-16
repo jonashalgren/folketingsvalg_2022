@@ -29,14 +29,14 @@ export class Canvas_Content_Map extends Canvas_Content_Element<C_C_S_Element_Map
           area.id,
           this.elementSettings,
           this.meshes.filter((entry) => entry.userData.areaId === area.id),
-          this.contentSettings
+          this.sceneSettings
         )
     );
   }
 
   private updateAreas() {
     this.areas.forEach((area) => {
-      area.resize(this.elementSettings, this.contentSettings);
+      area.resize(this.elementSettings, this.sceneSettings);
     });
   }
 
@@ -55,9 +55,9 @@ export class Canvas_Content_Map extends Canvas_Content_Element<C_C_S_Element_Map
     });
   }
 
-  resize(elementSettings: C_C_S_Element_Map, contentSettings: C_Content_Settings) {
+  resize(elementSettings: C_C_S_Element_Map, sceneSettings: C_Content_Settings) {
     this.elementSettings = elementSettings;
-    this.contentSettings = contentSettings;
+    this.sceneSettings = sceneSettings;
 
     this.setElementSettings();
     this.updateAreas();

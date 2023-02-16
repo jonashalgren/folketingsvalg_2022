@@ -1,16 +1,16 @@
 import type { C_Content_Settings, C_C_Element_Details } from "@models";
 
 type Props = {
-  contentSettings: C_Content_Settings;
+  sceneSettings: C_Content_Settings;
   elementsDetails: C_C_Element_Details[];
 };
 
-export function getElements({ contentSettings, elementsDetails }: Props) {
-  return contentSettings.elements
+export function getElements({ sceneSettings, elementsDetails }: Props) {
+  return sceneSettings.elements
     .map((element, index) => {
-      const elementsDetails = elementsDetails[element.type];
+      const elementsDetails = sceneSettings[element.type];
       if (elementsDetails) {
-        return new elementsDetails.class(element, elementsDetails.meshes, contentSettings, index);
+        return new elementsDetails.class(element, elementsDetails.meshes, sceneSettings, index);
       }
       return;
     })

@@ -17,11 +17,11 @@ import { Canvas_Item, type Canvas_Content_Element } from "@classes_abstract";
 import { interpolate } from "popmotion";
 
 export class Canvas_Scene extends Canvas_Item {
-  private contentSettings: C_Content_Settings;
+  private sceneSettings: C_Content_Settings;
   private elementsDetails: C_C_Element_Details[];
   private contentDOMElement: HTMLDivElement;
   private viewport: Viewport;
-  private isLastContentItem: boolean;
+  private isLastScene: boolean;
 
   private elements: Canvas_Content_Element<C_S_S_Element, C_C_Element_Mesh[]>[];
 
@@ -33,19 +33,17 @@ export class Canvas_Scene extends Canvas_Item {
     renderer: WebGLRenderer,
     camera: PerspectiveCamera,
     canvasDOMElement: HTMLCanvasElement,
-    contentSettings: C_Content_Settings,
-    elementsDetails: C_C_Element_Details[],
+    sceneSettings: C_Content_Settings,
     contentDOMElement: HTMLDivElement,
     viewport: Viewport,
-    isLastContentItem: boolean
+    isLastScene: boolean
   ) {
     super(renderer, canvasDOMElement, camera);
 
-    this.contentSettings = contentSettings;
-    this.elementsDetails = elementsDetails;
+    this.sceneSettings = sceneSettings;
     this.contentDOMElement = contentDOMElement;
     this.viewport = viewport;
-    this.isLastContentItem = isLastContentItem;
+    this.isLastScene = isLastScene;
 
     this.setElements();
     this.setMapperCamera();
@@ -56,28 +54,28 @@ export class Canvas_Scene extends Canvas_Item {
   }
 
   private setMapperCamera() {
-    this.mapperCamera = getMapperCamera({ contentSettings: this.contentSettings }).mapper;
+    this.mapperCamera = getMapperCamera({ sceneSettings: this.sceneSettings }).mapper;
   }
 
   private setMapperProgress() {
     this.mapperProgress = getMapperProgress({
       contentDOMElement: this.contentDOMElement,
-      contentSettings: this.contentSettings,
+      sceneSettings: this.sceneSettings,
       viewport: this.viewport,
-      isLastContentItem: this.isLastContentItem,
+      isLastScene: this.isLastScene,
     }).mapper;
   }
 
   private setMapperOpacity() {
-    this.mapperOpacity = interpolate(this.contentSettings.hasTransition ? [0, 0.2, 0.5] : [0, 0.6, 0.9], [0, 0, 1]);
+    this.mapperOpacity = interpolate(this.sceneSettings.hasTransition ? [0, 0.2, 0.5] : [0, 0.6, 0.9], [0, 0, 1]);
   }
 
   private setElements() {
-    this.elements = getElements({ contentSettings: this.contentSettings, elementsDetails: this.elementsDetails });
+    this.elements = getElements({ sceneSettings: this.sceneSettings, elementsDetails: this.elementsDetails });
   }
 
   private updateElements(progress: C_Content_Progress, opacity: number) {
-    const progressMain = this.contentSettings.mode === "auto" ? progress.auto : progress.main;
+    const progressMain = this.sceneSettings.mode === "auto" ? progress.auto : progress.main;
     this.elements.forEach((element) => {
       element.update(progressMain, progress.entry, opacity);
     });
@@ -97,8 +95,8 @@ export class Canvas_Scene extends Canvas_Item {
     }
   }
 
-  resize(camera: PerspectiveCamera, contentSettings: C_Content_Settings) {
-    this.contentSettings = contentSettings;
+  resize(camera: PerspectiveCamera, sceneSettings: C_Content_Settings) {
+    this.sceneSettings = sceneSettings;
     this.updateCamera(camera);
     this.updateControls();
     this.setMapperCamera();
