@@ -1,4 +1,4 @@
-import type { C_Settings, Viewport, C_C_Element_Details, C_Content_Settings } from "@models";
+import type { C_Settings, Viewport, C_Content_Settings } from "@models";
 import { PerspectiveCamera, WebGLRenderer } from "three";
 import { Canvas_Scene, Canvas_Background } from "@classes";
 import { _rAF } from "@stores";

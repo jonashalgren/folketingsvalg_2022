@@ -13,7 +13,7 @@ export abstract class Canvas_Item {
   private spotLight: SpotLight;
   private ambientLight: AmbientLight;
 
-  abstract resize(camera: PerspectiveCamera, contentSettings: C_Content_Settings): void;
+  abstract resize(camera: PerspectiveCamera, sceneSettings: C_Content_Settings): void;
   abstract update(): void;
 
   constructor(renderer: WebGLRenderer, canvasDOMElement: HTMLCanvasElement, camera: PerspectiveCamera) {

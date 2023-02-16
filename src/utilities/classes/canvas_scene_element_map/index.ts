@@ -1,15 +1,15 @@
-import { Canvas_Content_Map_Area } from "@classes";
+import { Canvas_Scene_Element_Map_Area } from "@classes";
 import { Canvas_Content_Element } from "@classes_abstract";
 import { election_result_areas } from "@assets";
 import type { C_C_E_Mesh_Map, C_Content_Settings, C_C_S_Element_Map, C_C_S_Element_Map_Area_Id } from "@models";
 import { getProcessedConfigs } from "./getProcessedConfigs";
 
-export class Canvas_Content_Map extends Canvas_Content_Element<C_C_S_Element_Map, C_C_E_Mesh_Map[]> {
-  private areas: Canvas_Content_Map_Area[];
+export class Canvas_Scene_Element_Map extends Canvas_Content_Element<C_C_S_Element_Map, C_C_E_Mesh_Map[]> {
+  private areas: Canvas_Scene_Element_Map_Area[];
   private focusedAreas: C_C_S_Element_Map_Area_Id[] = [];
 
-  constructor(elementSettings: C_C_S_Element_Map, meshesTemplate: C_C_E_Mesh_Map[], contentSettings: C_Content_Settings) {
-    super(elementSettings, meshesTemplate, contentSettings, 0);
+  constructor(elementSettings: C_C_S_Element_Map, sceneSettings: C_Content_Settings) {
+    super(elementSettings, sceneSettings, 0);
 
     this.setElementSettings();
     this.setAreas();
@@ -25,7 +25,7 @@ export class Canvas_Content_Map extends Canvas_Content_Element<C_C_S_Element_Map
   private setAreas() {
     this.areas = election_result_areas.map(
       (area) =>
-        new Canvas_Content_Map_Area(
+        new Canvas_Scene_Element_Map_Area(
           area.id,
           this.elementSettings,
           this.meshes.filter((entry) => entry.userData.areaId === area.id),
@@ -49,7 +49,7 @@ export class Canvas_Content_Map extends Canvas_Content_Element<C_C_S_Element_Map
   }
 
   private animateAreas(progress: number) {
-    this.areas.forEach((area: Canvas_Content_Map_Area) => {
+    this.areas.forEach((area: Canvas_Scene_Element_Map_Area) => {
       const isFaded = this.focusedAreas.length > 0 && !this.focusedAreas.includes(area.areaId);
       area.animate(progress, isFaded);
     });

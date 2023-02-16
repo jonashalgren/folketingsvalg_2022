@@ -10,7 +10,7 @@ import { spring } from "svelte/motion";
 import type { Spring } from "svelte/motion";
 import { get } from "svelte/store";
 
-export class Canvas_Content_Box extends Canvas_Content_Element<C_C_S_Element_Box, C_C_E_Mesh_Box[]> {
+export class Canvas_Scene_Element_Box extends Canvas_Content_Element<C_C_S_Element_Box, C_C_E_Mesh_Box[]> {
   private mapperScale: (progress: number) => Vector3Tuple;
   private mapperPosition: (progress: number) => Vector3Tuple;
   private mapperFloatingYOffset: (progress: number) => number;
@@ -19,8 +19,8 @@ export class Canvas_Content_Box extends Canvas_Content_Element<C_C_S_Element_Box
   private floatingYOffsetProgress: number;
   private floatingProgress: Spring<number>;
 
-  constructor(elementSettings: C_C_S_Element_Box, meshesTemplate: C_C_E_Mesh_Box[], sceneSettings: C_Content_Settings, index: number) {
-    super(elementSettings, meshesTemplate, sceneSettings, index);
+  constructor(elementSettings: C_C_S_Element_Box, sceneSettings: C_Content_Settings, index: number) {
+    super(elementSettings, sceneSettings, index);
     this.setBoxSettings();
     this.setFloatingProperties();
     this.setMapperPosition();

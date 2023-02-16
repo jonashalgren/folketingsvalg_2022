@@ -1,14 +1,14 @@
 import { readable } from "svelte/store";
 import { tick } from "svelte";
-import { _contentSectionsTexts, _elementsDetails } from "@stores";
+import { _contentSectionsTexts, _canvasScenesSettings } from "@stores";
 
 export const _contentIsRendered = readable<boolean>(false, function start(set) {
   let contentSectiongsTexts = [];
-  let elementDetails = [];
+  let scenesSettings = [];
 
   async function setContentIsRendered() {
     await tick();
-    set(contentSectiongsTexts.length > 0 && elementDetails.length > 0);
+    set(contentSectiongsTexts.length > 0 && scenesSettings.length > 0);
   }
 
   _contentSectionsTexts.subscribe(async (val) => {
@@ -16,8 +16,8 @@ export const _contentIsRendered = readable<boolean>(false, function start(set) {
     setContentIsRendered();
   });
 
-  _elementsDetails.subscribe(async (val) => {
-    elementDetails = val;
+  _canvasScenesSettings.subscribe(async (val) => {
+    scenesSettings = val;
     setContentIsRendered();
   });
 });

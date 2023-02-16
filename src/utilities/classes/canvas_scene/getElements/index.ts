@@ -5,7 +5,7 @@ type Props = {
   elementsDetails: C_C_Element_Details[];
 };
 
-export function getElements({ sceneSettings, elementsDetails }: Props) {
+export function getElements({ sceneSettings }: Props) {
   return sceneSettings.elements
     .map((element, index) => {
       const elementsDetails = sceneSettings[element.type];

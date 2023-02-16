@@ -3,7 +3,6 @@ import { getElementMeshes } from "./getElementMeshes";
 
 export abstract class Canvas_Content_Element<D extends C_S_S_Element, M extends C_C_Element_Mesh[]> {
   elementSettings: D;
-  meshesTemplate: M;
   sceneSettings: C_Content_Settings;
   index: number;
 
@@ -15,9 +14,8 @@ export abstract class Canvas_Content_Element<D extends C_S_S_Element, M extends 
   abstract animate(progress: number, entryProgress: number): void;
   abstract resize(elementSettings: D, sceneSettings: C_Content_Settings): void;
 
-  constructor(elementSettings: D, meshesTemplate: M, sceneSettings: C_Content_Settings, index: number) {
+  constructor(elementSettings: D, sceneSettings: C_Content_Settings, index: number) {
     this.elementSettings = elementSettings;
-    this.meshesTemplate = meshesTemplate;
     this.sceneSettings = sceneSettings;
     this.index = index;
     this.setMeshes();
@@ -25,7 +23,6 @@ export abstract class Canvas_Content_Element<D extends C_S_S_Element, M extends 
 
   private setMeshes() {
     this.meshes = getElementMeshes({
-      meshesTemplate: this.meshesTemplate ?? [],
       elementSettings: this.elementSettings,
     }).meshes as M;
   }

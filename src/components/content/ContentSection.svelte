@@ -6,11 +6,11 @@
   export let sectionTexts: string[];
   export let isLastSection: boolean;
   export let isFirstSection: boolean;
-  export let matchedContentSettings: C_Content_Settings;
-  export let nextMatchedContentSettings: C_Content_Settings;
+  export let matchedSceneSettings: C_Content_Settings;
+  export let nextMatchedSceneSettings: C_Content_Settings;
   $: marginBottom = isLastSection
     ? 0
-    : nextMatchedContentSettings.elements.find((item) => item.type === C_C_Element_Type.transition)
+    : nextMatchedSceneSettings.elements.find((item) => item.type === C_C_Element_Type.transition)
     ? $_viewport.h * 0.5
     : $_viewport.h * 0.1;
 </script>
@@ -22,7 +22,7 @@
       {isFirstSection}
       isFirstText={textIndex === 0}
       isLastText={textIndex === sectionTexts.length - 1}
-      extraMargin={matchedContentSettings.extraTextMargin?.find((item) => item.index === textIndex)}
+      extraMargin={matchedSceneSettings.extraTextMargin?.find((item) => item.index === textIndex)}
     />
   {/each}
 </div>
