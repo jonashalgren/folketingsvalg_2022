@@ -6,3 +6,4 @@ export * from "./canvas_scene_element_map";
 export * from "./canvas_scene_element_map_area";
 export * from "./canvas_scene_element_transition";
 export * from "./canvas_scene_element_transition_square";
+export * from "./canvas_scene_element_number";

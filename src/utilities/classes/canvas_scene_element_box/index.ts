@@ -80,8 +80,9 @@ export class Canvas_Scene_Element_Box extends Canvas_Scene_Element<C_S_S_Element
     }
   }
 
-  resize(boxSettings: C_S_S_Element_Box) {
-    this.elementSettings = boxSettings;
+  resize(elementSettings: C_S_S_Element_Box, sceneSettings: C_Scene_Settings) {
+    this.elementSettings = elementSettings;
+    this.sceneSettings = sceneSettings;
 
     this.setBoxSettings();
     this.setMapperPosition();

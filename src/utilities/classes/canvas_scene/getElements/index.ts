@@ -1,5 +1,5 @@
 import { C_S_Element_Type, type C_Scene_Settings, type C_S_Elements_Meshes } from "@models";
-import { Canvas_Scene_Element_Box, Canvas_Scene_Element_Map, Canvas_Scene_Element_Transition } from "@classes";
+import { Canvas_Scene_Element_Box, Canvas_Scene_Element_Map, Canvas_Scene_Element_Transition, Canvas_Scene_Element_Number } from "@classes";
 
 type Props = {
   sceneSettings: C_Scene_Settings;
@@ -15,6 +15,8 @@ export function getElements({ sceneSettings, elementsMeshes }: Props) {
         return new Canvas_Scene_Element_Map(elementSettings, elementsMeshes.map, sceneSettings);
       } else if (elementSettings.type === C_S_Element_Type.transition) {
         return new Canvas_Scene_Element_Transition(elementSettings);
+      } else if (elementSettings.type === C_S_Element_Type.number) {
+        return new Canvas_Scene_Element_Number(elementSettings, sceneSettings);
       }
     })
     .filter((item) => item);
