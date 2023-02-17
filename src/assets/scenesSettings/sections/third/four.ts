@@ -262,7 +262,7 @@ export const four: C_Scene_Settings = {
         },
         size: {
           inputRange: [0, 0.36],
-          outputRange: [0, 5],
+          outputRange: [5, 0],
         },
       },
     },
