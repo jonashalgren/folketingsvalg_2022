@@ -1,0 +1,100 @@
+import { Canvas_Scene_Element } from "@classes_abstract";
+import type { C_S_E_Mesh_Figure, C_Scene_Settings, C_S_S_Element_Figure } from "@models";
+import { Canvas_Scene_Element_Figure_Item } from "@classes";
+import { Group, Box3, Color } from "three";
+
+export class Canvas_Scene_Element_Figure extends Canvas_Scene_Element<C_S_S_Element_Figure, C_S_E_Mesh_Figure[]> {
+  itemsPrRow: number;
+  itemDefaultWidth: number;
+  itemDefaultHeight: number;
+  itemScale: number;
+  itemWidth: number;
+  itemHeight: number;
+
+  width: number;
+  height: number;
+  items: Canvas_Scene_Element_Figure_Item[];
+
+  constructor(elementSettings: C_S_S_Element_Figure, elementMeshes: C_S_E_Mesh_Figure[], sceneSettings: C_Scene_Settings) {
+    super(elementSettings, [], sceneSettings, 0);
+    this.elementMeshes = elementMeshes;
+    this.setElementMeshesColor();
+    this.setItemsPrRow();
+    this.setDefaultSize();
+    this.setItemScale();
+    this.setItemSize();
+    this.setSize();
+    this.setItems();
+    this.setItemMeshes();
+  }
+
+  private setElementMeshesColor() {
+    const color = new Color(this.elementSettings.color);
+    this.elementMeshes.forEach((mesh) => {
+      mesh.material.color = color;
+    });
+  }
+
+  private setItemsPrRow() {
+    this.itemsPrRow = Math.floor(this.elementSettings.amount / this.elementSettings.rows);
+  }
+
+  private setDefaultSize() {
+    const group = new Group();
+    group.add(...this.elementMeshes);
+    const box = new Box3();
+    box.setFromObject(group);
+    this.itemDefaultWidth = box.max.x - box.min.x;
+    this.itemDefaultHeight = box.max.y - box.min.y;
+  }
+
+  private setItemScale() {
+    this.itemScale = (this.elementSettings.width / this.itemsPrRow / this.itemDefaultWidth) * 0.95;
+  }
+
+  private setItemSize() {
+    this.itemWidth = this.itemDefaultWidth * this.itemScale;
+    this.itemHeight = this.itemDefaultHeight * this.itemScale;
+  }
+
+  private setSize() {
+    this.width = this.itemWidth * this.itemsPrRow;
+    this.height = this.itemHeight * this.elementSettings.rows;
+  }
+
+  private setItems() {
+    this.items = Array.from(Array(this.elementSettings.amount).keys()).map(
+      (_, index) =>
+        new Canvas_Scene_Element_Figure_Item(
+          this.elementMeshes,
+          this.width,
+          this.height,
+          this.itemsPrRow,
+          this.itemWidth,
+          this.itemHeight,
+          this.itemScale,
+          index
+        )
+    );
+  }
+
+  private setItemMeshes() {
+    this.meshes = this.items.flatMap((item) => item.meshes);
+  }
+
+  resize(elementSettings: C_S_S_Element_Figure, sceneSettings: C_Scene_Settings) {
+    this.elementSettings = elementSettings;
+    this.sceneSettings = sceneSettings;
+  }
+
+  animate(progress: number) {
+    const fadedItems = this.elementSettings.items.find(({ inputRange }) => inputRange[0] <= progress && inputRange[1] >= progress);
+    this.items.forEach((item, index) => {
+      if (fadedItems) {
+        item.animate(progress, this.items.length - fadedItems.disabled - 1 < index);
+      } else {
+        item.animate(progress, false);
+      }
+    });
+  }
+}

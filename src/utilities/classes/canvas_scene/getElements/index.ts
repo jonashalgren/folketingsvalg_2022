@@ -1,5 +1,12 @@
 import { C_S_Element_Type, type C_Scene_Settings, type C_S_Elements_Meshes } from "@models";
-import { Canvas_Scene_Element_Box, Canvas_Scene_Element_Map, Canvas_Scene_Element_Transition, Canvas_Scene_Element_Number } from "@classes";
+import {
+  Canvas_Scene_Element_Box,
+  Canvas_Scene_Element_Map,
+  Canvas_Scene_Element_Transition,
+  Canvas_Scene_Element_Number,
+  Canvas_Scene_Element_Text,
+  Canvas_Scene_Element_Figure,
+} from "@classes";
 
 type Props = {
   sceneSettings: C_Scene_Settings;
@@ -9,14 +16,22 @@ type Props = {
 export function getElements({ sceneSettings, elementsMeshes }: Props) {
   return sceneSettings.elements
     .map((elementSettings, index) => {
-      if (elementSettings.type === C_S_Element_Type.box) {
-        return new Canvas_Scene_Element_Box(elementSettings, elementsMeshes.box, sceneSettings, index);
-      } else if (elementSettings.type === C_S_Element_Type.map) {
-        return new Canvas_Scene_Element_Map(elementSettings, elementsMeshes.map, sceneSettings);
-      } else if (elementSettings.type === C_S_Element_Type.transition) {
-        return new Canvas_Scene_Element_Transition(elementSettings);
-      } else if (elementSettings.type === C_S_Element_Type.number) {
-        return new Canvas_Scene_Element_Number(elementSettings, sceneSettings);
+      switch (elementSettings.type) {
+        case C_S_Element_Type.box:
+          return new Canvas_Scene_Element_Box(elementSettings, elementsMeshes.box, sceneSettings, index);
+        case C_S_Element_Type.map:
+          return new Canvas_Scene_Element_Map(elementSettings, elementsMeshes.map, sceneSettings);
+        case C_S_Element_Type.transition:
+          return new Canvas_Scene_Element_Transition(elementSettings);
+        case C_S_Element_Type.number:
+          return new Canvas_Scene_Element_Number(elementSettings, sceneSettings);
+        case C_S_Element_Type.text:
+          return new Canvas_Scene_Element_Text(elementSettings, sceneSettings);
+        case C_S_Element_Type.figure:
+          return new Canvas_Scene_Element_Figure(elementSettings, elementsMeshes.figure, sceneSettings);
+
+        default:
+          break;
       }
     })
     .filter((item) => item);

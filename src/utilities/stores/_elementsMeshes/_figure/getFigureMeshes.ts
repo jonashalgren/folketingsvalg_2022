@@ -15,9 +15,9 @@ export function getFigureMeshes({ data }: Props) {
       const material = getLambertMaterial({ color: new Color(element_mesh_settings.color_dark) });
       const mesh = getMesh({ geometry, material });
       material.transparent = true;
-      mesh.scale.set(5, 5, 0.1);
 
       mesh.userData.isFaded = false;
+      mesh.userData.stayHidden = true;
 
       return mesh as C_S_E_Mesh_Figure;
     });

@@ -47,7 +47,6 @@ export const two: C_Scene_Settings = {
     },
     {
       type: C_S_Element_Type.figure,
-      inputRange: [0, 1],
       amount: 16,
       width: 95,
       color: partyCollection.B.color,

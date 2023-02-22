@@ -159,7 +159,6 @@ export type C_S_S_Element_Map_Area_Id =
 
 export type C_S_S_Element_Figure = {
   type: C_S_Element_Type.figure;
-  inputRange: [number, number];
   amount: number;
   color: string;
   rows: number;
@@ -182,7 +181,6 @@ export type C_S_S_Element_Text = {
   maxWidth: number;
   textAlign: "center" | "left" | "right";
   color: string;
-  isResponsive?: boolean;
   rotation: [number, number, number];
   position: [number, number, number];
 };

@@ -13,6 +13,7 @@ export type C_S_E_Mesh_Box = Mesh<BoxGeometry, MeshLambertMaterial[]> & {
 export type C_S_E_Mesh_Figure = Mesh<ExtrudeGeometry, MeshLambertMaterial> & {
   userData: {
     isFaded: boolean;
+    stayHidden: boolean;
   };
 };
 
