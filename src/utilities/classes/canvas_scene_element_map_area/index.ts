@@ -5,7 +5,7 @@ import { getMapperScaleZ } from "./getMapperScaleZ";
 import { getMapperColor } from "./getMapperColor";
 
 export class Canvas_Scene_Element_Map_Area {
-  public areaId: C_S_S_Element_Map_Area_Id;
+  areaId: C_S_S_Element_Map_Area_Id;
   private elementSettings: C_S_S_Element_Map;
   private meshes: C_S_E_Mesh_Map[];
   private sceneSettings: C_Scene_Settings;

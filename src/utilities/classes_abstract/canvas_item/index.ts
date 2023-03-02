@@ -44,7 +44,7 @@ export abstract class Canvas_Item {
     this.controls.enablePan = false;
   }
 
-  public setGrid() {
+  setGrid() {
     const gridXZ = new GridHelper(100, 10, "#000", "#aaaaaa");
     const gridXY = new GridHelper(100, 10, "#000", "#aaaaaa");
     const gridYZ = new GridHelper(100, 10, "#000", "#aaaaaa");
@@ -53,16 +53,16 @@ export abstract class Canvas_Item {
     this.scene.add(gridYZ, gridXZ, gridXY);
   }
 
-  public addElementMeshesToScene(meshes: Mesh[]) {
+  addElementMeshesToScene(meshes: Mesh[]) {
     this.scene.add(...meshes);
   }
 
-  public setCameraAspect(camera: PerspectiveCamera) {
+  setCameraAspect(camera: PerspectiveCamera) {
     this.camera.aspect = camera.aspect;
     this.camera.updateProjectionMatrix();
   }
 
-  public render() {
+  render() {
     this.controls.update();
     this.renderer.render(this.scene, this.camera);
   }

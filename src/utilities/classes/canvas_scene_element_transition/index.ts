@@ -6,7 +6,7 @@ import { interpolate } from "popmotion";
 import { transition_squares_settings } from "@assets";
 
 export class Canvas_Scene_Element_Transition extends Canvas_Scene_Element<C_S_S_Element_Transition, C_S_E_Mesh_Transition[]> {
-  public transitionSettings: C_S_S_Element_Transition;
+  transitionSettings: C_S_S_Element_Transition;
 
   private squares: Canvas_Scene_Element_Transition_Square[];
   private colorAlphaMapper: (progress: number) => number;
