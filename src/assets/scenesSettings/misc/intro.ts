@@ -34,7 +34,7 @@ export const intro: C_Scene_Settings = {
   },
   elements: [
     {
-      type: C_S_Element_Type.map,
+      type: C_S_Element_Type.MAP,
       configs: [
         {
           mapVariant: "party_vote_allocation",
@@ -123,7 +123,7 @@ export const intro: C_Scene_Settings = {
       ],
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       texture: "logo",
       partyLetter: "A",
       size: 10,
@@ -136,7 +136,7 @@ export const intro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       texture: "logo",
       partyLetter: "V",
       size: 10,
@@ -150,7 +150,7 @@ export const intro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       texture: "logo",
       partyLetter: "Æ",
       size: 10,
@@ -164,7 +164,7 @@ export const intro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       texture: "logo",
       partyLetter: "M",
       size: 10,
@@ -178,7 +178,7 @@ export const intro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       texture: "logo",
       partyLetter: "B",
       size: 10,
@@ -192,7 +192,7 @@ export const intro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       texture: "logo",
       partyLetter: "F",
       size: 10,
@@ -206,7 +206,7 @@ export const intro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       texture: "logo",
       partyLetter: "D",
       size: 10,
@@ -220,7 +220,7 @@ export const intro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       texture: "logo",
       partyLetter: "K",
       size: 10,
@@ -234,7 +234,7 @@ export const intro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       texture: "logo",
       partyLetter: "O",
       size: 10,
@@ -248,7 +248,7 @@ export const intro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       texture: "logo",
       partyLetter: "C",
       size: 10,
@@ -262,7 +262,7 @@ export const intro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       texture: "logo",
       partyLetter: "I",
       size: 10,
@@ -276,7 +276,7 @@ export const intro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       texture: "logo",
       partyLetter: "Å",
       size: 10,
@@ -290,7 +290,7 @@ export const intro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       texture: "logo",
       partyLetter: "Ø",
       size: 10,
@@ -303,7 +303,7 @@ export const intro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       texture: "logo",
       partyLetter: "A",
       size: 10,

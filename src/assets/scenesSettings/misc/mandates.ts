@@ -54,9 +54,9 @@ export const mandates: C_Scene_Settings = {
     targetExit: [-10, 20, -10],
   },
   elements: [
-    { type: C_S_Element_Type.transition },
+    { type: C_S_Element_Type.TRANSITION },
     {
-      type: C_S_Element_Type.number,
+      type: C_S_Element_Type.NUMBER,
       font: fonts.ane,
       decimals: 0,
       rotation: [0, 0, 0],
@@ -85,7 +85,7 @@ export const mandates: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.number,
+      type: C_S_Element_Type.NUMBER,
       font: fonts.ane,
       decimals: 0,
       rotation: [0, 0, 0],
@@ -114,7 +114,7 @@ export const mandates: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.number,
+      type: C_S_Element_Type.NUMBER,
       font: fonts.ane,
       decimals: 0,
       rotation: [0, 0, 0],
@@ -143,7 +143,7 @@ export const mandates: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "A",
       texture: "logo",
       isFloating: true,
@@ -165,7 +165,7 @@ export const mandates: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "Ø",
       texture: "logo",
       isFloating: true,
@@ -187,7 +187,7 @@ export const mandates: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "F",
       texture: "logo",
       isFloating: true,
@@ -209,7 +209,7 @@ export const mandates: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "Å",
       texture: "logo",
       isFloating: true,
@@ -231,7 +231,7 @@ export const mandates: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "B",
       texture: "logo",
       isFloating: true,
@@ -253,7 +253,7 @@ export const mandates: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "M",
       texture: "logo",
       isFloating: true,
@@ -275,7 +275,7 @@ export const mandates: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "V",
       texture: "logo",
       isFloating: true,
@@ -297,7 +297,7 @@ export const mandates: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "C",
       texture: "logo",
       isFloating: true,
@@ -319,7 +319,7 @@ export const mandates: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "O",
       texture: "logo",
       isFloating: true,
@@ -341,7 +341,7 @@ export const mandates: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "D",
       texture: "logo",
       isFloating: true,
@@ -363,7 +363,7 @@ export const mandates: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "I",
       texture: "logo",
       isFloating: true,
@@ -385,7 +385,7 @@ export const mandates: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "Æ",
       texture: "logo",
       isFloating: true,

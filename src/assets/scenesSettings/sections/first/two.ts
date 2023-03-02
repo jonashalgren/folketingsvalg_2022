@@ -38,7 +38,7 @@ export const two: C_Scene_Settings = {
   },
   elements: [
     {
-      type: C_S_Element_Type.map,
+      type: C_S_Element_Type.MAP,
       focus: [
         { areas: ["Gentofte"], inputRange: [0.45, 0.66] },
         { areas: ["Skive", "Struer"], inputRange: [0.83, 1] },
@@ -58,7 +58,7 @@ export const two: C_Scene_Settings = {
       ],
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "M",
       texture: "logo",
       size: mapLogoSize,
@@ -71,7 +71,7 @@ export const two: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.number,
+      type: C_S_Element_Type.NUMBER,
       font: fonts.ane,
       unit: "%",
       decimals: 1,

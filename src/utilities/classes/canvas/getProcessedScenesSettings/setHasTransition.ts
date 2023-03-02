@@ -7,7 +7,7 @@ export function setBoundingBox(item: Props) {
     scenesSettings: item.scenesSettings.map((sceneSettings) => {
       return {
         ...sceneSettings,
-        hasTransition: Boolean(sceneSettings.elements.find((item) => item.type === C_S_Element_Type.transition)),
+        hasTransition: Boolean(sceneSettings.elements.find((item) => item.type === C_S_Element_Type.TRANSITION)),
       };
     }),
   };

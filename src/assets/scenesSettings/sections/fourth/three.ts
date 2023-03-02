@@ -31,7 +31,7 @@ export const three: C_Scene_Settings = {
   },
   elements: [
     {
-      type: C_S_Element_Type.map,
+      type: C_S_Element_Type.MAP,
       focus: [{ areas: ["Hedensted", "Vejle_Nord"], inputRange: [0.7, 1] }],
       configs: [
         {
@@ -48,7 +48,7 @@ export const three: C_Scene_Settings = {
       ],
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "O",
       texture: "logo",
       size: mapLogoSize,
@@ -61,7 +61,7 @@ export const three: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.number,
+      type: C_S_Element_Type.NUMBER,
       font: fonts.ane,
       unit: "%",
       decimals: 1,

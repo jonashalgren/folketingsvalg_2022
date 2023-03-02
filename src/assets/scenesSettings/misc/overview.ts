@@ -24,7 +24,7 @@ export const overview: C_Scene_Settings = {
     targetExit: [7, 4, -10],
   },
   elements: [
-    { type: C_S_Element_Type.transition },
+    { type: C_S_Element_Type.TRANSITION },
     // barChart: {
     //   animConfigs: [
     //     { variant: "blank", inputRange: [0, 0.01] },

@@ -4,7 +4,7 @@ import type { Vector3Tuple } from "three";
 //------------------------------------------------------------
 
 export type C_S_S_Element_Box = {
-  type: C_S_Element_Type.box;
+  type: C_S_Element_Type.BOX;
   texture?: C_S_S_Element_Box_Texture;
   partyLetter: Party_Letter;
   size: number;
@@ -26,7 +26,7 @@ export type C_S_S_Element_Box_Texture = "logo" | "leader";
 //------------------------------------------------------------
 
 export type C_S_S_Element_Map = {
-  type: C_S_Element_Type.map;
+  type: C_S_Element_Type.MAP;
   configs: C_S_S_Element_Map_Config[];
   focus?: C_S_S_Element_Map_Focus[];
 };
@@ -158,7 +158,7 @@ export type C_S_S_Element_Map_Area_Id =
 //------------------------------------------------------------
 
 export type C_S_S_Element_Figure = {
-  type: C_S_Element_Type.figure;
+  type: C_S_Element_Type.FIGURE;
   amount: number;
   color: string;
   rows: number;
@@ -174,7 +174,7 @@ export type C_S_S_Element_Figure_Item = {
 //------------------------------------------------------------
 
 export type C_S_S_Element_Text = {
-  type: C_S_Element_Type.text;
+  type: C_S_Element_Type.TEXT;
   font: string;
   text: string;
   fontSize: number;
@@ -188,7 +188,7 @@ export type C_S_S_Element_Text = {
 //------------------------------------------------------------
 
 export type C_S_S_Element_Number = {
-  type: C_S_Element_Type.number;
+  type: C_S_Element_Type.NUMBER;
   font: string;
   unit: string;
   motion: C_S_S_Element_Number_Motion;
@@ -207,7 +207,7 @@ export type C_S_S_Element_Number_Motion = {
 //------------------------------------------------------------
 
 export type C_S_S_Element_Transition = {
-  type: C_S_Element_Type.transition;
+  type: C_S_Element_Type.TRANSITION;
 };
 
 //------------------------------------------------------------

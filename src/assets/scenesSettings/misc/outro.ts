@@ -33,9 +33,9 @@ export const outro: C_Scene_Settings = {
     positionExit: [0, -130, 75],
   },
   elements: [
-    { type: C_S_Element_Type.transition },
+    { type: C_S_Element_Type.TRANSITION },
     {
-      type: C_S_Element_Type.map,
+      type: C_S_Element_Type.MAP,
       configs: [
         {
           mapVariant: "party_vote_allocation",
@@ -124,7 +124,7 @@ export const outro: C_Scene_Settings = {
       ],
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "A",
       texture: "logo",
       size: 10,
@@ -137,7 +137,7 @@ export const outro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "V",
       texture: "logo",
       size: 10,
@@ -150,7 +150,7 @@ export const outro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "Æ",
       texture: "logo",
       size: 10,
@@ -163,7 +163,7 @@ export const outro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "M",
       texture: "logo",
       size: 10,
@@ -176,7 +176,7 @@ export const outro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "B",
       texture: "logo",
       size: 10,
@@ -189,7 +189,7 @@ export const outro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "F",
       texture: "logo",
       size: 10,
@@ -202,7 +202,7 @@ export const outro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "D",
       texture: "logo",
       size: 10,
@@ -215,7 +215,7 @@ export const outro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "K",
       texture: "logo",
       size: 10,
@@ -228,7 +228,7 @@ export const outro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "O",
       texture: "logo",
       size: 10,
@@ -241,7 +241,7 @@ export const outro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "C",
       texture: "logo",
       size: 10,
@@ -254,7 +254,7 @@ export const outro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "I",
       texture: "logo",
       size: 10,
@@ -267,7 +267,7 @@ export const outro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "Å",
       texture: "logo",
       size: 10,
@@ -280,7 +280,7 @@ export const outro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "Ø",
       texture: "logo",
       size: 10,
@@ -293,7 +293,7 @@ export const outro: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "A",
       texture: "logo",
       size: 10,

@@ -10,7 +10,7 @@
   export let nextMatchedSceneSettings: C_Scene_Settings;
   $: marginBottom = isLastSection
     ? 0
-    : nextMatchedSceneSettings.elements.find((item) => item.type === C_S_Element_Type.transition)
+    : nextMatchedSceneSettings.elements.find((item) => item.type === C_S_Element_Type.TRANSITION)
     ? $_viewport.h * 0.5
     : $_viewport.h * 0.1;
 </script>

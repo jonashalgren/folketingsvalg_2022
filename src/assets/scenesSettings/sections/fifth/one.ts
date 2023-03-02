@@ -23,9 +23,9 @@ export const one: C_Scene_Settings = {
     positionExit: [0, 27, -5],
   },
   elements: [
-    { type: C_S_Element_Type.transition },
+    { type: C_S_Element_Type.TRANSITION },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "B",
       texture: "leader",
       rotation: [0, 0, 0],
@@ -42,7 +42,7 @@ export const one: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "B",
       texture: "logo",
       rotation: [0, 0, 0],

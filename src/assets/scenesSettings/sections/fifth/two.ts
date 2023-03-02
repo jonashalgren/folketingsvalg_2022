@@ -26,7 +26,7 @@ export const two: C_Scene_Settings = {
 
   elements: [
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "B",
       texture: "logo",
       rotation: [0, 0, 0],
@@ -46,7 +46,7 @@ export const two: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.figure,
+      type: C_S_Element_Type.FIGURE,
       amount: 16,
       width: 95,
       color: partyCollection.B.color,

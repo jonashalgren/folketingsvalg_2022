@@ -26,7 +26,7 @@ export const two: C_Scene_Settings = {
   },
   elements: [
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "C",
       texture: "logo",
       rotation: [0, 0, 0],
@@ -46,7 +46,7 @@ export const two: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.number,
+      type: C_S_Element_Type.NUMBER,
       decimals: 0,
       font: fonts.ane,
       unit: "",
@@ -75,7 +75,7 @@ export const two: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.text,
+      type: C_S_Element_Type.TEXT,
       color: partyCollection.C.color,
       font: fonts.ane,
       fontSize: 10,

@@ -26,7 +26,7 @@ export const two: C_Scene_Settings = {
   },
   elements: [
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "V",
       texture: "logo",
       size: 14,

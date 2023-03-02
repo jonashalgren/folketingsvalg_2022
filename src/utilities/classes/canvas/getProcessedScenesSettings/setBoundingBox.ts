@@ -9,7 +9,7 @@ export function setBoundingBox(item: Props) {
         ...sceneSettings,
         boundingBox: (function () {
           const elementTypes = sceneSettings.elements.map((item) => item.type);
-          if (elementTypes.includes(C_S_Element_Type.map)) {
+          if (elementTypes.includes(C_S_Element_Type.MAP)) {
             return { x: 85, y: 100 };
           }
           return { x: 100, y: 100 };

@@ -57,7 +57,7 @@ export const two: C_Scene_Settings = {
   },
   elements: [
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "O",
       rotation: [0, 0, 0],
       size,
@@ -70,7 +70,7 @@ export const two: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "O",
       rotation: [0, 0, 0],
       size,
@@ -83,7 +83,7 @@ export const two: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
       partyLetter: "O",
       rotation: [0, 0, 0],
       size,
@@ -96,7 +96,7 @@ export const two: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
 
       partyLetter: "O",
       rotation: [0, 0, 0],
@@ -110,7 +110,7 @@ export const two: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.box,
+      type: C_S_Element_Type.BOX,
 
       partyLetter: "O",
       rotation: [0, 0, 0],
@@ -124,7 +124,7 @@ export const two: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.number,
+      type: C_S_Element_Type.NUMBER,
       font: fonts.ane,
       unit: "%",
       decimals: 1,
@@ -153,7 +153,7 @@ export const two: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.number,
+      type: C_S_Element_Type.NUMBER,
       font: fonts.ane,
       unit: "%",
       decimals: 1,
@@ -182,7 +182,7 @@ export const two: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.number,
+      type: C_S_Element_Type.NUMBER,
       font: fonts.ane,
       unit: "%",
       decimals: 1,
@@ -211,7 +211,7 @@ export const two: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.number,
+      type: C_S_Element_Type.NUMBER,
       font: fonts.ane,
       unit: "%",
       decimals: 1,
@@ -240,7 +240,7 @@ export const two: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.number,
+      type: C_S_Element_Type.NUMBER,
       font: fonts.ane,
       unit: "%",
       decimals: 1,
@@ -269,7 +269,7 @@ export const two: C_Scene_Settings = {
       },
     },
     {
-      type: C_S_Element_Type.text,
+      type: C_S_Element_Type.TEXT,
       font: fonts.ane,
       text: "2007",
       fontSize: 5,
@@ -280,7 +280,7 @@ export const two: C_Scene_Settings = {
       color: element_mesh_settings.color_dark,
     },
     {
-      type: C_S_Element_Type.text,
+      type: C_S_Element_Type.TEXT,
       font: fonts.ane,
       text: "2011",
       fontSize: 5,
@@ -291,7 +291,7 @@ export const two: C_Scene_Settings = {
       color: element_mesh_settings.color_dark,
     },
     {
-      type: C_S_Element_Type.text,
+      type: C_S_Element_Type.TEXT,
       font: fonts.ane,
       text: "2015",
       fontSize: 5,
@@ -302,7 +302,7 @@ export const two: C_Scene_Settings = {
       color: element_mesh_settings.color_dark,
     },
     {
-      type: C_S_Element_Type.text,
+      type: C_S_Element_Type.TEXT,
       font: fonts.ane,
       text: "2019",
       fontSize: 5,
@@ -313,7 +313,7 @@ export const two: C_Scene_Settings = {
       color: element_mesh_settings.color_dark,
     },
     {
-      type: C_S_Element_Type.text,
+      type: C_S_Element_Type.TEXT,
       font: fonts.ane,
       text: "2022",
       fontSize: 5,
