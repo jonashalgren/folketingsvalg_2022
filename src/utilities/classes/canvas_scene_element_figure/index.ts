@@ -3,6 +3,12 @@ import type { C_S_E_Mesh_Figure, C_Scene_Settings, C_S_S_Element_Figure } from "
 import { Canvas_Scene_Element_Figure_Item } from "@classes";
 import { Group, Box3, Color } from "three";
 
+type Props = {
+  elementSettings: C_S_S_Element_Figure;
+  elementMeshes: C_S_E_Mesh_Figure[];
+  sceneSettings: C_Scene_Settings;
+};
+
 export class Canvas_Scene_Element_Figure extends Canvas_Scene_Element<C_S_S_Element_Figure, C_S_E_Mesh_Figure[]> {
   itemsPrRow: number;
   itemDefaultWidth: number;
@@ -15,9 +21,9 @@ export class Canvas_Scene_Element_Figure extends Canvas_Scene_Element<C_S_S_Elem
   height: number;
   items: Canvas_Scene_Element_Figure_Item[];
 
-  constructor(elementSettings: C_S_S_Element_Figure, elementMeshes: C_S_E_Mesh_Figure[], sceneSettings: C_Scene_Settings) {
-    super(elementSettings, [], sceneSettings, 0);
-    this.elementMeshes = elementMeshes;
+  constructor(props: Props) {
+    super(props);
+    this.elementMeshes = props.elementMeshes;
     this.setElementMeshesColor();
     this.setItemsPrRow();
     this.setDefaultSize();
@@ -65,16 +71,16 @@ export class Canvas_Scene_Element_Figure extends Canvas_Scene_Element<C_S_S_Elem
   private setItems() {
     this.items = Array.from(Array(this.elementSettings.amount).keys()).map(
       (_, index) =>
-        new Canvas_Scene_Element_Figure_Item(
-          this.elementMeshes,
-          this.width,
-          this.height,
-          this.itemsPrRow,
-          this.itemWidth,
-          this.itemHeight,
-          this.itemScale,
-          index
-        )
+        new Canvas_Scene_Element_Figure_Item({
+          elementMeshes: this.elementMeshes,
+          width: this.width,
+          height: this.height,
+          itemsPrRow: this.itemsPrRow,
+          itemWidth: this.itemWidth,
+          itemHeight: this.itemHeight,
+          itemScale: this.itemScale,
+          index,
+        })
     );
   }
 

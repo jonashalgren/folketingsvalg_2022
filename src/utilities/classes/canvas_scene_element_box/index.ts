@@ -10,6 +10,13 @@ import { spring } from "svelte/motion";
 import type { Spring } from "svelte/motion";
 import { get } from "svelte/store";
 
+type Props = {
+  elementSettings: C_S_S_Element_Box;
+  elementMeshes: C_S_E_Mesh_Box[];
+  sceneSettings: C_Scene_Settings;
+  index: number;
+};
+
 export class Canvas_Scene_Element_Box extends Canvas_Scene_Element<C_S_S_Element_Box, C_S_E_Mesh_Box[]> {
   private mapperScale: (progress: number) => Vector3Tuple;
   private mapperPosition: (progress: number) => Vector3Tuple;
@@ -19,8 +26,8 @@ export class Canvas_Scene_Element_Box extends Canvas_Scene_Element<C_S_S_Element
   private floatingYOffsetProgress: number;
   private floatingProgress: Spring<number>;
 
-  constructor(elementSettings: C_S_S_Element_Box, elementMeshes: C_S_E_Mesh_Box[], sceneSettings: C_Scene_Settings, index: number) {
-    super(elementSettings, elementMeshes, sceneSettings, index);
+  constructor(props: Props) {
+    super(props);
     this.setBoxSettings();
     this.setFloatingProperties();
     this.setMapperPosition();

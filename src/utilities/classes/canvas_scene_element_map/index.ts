@@ -4,13 +4,18 @@ import { election_result_areas } from "@assets";
 import type { C_S_E_Mesh_Map, C_Scene_Settings, C_S_S_Element_Map, C_S_S_Element_Map_Area_Id } from "@models";
 import { getProcessedConfigs } from "./getProcessedConfigs";
 
+type Props = {
+  elementSettings: C_S_S_Element_Map;
+  elementMeshes: C_S_E_Mesh_Map[];
+  sceneSettings: C_Scene_Settings;
+};
+
 export class Canvas_Scene_Element_Map extends Canvas_Scene_Element<C_S_S_Element_Map, C_S_E_Mesh_Map[]> {
   private areas: Canvas_Scene_Element_Map_Area[];
   private focusedAreas: C_S_S_Element_Map_Area_Id[] = [];
 
-  constructor(elementSettings: C_S_S_Element_Map, elementMeshes: C_S_E_Mesh_Map[], sceneSettings: C_Scene_Settings) {
-    super(elementSettings, elementMeshes, sceneSettings, 0);
-
+  constructor(props: Props) {
+    super(props);
     this.setElementSettings();
     this.setAreas();
   }
@@ -25,12 +30,12 @@ export class Canvas_Scene_Element_Map extends Canvas_Scene_Element<C_S_S_Element
   private setAreas() {
     this.areas = election_result_areas.map(
       (area) =>
-        new Canvas_Scene_Element_Map_Area(
-          area.id,
-          this.elementSettings,
-          this.meshes.filter((entry) => entry.userData.areaId === area.id),
-          this.sceneSettings
-        )
+        new Canvas_Scene_Element_Map_Area({
+          areaId: area.id,
+          elementSettings: this.elementSettings,
+          meshes: this.meshes.filter((entry) => entry.userData.areaId === area.id),
+          sceneSettings: this.sceneSettings,
+        })
     );
   }
 
@@ -50,7 +55,7 @@ export class Canvas_Scene_Element_Map extends Canvas_Scene_Element<C_S_S_Element
 
   private animateAreas(progress: number) {
     this.areas.forEach((area: Canvas_Scene_Element_Map_Area) => {
-      const isFaded = this.focusedAreas.length > 0 && !this.focusedAreas.includes(area.areaId);
+      const isFaded = this.focusedAreas.length > 0 && !this.focusedAreas.includes(area.props.areaId);
       area.animate(progress, isFaded);
     });
   }

@@ -1,11 +1,17 @@
 import { Mesh, MeshBasicMaterial, PlaneGeometry, PerspectiveCamera, WebGLRenderer } from "three";
 import { Canvas_Item } from "@classes_abstract";
 
+type Props = {
+  renderer: WebGLRenderer;
+  canvasDOMElement: HTMLCanvasElement;
+  camera: PerspectiveCamera;
+};
+
 export class Canvas_Background extends Canvas_Item {
   private plane: Mesh;
 
-  constructor(renderer: WebGLRenderer, canvasDOMElement: HTMLCanvasElement, camera: PerspectiveCamera) {
-    super(renderer, canvasDOMElement, camera);
+  constructor({ renderer, canvasDOMElement, camera }: Props) {
+    super({ renderer, canvasDOMElement, camera });
     this.camera.position.set(0, 0, 200);
     this.setPlane();
     this.addElementMeshesToScene([this.plane]);

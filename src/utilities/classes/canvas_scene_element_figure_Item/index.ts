@@ -1,6 +1,6 @@
 import type { C_S_E_Mesh_Figure } from "@models";
 
-export class Canvas_Scene_Element_Figure_Item {
+type Props = {
   elementMeshes: C_S_E_Mesh_Figure[];
   width: number;
   height: number;
@@ -9,7 +9,9 @@ export class Canvas_Scene_Element_Figure_Item {
   itemHeight: number;
   itemScale: number;
   index: number;
+};
 
+export class Canvas_Scene_Element_Figure_Item {
   meshes: C_S_E_Mesh_Figure[];
   row: number;
   xPos: number;
@@ -17,24 +19,7 @@ export class Canvas_Scene_Element_Figure_Item {
   opacity: number;
   opacityStep: number;
 
-  constructor(
-    elementMeshes: C_S_E_Mesh_Figure[],
-    width: number,
-    height: number,
-    itemsPrRow: number,
-    itemWidth: number,
-    itemHeight: number,
-    itemScale: number,
-    index: number
-  ) {
-    this.elementMeshes = elementMeshes;
-    this.width = width;
-    this.height = height;
-    this.itemsPrRow = itemsPrRow;
-    this.itemWidth = itemWidth;
-    this.itemHeight = itemHeight;
-    this.itemScale = itemScale;
-    this.index = index;
+  constructor(private props: Props) {
     this.opacity = 1;
     this.opacityStep = 0.016;
     this.setRow();
@@ -44,16 +29,16 @@ export class Canvas_Scene_Element_Figure_Item {
   }
 
   setRow() {
-    this.row = Math.floor(this.index / this.itemsPrRow);
+    this.row = Math.floor(this.props.index / this.props.itemsPrRow);
   }
 
   setPosition() {
-    this.xPos = -(this.width / 2) + this.index * this.itemWidth - this.width * this.row + this.itemWidth * 0.05;
-    this.yPos = -(this.row * this.itemHeight) + this.itemHeight * 0.05;
+    this.xPos = -(this.props.width / 2) + this.props.index * this.props.itemWidth - this.props.width * this.row + this.props.itemWidth * 0.05;
+    this.yPos = -(this.row * this.props.itemHeight) + this.props.itemHeight * 0.05;
   }
 
   setMeshes() {
-    this.meshes = this.elementMeshes.map((mesh: C_S_E_Mesh_Figure) => {
+    this.meshes = this.props.elementMeshes.map((mesh: C_S_E_Mesh_Figure) => {
       const clone = mesh.clone();
       clone.userData = mesh.userData;
       clone.geometry = clone.geometry.clone() as any;
@@ -66,7 +51,7 @@ export class Canvas_Scene_Element_Figure_Item {
   setProperties() {
     this.meshes.forEach((item) => {
       item.position.set(this.xPos, this.yPos, 0.1);
-      item.scale.set(this.itemScale * 0.9, this.itemScale * 0.9, 0.1);
+      item.scale.set(this.props.itemScale * 0.9, this.props.itemScale * 0.9, 0.1);
     });
   }
 

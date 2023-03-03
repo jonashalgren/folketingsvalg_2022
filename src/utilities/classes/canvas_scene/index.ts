@@ -16,6 +16,17 @@ import { getMapperProgress } from "./getMapperProgress";
 import { Canvas_Item, type Canvas_Scene_Element } from "@classes_abstract";
 import { interpolate } from "popmotion";
 
+type Props = {
+  renderer: WebGLRenderer;
+  camera: PerspectiveCamera;
+  canvasDOMElement: HTMLCanvasElement;
+  sceneSettings: C_Scene_Settings;
+  elementsMeshes: C_S_Elements_Meshes;
+  contentDOMElement: HTMLDivElement;
+  viewport: Viewport;
+  isLastScene: boolean;
+};
+
 export class Canvas_Scene extends Canvas_Item {
   private sceneSettings: C_Scene_Settings;
   private elementsMeshes: C_S_Elements_Meshes;
@@ -29,17 +40,8 @@ export class Canvas_Scene extends Canvas_Item {
   mapperCamera: C_Scene_Camera_Mapper;
   mapperOpacity: C_Scene_Opacity_Mapper;
 
-  constructor(
-    renderer: WebGLRenderer,
-    camera: PerspectiveCamera,
-    canvasDOMElement: HTMLCanvasElement,
-    sceneSettings: C_Scene_Settings,
-    elementsMeshes: C_S_Elements_Meshes,
-    contentDOMElement: HTMLDivElement,
-    viewport: Viewport,
-    isLastScene: boolean
-  ) {
-    super(renderer, canvasDOMElement, camera);
+  constructor({ renderer, camera, canvasDOMElement, sceneSettings, elementsMeshes, contentDOMElement, viewport, isLastScene }: Props) {
+    super({ renderer, canvasDOMElement, camera });
 
     this.sceneSettings = sceneSettings;
     this.elementsMeshes = elementsMeshes;

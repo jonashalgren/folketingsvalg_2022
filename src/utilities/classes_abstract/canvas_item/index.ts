@@ -2,7 +2,13 @@ import { Scene, SpotLight, AmbientLight, PerspectiveCamera, WebGLRenderer, GridH
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import type { C_Scene_Settings } from "@models";
 
-export abstract class Canvas_Item {
+type Props = {
+  renderer: WebGLRenderer;
+  canvasDOMElement: HTMLCanvasElement;
+  camera: PerspectiveCamera;
+};
+
+export abstract class Canvas_Item implements Props {
   renderer: WebGLRenderer;
   canvasDOMElement: HTMLCanvasElement;
   camera: PerspectiveCamera;
@@ -16,9 +22,11 @@ export abstract class Canvas_Item {
   abstract resize(camera: PerspectiveCamera, sceneSettings: C_Scene_Settings): void;
   abstract animate(): void;
 
-  constructor(renderer: WebGLRenderer, canvasDOMElement: HTMLCanvasElement, camera: PerspectiveCamera) {
+  constructor({ renderer, camera, canvasDOMElement }: Props) {
     this.renderer = renderer;
     this.canvasDOMElement = canvasDOMElement;
+    this.camera = camera;
+
     this.scene = new Scene();
     this.setCamera(camera);
     this.setControls();

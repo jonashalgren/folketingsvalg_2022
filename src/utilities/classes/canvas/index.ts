@@ -94,16 +94,16 @@ export class Canvas {
   private setScenes() {
     this.scenes = this.scenesSettings.map((sceneSettings, index) => {
       const isLastScene = index === this.scenesSettings.length - 1;
-      return new Canvas_Scene(
-        this.renderer,
-        this.camera,
-        this.canvasDOMElement,
-        sceneSettings,
-        this.elementsMeshes,
-        this.contentDOMElement,
-        this.viewport,
-        isLastScene
-      );
+      return new Canvas_Scene({
+        renderer: this.renderer,
+        camera: this.camera,
+        canvasDOMElement: this.canvasDOMElement,
+        sceneSettings: sceneSettings,
+        elementsMeshes: this.elementsMeshes,
+        contentDOMElement: this.contentDOMElement,
+        viewport: this.viewport,
+        isLastScene,
+      });
     });
   }
 
@@ -114,7 +114,7 @@ export class Canvas {
   }
 
   private setBackground() {
-    this.background = new Canvas_Background(this.renderer, this.canvasDOMElement, this.camera);
+    this.background = new Canvas_Background({ renderer: this.renderer, camera: this.camera, canvasDOMElement: this.canvasDOMElement });
   }
 
   private resizeBackground() {

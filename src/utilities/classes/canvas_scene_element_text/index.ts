@@ -5,14 +5,19 @@ import { Text } from "troika-three-text";
 import type { Vector3Tuple } from "three";
 import { degreesToRadians } from "popmotion";
 
+type Props = {
+  elementSettings: C_S_S_Element_Text;
+  sceneSettings: C_Scene_Settings;
+};
+
 export class Canvas_Scene_Element_Text extends Canvas_Scene_Element<C_S_S_Element_Text, C_S_E_Mesh_Text[]> {
   mapperValue: (progress: number) => number;
   mapperColor: (progress: number) => string;
   mapperSize: (progress: number) => number;
   mapperPosition: (progress: number) => Vector3Tuple;
 
-  constructor(elementSettings: C_S_S_Element_Text, sceneSettings: C_Scene_Settings) {
-    super(elementSettings, [], sceneSettings, 0);
+  constructor(props: Props) {
+    super(props);
     this.setElementSettings();
     this.setText();
   }

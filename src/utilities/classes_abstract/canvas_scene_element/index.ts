@@ -1,21 +1,29 @@
 import type { C_S_Element_Mesh, C_Scene_Settings, C_S_S_Element } from "@models";
 import { getElementMeshes } from "./getElementMeshes";
 
-export abstract class Canvas_Scene_Element<D extends C_S_S_Element, M extends C_S_Element_Mesh[]> {
+type Props<D extends C_S_S_Element, M extends C_S_Element_Mesh[]> = {
   elementSettings: D;
-  elementMeshes: M;
-  sceneSettings: C_Scene_Settings;
-  index: number;
+  sceneSettings?: C_Scene_Settings;
+  elementMeshes?: M;
+  index?: number;
+};
+
+export abstract class Canvas_Scene_Element<D extends C_S_S_Element, M extends C_S_Element_Mesh[]> implements Props<C_S_S_Element, C_S_Element_Mesh[]> {
+  elementSettings: D;
+  elementMeshes?: M;
+  sceneSettings?: C_Scene_Settings;
+  index?: number;
 
   meshes: M;
+
   private localProgress: number | undefined = undefined;
   private localEntryProgress: number | undefined = undefined;
-
   private localOpacity: number | undefined = undefined;
+
   abstract animate(progress: number, entryProgress: number): void;
   abstract resize(elementSettings: D, sceneSettings: C_Scene_Settings): void;
 
-  constructor(elementSettings: D, elementMeshes: M, sceneSettings: C_Scene_Settings, index: number) {
+  constructor({ elementSettings, elementMeshes, sceneSettings, index }: Props<D, M>) {
     this.elementSettings = elementSettings;
     this.elementMeshes = elementMeshes;
     this.sceneSettings = sceneSettings;

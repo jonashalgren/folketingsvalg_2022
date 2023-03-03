@@ -4,41 +4,32 @@ import { Color, Mesh, MeshLambertMaterial, CustomBlending, MinEquation, SrcAlpha
 import type { ExtrudeBufferGeometry, Vector3Tuple } from "three";
 import type { C_S_E_Mesh_Transition } from "@models";
 
-export class Canvas_Scene_Element_Transition_Square {
-  private color: Color;
-  private whiteColor: Color;
-  private blackColor: Color;
-  private positionOutputRange: [Vector3Tuple, Vector3Tuple];
-  private rotationOutputRange: [Vector3Tuple, Vector3Tuple];
+type Props = {
+  color: Color;
+  whiteColor: Color;
+  blackColor: Color;
+  positionOutputRange: [Vector3Tuple, Vector3Tuple];
+  rotationOutputRange: [Vector3Tuple, Vector3Tuple];
+};
 
+export class Canvas_Scene_Element_Transition_Square {
   private material: MeshLambertMaterial;
   private geometry: ExtrudeBufferGeometry;
   private shape: Shape;
   private localProgress: number;
+
   mesh: C_S_E_Mesh_Transition;
 
   positionMapper: (progress: number) => Vector3Tuple;
   rotationMapper: (progress: number) => Vector3Tuple;
 
-  constructor(
-    color: Color,
-    whiteColor: Color,
-    blackColor: Color,
-    positionOutputRange: [Vector3Tuple, Vector3Tuple],
-    rotationOutputRange: [Vector3Tuple, Vector3Tuple]
-  ) {
-    this.color = color;
-    this.whiteColor = whiteColor;
-    this.blackColor = blackColor;
-    this.positionOutputRange = positionOutputRange;
-    this.rotationOutputRange = rotationOutputRange;
-
+  constructor(private props: Props) {
     this.setShape();
     this.setGeometry();
     this.setMaterial();
     this.setMesh();
-    this.positionMapper = interpolate([0.5, 1], this.positionOutputRange);
-    this.rotationMapper = interpolate([0.5, 1], this.rotationOutputRange);
+    this.positionMapper = interpolate([0.5, 1], this.props.positionOutputRange);
+    this.rotationMapper = interpolate([0.5, 1], this.props.rotationOutputRange);
   }
 
   private setShape() {
@@ -55,7 +46,7 @@ export class Canvas_Scene_Element_Transition_Square {
   }
 
   private setMaterial() {
-    this.material = getLambertMaterial({ color: this.color });
+    this.material = getLambertMaterial({ color: this.props.color });
     this.material.blending = CustomBlending;
     this.material.blendEquation = MinEquation;
     this.material.blendSrc = SrcAlphaFactor;
@@ -65,15 +56,15 @@ export class Canvas_Scene_Element_Transition_Square {
     this.mesh = new Mesh(this.geometry, this.material) as C_S_E_Mesh_Transition;
     this.mesh.userData.stayHidden = true;
     this.mesh.scale.z = 0.1;
-    this.mesh.position.set(...this.positionOutputRange[0]);
+    this.mesh.position.set(...this.props.positionOutputRange[0]);
   }
 
   animate(progress: number, colorAlpha: number) {
     if (this.localProgress !== progress) {
       this.localProgress = progress;
 
-      this.mesh.material.color.lerpColors(this.color, this.whiteColor, colorAlpha);
-      this.mesh.material.emissive.lerpColors(this.blackColor, this.whiteColor, colorAlpha);
+      this.mesh.material.color.lerpColors(this.props.color, this.props.whiteColor, colorAlpha);
+      this.mesh.material.emissive.lerpColors(this.props.blackColor, this.props.whiteColor, colorAlpha);
       this.mesh.position.set(...this.positionMapper(progress));
       this.mesh.rotation.set(...this.rotationMapper(progress));
     }

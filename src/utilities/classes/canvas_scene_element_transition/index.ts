@@ -5,9 +5,11 @@ import type { C_S_E_Mesh_Transition, C_S_S_Element_Transition } from "@models";
 import { interpolate } from "popmotion";
 import { transition_squares_settings } from "@assets";
 
-export class Canvas_Scene_Element_Transition extends Canvas_Scene_Element<C_S_S_Element_Transition, C_S_E_Mesh_Transition[]> {
-  transitionSettings: C_S_S_Element_Transition;
+type Props = {
+  elementSettings: C_S_S_Element_Transition;
+};
 
+export class Canvas_Scene_Element_Transition extends Canvas_Scene_Element<C_S_S_Element_Transition, C_S_E_Mesh_Transition[]> {
   private squares: Canvas_Scene_Element_Transition_Square[];
   private colorAlphaMapper: (progress: number) => number;
 
@@ -15,9 +17,8 @@ export class Canvas_Scene_Element_Transition extends Canvas_Scene_Element<C_S_S_
   static whiteColor = new Color("#ffffff");
   static blackColor = new Color("#000000");
 
-  constructor(transitionSettings: C_S_S_Element_Transition) {
-    super(transitionSettings, [], undefined, 0);
-    this.transitionSettings = transitionSettings;
+  constructor(props: Props) {
+    super(props);
     this.colorAlphaMapper = interpolate([0, 0.3, 0.9, 1], [1, 0, 0, 1]);
     this.setSquares();
     this.addSquaresToMeshes();
@@ -25,13 +26,13 @@ export class Canvas_Scene_Element_Transition extends Canvas_Scene_Element<C_S_S_
 
   private setSquares() {
     this.squares = Canvas_Scene_Element_Transition.squaresSettings.map(({ color, positionOutputRange, rotationOutputRange }) => {
-      return new Canvas_Scene_Element_Transition_Square(
+      return new Canvas_Scene_Element_Transition_Square({
         color,
-        Canvas_Scene_Element_Transition.whiteColor,
-        Canvas_Scene_Element_Transition.blackColor,
+        whiteColor: Canvas_Scene_Element_Transition.whiteColor,
+        blackColor: Canvas_Scene_Element_Transition.blackColor,
         positionOutputRange,
-        rotationOutputRange
-      );
+        rotationOutputRange,
+      });
     });
   }
 
