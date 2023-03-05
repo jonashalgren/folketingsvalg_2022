@@ -1,18 +1,20 @@
-import { Mesh, MeshBasicMaterial, PlaneGeometry, PerspectiveCamera, WebGLRenderer } from "three";
+import { Mesh, MeshBasicMaterial, PlaneGeometry, Vector3, WebGLRenderer } from "three";
 import { Canvas_Item } from "@classes_abstract";
+import type { C_Settings } from "@models";
+import { getProcessedZ } from "@helpers";
 
 type Props = {
   renderer: WebGLRenderer;
   canvasDOMElement: HTMLCanvasElement;
-  camera: PerspectiveCamera;
+  canvasSettings: C_Settings;
 };
 
 export class Canvas_Background extends Canvas_Item {
   private plane: Mesh;
 
-  constructor({ renderer, canvasDOMElement, camera }: Props) {
-    super({ renderer, canvasDOMElement, camera });
-    this.camera.position.set(0, 0, 200);
+  constructor({ renderer, canvasDOMElement, canvasSettings }: Props) {
+    super({ renderer, canvasDOMElement, canvasSettings, boundingBox: new Vector3(100, 100, 0) });
+    this.setCameraPosition();
     this.setPlane();
     this.addElementMeshesToScene([this.plane]);
   }
@@ -24,8 +26,12 @@ export class Canvas_Background extends Canvas_Item {
     this.plane.position.set(0, 0, 1);
   }
 
-  resize(camera: PerspectiveCamera) {
-    this.setCameraAspect(camera);
+  private setCameraPosition() {
+    this.camera.position.set(0, 0, getProcessedZ({ dimensionZ: this.dimensionZ, z: 200 }));
+  }
+
+  resizing() {
+    this.setCameraPosition();
   }
 
   animate() {

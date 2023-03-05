@@ -1,13 +1,13 @@
 import { Canvas_Scene_Element_Map_Area } from "@classes";
 import { Canvas_Scene_Element } from "@classes_abstract";
 import { election_result_areas } from "@assets";
-import type { C_S_E_Mesh_Map, C_Scene_Settings, C_S_S_Element_Map, C_S_S_Element_Map_Area_Id } from "@models";
+import type { C_S_E_Mesh_Map, C_S_S_Element_Map, C_S_S_Element_Map_Area_Id } from "@models";
 import { getProcessedConfigs } from "./getProcessedConfigs";
 
 type Props = {
   elementSettings: C_S_S_Element_Map;
   elementMeshes: C_S_E_Mesh_Map[];
-  sceneSettings: C_Scene_Settings;
+  dimensionZ: number;
 };
 
 export class Canvas_Scene_Element_Map extends Canvas_Scene_Element<C_S_S_Element_Map, C_S_E_Mesh_Map[]> {
@@ -34,14 +34,14 @@ export class Canvas_Scene_Element_Map extends Canvas_Scene_Element<C_S_S_Element
           areaId: area.id,
           elementSettings: this.elementSettings,
           meshes: this.meshes.filter((entry) => entry.userData.areaId === area.id),
-          sceneSettings: this.sceneSettings,
+          dimensionZ: this.dimensionZ,
         })
     );
   }
 
   private resizeAreas() {
     this.areas.forEach((area) => {
-      area.resize(this.elementSettings, this.sceneSettings);
+      area.resizing(this.elementSettings, this.dimensionZ);
     });
   }
 
@@ -56,19 +56,16 @@ export class Canvas_Scene_Element_Map extends Canvas_Scene_Element<C_S_S_Element
   private animateAreas(progress: number) {
     this.areas.forEach((area: Canvas_Scene_Element_Map_Area) => {
       const isFaded = this.focusedAreas.length > 0 && !this.focusedAreas.includes(area.props.areaId);
-      area.animate(progress, isFaded);
+      area.animating(progress, isFaded);
     });
   }
 
-  resize(elementSettings: C_S_S_Element_Map, sceneSettings: C_Scene_Settings) {
-    this.elementSettings = elementSettings;
-    this.sceneSettings = sceneSettings;
-
+  resizing() {
     this.setElementSettings();
     this.resizeAreas();
   }
 
-  animate(progress: number) {
+  animating(progress: number) {
     this.animateFocusedAreas(progress);
     this.animateAreas(progress);
   }

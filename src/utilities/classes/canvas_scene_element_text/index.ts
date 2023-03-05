@@ -1,5 +1,5 @@
 import { Canvas_Scene_Element } from "@classes_abstract";
-import type { C_S_E_Mesh_Text, C_Scene_Settings, C_S_S_Element_Text } from "@models";
+import type { C_S_E_Mesh_Text, C_S_S_Element_Text } from "@models";
 import { getProcessedTextSettings } from "./getProcessedTextSettings";
 import { Text } from "troika-three-text";
 import type { Vector3Tuple } from "three";
@@ -7,7 +7,7 @@ import { degreesToRadians } from "popmotion";
 
 type Props = {
   elementSettings: C_S_S_Element_Text;
-  sceneSettings: C_Scene_Settings;
+  dimensionZ: number;
 };
 
 export class Canvas_Scene_Element_Text extends Canvas_Scene_Element<C_S_S_Element_Text, C_S_E_Mesh_Text[]> {
@@ -25,7 +25,7 @@ export class Canvas_Scene_Element_Text extends Canvas_Scene_Element<C_S_S_Elemen
   private setElementSettings() {
     this.elementSettings = getProcessedTextSettings({
       elementSettings: this.elementSettings,
-      sceneSettings: this.sceneSettings,
+      dimensionZ: this.dimensionZ,
     });
   }
 
@@ -47,16 +47,14 @@ export class Canvas_Scene_Element_Text extends Canvas_Scene_Element<C_S_S_Elemen
     this.setTextPosition();
   }
 
-  setTextPosition() {
+  private setTextPosition() {
     this.meshes[0].position.set(...this.elementSettings.position);
   }
 
-  resize(elementSettings: C_S_S_Element_Text, sceneSettings: C_Scene_Settings) {
-    this.elementSettings = elementSettings;
-    this.sceneSettings = sceneSettings;
+  resizing() {
     this.setElementSettings();
     this.setTextPosition();
   }
 
-  animate() {}
+  animating() {}
 }

@@ -1,12 +1,12 @@
-import type { C_Scene_Settings, C_S_S_Element_Number } from "@models";
+import type { C_S_S_Element_Number } from "@models";
 import { getProcessedOutputRangeList } from "@helpers";
 
 type Props = {
   elementSettings: C_S_S_Element_Number;
-  sceneSettings: C_Scene_Settings;
+  dimensionZ: number;
 };
 
-export function getProcessedNumberSettings({ elementSettings, sceneSettings }: Props): C_S_S_Element_Number {
+export function getProcessedNumberSettings({ elementSettings, dimensionZ }: Props): C_S_S_Element_Number {
   return {
     ...elementSettings,
     motion: {
@@ -14,7 +14,7 @@ export function getProcessedNumberSettings({ elementSettings, sceneSettings }: P
       position: {
         ...elementSettings.motion.position,
         outputRange: getProcessedOutputRangeList({
-          dimensionZ: sceneSettings.dimensionZ,
+          dimensionZ,
           originalOutputRangeList: elementSettings.motion.position.outputRange,
         }),
       },

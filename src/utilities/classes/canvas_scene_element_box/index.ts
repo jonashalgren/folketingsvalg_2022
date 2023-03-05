@@ -1,5 +1,5 @@
 import { Canvas_Scene_Element } from "@classes_abstract";
-import type { C_S_E_Mesh_Box, C_S_S_Element_Box, C_Scene_Settings } from "@models";
+import type { C_S_E_Mesh_Box, C_S_S_Element_Box } from "@models";
 import { getMapperScale } from "./getMapperScale";
 import { getMapperPosition } from "./getMapperPosition";
 import { getMapperFloatingYOffset } from "./getMapperFloatingYOffset";
@@ -13,8 +13,8 @@ import { get } from "svelte/store";
 type Props = {
   elementSettings: C_S_S_Element_Box;
   elementMeshes: C_S_E_Mesh_Box[];
-  sceneSettings: C_Scene_Settings;
   index: number;
+  dimensionZ: number;
 };
 
 export class Canvas_Scene_Element_Box extends Canvas_Scene_Element<C_S_S_Element_Box, C_S_E_Mesh_Box[]> {
@@ -37,7 +37,7 @@ export class Canvas_Scene_Element_Box extends Canvas_Scene_Element<C_S_S_Element
   }
 
   private setBoxSettings() {
-    this.elementSettings = getProcessedBoxSettings({ elementSettings: this.elementSettings, sceneSettings: this.sceneSettings });
+    this.elementSettings = getProcessedBoxSettings({ elementSettings: this.elementSettings, dimensionZ: this.dimensionZ });
   }
 
   private setMapperPosition() {
@@ -87,17 +87,14 @@ export class Canvas_Scene_Element_Box extends Canvas_Scene_Element<C_S_S_Element
     }
   }
 
-  resize(elementSettings: C_S_S_Element_Box, sceneSettings: C_Scene_Settings) {
-    this.elementSettings = elementSettings;
-    this.sceneSettings = sceneSettings;
-
+  resizing() {
     this.setBoxSettings();
     this.setMapperPosition();
     this.setMapperScale();
     this.setMapperFloatingYOffset();
   }
 
-  animate(progress: number) {
+  animating(progress: number) {
     if (this.elementSettings.isFloating) {
       this.setFloatingYOffsetProgress();
       this.floatingProgress.set(progress);

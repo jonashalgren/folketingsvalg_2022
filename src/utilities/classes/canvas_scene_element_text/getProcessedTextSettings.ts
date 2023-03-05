@@ -1,16 +1,16 @@
-import type { C_Scene_Settings, C_S_S_Element_Text } from "@models";
+import type { C_S_S_Element_Text } from "@models";
 import { getProcessedOutputRangeItem } from "@helpers";
 
 type Props = {
   elementSettings: C_S_S_Element_Text;
-  sceneSettings: C_Scene_Settings;
+  dimensionZ: number;
 };
 
-export function getProcessedTextSettings({ elementSettings, sceneSettings }: Props): C_S_S_Element_Text {
+export function getProcessedTextSettings({ elementSettings, dimensionZ }: Props): C_S_S_Element_Text {
   return {
     ...elementSettings,
     position: getProcessedOutputRangeItem({
-      dimensionZ: sceneSettings.dimensionZ,
+      dimensionZ,
       originalOutputRangeItem: elementSettings.position,
     }),
   };

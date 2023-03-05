@@ -5,6 +5,7 @@ import { pipe } from "@helpers";
 
 export type Props = {
   sceneSettings: C_Scene_Settings;
+  dimensionZ: number;
   cameraSettings?: C_S_Settings_Camera;
   mapper?: C_Scene_Camera_Mapper;
 };

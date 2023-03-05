@@ -1,4 +1,4 @@
-import type { C_S_E_Mesh_Map, C_S_S_Element_Map, C_S_S_Element_Map_Area_Id, C_Scene_Settings } from "@models";
+import type { C_S_E_Mesh_Map, C_S_S_Element_Map, C_S_S_Element_Map_Area_Id } from "@models";
 import { element_mesh_settings } from "@assets";
 import { getOpacityMapper } from "@helpers";
 import { getMapperScaleZ } from "./getMapperScaleZ";
@@ -8,7 +8,7 @@ type Props = {
   areaId: C_S_S_Element_Map_Area_Id;
   elementSettings: C_S_S_Element_Map;
   meshes: C_S_E_Mesh_Map[];
-  sceneSettings: C_Scene_Settings;
+  dimensionZ: number;
 };
 
 export class Canvas_Scene_Element_Map_Area {
@@ -24,7 +24,7 @@ export class Canvas_Scene_Element_Map_Area {
   }
 
   private setMapperScaleZ() {
-    this.mapperScaleZ = getMapperScaleZ({ areaId: this.props.areaId, configs: this.props.elementSettings.configs, sceneSettings: this.props.sceneSettings });
+    this.mapperScaleZ = getMapperScaleZ({ areaId: this.props.areaId, configs: this.props.elementSettings.configs, dimensionZ: this.props.dimensionZ });
   }
 
   private setMapperColor() {
@@ -35,15 +35,15 @@ export class Canvas_Scene_Element_Map_Area {
     this.mapperOpacity = getOpacityMapper({ duration: 1200, fadeOutStrength: 0.2 });
   }
 
-  resize(elementSettings: C_S_S_Element_Map, sceneSettings: C_Scene_Settings) {
+  resizing(elementSettings: C_S_S_Element_Map, dimensionZ: number) {
     this.props.elementSettings = elementSettings;
-    this.props.sceneSettings = sceneSettings;
+    this.props.dimensionZ = dimensionZ;
 
     this.setMapperScaleZ();
     this.setMapperColor();
   }
 
-  animate(progress: number, isFaded: boolean) {
+  animating(progress: number, isFaded: boolean) {
     const scaleZ = this.mapperScaleZ(progress);
     const color = this.mapperColor(progress);
     const opacity = this.mapperOpacity(isFaded);

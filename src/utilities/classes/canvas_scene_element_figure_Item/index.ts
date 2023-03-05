@@ -55,9 +55,7 @@ export class Canvas_Scene_Element_Figure_Item {
     });
   }
 
-  resize() {}
-
-  animate(progress: number, isFaded: boolean) {
+  animating(progress: number, isFaded: boolean) {
     let goal = 0;
 
     if (isFaded && progress > 0) {

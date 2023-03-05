@@ -1,25 +1,30 @@
-import type {
-  C_S_Element_Mesh,
-  C_Scene_Camera_Mapper,
-  C_Scene_Progress_Mapper,
-  C_Scene_Opacity_Mapper,
-  C_Scene_Settings,
-  C_S_S_Element,
-  Viewport,
-  C_Scene_Progress,
-  C_S_Elements_Meshes,
+import {
+  type C_S_Element_Mesh,
+  type C_Scene_Camera_Mapper,
+  type C_Scene_Progress_Mapper,
+  type C_Scene_Opacity_Mapper,
+  type C_Scene_Settings,
+  type C_S_S_Element,
+  type Viewport,
+  type C_Scene_Progress,
+  type C_S_Elements_Meshes,
+  type C_Settings,
+  C_S_Element_Type,
 } from "@models";
-import type { WebGLRenderer, PerspectiveCamera } from "three";
+import { type WebGLRenderer, GridHelper } from "three";
 import { getElements } from "./getElements";
 import { getMapperCamera } from "./getMapperCamera";
 import { getMapperProgress } from "./getMapperProgress";
 import { Canvas_Item, type Canvas_Scene_Element } from "@classes_abstract";
 import { interpolate } from "popmotion";
+import { getBoundingBox } from "./getBoundingBox";
 
 type Props = {
   renderer: WebGLRenderer;
-  camera: PerspectiveCamera;
+  canvasSettings: C_Settings;
   canvasDOMElement: HTMLCanvasElement;
+
+  sceneIndex: number;
   sceneSettings: C_Scene_Settings;
   elementsMeshes: C_S_Elements_Meshes;
   contentDOMElement: HTMLDivElement;
@@ -28,6 +33,7 @@ type Props = {
 };
 
 export class Canvas_Scene extends Canvas_Item {
+  private sceneIndex: number;
   private sceneSettings: C_Scene_Settings;
   private elementsMeshes: C_S_Elements_Meshes;
   private contentDOMElement: HTMLDivElement;
@@ -40,9 +46,10 @@ export class Canvas_Scene extends Canvas_Item {
   mapperCamera: C_Scene_Camera_Mapper;
   mapperOpacity: C_Scene_Opacity_Mapper;
 
-  constructor({ renderer, camera, canvasDOMElement, sceneSettings, elementsMeshes, contentDOMElement, viewport, isLastScene }: Props) {
-    super({ renderer, canvasDOMElement, camera });
+  constructor({ renderer, canvasSettings, canvasDOMElement, sceneSettings, elementsMeshes, contentDOMElement, viewport, isLastScene, sceneIndex }: Props) {
+    super({ renderer, canvasDOMElement, canvasSettings, boundingBox: getBoundingBox({ sceneSettings }) });
 
+    this.sceneIndex = sceneIndex;
     this.sceneSettings = sceneSettings;
     this.elementsMeshes = elementsMeshes;
     this.contentDOMElement = contentDOMElement;
@@ -57,12 +64,17 @@ export class Canvas_Scene extends Canvas_Item {
     this.addElementMeshesToScene(this.elements.flatMap((element) => element.meshes));
   }
 
+  private setElements() {
+    this.elements = getElements({ sceneSettings: this.sceneSettings, elementsMeshes: this.elementsMeshes, dimensionZ: this.dimensionZ });
+  }
+
   private setMapperCamera() {
-    this.mapperCamera = getMapperCamera({ sceneSettings: this.sceneSettings }).mapper;
+    this.mapperCamera = getMapperCamera({ sceneSettings: this.sceneSettings, dimensionZ: this.dimensionZ }).mapper;
   }
 
   private setMapperProgress() {
     this.mapperProgress = getMapperProgress({
+      sceneIndex: this.sceneIndex,
       contentDOMElement: this.contentDOMElement,
       sceneSettings: this.sceneSettings,
       viewport: this.viewport,
@@ -71,17 +83,23 @@ export class Canvas_Scene extends Canvas_Item {
   }
 
   private setMapperOpacity() {
-    this.mapperOpacity = interpolate(this.sceneSettings.hasTransition ? [0, 0.2, 0.5] : [0, 0.6, 0.9], [0, 0, 1]);
+    const hasTransition = Boolean(this.sceneSettings.elements.find((item) => item.type === C_S_Element_Type.TRANSITION));
+    this.mapperOpacity = interpolate(hasTransition ? [0, 0.2, 0.5] : [0, 0.6, 0.9], [0, 0, 1]);
   }
 
-  private setElements() {
-    this.elements = getElements({ sceneSettings: this.sceneSettings, elementsMeshes: this.elementsMeshes });
+  private setGrid() {
+    const gridXZ = new GridHelper(100, 10, "#000", "#aaaaaa");
+    const gridXY = new GridHelper(100, 10, "#000", "#aaaaaa");
+    const gridYZ = new GridHelper(100, 10, "#000", "#aaaaaa");
+    gridXY.rotation.x = Math.PI / 2;
+    gridYZ.rotation.z = Math.PI / 2;
+    this.scene.add(gridYZ, gridXZ, gridXY);
   }
 
   private animateElements(progress: C_Scene_Progress, opacity: number) {
     const progressMain = this.sceneSettings.mode === "auto" ? progress.auto : progress.main;
     this.elements.forEach((element) => {
-      element.update(progressMain, progress.entry, opacity);
+      element.animate(progressMain, progress.entry, opacity);
     });
   }
 
@@ -99,9 +117,7 @@ export class Canvas_Scene extends Canvas_Item {
     }
   }
 
-  resize(camera: PerspectiveCamera, sceneSettings: C_Scene_Settings) {
-    this.sceneSettings = sceneSettings;
-    this.setCameraAspect(camera);
+  resizing() {
     this.setMapperCamera();
     this.setMapperProgress();
   }

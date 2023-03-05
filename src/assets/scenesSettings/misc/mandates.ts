@@ -18,7 +18,6 @@ function getSize(num: number) {
 const partyInputRange = [0, 0.48, 0.63, 0.76, 0.9, 1];
 
 export const mandates: C_Scene_Settings = {
-  boundingBox: { x: 100, y: 180 },
   extraTextMargin: [
     { index: 0, top: 0, bottom: 0.5 },
     { index: 1, top: 0, bottom: 0.5 },

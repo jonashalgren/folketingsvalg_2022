@@ -1,36 +1,53 @@
-import { Scene, SpotLight, AmbientLight, PerspectiveCamera, WebGLRenderer, GridHelper, Mesh } from "three";
+import { Scene, SpotLight, AmbientLight, PerspectiveCamera, WebGLRenderer, Mesh, Vector3 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import type { C_Scene_Settings } from "@models";
+import type { C_Settings } from "@models";
 
 type Props = {
   renderer: WebGLRenderer;
   canvasDOMElement: HTMLCanvasElement;
-  camera: PerspectiveCamera;
+  canvasSettings: C_Settings;
+  boundingBox: Vector3;
 };
 
 export abstract class Canvas_Item implements Props {
   renderer: WebGLRenderer;
   canvasDOMElement: HTMLCanvasElement;
-  camera: PerspectiveCamera;
+  canvasSettings: C_Settings;
 
+  dimensionZ: number;
+  boundingBox: Vector3;
   scene: Scene;
   controls: OrbitControls;
+  camera: PerspectiveCamera;
 
   private spotLight: SpotLight;
   private ambientLight: AmbientLight;
 
-  abstract resize(camera: PerspectiveCamera, sceneSettings: C_Scene_Settings): void;
   abstract animate(): void;
+  abstract resizing(): void;
 
-  constructor({ renderer, camera, canvasDOMElement }: Props) {
+  constructor({ renderer, canvasSettings, canvasDOMElement, boundingBox }: Props) {
     this.renderer = renderer;
     this.canvasDOMElement = canvasDOMElement;
-    this.camera = camera;
+    this.canvasSettings = canvasSettings;
+    this.boundingBox = boundingBox;
 
     this.scene = new Scene();
-    this.setCamera(camera);
+    this.setCamera();
     this.setControls();
     this.setLights();
+    this.setDimensionZ();
+  }
+
+  private setCamera() {
+    this.camera = new PerspectiveCamera(50, this.canvasSettings.width / this.canvasSettings.height, 0.1, 1000);
+    this.camera.up.set(0, 0, 1);
+  }
+
+  private setControls() {
+    this.controls = new OrbitControls(this.camera, this.canvasDOMElement);
+    this.controls.enableZoom = false;
+    this.controls.enablePan = false;
   }
 
   private setLights() {
@@ -41,33 +58,32 @@ export abstract class Canvas_Item implements Props {
     this.scene.add(this.spotLight, this.ambientLight);
   }
 
-  private setCamera(camera: PerspectiveCamera) {
-    this.camera = camera.clone();
-    this.camera.up.set(0, 0, 1);
+  private setDimensionZ() {
+    const fov = this.camera.fov * (Math.PI / 180);
+    const fovh = 2 * Math.atan(Math.tan(fov / 2) * this.camera.aspect);
+    const dx = this.boundingBox.z / 2 + Math.abs(this.boundingBox.x / 2 / Math.tan(fovh / 2));
+    const dy = this.boundingBox.z / 2 + Math.abs(this.boundingBox.y / 2 / Math.tan(fov / 2));
+    this.dimensionZ = Math.max(dx, dy) * 1.05;
   }
 
-  private setControls() {
-    this.controls = new OrbitControls(this.camera, this.canvasDOMElement);
-    this.controls.enableZoom = false;
-    this.controls.enablePan = false;
+  private updateCameraAspect() {
+    this.camera.aspect = this.canvasSettings.width / this.canvasSettings.height;
+    this.camera.updateProjectionMatrix();
   }
 
-  setGrid() {
-    const gridXZ = new GridHelper(100, 10, "#000", "#aaaaaa");
-    const gridXY = new GridHelper(100, 10, "#000", "#aaaaaa");
-    const gridYZ = new GridHelper(100, 10, "#000", "#aaaaaa");
-    gridXY.rotation.x = Math.PI / 2;
-    gridYZ.rotation.z = Math.PI / 2;
-    this.scene.add(gridYZ, gridXZ, gridXY);
+  private updateCanvasSettings(canvasSettings: C_Settings) {
+    this.canvasSettings = canvasSettings;
   }
 
   addElementMeshesToScene(meshes: Mesh[]) {
     this.scene.add(...meshes);
   }
 
-  setCameraAspect(camera: PerspectiveCamera) {
-    this.camera.aspect = camera.aspect;
-    this.camera.updateProjectionMatrix();
+  resize({ canvasSettings }: { canvasSettings: C_Settings }) {
+    this.updateCanvasSettings(canvasSettings);
+    this.updateCameraAspect();
+    this.setDimensionZ();
+    this.resizing();
   }
 
   render() {

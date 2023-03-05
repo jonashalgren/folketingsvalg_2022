@@ -1,5 +1,5 @@
 import { Canvas_Scene_Element } from "@classes_abstract";
-import type { C_S_E_Mesh_Text, C_Scene_Settings, C_S_S_Element_Number } from "@models";
+import type { C_S_E_Mesh_Text, C_S_S_Element_Number } from "@models";
 import { getProcessedNumberSettings } from "./getProcessedNumberSettings";
 import { getValue } from "./getValue";
 import { Text } from "troika-three-text";
@@ -8,7 +8,7 @@ import { degreesToRadians, interpolate } from "popmotion";
 
 type Props = {
   elementSettings: C_S_S_Element_Number;
-  sceneSettings: C_Scene_Settings;
+  dimensionZ: number;
 };
 
 export class Canvas_Scene_Element_Number extends Canvas_Scene_Element<C_S_S_Element_Number, C_S_E_Mesh_Text[]> {
@@ -30,7 +30,7 @@ export class Canvas_Scene_Element_Number extends Canvas_Scene_Element<C_S_S_Elem
   private setElementSettings() {
     this.elementSettings = getProcessedNumberSettings({
       elementSettings: this.elementSettings,
-      sceneSettings: this.sceneSettings,
+      dimensionZ: this.dimensionZ,
     });
   }
 
@@ -49,30 +49,28 @@ export class Canvas_Scene_Element_Number extends Canvas_Scene_Element<C_S_S_Elem
     );
   }
 
-  setMapperValue() {
+  private setMapperValue() {
     this.mapperValue = interpolate(this.elementSettings.motion.value.inputRange, this.elementSettings.motion.value.outputRange);
   }
 
-  setMapperColor() {
+  private setMapperColor() {
     this.mapperColor = interpolate(this.elementSettings.motion.color.inputRange, this.elementSettings.motion.color.outputRange);
   }
 
-  setMapperSize() {
+  private setMapperSize() {
     this.mapperSize = interpolate(this.elementSettings.motion.size.inputRange, this.elementSettings.motion.size.outputRange);
   }
 
-  setMapperPosition() {
+  private setMapperPosition() {
     this.mapperPosition = interpolate(this.elementSettings.motion.position.inputRange, this.elementSettings.motion.position.outputRange);
   }
 
-  resize(elementSettings: C_S_S_Element_Number, sceneSettings: C_Scene_Settings) {
-    this.elementSettings = elementSettings;
-    this.sceneSettings = sceneSettings;
+  resizing() {
     this.setElementSettings();
     this.setMapperPosition();
   }
 
-  animate(progress: number) {
+  animating(progress: number) {
     this.meshes[0].text = getValue({ value: this.mapperValue(progress), decimals: this.elementSettings.decimals, unit: this.elementSettings.unit });
     this.meshes[0].color = this.mapperColor(progress);
     this.meshes[0].fontSize = this.mapperSize(progress);

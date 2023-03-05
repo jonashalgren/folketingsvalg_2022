@@ -1,12 +1,11 @@
 import { Canvas_Scene_Element } from "@classes_abstract";
-import type { C_S_E_Mesh_Figure, C_Scene_Settings, C_S_S_Element_Figure } from "@models";
+import type { C_S_E_Mesh_Figure, C_S_S_Element_Figure } from "@models";
 import { Canvas_Scene_Element_Figure_Item } from "@classes";
 import { Group, Box3, Color } from "three";
 
 type Props = {
   elementSettings: C_S_S_Element_Figure;
   elementMeshes: C_S_E_Mesh_Figure[];
-  sceneSettings: C_Scene_Settings;
 };
 
 export class Canvas_Scene_Element_Figure extends Canvas_Scene_Element<C_S_S_Element_Figure, C_S_E_Mesh_Figure[]> {
@@ -88,18 +87,15 @@ export class Canvas_Scene_Element_Figure extends Canvas_Scene_Element<C_S_S_Elem
     this.meshes = this.items.flatMap((item) => item.meshes);
   }
 
-  resize(elementSettings: C_S_S_Element_Figure, sceneSettings: C_Scene_Settings) {
-    this.elementSettings = elementSettings;
-    this.sceneSettings = sceneSettings;
-  }
+  resizing() {}
 
-  animate(progress: number) {
+  animating(progress: number) {
     const fadedItems = this.elementSettings.items.find(({ inputRange }) => inputRange[0] <= progress && inputRange[1] >= progress);
     this.items.forEach((item, index) => {
       if (fadedItems) {
-        item.animate(progress, this.items.length - fadedItems.disabled - 1 < index);
+        item.animating(progress, this.items.length - fadedItems.disabled - 1 < index);
       } else {
-        item.animate(progress, false);
+        item.animating(progress, false);
       }
     });
   }

@@ -40,12 +40,12 @@ export class Canvas_Scene_Element_Transition extends Canvas_Scene_Element<C_S_S_
     this.meshes.push(...this.squares.flatMap((item) => item.mesh));
   }
 
-  resize(): void {}
+  resizing() {}
 
-  animate(_: number, entryProgress: number) {
+  animating(_: number, entryProgress: number) {
     const colorAlpha = this.colorAlphaMapper(entryProgress);
     this.squares.forEach((square: Canvas_Scene_Element_Transition_Square) => {
-      square.animate(entryProgress, colorAlpha);
+      square.animating(entryProgress, colorAlpha);
     });
   }
 }

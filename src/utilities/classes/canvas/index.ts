@@ -1,8 +1,7 @@
 import type { C_Settings, Viewport, C_Scene_Settings, C_S_Elements_Meshes } from "@models";
-import { PerspectiveCamera, WebGLRenderer } from "three";
+import { WebGLRenderer } from "three";
 import { Canvas_Scene, Canvas_Background } from "@classes";
 import { _rAF } from "@stores";
-import { getProcessedScenesSettings } from "./getProcessedScenesSettings";
 
 export class Canvas {
   private canvasDOMElement: HTMLCanvasElement;
@@ -12,7 +11,6 @@ export class Canvas {
   private viewport: Viewport;
 
   private renderer: WebGLRenderer;
-  private camera: PerspectiveCamera;
   private scenes: Canvas_Scene[];
   private background: Canvas_Background;
   private canvasSettings: C_Settings;
@@ -29,13 +27,12 @@ export class Canvas {
     this.scenesSettings = scenesSettings;
     this.elementsMeshes = elementsMeshes;
     this.viewport = viewport;
+    this.scenesSettings = scenesSettings;
 
     this.setRenderer();
     this.setCanvasSettings();
     this.setRendererSize();
-    this.setCamera();
     this.setCanvasDOMStyles();
-    this.setScenesSettings();
     this.setScenes();
     this.setBackground();
     this.removePreloader();
@@ -60,26 +57,8 @@ export class Canvas {
     this.canvasSettings = { left, width, height: this.viewport.h };
   }
 
-  private setScenesSettings() {
-    this.scenesSettings = getProcessedScenesSettings({
-      scenesSettings: this.scenesSettings,
-      camera: this.camera,
-      contentDOMElement: this.contentDOMElement,
-      viewport: this.viewport,
-    }).scenesSettings;
-  }
-
   private setCanvasDOMStyles() {
     this.canvasDOMElement.style.left = `${this.canvasSettings.left}px`;
-  }
-
-  private setCamera() {
-    this.camera = new PerspectiveCamera(50, this.canvasSettings.width / this.canvasSettings.height, 0.1, 1000);
-  }
-
-  private setCameraAspect() {
-    this.camera.aspect = this.canvasSettings.width / this.canvasSettings.height;
-    this.camera.updateProjectionMatrix();
   }
 
   private setRenderer() {
@@ -96,8 +75,9 @@ export class Canvas {
       const isLastScene = index === this.scenesSettings.length - 1;
       return new Canvas_Scene({
         renderer: this.renderer,
-        camera: this.camera,
+        canvasSettings: this.canvasSettings,
         canvasDOMElement: this.canvasDOMElement,
+        sceneIndex: index,
         sceneSettings: sceneSettings,
         elementsMeshes: this.elementsMeshes,
         contentDOMElement: this.contentDOMElement,
@@ -108,17 +88,17 @@ export class Canvas {
   }
 
   private resizeScenes() {
-    this.scenesSettings.forEach((sceneSettings, index) => {
-      this.scenes[index].resize(this.camera, sceneSettings);
+    this.scenes.forEach((scene) => {
+      scene.resize({ canvasSettings: this.canvasSettings });
     });
   }
 
   private setBackground() {
-    this.background = new Canvas_Background({ renderer: this.renderer, camera: this.camera, canvasDOMElement: this.canvasDOMElement });
+    this.background = new Canvas_Background({ renderer: this.renderer, canvasSettings: this.canvasSettings, canvasDOMElement: this.canvasDOMElement });
   }
 
   private resizeBackground() {
-    this.background.resize(this.camera);
+    this.background.resize({ canvasSettings: this.canvasSettings });
   }
 
   resize(viewport: Viewport) {
@@ -126,9 +106,7 @@ export class Canvas {
 
     this.setCanvasSettings();
     this.setRendererSize();
-    this.setCameraAspect();
     this.setCanvasDOMStyles();
-    this.setScenesSettings();
 
     this.resizeBackground();
     this.resizeScenes();

@@ -2,7 +2,7 @@ import { getProcessedOutputRangeItem, getProcessedOutputRangeList } from "@helpe
 import type { Props } from "./index";
 
 export function setCameraSettings(item: Props): Props {
-  const { camera, dimensionZ } = item.sceneSettings;
+  const { camera } = item.sceneSettings;
 
   return {
     ...item,
@@ -10,31 +10,31 @@ export function setCameraSettings(item: Props): Props {
       positionMain: {
         ...camera.positionMain,
         outputRange: getProcessedOutputRangeList({
-          dimensionZ: dimensionZ,
+          dimensionZ: item.dimensionZ,
           originalOutputRangeList: camera.positionMain.outputRange,
         }),
       },
       targetMain: {
         ...camera.targetMain,
         outputRange: getProcessedOutputRangeList({
-          dimensionZ: dimensionZ,
+          dimensionZ: item.dimensionZ,
           originalOutputRangeList: camera.targetMain.outputRange,
         }),
       },
       positionEntry: getProcessedOutputRangeItem({
-        dimensionZ: dimensionZ,
+        dimensionZ: item.dimensionZ,
         originalOutputRangeItem: camera.positionEntry,
       }),
       targetEntry: getProcessedOutputRangeItem({
-        dimensionZ: dimensionZ,
+        dimensionZ: item.dimensionZ,
         originalOutputRangeItem: camera.targetEntry,
       }),
       positionExit: getProcessedOutputRangeItem({
-        dimensionZ: dimensionZ,
+        dimensionZ: item.dimensionZ,
         originalOutputRangeItem: camera.positionExit,
       }),
       targetExit: getProcessedOutputRangeItem({
-        dimensionZ: dimensionZ,
+        dimensionZ: item.dimensionZ,
         originalOutputRangeItem: camera.targetExit,
       }),
     },

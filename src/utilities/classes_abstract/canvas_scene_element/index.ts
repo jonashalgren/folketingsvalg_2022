@@ -1,4 +1,4 @@
-import type { C_S_Element_Mesh, C_Scene_Settings, C_S_S_Element } from "@models";
+import type { C_S_Element_Mesh, C_Scene_Settings, C_S_S_Element, C_S_S_Element_Box } from "@models";
 import { getElementMeshes } from "./getElementMeshes";
 
 type Props<D extends C_S_S_Element, M extends C_S_Element_Mesh[]> = {
@@ -6,6 +6,7 @@ type Props<D extends C_S_S_Element, M extends C_S_Element_Mesh[]> = {
   sceneSettings?: C_Scene_Settings;
   elementMeshes?: M;
   index?: number;
+  dimensionZ?: number;
 };
 
 export abstract class Canvas_Scene_Element<D extends C_S_S_Element, M extends C_S_Element_Mesh[]> implements Props<C_S_S_Element, C_S_Element_Mesh[]> {
@@ -13,6 +14,7 @@ export abstract class Canvas_Scene_Element<D extends C_S_S_Element, M extends C_
   elementMeshes?: M;
   sceneSettings?: C_Scene_Settings;
   index?: number;
+  dimensionZ?: number;
 
   meshes: M;
 
@@ -20,14 +22,15 @@ export abstract class Canvas_Scene_Element<D extends C_S_S_Element, M extends C_
   private localEntryProgress: number | undefined = undefined;
   private localOpacity: number | undefined = undefined;
 
-  abstract animate(progress: number, entryProgress: number): void;
-  abstract resize(elementSettings: D, sceneSettings: C_Scene_Settings): void;
+  abstract animating(progress: number, entryProgress: number): void;
+  abstract resizing(): void;
 
-  constructor({ elementSettings, elementMeshes, sceneSettings, index }: Props<D, M>) {
+  constructor({ elementSettings, elementMeshes, sceneSettings, index, dimensionZ = 100 }: Props<D, M>) {
     this.elementSettings = elementSettings;
     this.elementMeshes = elementMeshes;
     this.sceneSettings = sceneSettings;
     this.index = index;
+    this.dimensionZ = dimensionZ;
     this.setMeshes();
   }
 
@@ -50,10 +53,16 @@ export abstract class Canvas_Scene_Element<D extends C_S_S_Element, M extends C_
     });
   }
 
-  update(progress: number = 0, entryProgress: number = 0, opacity: number = 0) {
+  resize(elementSettings: D, dimensionZ: number) {
+    this.elementSettings = elementSettings;
+    this.dimensionZ = dimensionZ;
+    this.resizing;
+  }
+
+  animate(progress: number = 0, entryProgress: number = 0, opacity: number = 0) {
     if (this.localProgress !== progress || this.localEntryProgress !== entryProgress) {
       this.localProgress = progress;
-      this.animate(progress, entryProgress);
+      this.animating(progress, entryProgress);
     }
     if (this.localOpacity !== opacity) {
       this.localOpacity = opacity;

@@ -2,6 +2,13 @@ import type { Vector3Tuple } from "three";
 
 export type C_Scene_Progress_State = "active" | "inactive" | "next";
 
+export type C_Scene_Progress_Settings = {
+  mainStart: number;
+  mainEnd: number;
+  entryStart: number;
+  exitEnd: number;
+};
+
 export type C_Scene_Progress = {
   main: number;
   entry: number;
