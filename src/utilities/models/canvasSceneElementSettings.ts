@@ -206,10 +206,42 @@ export type C_S_S_Element_Number_Motion = {
 
 //------------------------------------------------------------
 
+export type C_S_S_Element_Chart = {
+  type: C_S_Element_Type.CHART;
+  width?: number;
+  height?: number;
+  xTicks?: string[];
+  yTicks?: string[];
+  unit?: string;
+  decimals?: number;
+  configs: C_S_S_Element_Chart_Config[];
+};
+
+export type C_S_S_Element_Chart_Config = {
+  type: C_S_S_E_Chart_Config_Type.LINE;
+  width: number;
+  color: string;
+  values: number[];
+  inputRange: [number, number];
+};
+
+export enum C_S_S_E_Chart_Config_Type {
+  LINE,
+}
+
+//------------------------------------------------------------
+
 export type C_S_S_Element_Transition = {
   type: C_S_Element_Type.TRANSITION;
 };
 
 //------------------------------------------------------------
 
-export type C_S_S_Element = C_S_S_Element_Map | C_S_S_Element_Number | C_S_S_Element_Text | C_S_S_Element_Box | C_S_S_Element_Figure | C_S_S_Element_Transition;
+export type C_S_S_Element =
+  | C_S_S_Element_Map
+  | C_S_S_Element_Number
+  | C_S_S_Element_Text
+  | C_S_S_Element_Box
+  | C_S_S_Element_Figure
+  | C_S_S_Element_Transition
+  | C_S_S_Element_Chart;

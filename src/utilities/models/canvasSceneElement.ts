@@ -1,8 +1,9 @@
 export enum C_S_Element_Type {
-  TRANSITION,
+  TRANSITION = 1,
   BOX,
   MAP,
   FIGURE,
   TEXT,
   NUMBER,
+  CHART,
 }
