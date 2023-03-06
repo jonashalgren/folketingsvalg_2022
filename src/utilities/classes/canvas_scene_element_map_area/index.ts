@@ -35,7 +35,7 @@ export class Canvas_Scene_Element_Map_Area {
     this.mapperOpacity = getOpacityMapper({ duration: 1200, fadeOutStrength: 0.2 });
   }
 
-  resizing(elementSettings: C_S_S_Element_Map, dimensionZ: number) {
+  resize(elementSettings: C_S_S_Element_Map, dimensionZ: number) {
     this.props.elementSettings = elementSettings;
     this.props.dimensionZ = dimensionZ;
 
@@ -43,7 +43,7 @@ export class Canvas_Scene_Element_Map_Area {
     this.setMapperColor();
   }
 
-  animating(progress: number, isFaded: boolean) {
+  animate(progress: number, isFaded: boolean) {
     const scaleZ = this.mapperScaleZ(progress);
     const color = this.mapperColor(progress);
     const opacity = this.mapperOpacity(isFaded);

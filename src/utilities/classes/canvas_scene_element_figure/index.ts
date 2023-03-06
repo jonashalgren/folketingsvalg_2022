@@ -87,15 +87,15 @@ export class Canvas_Scene_Element_Figure extends Canvas_Scene_Element<C_S_S_Elem
     this.meshes = this.items.flatMap((item) => item.meshes);
   }
 
-  resizing() {}
+  resize() {}
 
-  animating(progress: number) {
+  animate(progress: number) {
     const fadedItems = this.elementSettings.items.find(({ inputRange }) => inputRange[0] <= progress && inputRange[1] >= progress);
     this.items.forEach((item, index) => {
       if (fadedItems) {
-        item.animating(progress, this.items.length - fadedItems.disabled - 1 < index);
+        item.animate(progress, this.items.length - fadedItems.disabled - 1 < index);
       } else {
-        item.animating(progress, false);
+        item.animate(progress, false);
       }
     });
   }

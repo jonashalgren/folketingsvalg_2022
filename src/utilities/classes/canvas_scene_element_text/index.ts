@@ -51,10 +51,10 @@ export class Canvas_Scene_Element_Text extends Canvas_Scene_Element<C_S_S_Elemen
     this.meshes[0].position.set(...this.elementSettings.position);
   }
 
-  resizing() {
+  resize() {
     this.setElementSettings();
     this.setTextPosition();
   }
 
-  animating() {}
+  animate() {}
 }

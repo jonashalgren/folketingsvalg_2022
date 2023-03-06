@@ -1,1 +1,1 @@
-export * from "./canvasAnimate";
+export * from "./canvasRender";

@@ -87,14 +87,14 @@ export class Canvas_Scene_Element_Box extends Canvas_Scene_Element<C_S_S_Element
     }
   }
 
-  resizing() {
+  resize() {
     this.setBoxSettings();
     this.setMapperPosition();
     this.setMapperScale();
     this.setMapperFloatingYOffset();
   }
 
-  animating(progress: number) {
+  animate(progress: number) {
     if (this.elementSettings.isFloating) {
       this.setFloatingYOffsetProgress();
       this.floatingProgress.set(progress);

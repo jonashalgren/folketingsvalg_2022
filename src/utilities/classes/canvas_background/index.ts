@@ -30,11 +30,12 @@ export class Canvas_Background extends Canvas_Item {
     this.camera.position.set(0, 0, getProcessedZ({ dimensionZ: this.dimensionZ, z: 200 }));
   }
 
-  resizing() {
+  resize() {
     this.setCameraPosition();
   }
 
   animate() {
-    this.render();
+    this.controls.update();
+    this.renderer.render(this.scene, this.camera);
   }
 }

@@ -10,7 +10,7 @@ export class Canvas_Scene_Element_Chart extends Canvas_Scene_Element<C_S_S_Eleme
     super(props);
   }
 
-  resizing(): void {}
+  resize(): void {}
 
-  animating(_progress: number, _entryProgress: number) {}
+  animate(_progress: number, _entryProgress: number) {}
 }

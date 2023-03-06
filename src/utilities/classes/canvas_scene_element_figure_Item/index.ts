@@ -28,16 +28,16 @@ export class Canvas_Scene_Element_Figure_Item {
     this.setProperties();
   }
 
-  setRow() {
+  private setRow() {
     this.row = Math.floor(this.props.index / this.props.itemsPrRow);
   }
 
-  setPosition() {
+  private setPosition() {
     this.xPos = -(this.props.width / 2) + this.props.index * this.props.itemWidth - this.props.width * this.row + this.props.itemWidth * 0.05;
     this.yPos = -(this.row * this.props.itemHeight) + this.props.itemHeight * 0.05;
   }
 
-  setMeshes() {
+  private setMeshes() {
     this.meshes = this.props.elementMeshes.map((mesh: C_S_E_Mesh_Figure) => {
       const clone = mesh.clone();
       clone.userData = mesh.userData;
@@ -48,14 +48,14 @@ export class Canvas_Scene_Element_Figure_Item {
     });
   }
 
-  setProperties() {
+  private setProperties() {
     this.meshes.forEach((item) => {
       item.position.set(this.xPos, this.yPos, 0.1);
       item.scale.set(this.props.itemScale * 0.9, this.props.itemScale * 0.9, 0.1);
     });
   }
 
-  animating(progress: number, isFaded: boolean) {
+  animate(progress: number, isFaded: boolean) {
     let goal = 0;
 
     if (isFaded && progress > 0) {

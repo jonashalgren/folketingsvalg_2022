@@ -24,7 +24,7 @@ export abstract class Canvas_Item implements Props {
   private ambientLight: AmbientLight;
 
   abstract animate(): void;
-  abstract resizing(): void;
+  abstract resize(): void;
 
   constructor({ renderer, canvasSettings, canvasDOMElement, boundingBox }: Props) {
     this.renderer = renderer;
@@ -79,15 +79,14 @@ export abstract class Canvas_Item implements Props {
     this.scene.add(...meshes);
   }
 
-  resize({ canvasSettings }: { canvasSettings: C_Settings }) {
+  update({ canvasSettings }: { canvasSettings: C_Settings }) {
     this.updateCanvasSettings(canvasSettings);
     this.updateCameraAspect();
     this.setDimensionZ();
-    this.resizing();
+    this.resize();
   }
 
   render() {
-    this.controls.update();
-    this.renderer.render(this.scene, this.camera);
+    this.animate();
   }
 }

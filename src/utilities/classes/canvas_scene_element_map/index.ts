@@ -41,7 +41,7 @@ export class Canvas_Scene_Element_Map extends Canvas_Scene_Element<C_S_S_Element
 
   private resizeAreas() {
     this.areas.forEach((area) => {
-      area.resizing(this.elementSettings, this.dimensionZ);
+      area.resize(this.elementSettings, this.dimensionZ);
     });
   }
 
@@ -56,16 +56,16 @@ export class Canvas_Scene_Element_Map extends Canvas_Scene_Element<C_S_S_Element
   private animateAreas(progress: number) {
     this.areas.forEach((area: Canvas_Scene_Element_Map_Area) => {
       const isFaded = this.focusedAreas.length > 0 && !this.focusedAreas.includes(area.props.areaId);
-      area.animating(progress, isFaded);
+      area.animate(progress, isFaded);
     });
   }
 
-  resizing() {
+  resize() {
     this.setElementSettings();
     this.resizeAreas();
   }
 
-  animating(progress: number) {
+  animate(progress: number) {
     this.animateFocusedAreas(progress);
     this.animateAreas(progress);
   }

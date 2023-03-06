@@ -22,8 +22,8 @@ export abstract class Canvas_Scene_Element<D extends C_S_S_Element, M extends C_
   private localEntryProgress: number | undefined = undefined;
   private localOpacity: number | undefined = undefined;
 
-  abstract animating(progress: number, entryProgress: number): void;
-  abstract resizing(): void;
+  abstract animate(progress: number, entryProgress: number): void;
+  abstract resize(): void;
 
   constructor({ elementSettings, elementMeshes, sceneSettings, index, dimensionZ = 100 }: Props<D, M>) {
     this.elementSettings = elementSettings;
@@ -53,16 +53,16 @@ export abstract class Canvas_Scene_Element<D extends C_S_S_Element, M extends C_
     });
   }
 
-  resize(elementSettings: D, dimensionZ: number) {
+  update(elementSettings: D, dimensionZ: number) {
     this.elementSettings = elementSettings;
     this.dimensionZ = dimensionZ;
-    this.resizing;
+    this.resize();
   }
 
-  animate(progress: number = 0, entryProgress: number = 0, opacity: number = 0) {
+  render(progress: number = 0, entryProgress: number = 0, opacity: number = 0) {
     if (this.localProgress !== progress || this.localEntryProgress !== entryProgress) {
       this.localProgress = progress;
-      this.animating(progress, entryProgress);
+      this.animate(progress, entryProgress);
     }
     if (this.localOpacity !== opacity) {
       this.localOpacity = opacity;

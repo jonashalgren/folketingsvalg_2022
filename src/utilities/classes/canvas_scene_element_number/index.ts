@@ -65,12 +65,12 @@ export class Canvas_Scene_Element_Number extends Canvas_Scene_Element<C_S_S_Elem
     this.mapperPosition = interpolate(this.elementSettings.motion.position.inputRange, this.elementSettings.motion.position.outputRange);
   }
 
-  resizing() {
+  resize() {
     this.setElementSettings();
     this.setMapperPosition();
   }
 
-  animating(progress: number) {
+  animate(progress: number) {
     this.meshes[0].text = getValue({ value: this.mapperValue(progress), decimals: this.elementSettings.decimals, unit: this.elementSettings.unit });
     this.meshes[0].color = this.mapperColor(progress);
     this.meshes[0].fontSize = this.mapperSize(progress);

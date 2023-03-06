@@ -1,7 +1,7 @@
 <script lang="ts">
   import { scenesSettings } from "@assets";
   import { _contentDOMElement, _viewport, _elementsMeshes } from "@stores";
-  import { canvasAnimate } from "@actions";
+  import { canvasRender } from "@actions";
 </script>
 
 <div id="scenes">
@@ -9,7 +9,7 @@
     <div>
       {#if Boolean($_elementsMeshes)}
         <canvas
-          use:canvasAnimate={{
+          use:canvasRender={{
             viewport: $_viewport,
             scenesSettings: scenesSettings,
             elementsMeshes: $_elementsMeshes,

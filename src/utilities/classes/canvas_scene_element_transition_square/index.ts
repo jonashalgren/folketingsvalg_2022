@@ -59,7 +59,7 @@ export class Canvas_Scene_Element_Transition_Square {
     this.mesh.position.set(...this.props.positionOutputRange[0]);
   }
 
-  animating(progress: number, colorAlpha: number) {
+  animate(progress: number, colorAlpha: number) {
     if (this.localProgress !== progress) {
       this.localProgress = progress;
 

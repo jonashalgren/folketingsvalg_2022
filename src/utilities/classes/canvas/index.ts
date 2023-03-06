@@ -87,9 +87,9 @@ export class Canvas {
     });
   }
 
-  private resizeScenes() {
+  private updateScenes() {
     this.scenes.forEach((scene) => {
-      scene.resize({ canvasSettings: this.canvasSettings });
+      scene.update({ canvasSettings: this.canvasSettings });
     });
   }
 
@@ -97,26 +97,26 @@ export class Canvas {
     this.background = new Canvas_Background({ renderer: this.renderer, canvasSettings: this.canvasSettings, canvasDOMElement: this.canvasDOMElement });
   }
 
-  private resizeBackground() {
-    this.background.resize({ canvasSettings: this.canvasSettings });
+  private updateBackground() {
+    this.background.update({ canvasSettings: this.canvasSettings });
   }
 
-  resize(viewport: Viewport) {
+  update(viewport: Viewport) {
     this.viewport = viewport;
 
     this.setCanvasSettings();
     this.setRendererSize();
     this.setCanvasDOMStyles();
 
-    this.resizeBackground();
-    this.resizeScenes();
+    this.updateBackground();
+    this.updateScenes();
   }
 
-  animate() {
-    this.background.animate();
+  render() {
+    this.background.render();
     this.renderer.autoClear = false;
     this.renderer.clearDepth();
-    this.scenes.forEach((scene: Canvas_Scene) => scene.animate());
+    this.scenes.forEach((scene: Canvas_Scene) => scene.render());
     this.renderer.autoClear = true;
   }
 }

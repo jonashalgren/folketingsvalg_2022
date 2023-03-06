@@ -99,7 +99,7 @@ export class Canvas_Scene extends Canvas_Item {
   private animateElements(progress: C_Scene_Progress, opacity: number) {
     const progressMain = this.sceneSettings.mode === "auto" ? progress.auto : progress.main;
     this.elements.forEach((element) => {
-      element.animate(progressMain, progress.entry, opacity);
+      element.render(progressMain, progress.entry, opacity);
     });
   }
 
@@ -117,7 +117,7 @@ export class Canvas_Scene extends Canvas_Item {
     }
   }
 
-  resizing() {
+  resize() {
     this.setMapperCamera();
     this.setMapperProgress();
   }
@@ -128,7 +128,8 @@ export class Canvas_Scene extends Canvas_Item {
     if (progress.state === "active" || progress.state === "next") {
       this.moveCamera(progress);
       this.animateElements(progress, opacity);
-      this.render();
+      this.controls.update();
+      this.renderer.render(this.scene, this.camera);
     }
   }
 }
